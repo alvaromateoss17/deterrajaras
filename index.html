@@ -132,23 +132,25 @@ ul { list-style: none; }
 #diferenciadores .section-title { font-size: clamp(2.6rem, 5vw, 3.4rem); }
 #diferenciadores .section-subtitle { font-size: 1rem; color: #5C3D24; }
 #diferenciadores .dif-card {
-    background: #fff;
+    background: #3e2a1e;
+    color: #f5e8d7;
     border-radius: 24px;
     padding: 32px;
-    border: 1px solid rgba(92,61,36,.12);
-    box-shadow: 0 18px 45px rgba(74,46,22,.07);
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 18px 45px rgba(62,42,30,.18);
 }
-#diferenciadores .dif-card:hover { transform: translateY(-7px); box-shadow: 0 24px 48px rgba(74,46,22,.12); }
+#diferenciadores .dif-card:hover { transform: translateY(-7px); box-shadow: 0 24px 48px rgba(62,42,30,.26); }
 #diferenciadores .dif-ico {
     width: 60px; height: 60px;
     border-radius: 18px;
-    background: rgba(46,125,50,.1);
-    color: #2E7D32;
+    background: linear-gradient(135deg, #d6aa47, #f4d384);
+    color: #4a2e16;
     display: grid; place-items: center;
     margin-bottom: 18px;
     font-size: 1.25rem;
 }
-#diferenciadores .dif-card h3 { font-size: 1.22rem; }
+#diferenciadores .dif-card h3 { font-size: 1.22rem; color: #fff; }
+#diferenciadores .dif-card p { color: rgba(255,255,255,.82); }
 .galeria-grid .img-cover { aspect-ratio: 4 / 3; min-height: 280px; border-radius: 24px; overflow: hidden; }
 .galeria-grid .gal-item { overflow: hidden; border-radius: 24px; }
 .galeria-grid .img-cover img { transition: transform .4s ease; }
@@ -762,6 +764,9 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
 .footer-col ul { display: flex; flex-direction: column; gap: 9px; }
 .footer-col ul a { color: rgba(255,255,255,.65); font-size: .88rem; transition: var(--tr); }
 .footer-col ul a:hover { color: var(--gold); padding-left: 4px; }
+.footer-map { margin-bottom: 18px; }
+.footer-map iframe { width: 100%; height: 220px; border: 0; border-radius: 18px; }
+.footer-map p { margin-top: 12px; color: rgba(255,255,255,.8); font-size: .92rem; line-height: 1.6; }
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,.1);
     padding-top: 22px;
@@ -885,20 +890,6 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                     <button onclick="openCamadasModal()" class="btn-cta-green">
                         Ver camadas disponibles
                     </button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-n">3</div>
-                        <div class="stat-l">Razas especializadas</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-n">100%</div>
-                        <div class="stat-l">Documentado y en regla</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-n">♥</div>
-                        <div class="stat-l">Crianza desde casa</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1389,10 +1380,14 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
             </div>
             <div class="footer-col">
                 <h4>Contacto</h4>
+                <div class="footer-map">
+                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <p>Polígono Ganadero · Cáceres<br>Ubicación exacta en Google Maps.</p>
+                </div>
                 <ul>
                     <li><a href="tel:+34670225384">670 225 384</a></li>
                     <li><a href="mailto:deterrajaras@gmail.com">deterrajaras@gmail.com</a></li>
-                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Polígono Ganadero · Cáceres</a></li>
+                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Ver en Google Maps</a></li>
                 </ul>
             </div>
         </div>
