@@ -115,6 +115,47 @@ ul { list-style: none; }
 }
 .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
 
+.btn-cta-green {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #28A745; color: #fff;
+    padding: 16px 32px; border-radius: 999px;
+    font-weight: 800; font-size: 1rem;
+    border: none; cursor: pointer; transition: var(--tr);
+    box-shadow: 0 16px 40px rgba(46,125,50,.22);
+}
+.btn-cta-green:hover { background: #1E7F32; transform: translateY(-2px); }
+
+#hero .hero-content { padding-top: 70px; }
+#hero .hero-sub { margin-top: 30px; }
+
+#diferenciadores .section-header { max-width: 720px; margin: 0 auto 40px; }
+#diferenciadores .section-title { font-size: clamp(2.6rem, 5vw, 3.4rem); }
+#diferenciadores .section-subtitle { font-size: 1rem; color: #5C3D24; }
+#diferenciadores .dif-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px;
+    border: 1px solid rgba(92,61,36,.12);
+    box-shadow: 0 18px 45px rgba(74,46,22,.07);
+}
+#diferenciadores .dif-card:hover { transform: translateY(-7px); box-shadow: 0 24px 48px rgba(74,46,22,.12); }
+#diferenciadores .dif-ico {
+    width: 60px; height: 60px;
+    border-radius: 18px;
+    background: rgba(46,125,50,.1);
+    color: #2E7D32;
+    display: grid; place-items: center;
+    margin-bottom: 18px;
+    font-size: 1.25rem;
+}
+#diferenciadores .dif-card h3 { font-size: 1.22rem; }
+.galeria-grid .img-cover { aspect-ratio: 4 / 3; min-height: 280px; border-radius: 24px; overflow: hidden; }
+.galeria-grid .gal-item { overflow: hidden; border-radius: 24px; }
+.galeria-grid .img-cover img { transition: transform .4s ease; }
+.galeria-grid .img-cover:hover img { transform: scale(1.03); }
+#testimonios .test-grid { grid-template-columns: repeat(3,1fr); gap: 24px; }
+#testimonios .test-card { min-height: 330px; }
+
 /* Image placeholder */
 .img-ph {
     background: linear-gradient(135deg, var(--gold-light), var(--primary-light));
@@ -810,7 +851,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                 <li><a href="#como-criamos">Cómo Criamos</a></li>
                 <li><a href="#galeria">Galería</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-                <li><button onclick="openCamadasModal()" class="nav-camadas">🐾 Camadas</button></li>
+                <li><button onclick="openCamadasModal()" class="nav-camadas">Camadas</button></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -841,8 +882,8 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                     <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
                         <i class="fab fa-whatsapp"></i> Habla con nosotros
                     </a>
-                    <button onclick="openCamadasModal()" class="btn-outline-w">
-                        <i class="fas fa-paw"></i> Ver camadas disponibles
+                    <button onclick="openCamadasModal()" class="btn-cta-green">
+                        Ver camadas disponibles
                     </button>
                 </div>
                 <div class="hero-stats">
@@ -1098,7 +1139,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
         </div>
         <div class="galeria-grid">
             <div class="gal-item">
-                <div class="img-cover" style="height:414px">
+                <div class="img-cover">
                     <img src="imagenes_caniches/caniche 4.jpeg" alt="Caniche Toy feliz">
                 </div>
             </div>
@@ -1203,40 +1244,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                     <div class="test-av" style="background:#D4A853">AM</div>
                     <div>
                         <div class="test-name">Ana Martínez</div>
-                        <div class="test-detail">Teckel · Badajoz</div>
-                    </div>
-                </div>
-            </div>
-            <div class="test-card fade-in">
-                <div class="test-stars">★★★★★</div>
-                <p class="test-txt">Ya hemos cogido dos cachorros con ellos. La transparencia que tienen es total: te enseñan todo, te presentan a los padres, te muestran cómo viven. Me fío ciegamente de Deterrajaras.</p>
-                <div class="test-author">
-                    <div class="test-av" style="background:#5C3D24">CR</div>
-                    <div>
-                        <div class="test-name">Carlos Rodríguez</div>
-                        <div class="test-detail">Caniche Toy · Mérida</div>
-                    </div>
-                </div>
-            </div>
-            <div class="test-card fade-in">
-                <div class="test-stars">★★★★★</div>
-                <p class="test-txt">Nuestros hijos llevaban años pidiendo un perro. Buscamos criadores serios y encontramos a Deterrajaras. Toda la documentación perfecta, el cachorro sano y feliz. ¡Familia recomendadísima!</p>
-                <div class="test-author">
-                    <div class="test-av" style="background:#E67E22">PH</div>
-                    <div>
-                        <div class="test-name">Patricia Hernández</div>
-                        <div class="test-detail">Teckel · Plasencia</div>
-                    </div>
-                </div>
-            </div>
-            <div class="test-card fade-in">
-                <div class="test-stars">★★★★★</div>
-                <p class="test-txt">Desde el primer mensaje por WhatsApp hasta hoy, el trato ha sido excepcional. Son cercanos, honestos y se nota que aman lo que hacen. Max llegó a casa como si siempre hubiera vivido aquí.</p>
-                <div class="test-author">
-                    <div class="test-av" style="background:#8B5E3C">RS</div>
-                    <div>
-                        <div class="test-name">Roberto Sánchez</div>
-                        <div class="test-detail">Schnauzer Mini · Salamanca</div>
+                        <div class="test-detail">Schnauzer Mini · Badajoz</div>
                     </div>
                 </div>
             </div>
