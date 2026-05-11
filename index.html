@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deterrajaras · Criadero Familiar de Perros en Cáceres</title>
+    <meta name="description" content="Criadero familiar de Caniches Toy, Schnauzer Mini y Teckels en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa. Llámanos o escríbenos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+/* ============================================
+   RESET & BASE
+============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Lato', sans-serif;
+    background: #FDF8F0;
+    color: #3D2B1F;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ============================================
+   CSS VARIABLES
+============================================ */
+:root {
+    --primary:        #8B5E3C;
+    --primary-dark:   #5C3D24;
+    --primary-light:  #C49A6C;
+    --gold:           #D4A853;
+    --gold-light:     #F0D898;
+    --cream:          #FDF8F0;
+    --cream-alt:      #F5EDD8;
+    --text:           #3D2B1F;
+    --text-light:     #7A5C44;
+    --white:          #FFFFFF;
+    --shadow:         0 4px 24px rgba(139, 94, 60, 0.13);
+    --shadow-lg:      0 8px 40px rgba(139, 94, 60, 0.22);
+    --radius:         18px;
+    --radius-sm:      10px;
+    --tr:             0.3s ease;
+}
+
+/* ============================================
+   UTILITIES
+============================================ */
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    color: var(--primary-dark);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    max-width: 580px;
+    line-height: 1.8;
+}
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.section-header .section-subtitle {
+    margin: 12px auto 0;
+}
+.badge {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--primary-dark);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+/* Buttons */
+.btn-wa {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: #fff;
+    padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
+    transition: var(--tr); border: none; cursor: pointer;
+}
+.btn-wa:hover { background: #1DA850; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.38); }
+.btn-outline-w {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: #fff;
+    padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
+    border: 2px solid rgba(255,255,255,.7);
+    transition: var(--tr); cursor: pointer;
+}
+.btn-outline-w:hover { background: #fff; color: var(--primary); }
+.btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--primary); color: #fff;
+    padding: 13px 30px; border-radius: 50px;
+    font-weight: 700; font-size: .95rem;
+    transition: var(--tr); border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+/* Image placeholder */
+.img-ph {
+    background: linear-gradient(135deg, var(--gold-light), var(--primary-light));
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: rgba(255,255,255,.9); gap: 8px;
+    width: 100%; height: 100%;
+}
+.img-ph .ph-icon { font-size: 3.5rem; }
+.img-ph .ph-label { font-size: .75rem; font-weight: 700; letter-spacing: 1px; opacity: .8; text-transform: uppercase; }
+
+/* Scroll animation */
+.fade-in { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ============================================
+   FLOATING WHATSAPP
+============================================ */
+.float-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 990;
+    width: 62px; height: 62px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,.55);
+    transition: var(--tr);
+    animation: waGlow 2.5s ease-in-out infinite;
+}
+.float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.7); }
+@keyframes waGlow {
+    0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.5); }
+    50% { box-shadow: 0 4px 40px rgba(37,211,102,.85); }
+}
+
+/* ============================================
+   MOBILE MENU
+============================================ */
+.mobile-menu {
+    display: none; position: fixed; inset: 0;
+    background: var(--white); z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem; color: var(--text);
+    padding: 10px 24px; transition: var(--tr);
+}
+.mobile-menu a:hover { color: var(--primary); }
+.mobile-menu .mobile-wa {
+    margin-top: 16px;
+    background: #25D366; color: #fff !important;
+    padding: 12px 32px !important; border-radius: 50px;
+    font-size: 1.1rem !important;
+    display: flex; align-items: center; gap: 10px;
+}
+.mobile-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none;
+    font-size: 1.8rem; color: var(--text); cursor: pointer;
+}
+
+/* ============================================
+   NAVBAR
+============================================ */
+#navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000; padding: 18px 0;
+    transition: var(--tr);
+}
+#navbar.scrolled {
+    background: var(--white);
+    box-shadow: 0 2px 20px rgba(139,94,60,.1);
+    padding: 12px 0;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem; font-weight: 700;
+    color: var(--white); transition: var(--tr);
+}
+.nav-logo span { color: var(--gold); }
+#navbar.scrolled .nav-logo { color: var(--primary-dark); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+    color: rgba(255,255,255,.9); font-weight: 700;
+    font-size: .88rem; padding: 8px 14px;
+    border-radius: 50px; transition: var(--tr); letter-spacing: .2px;
+}
+#navbar.scrolled .nav-links a { color: var(--text); }
+.nav-links a:hover { background: rgba(255,255,255,.15); }
+#navbar.scrolled .nav-links a:hover { background: var(--cream-alt); color: var(--primary); }
+.nav-camadas {
+    background: var(--primary) !important;
+    color: #fff !important;
+    padding: 10px 18px !important;
+}
+#navbar.scrolled .nav-camadas { color: #fff !important; }
+.nav-camadas:hover { background: var(--primary-dark) !important; }
+.hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+    display: block; width: 26px; height: 2px;
+    background: #fff; border-radius: 2px; transition: var(--tr);
+}
+#navbar.scrolled .hamburger span { background: var(--primary-dark); }
+
+/* ============================================
+   HERO
+============================================ */
+#hero {
+    min-height: 100vh;
+    background: linear-gradient(155deg, #4A2E16 0%, #7A4E2C 45%, #B88050 100%);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+}
+.hero-deco {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.hero-paw {
+    position: absolute; font-size: 9rem;
+    opacity: .05; animation: floatPaw 9s ease-in-out infinite;
+}
+.hero-paw:nth-child(1) { top: 8%; right: 4%; animation-delay: 0s; }
+.hero-paw:nth-child(2) { bottom: 18%; right: 18%; font-size: 6rem; animation-delay: 3s; }
+.hero-paw:nth-child(3) { top: 50%; right: 38%; font-size: 4rem; animation-delay: 6s; }
+@keyframes floatPaw {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-22px) rotate(12deg); }
+}
+.hero-content { position: relative; z-index: 1; max-width: 680px; }
+.hero-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(10px);
+    color: var(--gold-light);
+    padding: 8px 20px; border-radius: 50px;
+    font-size: .82rem; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    margin-bottom: 28px;
+}
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.4rem);
+    color: var(--white); line-height: 1.1;
+    font-weight: 700; margin-bottom: 22px;
+}
+.hero-title em { font-style: italic; color: var(--gold-light); }
+.hero-sub {
+    font-size: 1.12rem;
+    color: rgba(255,255,255,.82);
+    margin-bottom: 40px; max-width: 540px; line-height: 1.85;
+}
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-stats {
+    display: flex; gap: 40px;
+    margin-top: 60px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,.14);
+}
+.stat { text-align: center; }
+.stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--gold-light); line-height: 1;
+}
+.stat-l { font-size: .78rem; color: rgba(255,255,255,.65); margin-top: 4px; letter-spacing: .4px; }
+.scroll-hint {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,.45); font-size: .75rem; letter-spacing: .8px;
+    animation: hintBounce 2.2s ease-in-out infinite;
+}
+@keyframes hintBounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(9px); }
+}
+
+/* ============================================
+   HISTORIA
+============================================ */
+#historia { padding: 104px 0; background: var(--cream); }
+.historia-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 76px; align-items: center;
+}
+.historia-images { position: relative; }
+.hist-img-main {
+    width: 100%; height: 420px;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+.hist-img-2 {
+    position: absolute; bottom: -28px; right: -28px;
+    width: 175px; height: 175px;
+    border-radius: var(--radius); overflow: hidden;
+    border: 6px solid var(--white); box-shadow: var(--shadow);
+}
+.hist-circle {
+    position: absolute; top: -18px; left: -18px;
+    width: 88px; height: 88px; border-radius: 50%;
+    background: var(--primary); box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: #fff;
+}
+.hist-circle .hc-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem; font-weight: 700; line-height: 1;
+}
+.hist-circle .hc-l { font-size: .62rem; letter-spacing: .4px; opacity: .9; }
+.hist-text p { color: var(--text-light); margin-bottom: 15px; font-size: 1.02rem; }
+.hist-quote {
+    background: var(--cream-alt);
+    border-left: 4px solid var(--gold);
+    padding: 18px 22px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 22px 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.08rem;
+    color: var(--primary-dark); line-height: 1.7;
+}
+
+/* ============================================
+   RAZAS
+============================================ */
+#razas { padding: 104px 0; background: var(--cream-alt); }
+.razas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.raza-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow); transition: var(--tr);
+}
+.raza-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.raza-img { height: 265px; position: relative; }
+.raza-pil {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--primary); color: #fff;
+    padding: 4px 12px; border-radius: 50px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .5px;
+}
+.raza-body { padding: 28px; }
+.raza-sub { font-size: .78rem; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+.raza-body h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--primary-dark); margin-bottom: 12px; }
+.raza-body p { color: var(--text-light); font-size: .93rem; margin-bottom: 18px; }
+.raza-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.raza-tag {
+    background: var(--cream-alt); color: var(--primary);
+    padding: 4px 12px; border-radius: 50px;
+    font-size: .78rem; font-weight: 700;
+}
+
+/* ============================================
+   CÓMO CRIAMOS
+============================================ */
+#como-criamos {
+    padding: 104px 0;
+    background: linear-gradient(155deg, #4A2E16 0%, #8B5E3C 100%);
+    position: relative; overflow: hidden;
+}
+#como-criamos .section-title { color: #fff; }
+#como-criamos .section-subtitle { color: rgba(255,255,255,.78); }
+#como-criamos .badge { background: rgba(255,255,255,.12); color: var(--gold-light); border: 1px solid rgba(255,255,255,.15); }
+.criamos-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.criamos-item {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius); padding: 28px 26px;
+    display: flex; gap: 18px; align-items: flex-start;
+    transition: var(--tr);
+}
+.criamos-item:hover { background: rgba(255,255,255,.13); transform: translateY(-3px); }
+.criamos-ico {
+    width: 54px; height: 54px; flex-shrink: 0;
+    background: var(--gold); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: #fff;
+}
+.criamos-txt h3 { font-family: 'Playfair Display', serif; font-size: 1.12rem; color: #fff; margin-bottom: 7px; }
+.criamos-txt p { color: rgba(255,255,255,.72); font-size: .92rem; }
+
+/* ============================================
+   DIFERENCIADORES
+============================================ */
+#diferenciadores { padding: 104px 0; background: var(--cream); }
+.dif-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
+.dif-card {
+    text-align: center; padding: 38px 22px;
+    border-radius: var(--radius); background: var(--white);
+    box-shadow: var(--shadow); transition: var(--tr);
+}
+.dif-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-lg); }
+.dif-ico {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.55rem; color: var(--primary-dark);
+    margin: 0 auto 18px;
+}
+.dif-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 10px; }
+.dif-card p { color: var(--text-light); font-size: .88rem; }
+
+/* ============================================
+   ESPECIALIZACIONES
+============================================ */
+#especializaciones { padding: 104px 0; background: var(--cream-alt); }
+.espec-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; }
+.espec-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 34px 26px; box-shadow: var(--shadow);
+    transition: var(--tr); position: relative; overflow: hidden;
+}
+.espec-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--primary));
+    transform: scaleX(0); transform-origin: left; transition: var(--tr);
+}
+.espec-card:hover::after { transform: scaleX(1); }
+.espec-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.espec-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--gold-light); line-height: 1; margin-bottom: 14px;
+}
+.espec-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 10px; }
+.espec-card p { color: var(--text-light); font-size: .92rem; }
+
+/* ============================================
+   GALERÍA
+============================================ */
+#galeria { padding: 104px 0; background: var(--cream); }
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: 200px;
+    gap: 14px;
+}
+.gal-item {
+    border-radius: var(--radius-sm); overflow: hidden;
+    cursor: pointer; transition: var(--tr);
+}
+.gal-item:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+.gal-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gal-item:nth-child(5) { grid-column: span 2; }
+.gal-item .img-ph { height: 100%; }
+.galeria-cta { text-align: center; margin-top: 32px; }
+
+/* ============================================
+   CAMADAS
+============================================ */
+#camadas { padding: 104px 0; background: var(--cream-alt); }
+.camadas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.camada-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+    cursor: pointer; transition: var(--tr);
+}
+.camada-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.camada-thumb { height: 225px; position: relative; }
+.camada-status {
+    position: absolute; top: 14px; left: 14px;
+    padding: 5px 14px; border-radius: 50px;
+    font-size: .78rem; font-weight: 700;
+}
+.st-available { background: #E6F8ED; color: #2A7A44; border: 1px solid #AAD8B8; }
+.st-reserved   { background: #FFF3DC; color: #A8720E; border: 1px solid #F0C870; }
+.camada-body { padding: 24px; }
+.camada-body h3 { font-family: 'Playfair Display', serif; font-size: 1.22rem; color: var(--primary-dark); margin-bottom: 8px; }
+.camada-meta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.camada-meta span { display: flex; align-items: center; gap: 5px; font-size: .83rem; color: var(--text-light); }
+.camada-meta i { color: var(--gold); font-size: .72rem; }
+.camada-body p { font-size: .9rem; color: var(--text-light); margin-bottom: 18px; }
+.camada-more { display: flex; align-items: center; gap: 7px; color: var(--primary); font-weight: 700; font-size: .88rem; transition: var(--tr); }
+.camada-card:hover .camada-more { gap: 12px; }
+
+/* ============================================
+   MODAL
+============================================ */
+.overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(30,14,6,.7); z-index: 2000;
+    align-items: flex-start; justify-content: center;
+    padding: 32px 16px; overflow-y: auto;
+    backdrop-filter: blur(5px);
+}
+.overlay.open { display: flex; }
+.modal {
+    background: var(--white); border-radius: var(--radius);
+    max-width: 840px; width: 100%;
+    margin: auto; overflow: hidden;
+    animation: modalIn .32s ease;
+}
+@keyframes modalIn { from { opacity:0; transform: translateY(36px); } to { opacity:1; transform:none; } }
+.modal-head {
+    padding: 26px 30px;
+    border-bottom: 1px solid #EDE4D8;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.modal-head h2 { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--primary-dark); }
+.modal-x {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: none; background: var(--cream-alt);
+    color: var(--text); font-size: 1.05rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: var(--tr);
+}
+.modal-x:hover { background: var(--primary); color: #fff; }
+.modal-body { padding: 28px 30px; }
+.modal-gallery {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 10px; margin-bottom: 24px;
+}
+.modal-gal-item {
+    border-radius: var(--radius-sm); overflow: hidden;
+    height: 135px; transition: var(--tr); cursor: pointer;
+}
+.modal-gal-item:first-child { grid-column: span 3; height: 270px; }
+.modal-gal-item:hover { opacity: .84; }
+.modal-info-grid {
+    display: grid; grid-template-columns: repeat(2,1fr);
+    gap: 14px; margin-bottom: 22px;
+}
+.mig {
+    background: var(--cream-alt); padding: 14px 18px;
+    border-radius: var(--radius-sm);
+}
+.mig-l { font-size: .72rem; text-transform: uppercase; letter-spacing: .8px; color: var(--text-light); font-weight: 700; margin-bottom: 3px; }
+.mig-v { font-weight: 700; color: var(--primary-dark); }
+.modal-desc { margin-bottom: 28px; }
+.modal-desc h3 { font-family: 'Playfair Display', serif; font-size: 1.18rem; color: var(--primary-dark); margin-bottom: 12px; }
+.modal-desc p { color: var(--text-light); font-size: .95rem; line-height: 1.82; margin-bottom: 10px; }
+.modal-form-box {
+    background: var(--cream-alt); border-radius: var(--radius);
+    padding: 26px 24px;
+}
+.modal-form-box h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 7px; }
+.modal-form-box > p { color: var(--text-light); font-size: .88rem; margin-bottom: 18px; }
+.mf-wa {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #25D366; color: #fff;
+    padding: 11px 22px; border-radius: 50px;
+    font-weight: 700; font-size: .9rem;
+    margin-bottom: 18px; transition: var(--tr);
+}
+.mf-wa:hover { background: #1DA850; }
+
+/* ============================================
+   FORMS
+============================================ */
+.form-group { margin-bottom: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group label { display: block; font-size: .82rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%; padding: 11px 15px;
+    border: 2px solid #E6DDD0; border-radius: var(--radius-sm);
+    font-family: 'Lato', sans-serif; font-size: .93rem;
+    color: var(--text); background: var(--white);
+    transition: var(--tr); outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,94,60,.1); }
+.form-group textarea { resize: vertical; min-height: 95px; }
+.form-btn {
+    width: 100%; padding: 13px;
+    background: var(--primary); color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    font-family: 'Lato', sans-serif; font-weight: 700; font-size: .97rem;
+    cursor: pointer; transition: var(--tr);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 6px;
+}
+.form-btn:hover { background: var(--primary-dark); }
+.form-ok {
+    display: none; text-align: center;
+    padding: 22px; background: #E6F8ED;
+    border-radius: var(--radius-sm); color: #2A7A44;
+    font-weight: 700; margin-top: 8px; font-size: .95rem;
+}
+.form-ok i { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+/* ============================================
+   TESTIMONIOS
+============================================ */
+#testimonios { padding: 104px 0; background: var(--cream); }
+.test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.test-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 30px 26px; box-shadow: var(--shadow); transition: var(--tr);
+}
+.test-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.test-stars { color: var(--gold); letter-spacing: 2px; margin-bottom: 14px; font-size: .9rem; }
+.test-txt {
+    color: var(--text-light); font-size: .93rem; line-height: 1.82;
+    margin-bottom: 22px; font-style: italic; position: relative;
+}
+.test-txt::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; color: var(--gold-light);
+    line-height: 0; vertical-align: -1.1rem;
+    margin-right: 3px;
+}
+.test-author { display: flex; align-items: center; gap: 12px; }
+.test-av {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.05rem; color: #fff; flex-shrink: 0;
+}
+.test-name { font-weight: 700; color: var(--text); font-size: .93rem; }
+.test-detail { font-size: .78rem; color: var(--text-light); }
+
+/* ============================================
+   CONTACTO
+============================================ */
+#contacto { padding: 104px 0; background: var(--cream-alt); }
+.contacto-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 64px; align-items: start; }
+.contacto-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    color: var(--primary-dark); margin-bottom: 14px; line-height: 1.2;
+}
+.contacto-info > p { color: var(--text-light); margin-bottom: 32px; font-size: 1.02rem; line-height: 1.82; }
+.wa-cta-big {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #25D366; color: #fff;
+    padding: 16px 30px; border-radius: 50px;
+    font-weight: 700; font-size: 1.07rem;
+    margin-bottom: 28px; transition: var(--tr);
+    box-shadow: 0 4px 22px rgba(37,211,102,.32);
+}
+.wa-cta-big:hover { background: #1DA850; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,.45); }
+.wa-cta-big i { font-size: 1.45rem; }
+.contact-list { display: flex; flex-direction: column; gap: 13px; }
+.contact-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; background: var(--white);
+    border-radius: var(--radius-sm); box-shadow: var(--shadow);
+    transition: var(--tr); text-decoration: none; color: inherit;
+}
+.contact-row:hover { transform: translateX(5px); box-shadow: var(--shadow-lg); }
+.contact-ico {
+    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; color: #fff;
+}
+.ico-wa   { background: #25D366; }
+.ico-ph   { background: var(--primary); }
+.ico-em   { background: var(--gold); }
+.ico-loc  { background: #E67E22; }
+.ico-ig   { background: linear-gradient(135deg,#833AB4,#FD1D1D,#FCAF45); }
+.c-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--text-light); margin-bottom: 2px; }
+.c-val { font-weight: 700; color: var(--text); font-size: .93rem; }
+.contacto-form-box {
+    background: var(--white); border-radius: var(--radius);
+    padding: 38px 36px; box-shadow: var(--shadow);
+}
+.contacto-form-box h3 { font-family: 'Playfair Display', serif; font-size: 1.55rem; color: var(--primary-dark); margin-bottom: 6px; }
+.contacto-form-box > p { color: var(--text-light); font-size: .88rem; margin-bottom: 26px; }
+
+/* ============================================
+   MAPA
+============================================ */
+.map-wrap { height: 380px; background: var(--cream-alt); position: relative; overflow: hidden; }
+.map-overlay-btn {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+    background: linear-gradient(135deg, var(--cream-alt), var(--gold-light));
+}
+.map-overlay-btn p { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--primary-dark); }
+.map-overlay-btn i { font-size: 3rem; color: var(--primary); }
+
+/* ============================================
+   FOOTER
+============================================ */
+footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding: 58px 0 28px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+.f-logo { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.f-logo span { color: var(--gold); }
+.footer-brand p { font-size: .88rem; line-height: 1.82; margin-bottom: 18px; }
+.f-socials { display: flex; gap: 10px; }
+.f-soc {
+    width: 37px; height: 37px; border-radius: 50%;
+    background: rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: .88rem; transition: var(--tr); text-decoration: none;
+}
+.f-soc:hover { background: var(--gold); color: var(--primary-dark); }
+.footer-col h4 { font-weight: 700; color: #fff; margin-bottom: 18px; font-size: .82rem; letter-spacing: .9px; text-transform: uppercase; }
+.footer-col ul { display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a { color: rgba(255,255,255,.65); font-size: .88rem; transition: var(--tr); }
+.footer-col ul a:hover { color: var(--gold); padding-left: 4px; }
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 22px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom p { font-size: .82rem; opacity: .55; }
+.f-legal { display: flex; gap: 18px; }
+.f-legal a { font-size: .82rem; opacity: .55; color: inherit; transition: var(--tr); }
+.f-legal a:hover { opacity: 1; color: var(--gold); }
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 1024px) {
+    .razas-grid       { grid-template-columns: repeat(2,1fr); }
+    .dif-grid         { grid-template-columns: repeat(2,1fr); }
+    .espec-grid       { grid-template-columns: repeat(2,1fr); }
+    .footer-grid      { grid-template-columns: 1fr 1fr; }
+    .historia-grid    { gap: 44px; }
+}
+@media (max-width: 820px) {
+    .nav-links  { display: none; }
+    .hamburger  { display: flex; }
+    .historia-grid    { grid-template-columns: 1fr; }
+    .historia-images  { display: none; }
+    .razas-grid       { grid-template-columns: 1fr; }
+    .criamos-grid     { grid-template-columns: 1fr; }
+    .dif-grid         { grid-template-columns: 1fr 1fr; }
+    .espec-grid       { grid-template-columns: 1fr; }
+    .galeria-grid     { grid-template-columns: repeat(2,1fr); }
+    .gal-item:nth-child(1) { grid-column: span 2; }
+    .camadas-grid     { grid-template-columns: 1fr; }
+    .test-grid        { grid-template-columns: 1fr; }
+    .contacto-grid    { grid-template-columns: 1fr; }
+    .footer-grid      { grid-template-columns: 1fr; gap: 28px; }
+    .modal-info-grid  { grid-template-columns: 1fr; }
+    .modal-gallery    { grid-template-columns: repeat(2,1fr); }
+    .modal-gal-item:first-child { grid-column: span 2; }
+    .form-row         { grid-template-columns: 1fr; }
+    .hero-stats       { gap: 24px; }
+    .contacto-form-box { padding: 26px 22px; }
+}
+@media (max-width: 480px) {
+    .dif-grid   { grid-template-columns: 1fr; }
+    .hero-ctas  { flex-direction: column; }
+    .btn-wa, .btn-outline-w { justify-content: center; }
+    .float-wa   { bottom: 20px; right: 20px; width: 54px; height: 54px; font-size: 1.5rem; }
+}
+    </style>
+</head>
+<body>
+
+<!-- ================================================
+     FLOATING WHATSAPP
+================================================ -->
+<a href="https://wa.me/34670225384" target="_blank" class="float-wa" title="Escríbenos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ================================================
+     MOBILE MENU
+================================================ -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>
+    <a href="#inicio"        onclick="closeMobile()">Inicio</a>
+    <a href="#historia"      onclick="closeMobile()">Historia</a>
+    <a href="#razas"         onclick="closeMobile()">Razas</a>
+    <a href="#como-criamos"  onclick="closeMobile()">Cómo Criamos</a>
+    <a href="#galeria"       onclick="closeMobile()">Galería</a>
+    <a href="#contacto"      onclick="closeMobile()">Contacto</a>
+    <a href="#camadas"       onclick="closeMobile()" class="mobile-wa">
+        <i class="fas fa-paw"></i> Camadas Disponibles
+    </a>
+</div>
+
+<!-- ================================================
+     NAVBAR
+================================================ -->
+<nav id="navbar" aria-label="Navegación principal">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="#inicio" class="nav-logo">Deterra<span>jaras</span></a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#razas">Razas</a></li>
+                <li><a href="#como-criamos">Cómo Criamos</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#camadas" class="nav-camadas">🐾 Camadas</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ================================================
+     HERO
+================================================ -->
+<section id="inicio">
+    <div id="hero">
+        <div class="hero-deco">
+            <div class="hero-paw">🐾</div>
+            <div class="hero-paw">🐾</div>
+            <div class="hero-paw">🐾</div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-pill">
+                    <i class="fas fa-shield-alt"></i>
+                    Núcleo Zoológico Registrado · Cáceres, España
+                </div>
+                <h1 class="hero-title">
+                    Criamos con <em>amor</em>,<br>desde el corazón<br>de nuestra familia.
+                </h1>
+                <p class="hero-sub">
+                    En Deterrajaras llevamos más de una década criando Caniches Toy, Schnauzer Mini y Teckels de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
+                </p>
+                <div class="hero-ctas">
+                    <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
+                        <i class="fab fa-whatsapp"></i> Habla con nosotros
+                    </a>
+                    <a href="#camadas" class="btn-outline-w">
+                        <i class="fas fa-paw"></i> Ver camadas disponibles
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-n">3</div>
+                        <div class="stat-l">Razas especializadas</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">100%</div>
+                        <div class="stat-l">Documentado y en regla</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-n">♥</div>
+                        <div class="stat-l">Crianza desde casa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Descubre más</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     HISTORIA
+================================================ -->
+<section id="historia">
+    <div class="container">
+        <div class="historia-grid">
+            <div class="historia-images fade-in">
+                <div class="hist-img-main img-ph">
+                    <span class="ph-icon">🐕</span>
+                    <span class="ph-label">Familia Deterrajaras</span>
+                </div>
+                <div class="hist-img-2 img-ph">
+                    <span class="ph-icon" style="font-size:2rem">🐩</span>
+                </div>
+                <div class="hist-circle">
+                    <span class="hc-n">10+</span>
+                    <span class="hc-l">años juntos</span>
+                </div>
+            </div>
+            <div class="hist-text fade-in">
+                <span class="badge">Nuestra Historia</span>
+                <h2 class="section-title">Todo empezó<br>con Lola y Lilo</h2>
+                <p>Hace más de diez años, en el corazón de Cáceres, nuestra familia cayó rendida ante los encantos de dos Caniches Toy que cambiaron nuestra vida para siempre: <strong>Lola y Lilo</strong>. Desde el primer día, algo en nosotros supo que aquello era mucho más que tener una mascota.</p>
+                <p>Lo que comenzó como una pasión familiar fue creciendo poco a poco, con mucha dedicación, aprendizaje continuo y, sobre todo, con el cuidado diario de nuestros perros. Aprendimos que criar bien significa criar responsablemente: con veterinarios de confianza, controles de salud rigurosos y, ante todo, amor.</p>
+                <div class="hist-quote">
+                    "Cada cachorro sale de nuestra casa habiendo sido tratado como uno más de la familia. Eso es algo que no se improvisa."
+                </div>
+                <p>Hoy, como <strong>Núcleo Zoológico registrado</strong> en Cáceres, contamos con toda la documentación en regla para ofrecerte la tranquilidad que mereces a la hora de dar la bienvenida a un nuevo miembro a tu hogar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     RAZAS
+================================================ -->
+<section id="razas">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">Nuestras Razas</span>
+            <h2 class="section-title">Tres razas, una misma pasión</h2>
+            <p class="section-subtitle">Nos especializamos en tres razas increíbles, cada una con su carácter único. Todas criadas con el mismo amor y dedicación.</p>
+        </div>
+        <div class="razas-grid">
+            <div class="raza-card fade-in">
+                <div class="raza-img img-ph">
+                    <span class="ph-icon">🐩</span>
+                    <span class="ph-label">Caniche Toy</span>
+                    <div class="raza-pil">Toy · Mini</div>
+                </div>
+                <div class="raza-body">
+                    <div class="raza-sub">Tamaño: Micro · Toy</div>
+                    <h3>Caniche Toy</h3>
+                    <p>El Caniche Toy es elegante, inteligente y extraordinariamente cariñoso. Ideal para familias, personas mayores y espacios pequeños. No suelta pelo y es hipoalergénico.</p>
+                    <div class="raza-tags">
+                        <span class="raza-tag">🧠 Muy inteligente</span>
+                        <span class="raza-tag">♥ Cariñoso</span>
+                        <span class="raza-tag">🏠 Ideal piso</span>
+                        <span class="raza-tag">✂️ Sin muda</span>
+                    </div>
+                </div>
+            </div>
+            <div class="raza-card fade-in">
+                <div class="raza-img img-ph">
+                    <span class="ph-icon">🐕</span>
+                    <span class="ph-label">Schnauzer Mini</span>
+                    <div class="raza-pil">Miniatura</div>
+                </div>
+                <div class="raza-body">
+                    <div class="raza-sub">Tamaño: Miniatura</div>
+                    <h3>Schnauzer Mini</h3>
+                    <p>Vivaz, valiente y con un carácter lleno de personalidad. El Schnauzer Mini es leal a su familia y se adapta perfectamente tanto a la ciudad como al campo.</p>
+                    <div class="raza-tags">
+                        <span class="raza-tag">⚡ Activo</span>
+                        <span class="raza-tag">🛡️ Guardián</span>
+                        <span class="raza-tag">👨‍👩‍👧 Familiar</span>
+                        <span class="raza-tag">✂️ Sin muda</span>
+                    </div>
+                </div>
+            </div>
+            <div class="raza-card fade-in">
+                <div class="raza-img img-ph">
+                    <span class="ph-icon">🌭</span>
+                    <span class="ph-label">Teckel</span>
+                    <div class="raza-pil">Perro Salchicha</div>
+                </div>
+                <div class="raza-body">
+                    <div class="raza-sub">Tamaño: Pequeño</div>
+                    <h3>Teckel</h3>
+                    <p>El famoso "perro salchicha" es curioso, divertido y con un corazón enorme. Su carácter juguetón y su lealtad conquistan a toda la familia desde el primer día.</p>
+                    <div class="raza-tags">
+                        <span class="raza-tag">😄 Divertido</span>
+                        <span class="raza-tag">🔍 Curioso</span>
+                        <span class="raza-tag">❤️ Leal</span>
+                        <span class="raza-tag">🎾 Juguetón</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     CÓMO CRIAMOS
+================================================ -->
+<section id="como-criamos">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">Nuestra Forma de Criar</span>
+            <h2 class="section-title">Cómo criamos</h2>
+            <p class="section-subtitle">Cada cachorro que sale de nuestra casa ha crecido rodeado de cuidados, estimulación y, sobre todo, amor familiar.</p>
+        </div>
+        <div class="criamos-grid">
+            <div class="criamos-item fade-in">
+                <div class="criamos-ico"><i class="fas fa-home"></i></div>
+                <div class="criamos-txt">
+                    <h3>Crianza en el hogar</h3>
+                    <p>Nuestros cachorros nacen y crecen dentro de casa, en contacto diario con personas y el ambiente familiar. Esto los hace más sociables, seguros y equilibrados emocionalmente.</p>
+                </div>
+            </div>
+            <div class="criamos-item fade-in">
+                <div class="criamos-ico"><i class="fas fa-stethoscope"></i></div>
+                <div class="criamos-txt">
+                    <h3>Control veterinario completo</h3>
+                    <p>Todos nuestros cachorros salen con cartilla sanitaria, vacunas al día, desparasitación y revisión veterinaria. Sin excepciones, siempre.</p>
+                </div>
+            </div>
+            <div class="criamos-item fade-in">
+                <div class="criamos-ico"><i class="fas fa-heart"></i></div>
+                <div class="criamos-txt">
+                    <h3>Socialización desde el primer día</h3>
+                    <p>Desde recién nacidos, los cachorros conviven con niños, adultos y otros animales. Esto asegura una adaptación perfecta a cualquier hogar.</p>
+                </div>
+            </div>
+            <div class="criamos-item fade-in">
+                <div class="criamos-ico"><i class="fas fa-file-alt"></i></div>
+                <div class="criamos-txt">
+                    <h3>Todo en regla, siempre</h3>
+                    <p>Somos Núcleo Zoológico registrado. Toda nuestra actividad está documentada y supervisada. Puedes tener total tranquilidad al elegirnos.</p>
+                </div>
+            </div>
+            <div class="criamos-item fade-in">
+                <div class="criamos-ico"><i class="fas fa-users"></i></div>
+                <div class="criamos-txt">
+                    <h3>Seguimiento personalizado</h3>
+                    <p>No desaparecemos tras la entrega. Estamos disponibles para resolver cualquier duda y hacer el seguimiento de tu cachorro con el tiempo.</p>
+                </div>
+            </div>
+            <div class="criamos-item fade-in">
+                <div class="criamos-ico"><i class="fas fa-balance-scale"></i></div>
+                <div class="criamos-txt">
+                    <h3>Selección responsable</h3>
+                    <p>Solo criamos cuando las condiciones son las óptimas. Priorizamos la salud y el bienestar de nuestros perros por encima de cualquier otra consideración.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     DIFERENCIADORES
+================================================ -->
+<section id="diferenciadores">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">¿Por qué elegirnos?</span>
+            <h2 class="section-title">Lo que nos hace diferentes</h2>
+            <p class="section-subtitle">No somos un criadero más. Somos una familia que ama a sus perros y quiere que tú también vivas esa experiencia.</p>
+        </div>
+        <div class="dif-grid">
+            <div class="dif-card fade-in">
+                <div class="dif-ico"><i class="fas fa-home"></i></div>
+                <h3>Criamos desde casa</h3>
+                <p>Nuestros perros no viven en jaulas ni instalaciones. Viven con nosotros, en el sofá, en el jardín, en familia. Eso marca la diferencia.</p>
+            </div>
+            <div class="dif-card fade-in">
+                <div class="dif-ico"><i class="fas fa-certificate"></i></div>
+                <h3>Todo 100% en regla</h3>
+                <p>Núcleo Zoológico registrado, documentación completa, contratos y seguimiento veterinario. Sin sorpresas de ningún tipo.</p>
+            </div>
+            <div class="dif-card fade-in">
+                <div class="dif-ico"><i class="fas fa-star"></i></div>
+                <h3>Cría personalizada</h3>
+                <p>Cada familia es diferente. Te asesoramos para que el cachorro que elijas encaje perfectamente con tu estilo de vida.</p>
+            </div>
+            <div class="dif-card fade-in">
+                <div class="dif-ico"><i class="fas fa-phone-alt"></i></div>
+                <h3>Siempre disponibles</h3>
+                <p>Puedes contactarnos en cualquier momento. Estamos aquí antes, durante y después de la llegada de tu cachorro a casa.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     ESPECIALIZACIONES
+================================================ -->
+<section id="especializaciones">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">Nuestras Especializaciones</span>
+            <h2 class="section-title">Lo que nos avala</h2>
+            <p class="section-subtitle">Años de experiencia y dedicación que se reflejan en cada cachorro que sale de nuestra casa.</p>
+        </div>
+        <div class="espec-grid">
+            <div class="espec-card fade-in">
+                <div class="espec-n">01</div>
+                <h3>Núcleo Zoológico Registrado</h3>
+                <p>Contamos con la acreditación oficial de Núcleo Zoológico, garantizando que toda nuestra actividad cumple con la normativa vigente en bienestar animal y cría responsable.</p>
+            </div>
+            <div class="espec-card fade-in">
+                <div class="espec-n">02</div>
+                <h3>Cría Personalizada</h3>
+                <p>No realizamos camadas en serie. Cada cría está planificada con tiempo, seleccionando reproductores por salud, carácter y estándar de raza. Calidad antes que cantidad.</p>
+            </div>
+            <div class="espec-card fade-in">
+                <div class="espec-n">03</div>
+                <h3>Asesoría Pre y Post Entrega</h3>
+                <p>Te acompañamos desde la elección del cachorro hasta su integración en casa. Resolvemos dudas sobre alimentación, educación e higiene en todo momento.</p>
+            </div>
+            <div class="espec-card fade-in">
+                <div class="espec-n">04</div>
+                <h3>Documentación Completa</h3>
+                <p>Cartilla sanitaria, chip registrado, desparasitaciones, contrato y pedigree si procede. Todo listo desde el primer día, sin papeles pendientes.</p>
+            </div>
+            <div class="espec-card fade-in">
+                <div class="espec-n">05</div>
+                <h3>Razas Reconocidas</h3>
+                <p>Trabajamos exclusivamente con Caniches Toy, Schnauzer Miniatura y Teckels de líneas reconocidas. Nos especializamos para hacerlo bien, no en todo.</p>
+            </div>
+            <div class="espec-card fade-in">
+                <div class="espec-n">06</div>
+                <h3>Bienestar Animal Garantizado</h3>
+                <p>Nuestros perros tienen espacio, cariño y atención veterinaria periódica. El bienestar del animal siempre está por encima de cualquier otra consideración.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     GALERÍA
+================================================ -->
+<section id="galeria">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">Galería</span>
+            <h2 class="section-title">Momentos en Deterrajaras</h2>
+            <p class="section-subtitle">Imágenes de nuestros cachorros y su vida con nosotros. Pronto más fotos de nuestras camadas.</p>
+        </div>
+        <div class="galeria-grid">
+            <div class="gal-item">
+                <div class="img-ph" style="height:414px">
+                    <span class="ph-icon">🐩</span>
+                    <span class="ph-label">Caniches Toy</span>
+                </div>
+            </div>
+            <div class="gal-item">
+                <div class="img-ph">
+                    <span class="ph-icon">🐕</span>
+                    <span class="ph-label">Schnauzer Mini</span>
+                </div>
+            </div>
+            <div class="gal-item">
+                <div class="img-ph">
+                    <span class="ph-icon">🌭</span>
+                    <span class="ph-label">Teckels</span>
+                </div>
+            </div>
+            <div class="gal-item">
+                <div class="img-ph">
+                    <span class="ph-icon">🐾</span>
+                    <span class="ph-label">Camadas</span>
+                </div>
+            </div>
+            <div class="gal-item">
+                <div class="img-ph">
+                    <span class="ph-icon">🐶</span>
+                    <span class="ph-label">Cachorros</span>
+                </div>
+            </div>
+            <div class="gal-item">
+                <div class="img-ph">
+                    <span class="ph-icon">❤️</span>
+                    <span class="ph-label">Familia</span>
+                </div>
+            </div>
+            <div class="gal-item">
+                <div class="img-ph">
+                    <span class="ph-icon">🏠</span>
+                    <span class="ph-label">Nuestro hogar</span>
+                </div>
+            </div>
+        </div>
+        <div class="galeria-cta">
+            <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="btn-primary">
+                <i class="fab fa-instagram"></i> Ver más en Instagram
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     CAMADAS DISPONIBLES
+================================================ -->
+<section id="camadas">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">Camadas Disponibles</span>
+            <h2 class="section-title">¿Buscas a tu compañero ideal?</h2>
+            <p class="section-subtitle">Consulta nuestras camadas. Haz clic en cada una para ver más fotos, información y contactarnos directamente sobre esa camada.</p>
+        </div>
+        <div class="camadas-grid" id="camadasGrid"></div>
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+    <div class="modal" id="modalEl">
+        <div class="modal-head">
+            <h2 id="modalTitle">Camada</h2>
+            <button class="modal-x" onclick="closeModal()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<!-- ================================================
+     TESTIMONIOS
+================================================ -->
+<section id="testimonios">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">Familias que confían en nosotros</span>
+            <h2 class="section-title">Lo que dicen nuestras familias</h2>
+            <p class="section-subtitle">Las opiniones de quienes ya tienen en casa un cachorro de Deterrajaras.</p>
+        </div>
+        <div class="test-grid">
+            <div class="test-card fade-in">
+                <div class="test-stars">★★★★★</div>
+                <p class="test-txt">Adoptamos a nuestra Caniche Toy hace seis meses y ha sido la mejor decisión de nuestra vida. Lucía vino perfectamente socializada, sin miedo a nada. El trato de la familia fue impecable desde el primer contacto.</p>
+                <div class="test-author">
+                    <div class="test-av" style="background:#C49A6C">MG</div>
+                    <div>
+                        <div class="test-name">María García</div>
+                        <div class="test-detail">Caniche Toy · Madrid</div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card fade-in">
+                <div class="test-stars">★★★★★</div>
+                <p class="test-txt">Teníamos muchas dudas antes de adoptar un perro, pero la paciencia y el asesoramiento que nos dieron fue increíble. Nuestro Schnauzer Mini, Bruno, es todo lo que nos prometieron: activo, cariñoso y muy listo.</p>
+                <div class="test-author">
+                    <div class="test-av" style="background:#8B5E3C">JL</div>
+                    <div>
+                        <div class="test-name">Javier López</div>
+                        <div class="test-detail">Schnauzer Mini · Cáceres</div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card fade-in">
+                <div class="test-stars">★★★★★</div>
+                <p class="test-txt">Lo que más nos sorprendió fue el seguimiento después de la entrega. Siguen pendientes de Nala, nos piden fotos y resuelven cualquier duda al instante. Una familia de criadores de verdad, no un negocio.</p>
+                <div class="test-author">
+                    <div class="test-av" style="background:#D4A853">AM</div>
+                    <div>
+                        <div class="test-name">Ana Martínez</div>
+                        <div class="test-detail">Teckel · Badajoz</div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card fade-in">
+                <div class="test-stars">★★★★★</div>
+                <p class="test-txt">Ya hemos cogido dos cachorros con ellos. La transparencia que tienen es total: te enseñan todo, te presentan a los padres, te muestran cómo viven. Me fío ciegamente de Deterrajaras.</p>
+                <div class="test-author">
+                    <div class="test-av" style="background:#5C3D24">CR</div>
+                    <div>
+                        <div class="test-name">Carlos Rodríguez</div>
+                        <div class="test-detail">Caniche Toy · Mérida</div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card fade-in">
+                <div class="test-stars">★★★★★</div>
+                <p class="test-txt">Nuestros hijos llevaban años pidiendo un perro. Buscamos criadores serios y encontramos a Deterrajaras. Toda la documentación perfecta, el cachorro sano y feliz. ¡Familia recomendadísima!</p>
+                <div class="test-author">
+                    <div class="test-av" style="background:#E67E22">PH</div>
+                    <div>
+                        <div class="test-name">Patricia Hernández</div>
+                        <div class="test-detail">Teckel · Plasencia</div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card fade-in">
+                <div class="test-stars">★★★★★</div>
+                <p class="test-txt">Desde el primer mensaje por WhatsApp hasta hoy, el trato ha sido excepcional. Son cercanos, honestos y se nota que aman lo que hacen. Max llegó a casa como si siempre hubiera vivido aquí.</p>
+                <div class="test-author">
+                    <div class="test-av" style="background:#8B5E3C">RS</div>
+                    <div>
+                        <div class="test-name">Roberto Sánchez</div>
+                        <div class="test-detail">Schnauzer Mini · Salamanca</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     CONTACTO
+================================================ -->
+<section id="contacto">
+    <div class="container">
+        <div class="contacto-grid">
+            <div class="contacto-info fade-in">
+                <span class="badge">Contacto</span>
+                <h2>¿Tienes alguna pregunta?<br>Escríbenos.</h2>
+                <p>Estamos aquí para ayudarte. Si tienes dudas sobre nuestras razas, camadas disponibles o simplemente quieres saber más, no dudes en contactarnos. Te respondemos rápido.</p>
+
+                <a href="https://wa.me/34670225384" target="_blank" class="wa-cta-big">
+                    <i class="fab fa-whatsapp"></i>
+                    Escríbenos por WhatsApp
+                </a>
+
+                <div class="contact-list">
+                    <a href="tel:+34670225384" class="contact-row">
+                        <div class="contact-ico ico-ph"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <div class="c-label">Teléfono</div>
+                            <div class="c-val">670 225 384</div>
+                        </div>
+                    </a>
+                    <a href="mailto:deterrajaras@gmail.com" class="contact-row">
+                        <div class="contact-ico ico-em"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="c-label">Correo electrónico</div>
+                            <div class="c-val">deterrajaras@gmail.com</div>
+                        </div>
+                    </a>
+                    <a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank" class="contact-row">
+                        <div class="contact-ico ico-loc"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <div class="c-label">Ubicación</div>
+                            <div class="c-val">Polígono Ganadero, C/ A 16B · Cáceres</div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="contact-row">
+                        <div class="contact-ico ico-ig"><i class="fab fa-instagram"></i></div>
+                        <div>
+                            <div class="c-label">Instagram</div>
+                            <div class="c-val">@caniches_lola_y_lilo</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contacto-form-box fade-in">
+                <h3>Envíanos un mensaje</h3>
+                <p>Te responderemos lo antes posible, normalmente en menos de 24 horas.</p>
+                <form id="contactForm" onsubmit="submitContact(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cf-nombre">Nombre *</label>
+                            <input type="text" id="cf-nombre" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cf-tel">Teléfono</label>
+                            <input type="tel" id="cf-tel" placeholder="Tu teléfono">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-email">Correo electrónico *</label>
+                        <input type="email" id="cf-email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-raza">Raza de interés</label>
+                        <select id="cf-raza">
+                            <option value="">-- Selecciona una raza --</option>
+                            <option>Caniche Toy</option>
+                            <option>Schnauzer Miniatura</option>
+                            <option>Teckel</option>
+                            <option>Aún no lo sé</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-msg">Mensaje *</label>
+                        <textarea id="cf-msg" placeholder="Cuéntanos qué buscas o escríbenos tu pregunta..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-btn">
+                        <i class="fas fa-paper-plane"></i> Enviar mensaje
+                    </button>
+                    <div class="form-ok" id="contactOk">
+                        <i class="fas fa-check-circle"></i>
+                        ¡Mensaje enviado! Te responderemos pronto. 🐾
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAPA -->
+<div class="map-wrap">
+    <div class="map-overlay-btn">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>Polígono Ganadero, Calle A 16B · Cáceres, España</p>
+        <a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank" class="btn-primary">
+            <i class="fas fa-directions"></i> Ver en Google Maps
+        </a>
+    </div>
+</div>
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="f-logo">Deterra<span>jaras</span></div>
+                <p>Criadero familiar de Caniches Toy, Schnauzer Mini y Teckels en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
+                <div class="f-socials">
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:deterrajaras@gmail.com" class="f-soc"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Razas</h4>
+                <ul>
+                    <li><a href="#razas">Caniche Toy</a></li>
+                    <li><a href="#razas">Schnauzer Miniatura</a></li>
+                    <li><a href="#razas">Teckel</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Criadero</h4>
+                <ul>
+                    <li><a href="#historia">Nuestra Historia</a></li>
+                    <li><a href="#como-criamos">Cómo Criamos</a></li>
+                    <li><a href="#diferenciadores">Por Qué Elegirnos</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#camadas">Camadas Disponibles</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="tel:+34670225384">670 225 384</a></li>
+                    <li><a href="mailto:deterrajaras@gmail.com">deterrajaras@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Polígono Ganadero · Cáceres</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
+            <div class="f-legal">
+                <a href="#">Aviso Legal</a>
+                <a href="#">Privacidad</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ================================================
+     JAVASCRIPT
+================================================ -->
+<script>
+/* ── DATA ── */
+const camadas = [
+    {
+        id: 1,
+        nombre: "Camada Primavera · Caniches Toy",
+        raza: "Caniche Toy",
+        fecha: "Nacida en Abril 2025",
+        estado: "available",
+        estadoText: "Disponibles",
+        cachorros: "4 cachorros (2♂ · 2♀)",
+        entrega: "Junio 2025",
+        colores: ["Albaricoque y blanco", "Negro y tostado"],
+        icono: "🐩",
+        resumen: "Preciosa camada de Caniches Toy bicolor, criados en casa con niños desde el primer día.",
+        desc: [
+            "Esta camada nació el 12 de abril de 2025, fruto de nuestra Lola (madre) y de un magnífico ejemplar de línea francesa. Los cuatro cachorros han crecido en el salón de casa, rodeados de risas, juegos y mimos desde el primer momento.",
+            "Todos han pasado sus primeras revisiones veterinarias con excelentes resultados, han sido desparasitados y están en perfecto estado de salud. Se irán a sus nuevos hogares con cartilla sanitaria, chip y todas las vacunas al día.",
+            "Son cachorros de carácter dulce, curiosos y muy apegados a las personas. Ideales para familias con niños, personas mayores o como primer perro."
+        ]
+    },
+    {
+        id: 2,
+        nombre: "Camada Verano · Schnauzer Mini",
+        raza: "Schnauzer Miniatura",
+        fecha: "Nacida en Mayo 2025",
+        estado: "available",
+        estadoText: "Disponibles",
+        cachorros: "5 cachorros (3♂ · 2♀)",
+        entrega: "Julio 2025",
+        colores: ["Sal y pimienta", "Negro"],
+        icono: "🐕",
+        resumen: "Camada de Schnauzers Mini con temperamento activo y equilibrado, sal y pimienta.",
+        desc: [
+            "Camada de cinco cachorros nacida el 3 de mayo de 2025. Padre y madre son ejemplares con excelente genealogía y temperamento. Todos los cachorros presentan la característica barba y cejas del Schnauzer, propias de la raza.",
+            "Desde pequeños han sido estimulados con diferentes texturas, sonidos y situaciones para garantizar su adaptación a cualquier entorno. Son valientes, curiosos y muy inteligentes.",
+            "El Schnauzer Mini se adapta perfectamente tanto a pisos como a casas con jardín, y son grandes compañeros para los niños."
+        ]
+    },
+    {
+        id: 3,
+        nombre: "Próxima Camada · Teckels",
+        raza: "Teckel (Perro Salchicha)",
+        fecha: "Prevista Otoño 2025",
+        estado: "reserved",
+        estadoText: "Reservas abiertas",
+        cachorros: "Camada en gestación",
+        entrega: "Octubre 2025",
+        colores: ["Negro y fuego", "Marrón y fuego"],
+        icono: "🌭",
+        resumen: "Nuestra próxima camada de Teckels. ¡Si quieres reservar tu lugar, escríbenos ya!",
+        desc: [
+            "Estamos esperando con muchísima ilusión la próxima camada de Teckels para el otoño de 2025. Los padres son ejemplares de pelo corto, con un carácter dulce, juguetón y muy equilibrado.",
+            "Si estás interesado/a, te recomendamos ponerte en contacto cuanto antes para reservar tu lugar en la lista de espera. Las camadas de Teckel suelen completarse con mucha rapidez.",
+            "Te informaremos puntualmente del avance del embarazo y podrás ver fotos de los cachorros desde su nacimiento. ¡No te quedes sin el tuyo!"
+        ]
+    }
+];
+
+/* ── RENDER CAMADAS ── */
+function renderCamadas() {
+    document.getElementById('camadasGrid').innerHTML = camadas.map(c => `
+        <div class="camada-card" onclick="openModal(${c.id})" role="button" tabindex="0"
+             onkeydown="if(event.key==='Enter')openModal(${c.id})">
+            <div class="camada-thumb img-ph">
+                <span class="ph-icon" style="font-size:5rem">${c.icono}</span>
+                <span class="ph-label">${c.raza}</span>
+                <div class="camada-status ${c.estado === 'available' ? 'st-available' : 'st-reserved'}">
+                    ${c.estado === 'available' ? '✓ ' : '⏳ '}${c.estadoText}
+                </div>
+            </div>
+            <div class="camada-body">
+                <h3>${c.nombre}</h3>
+                <div class="camada-meta">
+                    <span><i class="fas fa-paw"></i> ${c.raza}</span>
+                    <span><i class="fas fa-calendar-alt"></i> ${c.fecha}</span>
+                </div>
+                <p>${c.resumen}</p>
+                <div class="camada-more">Ver información completa <i class="fas fa-arrow-right"></i></div>
+            </div>
+        </div>
+    `).join('');
+}
+
+/* ── MODAL ── */
+function openModal(id) {
+    const c = camadas.find(x => x.id === id);
+    if (!c) return;
+    document.getElementById('modalTitle').textContent = c.nombre;
+
+    const fotos = Array(4).fill(null).map((_, i) => `
+        <div class="modal-gal-item img-ph" style="${i===0?'height:270px':'height:135px'}">
+            <span class="ph-icon" style="font-size:${i===0?'5rem':'3rem'}">${c.icono}</span>
+            <span class="ph-label">Foto ${i+1} – ${c.raza}</span>
+        </div>
+    `);
+
+    const colTags = c.colores.map(col =>
+        `<span style="display:inline-block;background:var(--cream-alt);color:var(--primary);padding:4px 13px;border-radius:50px;font-size:.78rem;font-weight:700;margin:3px;">${col}</span>`
+    ).join('');
+
+    const descHtml = c.desc.map(p => `<p>${p}</p>`).join('');
+
+    const waMsg = encodeURIComponent(`Hola! Me interesa la ${c.nombre}. ¿Podéis darme más información?`);
+
+    document.getElementById('modalBody').innerHTML = `
+        <div class="modal-gallery">
+            ${fotos[0]}${fotos[1]}${fotos[2]}${fotos[3]}
+        </div>
+        <div class="modal-info-grid">
+            <div class="mig"><div class="mig-l">Raza</div><div class="mig-v">${c.raza}</div></div>
+            <div class="mig"><div class="mig-l">Fecha nacimiento</div><div class="mig-v">${c.fecha}</div></div>
+            <div class="mig"><div class="mig-l">Cachorros</div><div class="mig-v">${c.cachorros}</div></div>
+            <div class="mig"><div class="mig-l">Entrega estimada</div><div class="mig-v">${c.entrega}</div></div>
+        </div>
+        <div style="margin-bottom:20px">${colTags}</div>
+        <div class="modal-desc">
+            <h3>Sobre esta camada</h3>
+            ${descHtml}
+        </div>
+        <div class="modal-form-box">
+            <h3>¿Te interesa esta camada?</h3>
+            <p>Escríbenos directamente por WhatsApp o rellena el formulario y te contactamos enseguida.</p>
+            <a href="https://wa.me/34670225384?text=${waMsg}" target="_blank" class="mf-wa">
+                <i class="fab fa-whatsapp"></i> Preguntar por WhatsApp
+            </a>
+            <form onsubmit="submitModal(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="tel" placeholder="Tu teléfono" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea placeholder="Preferencia de sexo, color u otras preguntas..."></textarea>
+                </div>
+                <button type="submit" class="form-btn">
+                    <i class="fas fa-paper-plane"></i> Enviar consulta sobre esta camada
+                </button>
+                <div class="form-ok" id="modalFormOk">
+                    <i class="fas fa-check-circle"></i>
+                    ¡Consulta enviada! Te responderemos en breve. 🐾
+                </div>
+            </form>
+        </div>
+    `;
+
+    document.getElementById('overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('overlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+});
+
+/* ── FORMS ── */
+function submitContact(e) {
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('contactOk').style.display = 'block';
+}
+function submitModal(e) {
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('modalFormOk').style.display = 'block';
+}
+
+/* ── NAVBAR SCROLL ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 55);
+}, { passive: true });
+
+/* ── MOBILE MENU ── */
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.add('open');
+});
+document.getElementById('mobileClose').addEventListener('click', closeMobile);
+function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+}
+
+/* ── SCROLL ANIMATIONS ── */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ── ACTIVE NAV ── */
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navAs.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+}, { passive: true });
+
+/* ── INIT ── */
+renderCamadas();
+</script>
+</body>
+</html>
