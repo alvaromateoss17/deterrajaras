@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deterrajaras · Criadero Familiar de Perros en Cáceres</title>
-    <meta name="description" content="Criadero familiar de Caniches Toy, Schnauzer Mini y Teckels en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa. Llámanos o escríbenos.">
+    <meta name="description" content="Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa. Llámanos o escríbenos.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -352,7 +352,7 @@ ul { list-style: none; }
    RAZAS
 ============================================ */
 #razas { padding: 104px 0; background: var(--cream-alt); }
-.razas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.razas-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 28px; }
 .raza-card {
     background: var(--white); border-radius: var(--radius);
     overflow: hidden; box-shadow: var(--shadow); transition: var(--tr);
@@ -791,7 +791,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
     <a href="#como-criamos"  onclick="closeMobile()">Cómo Criamos</a>
     <a href="#galeria"       onclick="closeMobile()">Galería</a>
     <a href="#contacto"      onclick="closeMobile()">Contacto</a>
-    <a href="#camadas"       onclick="closeMobile()" class="mobile-wa">
+    <a href="#camadas"       onclick="openCamadasModal(); closeMobile()" class="mobile-wa">
         <i class="fas fa-paw"></i> Camadas Disponibles
     </a>
 </div>
@@ -810,7 +810,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                 <li><a href="#como-criamos">Cómo Criamos</a></li>
                 <li><a href="#galeria">Galería</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#camadas" class="nav-camadas">🐾 Camadas</a></li>
+                <li><button onclick="openCamadasModal()" class="nav-camadas">🐾 Camadas</button></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -831,23 +831,19 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
         </div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-pill">
-                    <i class="fas fa-shield-alt"></i>
-                    Núcleo Zoológico Registrado · Cáceres, España
-                </div>
                 <h1 class="hero-title">
                     Criamos con <em>amor</em>,<br>desde el corazón<br>de nuestra familia.
                 </h1>
                 <p class="hero-sub">
-                    En Deterrajaras llevamos más de una década criando Caniches Toy, Schnauzer Mini y Teckels de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
+                    En Deterrajaras llevamos más de una década criando Caniches Toy y Schnauzer Mini de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
                 </p>
                 <div class="hero-ctas">
                     <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
                         <i class="fab fa-whatsapp"></i> Habla con nosotros
                     </a>
-                    <a href="#camadas" class="btn-outline-w">
+                    <button onclick="openCamadasModal()" class="btn-outline-w">
                         <i class="fas fa-paw"></i> Ver camadas disponibles
-                    </a>
+                    </button>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
@@ -946,23 +942,6 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                         <span class="raza-tag">🛡️ Guardián</span>
                         <span class="raza-tag">👨‍👩‍👧 Familiar</span>
                         <span class="raza-tag">✂️ Sin muda</span>
-                    </div>
-                </div>
-            </div>
-            <div class="raza-card fade-in">
-                <div class="raza-img img-cover">
-                    <img src="imagenes_caniches/caniche 3.jpeg" alt="Teckel">
-                    <div class="raza-pil">Perro Salchicha</div>
-                </div>
-                <div class="raza-body">
-                    <div class="raza-sub">Tamaño: Pequeño</div>
-                    <h3>Teckel</h3>
-                    <p>El famoso "perro salchicha" es curioso, divertido y con un corazón enorme. Su carácter juguetón y su lealtad conquistan a toda la familia desde el primer día.</p>
-                    <div class="raza-tags">
-                        <span class="raza-tag">😄 Divertido</span>
-                        <span class="raza-tag">🔍 Curioso</span>
-                        <span class="raza-tag">❤️ Leal</span>
-                        <span class="raza-tag">🎾 Juguetón</span>
                     </div>
                 </div>
             </div>
@@ -1096,7 +1075,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
             <div class="espec-card fade-in">
                 <div class="espec-n">05</div>
                 <h3>Razas Reconocidas</h3>
-                <p>Trabajamos exclusivamente con Caniches Toy, Schnauzer Miniatura y Teckels de líneas reconocidas. Nos especializamos para hacerlo bien, no en todo.</p>
+                <p>Trabajamos exclusivamente con Caniches Toy y Schnauzer Miniatura de líneas reconocidas. Nos especializamos para hacerlo bien, no en todo.</p>
             </div>
             <div class="espec-card fade-in">
                 <div class="espec-n">06</div>
@@ -1162,20 +1141,6 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
     </div>
 </section>
 
-<!-- ================================================
-     CAMADAS DISPONIBLES
-================================================ -->
-<section id="camadas">
-    <div class="container">
-        <div class="section-header">
-            <span class="badge">Camadas Disponibles</span>
-            <h2 class="section-title">¿Buscas a tu compañero ideal?</h2>
-            <p class="section-subtitle">Consulta nuestras camadas. Haz clic en cada una para ver más fotos, información y contactarnos directamente sobre esa camada.</p>
-        </div>
-        <div class="camadas-grid" id="camadasGrid"></div>
-    </div>
-</section>
-
 <!-- MODAL -->
 <div class="overlay" id="overlay" role="dialog" aria-modal="true">
     <div class="modal" id="modalEl">
@@ -1184,6 +1149,17 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
             <button class="modal-x" onclick="closeModal()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<!-- MODAL CAMADAS -->
+<div class="overlay" id="camadasOverlay" role="dialog" aria-modal="true">
+    <div class="modal" id="camadasModalEl">
+        <div class="modal-head">
+            <h2>Camadas Disponibles</h2>
+            <button class="modal-x" onclick="closeCamadasModal()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" id="camadasModalBody"></div>
     </div>
 </div>
 
@@ -1340,7 +1316,6 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                             <option value="">-- Selecciona una raza --</option>
                             <option>Caniche Toy</option>
                             <option>Schnauzer Miniatura</option>
-                            <option>Teckel</option>
                             <option>Aún no lo sé</option>
                         </select>
                     </div>
@@ -1380,7 +1355,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="f-logo">Deterra<span>jaras</span></div>
-                <p>Criadero familiar de Caniches Toy, Schnauzer Mini y Teckels en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
+                <p>Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
                 <div class="f-socials">
                     <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/34670225384" target="_blank" class="f-soc"><i class="fab fa-whatsapp"></i></a>
@@ -1392,7 +1367,6 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                 <ul>
                     <li><a href="#razas">Caniche Toy</a></li>
                     <li><a href="#razas">Schnauzer Miniatura</a></li>
-                    <li><a href="#razas">Teckel</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1402,7 +1376,7 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                     <li><a href="#como-criamos">Cómo Criamos</a></li>
                     <li><a href="#diferenciadores">Por Qué Elegirnos</a></li>
                     <li><a href="#galeria">Galería</a></li>
-                    <li><a href="#camadas">Camadas Disponibles</a></li>
+                    <li><a href="#camadas" onclick="openCamadasModal()">Camadas Disponibles</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1482,26 +1456,26 @@ const camadas = [
     },
     {
         id: 3,
-        nombre: "Próxima Camada · Teckels",
-        raza: "Teckel (Perro Salchicha)",
+        nombre: "Próxima Camada · Schnauzer Mini",
+        raza: "Schnauzer Miniatura",
         fecha: "Prevista Otoño 2025",
         estado: "reserved",
         estadoText: "Reservas abiertas",
         cachorros: "Camada en gestación",
         entrega: "Octubre 2025",
-        colores: ["Negro y fuego", "Marrón y fuego"],
-        icono: "🌭",
-        fotoThumb: "imagenes_caniches/cachorros 6.jpeg",
+        colores: ["Sal y pimienta", "Negro"],
+        icono: "🐕",
+        fotoThumb: "imagenes_caniches/caniche 5.jpeg",
         fotos: [
-            "imagenes_caniches/cachorros 6.jpeg",
-            "imagenes_caniches/cachirris 5.jpeg",
-            "imagenes_caniches/caniche 2.jpeg",
-            "imagenes_caniches/cachorr camada 1.jpeg"
+            "imagenes_caniches/caniche 5.jpeg",
+            "imagenes_caniches/caniche 4.jpeg",
+            "imagenes_caniches/caniche 3.jpeg",
+            "imagenes_caniches/cachorros 6.jpeg"
         ],
-        resumen: "Nuestra próxima camada de Teckels. ¡Si quieres reservar tu lugar, escríbenos ya!",
+        resumen: "Nuestra próxima camada de Schnauzer Mini. ¡Si quieres reservar tu lugar, escríbenos ya!",
         desc: [
-            "Estamos esperando con muchísima ilusión la próxima camada de Teckels para el otoño de 2025. Los padres son ejemplares de pelo corto, con un carácter dulce, juguetón y muy equilibrado.",
-            "Si estás interesado/a, te recomendamos ponerte en contacto cuanto antes para reservar tu lugar en la lista de espera. Las camadas de Teckel suelen completarse con mucha rapidez.",
+            "Estamos esperando con muchísima ilusión la próxima camada de Schnauzer Mini para el otoño de 2025. Los padres son ejemplares con excelente genealogía y temperamento.",
+            "Si estás interesado/a, te recomendamos ponerte en contacto cuanto antes para reservar tu lugar en la lista de espera. Las camadas de Schnauzer suelen completarse con mucha rapidez.",
             "Te informaremos puntualmente del avance del embarazo y podrás ver fotos de los cachorros desde su nacimiento. ¡No te quedes sin el tuyo!"
         ]
     }
@@ -1663,8 +1637,54 @@ window.addEventListener('scroll', () => {
     });
 }, { passive: true });
 
+/* ── MODAL CAMADAS ── */
+function openCamadasModal() {
+    document.getElementById('camadasModalBody').innerHTML = `
+        <div class="section-header" style="text-align:left;margin-bottom:30px">
+            <span class="badge">Camadas Disponibles</span>
+            <h2 style="font-size:1.8rem;margin:10px 0">¿Buscas a tu compañero ideal?</h2>
+            <p>Haz clic en cada camada para ver más fotos, información y contactarnos directamente.</p>
+        </div>
+        <div class="camadas-grid">
+            ${camadas.map(c => `
+                <div class="camada-card" onclick="openModal(${c.id})" role="button" tabindex="0"
+                     onkeydown="if(event.key==='Enter')openModal(${c.id})">
+                    <div class="camada-thumb img-cover">
+                        <img src="${c.fotoThumb}" alt="Camada ${c.raza}">
+                        <div class="camada-status ${c.estado === 'available' ? 'st-available' : 'st-reserved'}">
+                            ${c.estado === 'available' ? '✓ ' : '⏳ '}${c.estadoText}
+                        </div>
+                    </div>
+                    <div class="camada-body">
+                        <h3>${c.nombre}</h3>
+                        <div class="camada-meta">
+                            <span><i class="fas fa-paw"></i> ${c.raza}</span>
+                            <span><i class="fas fa-calendar-alt"></i> ${c.fecha}</span>
+                        </div>
+                        <p>${c.resumen}</p>
+                        <div class="camada-more">Ver información completa <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    document.getElementById('camadasOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCamadasModal() {
+    document.getElementById('camadasOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('camadasOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeCamadasModal();
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeCamadasModal();
+});
+
 /* ── INIT ── */
-renderCamadas();
 </script>
 </body>
 </html>
