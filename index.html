@@ -123,6 +123,13 @@ ul { list-style: none; }
     color: rgba(255,255,255,.9); gap: 8px;
     width: 100%; height: 100%;
 }
+.img-cover {
+    width: 100%; height: 100%; overflow: hidden;
+    background: #f4f0e8;
+}
+.img-cover img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+}
 .img-ph .ph-icon { font-size: 3.5rem; }
 .img-ph .ph-label { font-size: .75rem; font-weight: 700; letter-spacing: 1px; opacity: .8; text-transform: uppercase; }
 
@@ -872,12 +879,11 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
     <div class="container">
         <div class="historia-grid">
             <div class="historia-images fade-in">
-                <div class="hist-img-main img-ph">
-                    <span class="ph-icon">🐕</span>
-                    <span class="ph-label">Familia Deterrajaras</span>
+                <div class="hist-img-main img-cover">
+                    <img src="imagenes_caniches/cachirris 5.jpeg" alt="Familia con perros en Deterrajaras">
                 </div>
-                <div class="hist-img-2 img-ph">
-                    <span class="ph-icon" style="font-size:2rem">🐩</span>
+                <div class="hist-img-2 img-cover">
+                    <img src="imagenes_caniches/cachorr camada 1.jpeg" alt="Cachorro de camada">
                 </div>
                 <div class="hist-circle">
                     <span class="hc-n">10+</span>
@@ -910,9 +916,8 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
         </div>
         <div class="razas-grid">
             <div class="raza-card fade-in">
-                <div class="raza-img img-ph">
-                    <span class="ph-icon">🐩</span>
-                    <span class="ph-label">Caniche Toy</span>
+                <div class="raza-img img-cover">
+                    <img src="imagenes_caniches/caniche 1.jpeg" alt="Caniche Toy">
                     <div class="raza-pil">Toy · Mini</div>
                 </div>
                 <div class="raza-body">
@@ -928,9 +933,8 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                 </div>
             </div>
             <div class="raza-card fade-in">
-                <div class="raza-img img-ph">
-                    <span class="ph-icon">🐕</span>
-                    <span class="ph-label">Schnauzer Mini</span>
+                <div class="raza-img img-cover">
+                    <img src="imagenes_caniches/caniche 2.jpeg" alt="Schnauzer Mini">
                     <div class="raza-pil">Miniatura</div>
                 </div>
                 <div class="raza-body">
@@ -946,9 +950,8 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
                 </div>
             </div>
             <div class="raza-card fade-in">
-                <div class="raza-img img-ph">
-                    <span class="ph-icon">🌭</span>
-                    <span class="ph-label">Teckel</span>
+                <div class="raza-img img-cover">
+                    <img src="imagenes_caniches/caniche 3.jpeg" alt="Teckel">
                     <div class="raza-pil">Perro Salchicha</div>
                 </div>
                 <div class="raza-body">
@@ -1116,45 +1119,38 @@ footer { background: var(--primary-dark); color: rgba(255,255,255,.75); padding:
         </div>
         <div class="galeria-grid">
             <div class="gal-item">
-                <div class="img-ph" style="height:414px">
-                    <span class="ph-icon">🐩</span>
-                    <span class="ph-label">Caniches Toy</span>
+                <div class="img-cover" style="height:414px">
+                    <img src="imagenes_caniches/caniche 4.jpeg" alt="Caniche Toy feliz">
                 </div>
             </div>
             <div class="gal-item">
-                <div class="img-ph">
-                    <span class="ph-icon">🐕</span>
-                    <span class="ph-label">Schnauzer Mini</span>
+                <div class="img-cover">
+                    <img src="imagenes_caniches/caniche 5.jpeg" alt="Schnauzer Mini jugando">
                 </div>
             </div>
             <div class="gal-item">
-                <div class="img-ph">
-                    <span class="ph-icon">🌭</span>
-                    <span class="ph-label">Teckels</span>
+                <div class="img-cover">
+                    <img src="imagenes_caniches/cachorros 2.jpeg" alt="Teckel al aire libre">
                 </div>
             </div>
             <div class="gal-item">
-                <div class="img-ph">
-                    <span class="ph-icon">🐾</span>
-                    <span class="ph-label">Camadas</span>
+                <div class="img-cover">
+                    <img src="imagenes_caniches/cachorros 6.jpeg" alt="Camadas de cachorros">
                 </div>
             </div>
             <div class="gal-item">
-                <div class="img-ph">
-                    <span class="ph-icon">🐶</span>
-                    <span class="ph-label">Cachorros</span>
+                <div class="img-cover">
+                    <img src="imagenes_caniches/caniche 1.jpeg" alt="Cachorro adorable">
                 </div>
             </div>
             <div class="gal-item">
-                <div class="img-ph">
-                    <span class="ph-icon">❤️</span>
-                    <span class="ph-label">Familia</span>
+                <div class="img-cover">
+                    <img src="imagenes_caniches/caniche 3.jpeg" alt="Familia con perro">
                 </div>
             </div>
             <div class="gal-item">
-                <div class="img-ph">
-                    <span class="ph-icon">🏠</span>
-                    <span class="ph-label">Nuestro hogar</span>
+                <div class="img-cover">
+                    <img src="imagenes_caniches/cachorr camada 1.jpeg" alt="Nuestro hogar con perros">
                 </div>
             </div>
         </div>
@@ -1445,6 +1441,13 @@ const camadas = [
         entrega: "Junio 2025",
         colores: ["Albaricoque y blanco", "Negro y tostado"],
         icono: "🐩",
+        fotoThumb: "imagenes_caniches/cachorros 2.jpeg",
+        fotos: [
+            "imagenes_caniches/cachorros 2.jpeg",
+            "imagenes_caniches/cachirris 5.jpeg",
+            "imagenes_caniches/caniche 1.jpeg",
+            "imagenes_caniches/cachorr camada 1.jpeg"
+        ],
         resumen: "Preciosa camada de Caniches Toy bicolor, criados en casa con niños desde el primer día.",
         desc: [
             "Esta camada nació el 12 de abril de 2025, fruto de nuestra Lola (madre) y de un magnífico ejemplar de línea francesa. Los cuatro cachorros han crecido en el salón de casa, rodeados de risas, juegos y mimos desde el primer momento.",
@@ -1463,6 +1466,13 @@ const camadas = [
         entrega: "Julio 2025",
         colores: ["Sal y pimienta", "Negro"],
         icono: "🐕",
+        fotoThumb: "imagenes_caniches/caniche 4.jpeg",
+        fotos: [
+            "imagenes_caniches/caniche 4.jpeg",
+            "imagenes_caniches/caniche 5.jpeg",
+            "imagenes_caniches/caniche 3.jpeg",
+            "imagenes_caniches/cachorros 6.jpeg"
+        ],
         resumen: "Camada de Schnauzers Mini con temperamento activo y equilibrado, sal y pimienta.",
         desc: [
             "Camada de cinco cachorros nacida el 3 de mayo de 2025. Padre y madre son ejemplares con excelente genealogía y temperamento. Todos los cachorros presentan la característica barba y cejas del Schnauzer, propias de la raza.",
@@ -1481,6 +1491,13 @@ const camadas = [
         entrega: "Octubre 2025",
         colores: ["Negro y fuego", "Marrón y fuego"],
         icono: "🌭",
+        fotoThumb: "imagenes_caniches/cachorros 6.jpeg",
+        fotos: [
+            "imagenes_caniches/cachorros 6.jpeg",
+            "imagenes_caniches/cachirris 5.jpeg",
+            "imagenes_caniches/caniche 2.jpeg",
+            "imagenes_caniches/cachorr camada 1.jpeg"
+        ],
         resumen: "Nuestra próxima camada de Teckels. ¡Si quieres reservar tu lugar, escríbenos ya!",
         desc: [
             "Estamos esperando con muchísima ilusión la próxima camada de Teckels para el otoño de 2025. Los padres son ejemplares de pelo corto, con un carácter dulce, juguetón y muy equilibrado.",
@@ -1495,9 +1512,8 @@ function renderCamadas() {
     document.getElementById('camadasGrid').innerHTML = camadas.map(c => `
         <div class="camada-card" onclick="openModal(${c.id})" role="button" tabindex="0"
              onkeydown="if(event.key==='Enter')openModal(${c.id})">
-            <div class="camada-thumb img-ph">
-                <span class="ph-icon" style="font-size:5rem">${c.icono}</span>
-                <span class="ph-label">${c.raza}</span>
+            <div class="camada-thumb img-cover">
+                <img src="${c.fotoThumb}" alt="Camada ${c.raza}">
                 <div class="camada-status ${c.estado === 'available' ? 'st-available' : 'st-reserved'}">
                     ${c.estado === 'available' ? '✓ ' : '⏳ '}${c.estadoText}
                 </div>
@@ -1521,10 +1537,9 @@ function openModal(id) {
     if (!c) return;
     document.getElementById('modalTitle').textContent = c.nombre;
 
-    const fotos = Array(4).fill(null).map((_, i) => `
-        <div class="modal-gal-item img-ph" style="${i===0?'height:270px':'height:135px'}">
-            <span class="ph-icon" style="font-size:${i===0?'5rem':'3rem'}">${c.icono}</span>
-            <span class="ph-label">Foto ${i+1} – ${c.raza}</span>
+    const fotos = c.fotos.map((src, i) => `
+        <div class="modal-gal-item img-cover" style="${i===0?'height:270px':'height:135px'}">
+            <img src="${src}" alt="Foto ${i+1} – ${c.raza}">
         </div>
     `);
 
