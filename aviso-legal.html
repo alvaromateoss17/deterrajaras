@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso Legal · Deterrajaras</title>
+    <meta name="description" content="Aviso legal del criadero familiar Deterrajaras. Núcleo Zoológico registrado en Cáceres, Extremadura.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: #F9EDE8; color: #5A3E36; line-height: 1.7; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+:root {
+    --color-fondo-principal:   #F9EDE8;
+    --color-fondo-alternativo: #F5C4B3;
+    --color-cta-principal:     #D4537E;
+    --color-cta-hover:         #B8436A;
+    --color-acento:            #8BAF82;
+    --color-texto:             #5A3E36;
+    --color-texto-suave:       #8C6B62;
+    --color-blanco:            #FFFFFF;
+    --color-borde:             #EDD5CC;
+    --tr: 0.3s ease;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* MOBILE MENU */
+.mobile-menu {
+    display: none; position: fixed; inset: 0;
+    background: #fff; z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--color-texto); padding: 10px 24px; transition: var(--tr); }
+.mobile-menu a:hover { color: var(--color-cta-principal); }
+.mobile-menu .mobile-wa {
+    margin-top: 16px;
+    background: var(--color-cta-principal); color: #fff !important;
+    padding: 12px 32px !important; border-radius: 50px;
+    font-size: 1.1rem !important;
+    display: flex; align-items: center; gap: 10px;
+}
+.mobile-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none;
+    font-size: 1.8rem; color: var(--color-texto); cursor: pointer;
+}
+
+/* NAVBAR */
+#navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000; padding: 18px 0;
+    background: var(--color-blanco);
+    border-bottom: 1px solid var(--color-borde);
+    transition: var(--tr);
+}
+#navbar.scrolled { box-shadow: 0 2px 20px rgba(212,83,126,.10); padding: 12px 0; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--color-texto); transition: var(--tr); }
+.nav-logo span { color: var(--color-cta-principal); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { color: var(--color-texto-suave); font-weight: 600; font-size: .88rem; padding: 8px 14px; border-radius: 50px; transition: var(--tr); letter-spacing: .2px; }
+.nav-links a:hover { background: rgba(212,83,126,.07); color: var(--color-cta-principal); }
+.nav-camadas {
+    background: transparent !important; color: var(--color-cta-principal) !important;
+    padding: 8px 20px !important; border: 1.5px solid var(--color-cta-principal) !important;
+    border-radius: 50px !important; transition: var(--tr) !important; font-weight: 600 !important;
+}
+.nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
+
+/* PAGE HEADER */
+.legal-header {
+    background: #F9EDE8;
+    padding: 64px 80px 48px;
+    margin-top: 73px;
+}
+.legal-badge {
+    display: inline-block;
+    background: #F5C4B3; color: #5A3E36;
+    border-radius: 50px; padding: 5px 18px;
+    font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 16px;
+}
+.legal-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; color: #5A3E36; font-weight: 700; margin-bottom: 12px;
+}
+.legal-date { font-family: 'Lato', sans-serif; font-size: 13px; color: #8C6B62; }
+
+/* CONTENT */
+.legal-content {
+    padding: 0 80px 80px;
+    max-width: calc(780px + 160px);
+}
+.legal-block {
+    background: #fff;
+    border: 1px solid #EDD5CC;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+}
+.legal-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: #5A3E36;
+    font-weight: 700; margin-bottom: 12px;
+}
+.legal-block p, .legal-block li {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px; color: #8C6B62; line-height: 1.8;
+}
+.legal-block a { color: #D4537E; }
+.legal-block ul { list-style: disc; padding-left: 20px; }
+.legal-block ul li { margin-bottom: 4px; }
+
+/* FLOATING WHATSAPP */
+.float-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 990;
+    width: 62px; height: 62px; border-radius: 50%;
+    background: var(--color-cta-principal); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 20px rgba(212,83,126,.50);
+    transition: var(--tr);
+    animation: waGlow 2.5s ease-in-out infinite;
+}
+.float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(212,83,126,.7); }
+@keyframes waGlow {
+    0%,100% { box-shadow: 0 4px 20px rgba(212,83,126,.5); }
+    50%      { box-shadow: 0 4px 40px rgba(212,83,126,.85); }
+}
+
+/* FOOTER */
+footer { background: var(--color-texto); color: var(--color-fondo-alternativo); padding: 58px 0 28px; border-top: none; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+.f-logo { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--color-fondo-alternativo); margin-bottom: 10px; }
+.f-logo span { color: var(--color-cta-principal); }
+.footer-brand p { font-size: .88rem; line-height: 1.82; margin-bottom: 18px; color: rgba(245,196,179,0.7); }
+.f-socials { display: flex; gap: 10px; }
+.f-soc {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(245,196,179,0.12); color: rgba(245,196,179,0.7);
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--tr); font-size: .95rem;
+}
+.f-soc:hover { background: var(--color-cta-principal); color: #fff; }
+.footer-col h4 { font-weight: 700; color: var(--color-fondo-alternativo); margin-bottom: 18px; font-size: .82rem; letter-spacing: .9px; text-transform: uppercase; }
+.footer-col ul { display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a { color: rgba(245,196,179,0.7); font-size: .88rem; transition: var(--tr); }
+.footer-col ul a:hover { color: var(--color-cta-principal); padding-left: 4px; }
+.footer-map { margin-bottom: 18px; }
+.footer-map iframe { width: 100%; height: 220px; border: 0; border-radius: 18px; }
+.footer-map p { margin-top: 12px; color: rgba(245,196,179,0.7); font-size: .92rem; line-height: 1.6; }
+.footer-bottom {
+    border-top: 1px solid rgba(245,196,179,0.15); padding-top: 22px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom p { font-size: .82rem; color: rgba(245,196,179,0.6); }
+.f-legal { display: flex; gap: 18px; }
+.f-legal a { font-size: .82rem; color: rgba(245,196,179,0.6); transition: var(--tr); }
+.f-legal a:hover { color: var(--color-cta-principal); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .legal-header { padding: 56px 40px 40px; }
+    .legal-content { padding: 0 40px 64px; }
+}
+@media (max-width: 820px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .legal-header { padding: 48px 24px 36px; }
+    .legal-content { padding: 0 24px 56px; }
+}
+    </style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#historia">Historia</a>
+    <a href="index.html#razas">Razas</a>
+    <a href="index.html#como-criamos">Cómo Criamos</a>
+    <a href="index.html#galeria">Galería</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="camadas.html" class="mobile-wa"><i class="fab fa-paw"></i> Camadas</a>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Deterra<span>jaras</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#historia">Historia</a></li>
+                <li><a href="index.html#razas">Razas</a></li>
+                <li><a href="index.html#como-criamos">Cómo Criamos</a></li>
+                <li><a href="index.html#galeria">Galería</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="camadas.html" class="nav-camadas">Camadas</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="legal-header">
+    <span class="legal-badge">Aviso Legal</span>
+    <h1>Aviso Legal</h1>
+    <p class="legal-date">Última actualización: mayo 2026</p>
+</div>
+
+<div class="legal-content">
+
+    <div class="legal-block">
+        <h2>1. Objeto y ámbito de aplicación</h2>
+        <p>El presente Aviso Legal regula el acceso y uso del sitio web deterrajaras.es, titularidad de Deterrajaras, criadero familiar con Núcleo Zoológico registrado en Cáceres, Extremadura. El acceso y uso de este sitio implica la aceptación de las presentes condiciones.</p>
+    </div>
+
+    <div class="legal-block">
+        <h2>Datos del titular</h2>
+        <p><strong>Titular:</strong> Deterrajaras<br>
+        <strong>Actividad:</strong> Criadero familiar de animales de compañía<br>
+        <strong>Domicilio:</strong> Polígono Ganadero, C/ A 16B, Cáceres<br>
+        <strong>Email:</strong> <a href="mailto:deterrajaras@gmail.com">deterrajaras@gmail.com</a><br>
+        <strong>Teléfono:</strong> <a href="tel:+34670225384">670 225 384</a><br>
+        <strong>Registro:</strong> Núcleo Zoológico registrado en Extremadura</p>
+    </div>
+
+    <div class="legal-block">
+        <h2>2. Propiedad intelectual</h2>
+        <p>Los contenidos de este sitio web, incluyendo textos, fotografías e imágenes, son propiedad de Deterrajaras o de sus legítimos titulares. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa.</p>
+    </div>
+
+    <div class="legal-block">
+        <h2>3. Responsabilidad</h2>
+        <p>Deterrajaras no se responsabiliza de los daños derivados del uso del sitio web ni de la información contenida en el mismo. La información publicada tiene carácter meramente informativo.</p>
+    </div>
+
+    <div class="legal-block">
+        <h2>4. Legislación aplicable</h2>
+        <p>Este aviso legal se rige por la legislación española vigente. Para cualquier controversia, las partes se someten a los juzgados de Cáceres.</p>
+    </div>
+
+</div>
+
+<a href="https://wa.me/34670225384" target="_blank" class="float-wa" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="f-logo">Deterra<span>jaras</span></div>
+                <p>Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
+                <div class="f-socials">
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:deterrajaras@gmail.com" class="f-soc"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Razas</h4>
+                <ul>
+                    <li><a href="index.html#razas">Caniche Toy</a></li>
+                    <li><a href="index.html#razas">Schnauzer Miniatura</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Criadero</h4>
+                <ul>
+                    <li><a href="index.html#historia">Nuestra Historia</a></li>
+                    <li><a href="index.html#como-criamos">Cómo Criamos</a></li>
+                    <li><a href="index.html#galeria">Galería</a></li>
+                    <li><a href="camadas.html">Camadas Disponibles</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <div class="footer-map">
+                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <p>Polígono Ganadero · Cáceres<br>Ubicación exacta en Google Maps.</p>
+                </div>
+                <ul>
+                    <li><a href="tel:+34670225384">670 225 384</a></li>
+                    <li><a href="mailto:deterrajaras@gmail.com">deterrajaras@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Ver en Google Maps</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025–2026 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
+            <div class="f-legal">
+                <a href="aviso-legal.html">Aviso Legal</a>
+                <a href="politica-privacidad.html">Privacidad</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.add('open');
+});
+document.getElementById('mobileClose').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('open');
+});
+</script>
+</body>
+</html>
