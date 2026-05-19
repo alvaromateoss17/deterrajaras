@@ -269,11 +269,29 @@ ul { list-style: none; }
 .chip-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 .scroll-hint { display: none; }
 
+/* Hero two-column grid */
+.hero-grid { display: grid; grid-template-columns: 55fr 45fr; gap: 56px; align-items: center; }
+.hero-right { display: flex; flex-direction: column; gap: 14px; }
+.hero-r-card { background: #fff; border: 1px solid var(--color-borde); border-radius: 14px; padding: 22px 24px; }
+.hero-r-stats { display: flex; }
+.hero-r-stat { flex: 1; text-align: center; padding: 0 8px; }
+.hero-r-stat + .hero-r-stat { border-left: 1px solid var(--color-borde); }
+.hero-r-n { display: block; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--color-cta-principal); line-height: 1; }
+.hero-r-l { display: block; font-size: 11px; color: var(--color-texto-suave); margin-top: 5px; }
+.hero-r-raza-item { display: flex; align-items: center; gap: 10px; }
+.hero-r-raza-item + .hero-r-raza-item { border-top: 1px solid var(--color-borde); margin-top: 10px; padding-top: 10px; }
+.hero-r-raza-name { font-weight: 600; color: var(--color-texto); font-size: .9rem; flex: 1; }
+.hero-r-size-pill { background: var(--color-fondo-alternativo); color: var(--color-texto-suave); padding: 3px 10px; border-radius: 50px; font-size: .72rem; font-weight: 600; }
+.hero-r-trust { display: flex; align-items: center; gap: 14px; }
+.hero-r-shield-ico { width: 40px; height: 40px; border-radius: 50%; background: var(--color-fondo-alternativo); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--color-cta-principal); flex-shrink: 0; }
+.hero-r-trust-text { font-weight: 700; color: var(--color-texto); font-size: .88rem; line-height: 1.4; }
+
 /* ============================================
    PROCESO
 ============================================ */
 #proceso { padding: 104px 0; background: rgba(245, 196, 179, 0.28); }
-.proceso-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.proceso-grid { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 20px; align-items: center; }
+.proceso-arrow { display: flex; align-items: center; justify-content: center; color: #D4537E; font-size: 1.25rem; font-weight: 700; }
 .proceso-card {
     background: var(--color-blanco); border-radius: 18px;
     padding: 32px 24px;
@@ -376,12 +394,13 @@ ul { list-style: none; }
 .gal-item:hover img { transform: scale(1.04); }
 .gal-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(90,62,54,.65) 0%, transparent 55%);
+    background: rgba(212,83,126,0.15);
     opacity: 0; transition: opacity .3s ease;
-    display: flex; align-items: flex-end; padding: 14px;
+    display: flex; align-items: flex-end; justify-content: center; padding-bottom: 16px;
 }
 .gal-item:hover .gal-overlay { opacity: 1; }
-.gal-breed-pill { background: rgba(255,255,255,.9); color: var(--color-texto); padding: 4px 14px; border-radius: 50px; font-size: .73rem; font-weight: 700; }
+.gal-breed-pill { background: rgba(212,83,126,0.9); color: #fff; padding: 4px 14px; border-radius: 50px; font-size: .73rem; font-weight: 700; transform: translateY(8px); transition: transform .3s ease; }
+.gal-item:hover .gal-breed-pill { transform: translateY(0); }
 .galeria-cta { text-align: center; margin-top: 32px; }
 
 /* ============================================
@@ -418,8 +437,8 @@ ul { list-style: none; }
 .wa-cta-big {
     display: inline-flex; align-items: center; gap: 12px;
     background: var(--color-cta-principal); color: #fff;
-    padding: 18px 34px; border-radius: 50px;
-    font-weight: 700; font-size: 1.15rem;
+    padding: 16px 36px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
     margin-bottom: 10px; transition: var(--tr);
     box-shadow: 0 4px 22px rgba(212,83,126,.32);
 }
@@ -481,6 +500,25 @@ ul { list-style: none; }
 }
 .form-ok i { font-size: 2rem; display: block; margin-bottom: 8px; }
 
+/* Accordion */
+.ca-separator { text-align: center; color: var(--color-texto-suave); font-size: .82rem; margin-bottom: 16px; letter-spacing: .5px; }
+.ca-toggle {
+    width: 100%; text-align: left; background: var(--color-blanco);
+    border: 1px solid var(--color-borde); border-radius: 10px;
+    padding: 14px 18px; font-family: 'Lato', sans-serif;
+    font-size: .95rem; font-weight: 600; color: var(--color-texto);
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    transition: var(--tr);
+}
+.ca-toggle:hover { border-color: var(--color-cta-principal); color: var(--color-cta-principal); }
+.ca-arrow { transition: transform .3s ease; }
+.ca-toggle.open .ca-arrow { transform: rotate(180deg); }
+.ca-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+.ca-body.open { max-height: 900px; }
+
+/* Nav active */
+.nav-links a.nav-active { color: #D4537E !important; font-weight: 600; }
+
 /* ============================================
    FOOTER
 ============================================ */
@@ -502,7 +540,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 .footer-col ul a { color: rgba(245,196,179,0.7); font-size: .88rem; transition: var(--tr); }
 .footer-col ul a:hover { color: var(--color-cta-principal); padding-left: 4px; }
 .footer-map { margin-bottom: 18px; }
-.footer-map iframe { width: 100%; height: 220px; border: 0; border-radius: 18px; }
+.footer-map iframe { width: 100%; height: 160px; border: 0; border-radius: 18px; }
 .footer-map p { margin-top: 12px; color: rgba(245,196,179,0.7); font-size: .92rem; line-height: 1.6; }
 .footer-bottom {
     border-top: 1px solid rgba(245,196,179,0.2);
@@ -522,6 +560,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     .footer-grid   { grid-template-columns: 1fr 1fr; }
     .historia-grid { gap: 44px; }
     .proceso-grid  { grid-template-columns: repeat(2,1fr); }
+    .proceso-arrow { display: none; }
 }
 @media (max-width: 820px) {
     .nav-links            { display: none; }
@@ -535,10 +574,10 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     .contacto-grid        { grid-template-columns: 1fr; }
     .footer-grid          { grid-template-columns: 1fr; gap: 28px; }
     .form-row             { grid-template-columns: 1fr; }
-    .hero-stats           { gap: 24px; }
     .hero-main            { padding: 88px 0 48px; }
     .contacto-form-box    { padding: 26px 22px; }
     .proceso-grid         { grid-template-columns: 1fr 1fr; }
+    .hero-grid            { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 480px) {
     .hero-main            { padding: 80px 0 40px; }
@@ -617,47 +656,71 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     <div id="hero">
         <div class="hero-main">
             <div class="container">
-                <div class="hero-content">
-                    <span class="hero-pill">Criadero familiar · Cáceres</span>
-                    <h1 class="hero-title">
-                        Criamos con <em>amor</em>,<br>desde el corazón<br>de nuestra familia.
-                    </h1>
-                    <p class="hero-sub">
-                        En Deterrajaras llevamos más de una década criando Caniches Toy y Schnauzer Mini de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
-                    </p>
-                    <div class="hero-ctas">
-                        <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
-                            <i class="fab fa-whatsapp"></i> Habla con nosotros
-                        </a>
-                        <a href="camadas.html" class="btn-cta-green">
-                            Ver camadas disponibles
-                        </a>
-                    </div>
-                    <div class="hero-test-banner" style="display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:1.5px solid #EDD5CC;border-radius:14px;padding:14px 20px;margin-top:24px;max-width:560px;flex-wrap:wrap;">
-                        <div style="display:flex;align-items:center;gap:12px;">
-                            <div style="width:40px;height:40px;border-radius:50%;background:#F5C4B3;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><polyline points="9 12 11 14 15 10"/></svg>
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <span class="hero-pill">Criadero familiar · Cáceres</span>
+                        <h1 class="hero-title">
+                            Criamos con <em>amor</em>,<br>desde el corazón<br>de nuestra familia.
+                        </h1>
+                        <p class="hero-sub">
+                            En Deterrajaras llevamos más de una década criando Caniches Toy y Schnauzer Mini de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
+                        </p>
+                        <div class="hero-ctas">
+                            <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
+                                <i class="fab fa-whatsapp"></i> Habla con nosotros
+                            </a>
+                            <a href="camadas.html" class="btn-cta-green">
+                                Ver camadas disponibles
+                            </a>
+                        </div>
+                        <div class="hero-test-banner" style="display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:1.5px solid #EDD5CC;border-radius:14px;padding:14px 20px;margin-top:24px;max-width:560px;flex-wrap:wrap;">
+                            <div style="display:flex;align-items:center;gap:12px;">
+                                <div style="width:40px;height:40px;border-radius:50%;background:#F5C4B3;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><polyline points="9 12 11 14 15 10"/></svg>
+                                </div>
+                                <div>
+                                    <p style="font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:#5A3E36;margin:0 0 2px;">¿No sabes qué raza elegir?</p>
+                                    <p style="font-family:'Lato',sans-serif;font-size:12px;color:#8C6B62;margin:0;">5 preguntas · 2 minutos · Resultado personalizado</p>
+                                </div>
                             </div>
-                            <div>
-                                <p style="font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:#5A3E36;margin:0 0 2px;">¿No sabes qué raza elegir?</p>
-                                <p style="font-family:'Lato',sans-serif;font-size:12px;color:#8C6B62;margin:0;">5 preguntas · 2 minutos · Resultado personalizado</p>
+                            <a href="test-raza.html" style="background:#D4537E;color:#fff;border-radius:50px;padding:9px 18px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;border:none;white-space:nowrap;flex-shrink:0;display:inline-block;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#B8436A'" onmouseout="this.style.background='#D4537E'">Hacer el test</a>
+                        </div>
+                        <style>@media(max-width:640px){.hero-test-banner{flex-direction:column!important;align-items:flex-start!important;}.hero-test-banner a{width:100%!important;text-align:center!important;padding:11px!important;}}</style>
+                    </div>
+                    <div class="hero-right">
+                        <div class="hero-r-card">
+                            <div class="hero-r-stats">
+                                <div class="hero-r-stat">
+                                    <span class="hero-r-n">+15</span>
+                                    <span class="hero-r-l">Años criando</span>
+                                </div>
+                                <div class="hero-r-stat">
+                                    <span class="hero-r-n">2</span>
+                                    <span class="hero-r-l">Razas selectas</span>
+                                </div>
+                                <div class="hero-r-stat">
+                                    <span class="hero-r-n">100%</span>
+                                    <span class="hero-r-l">Personalización</span>
+                                </div>
                             </div>
                         </div>
-                        <a href="test-raza.html" style="background:#D4537E;color:#fff;border-radius:50px;padding:9px 18px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;border:none;white-space:nowrap;flex-shrink:0;display:inline-block;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#B8436A'" onmouseout="this.style.background='#D4537E'">Hacer el test</a>
-                    </div>
-                    <style>@media(max-width:640px){.hero-test-banner{flex-direction:column!important;align-items:flex-start!important;}.hero-test-banner a{width:100%!important;text-align:center!important;padding:11px!important;}}</style>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <div class="stat-n">+15</div>
-                            <div class="stat-l">Años criando</div>
+                        <div class="hero-r-card">
+                            <div class="hero-r-raza-item">
+                                <div class="chip-dot" style="background:#D4537E"></div>
+                                <span class="hero-r-raza-name">Caniche Toy</span>
+                                <span class="hero-r-size-pill">Micro · Toy</span>
+                            </div>
+                            <div class="hero-r-raza-item">
+                                <div class="chip-dot" style="background:#8BAF82"></div>
+                                <span class="hero-r-raza-name">Schnauzer Mini</span>
+                                <span class="hero-r-size-pill">Miniatura</span>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-n">2</div>
-                            <div class="stat-l">Razas selectas</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-n">100%</div>
-                            <div class="stat-l">Personalización total</div>
+                        <div class="hero-r-card hero-r-trust">
+                            <div class="hero-r-shield-ico">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="hero-r-trust-text">Núcleo Zoológico<br>Registrado</span>
                         </div>
                     </div>
                 </div>
@@ -696,16 +759,19 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <h3>Contáctanos</h3>
                 <p>Escríbenos por WhatsApp o rellena el formulario. Te explicamos qué camadas hay disponibles y resolvemos todas tus dudas sin compromiso.</p>
             </div>
+            <div class="proceso-arrow" aria-hidden="true">→</div>
             <div class="proceso-card fade-in">
                 <div class="proceso-n">02</div>
                 <h3>Elige tu cachorro</h3>
                 <p>Te enviamos fotos y vídeos actualizados. Si quieres, puedes venir a vernos en Cáceres y conocer a los cachorros en persona.</p>
             </div>
+            <div class="proceso-arrow" aria-hidden="true">→</div>
             <div class="proceso-card fade-in">
                 <div class="proceso-n">03</div>
                 <h3>Reserva con garantías</h3>
                 <p>Con una pequeña señal, el cachorro es tuyo. Nosotros seguimos cuidándolo hasta que llegue el momento de irse contigo a casa.</p>
             </div>
+            <div class="proceso-arrow" aria-hidden="true">→</div>
             <div class="proceso-card fade-in">
                 <div class="proceso-n">04</div>
                 <h3>Bienvenida a casa</h3>
@@ -862,7 +928,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
         <div class="section-header">
             <span class="badge">Galería</span>
             <h2 class="section-title">Momentos en Deterrajaras</h2>
-            <p class="section-subtitle">Imágenes de nuestros cachorros y su vida con nosotros. Pronto más fotos de nuestras camadas.</p>
+            <p class="section-subtitle">Cada cachorro que sale de nuestra casa lleva consigo años de dedicación y amor familiar.</p>
         </div>
         <div class="galeria-grid">
             <div class="gal-item">
@@ -875,11 +941,11 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             </div>
             <div class="gal-item">
                 <img src="imagenes_caniches/cachorros 2.jpeg" alt="Cachorros al aire libre">
-                <div class="gal-overlay"><span class="gal-breed-pill">Cachorros</span></div>
+                <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
                 <img src="imagenes_caniches/cachorros 6.jpeg" alt="Camada de cachorros">
-                <div class="gal-overlay"><span class="gal-breed-pill">Cachorros</span></div>
+                <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
                 <img src="imagenes_caniches/caniche 1.jpeg" alt="Cachorro adorable">
@@ -890,8 +956,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
-                <img src="imagenes_caniches/cachorr camada 1.jpeg" alt="Camada de cachorros">
-                <div class="gal-overlay"><span class="gal-breed-pill">Camada</span></div>
+                <img src="imagenes_caniches/cachirris 5.jpeg" alt="Cachorros Deterrajaras">
+                <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
         </div>
         <div class="galeria-cta">
@@ -947,6 +1013,14 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 </div>
             </div>
         </div>
+        <div style="text-align:center;margin-top:52px;">
+            <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--color-texto-suave);font-size:1.08rem;margin-bottom:22px;">¿Listo para conocer a tu futuro compañero?</p>
+            <a href="https://wa.me/34670225384" target="_blank" class="btn-wa" style="font-size:1rem;">
+                <i class="fab fa-whatsapp"></i> Habla con nosotros por WhatsApp
+            </a>
+            <br>
+            <a href="camadas.html" style="display:inline-block;margin-top:14px;font-size:.9rem;font-weight:600;color:var(--color-texto-suave);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4537E'" onmouseout="this.style.color=''">O mira las camadas disponibles →</a>
+        </div>
     </div>
 </section>
 
@@ -989,36 +1063,45 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 </div>
             </div>
 
-            <div class="contacto-form-box fade-in">
-                <h3>Cuéntanos qué buscas</h3>
-                <p>Te responderemos lo antes posible, normalmente en menos de 24 horas.</p>
-                <form id="contactForm" onsubmit="submitContact(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="cf-nombre">Nombre *</label>
-                            <input type="text" id="cf-nombre" placeholder="Tu nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="cf-tel">Teléfono</label>
-                            <input type="tel" id="cf-tel" placeholder="Tu teléfono">
-                        </div>
+            <div class="fade-in">
+                <p class="ca-separator">─────── o si prefieres ───────</p>
+                <button class="ca-toggle" id="caToggle" onclick="toggleCA()">
+                    O si prefieres, escríbenos por aquí
+                    <i class="fas fa-chevron-down ca-arrow"></i>
+                </button>
+                <div class="ca-body" id="caBody">
+                    <div class="contacto-form-box" style="margin-top:14px;">
+                        <h3>Cuéntanos qué buscas</h3>
+                        <p>Te responderemos lo antes posible, normalmente en menos de 24 horas.</p>
+                        <form id="contactForm" onsubmit="submitContact(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cf-nombre">Nombre *</label>
+                                    <input type="text" id="cf-nombre" placeholder="Tu nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cf-tel">Teléfono</label>
+                                    <input type="tel" id="cf-tel" placeholder="Tu teléfono">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cf-email">Correo electrónico *</label>
+                                <input type="email" id="cf-email" placeholder="tu@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cf-msg">Mensaje *</label>
+                                <textarea id="cf-msg" placeholder="Cuéntanos qué buscas o escríbenos tu pregunta..." required></textarea>
+                            </div>
+                            <button type="submit" class="form-btn">
+                                <i class="fas fa-paper-plane"></i> Enviar mensaje
+                            </button>
+                            <div class="form-ok" id="contactOk">
+                                <i class="fas fa-check-circle"></i>
+                                ¡Mensaje enviado! Te responderemos pronto.
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="cf-email">Correo electrónico *</label>
-                        <input type="email" id="cf-email" placeholder="tu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cf-msg">Mensaje *</label>
-                        <textarea id="cf-msg" placeholder="Cuéntanos qué buscas o escríbenos tu pregunta..." required></textarea>
-                    </div>
-                    <button type="submit" class="form-btn">
-                        <i class="fas fa-paper-plane"></i> Enviar mensaje
-                    </button>
-                    <div class="form-ok" id="contactOk">
-                        <i class="fas fa-check-circle"></i>
-                        ¡Mensaje enviado! Te responderemos pronto.
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -1106,16 +1189,23 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-const sections = document.querySelectorAll('section[id]');
-const navAs = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-    navAs.forEach(a => {
-        a.classList.remove('active');
-        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+const navSections = document.querySelectorAll('#inicio, #historia, #razas, #como-criamos, #galeria, #contacto');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(a => a.classList.remove('nav-active'));
+            const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+            if (link) link.classList.add('nav-active');
+        }
     });
-}, { passive: true });
+}, { threshold: 0.3 });
+navSections.forEach(s => navObserver.observe(s));
+
+function toggleCA() {
+    document.getElementById('caToggle').classList.toggle('open');
+    document.getElementById('caBody').classList.toggle('open');
+}
 </script>
 <script type="application/ld+json">
 {
