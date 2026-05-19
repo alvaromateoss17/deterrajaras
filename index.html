@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deterrajaras · Criadero Familiar de Perros en Cáceres</title>
-    <meta name="description" content="Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa. Llámanos o escríbenos.">
+    <title>Deterrajaras · Criadero de Caniches Toy y Schnauzer Mini en Cáceres | Núcleo Zoológico Registrado</title>
+    <meta name="description" content="Criadero familiar en Cáceres. Caniches Toy y Schnauzer Mini criados en casa con amor y toda la documentación en regla. Núcleo Zoológico registrado. Escríbenos sin compromiso.">
+    <meta name="keywords" content="criadero caniche toy Cáceres, schnauzer mini Extremadura, cachorros caniche toy, criadero familiar perros, schnauzer miniatura venta, caniche toy hipoalergénico, criadero núcleo zoológico Cáceres">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Deterrajaras">
+    <link rel="canonical" href="https://deterrajaras.es/">
+    <meta property="og:title" content="Deterrajaras · Criadero Familiar de Caniches Toy y Schnauzer Mini en Cáceres">
+    <meta property="og:description" content="Criamos Caniches Toy y Schnauzer Mini con amor desde nuestro hogar en Cáceres. Núcleo Zoológico registrado. +15 años de experiencia.">
+    <meta property="og:url" content="https://deterrajaras.es">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image" content="https://deterrajaras.es/imagenes_caniches/cachirris 5.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -208,6 +218,21 @@ ul { list-style: none; }
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 .hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
 #navbar.scrolled .hamburger span { background: var(--color-texto); }
+.nav-has-dropdown { position: relative; }
+.nav-dropdown {
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: #fff; border: 1px solid #EDD5CC;
+    border-radius: 12px; padding: 8px 0;
+    min-width: 180px; display: flex;
+    flex-direction: column; gap: 0;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 1100;
+}
+.nav-has-dropdown:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: #8C6B62 !important; border-radius: 0 !important; background: transparent !important; }
+.nav-dropdown a:hover { color: #D4537E !important; background: #F9EDE8 !important; }
 
 /* ============================================
    HERO
@@ -544,6 +569,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     <a href="#inicio"       onclick="closeMobile()">Inicio</a>
     <a href="#historia"     onclick="closeMobile()">Historia</a>
     <a href="#razas"        onclick="closeMobile()">Razas</a>
+    <a href="caniche-toy.html" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="schnauzer-mini.html" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
     <a href="#como-criamos" onclick="closeMobile()">Cómo Criamos</a>
     <a href="#galeria"      onclick="closeMobile()">Galería</a>
     <a href="#contacto"     onclick="closeMobile()">Contacto</a>
@@ -562,7 +589,13 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#historia">Historia</a></li>
-                <li><a href="#razas">Razas</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="caniche-toy.html">Caniche Toy</a></li>
+                        <li><a href="schnauzer-mini.html">Schnauzer Mini</a></li>
+                    </ul>
+                </li>
                 <li><a href="#como-criamos">Cómo Criamos</a></li>
                 <li><a href="#galeria">Galería</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -1068,6 +1101,38 @@ window.addEventListener('scroll', () => {
         if (a.getAttribute('href') === '#' + current) a.classList.add('active');
     });
 }, { passive: true });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Deterrajaras",
+  "description": "Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado.",
+  "url": "https://deterrajaras.es",
+  "telephone": "+34670225384",
+  "email": "deterrajaras@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Polígono Ganadero, C/ A 16B",
+    "addressLocality": "Cáceres",
+    "addressRegion": "Extremadura",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "39.4753",
+    "longitude": "-6.3724"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "09:00",
+    "closes": "21:00"
+  },
+  "sameAs": [
+    "https://www.instagram.com/caniches_lola_y_lilo/"
+  ]
+}
 </script>
 </body>
 </html>

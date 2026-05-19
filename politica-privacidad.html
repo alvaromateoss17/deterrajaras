@@ -76,6 +76,21 @@ ul { list-style: none; }
 .nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 .hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
+.nav-has-dropdown { position: relative; }
+.nav-dropdown {
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: #fff; border: 1px solid #EDD5CC;
+    border-radius: 12px; padding: 8px 0;
+    min-width: 180px; display: flex;
+    flex-direction: column; gap: 0;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 1100;
+}
+.nav-has-dropdown:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: #8C6B62 !important; border-radius: 0 !important; background: transparent !important; }
+.nav-dropdown a:hover { color: #D4537E !important; background: #F9EDE8 !important; }
 
 /* PAGE HEADER */
 .legal-header {
@@ -192,6 +207,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     <a href="index.html#inicio">Inicio</a>
     <a href="index.html#historia">Historia</a>
     <a href="index.html#razas">Razas</a>
+    <a href="caniche-toy.html" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="schnauzer-mini.html" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
     <a href="index.html#como-criamos">Cómo Criamos</a>
     <a href="index.html#galeria">Galería</a>
     <a href="index.html#contacto">Contacto</a>
@@ -205,7 +222,13 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <ul class="nav-links">
                 <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#historia">Historia</a></li>
-                <li><a href="index.html#razas">Razas</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="index.html#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="caniche-toy.html">Caniche Toy</a></li>
+                        <li><a href="schnauzer-mini.html">Schnauzer Mini</a></li>
+                    </ul>
+                </li>
                 <li><a href="index.html#como-criamos">Cómo Criamos</a></li>
                 <li><a href="index.html#galeria">Galería</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>

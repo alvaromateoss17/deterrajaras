@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviso Legal · Deterrajaras</title>
-    <meta name="description" content="Aviso legal del criadero familiar Deterrajaras. Núcleo Zoológico registrado en Cáceres, Extremadura.">
+    <title>Caniche Toy en Cáceres · Criadero Familiar Deterrajaras · Cachorros con Documentación</title>
+    <meta name="description" content="Caniches Toy criados en casa en Cáceres. Hipoalergénicos, socializados desde el primer día. Núcleo Zoológico registrado. Consulta camadas disponibles.">
+    <meta name="keywords" content="caniche toy Cáceres, criadero caniche toy Extremadura, cachorros caniche toy, caniche toy hipoalergénico, caniche toy comprar Cáceres">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Deterrajaras">
+    <link rel="canonical" href="https://deterrajaras.es/caniche-toy.html">
+    <meta property="og:title" content="Caniche Toy en Cáceres · Deterrajaras">
+    <meta property="og:description" content="Caniches Toy criados en casa en Cáceres. Hipoalergénicos, socializados desde el primer día. Núcleo Zoológico registrado.">
+    <meta property="og:url" content="https://deterrajaras.es/caniche-toy.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -27,6 +36,9 @@ ul { list-style: none; }
     --color-texto-suave:       #8C6B62;
     --color-blanco:            #FFFFFF;
     --color-borde:             #EDD5CC;
+    --shadow:         0 4px 24px rgba(212,83,126,.10);
+    --shadow-lg:      0 8px 40px rgba(212,83,126,.18);
+    --radius:         18px;
     --tr: 0.3s ease;
 }
 .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
@@ -92,50 +104,78 @@ ul { list-style: none; }
 .nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: #8C6B62 !important; border-radius: 0 !important; background: transparent !important; }
 .nav-dropdown a:hover { color: #D4537E !important; background: #F9EDE8 !important; }
 
-/* PAGE HEADER */
-.legal-header {
-    background: #F9EDE8;
-    padding: 64px 80px 48px;
-    margin-top: 73px;
+/* PAGE HERO */
+.raza-hero {
+    background: var(--color-fondo-principal);
+    padding: 120px 0 72px;
 }
-.legal-badge {
+.raza-hero-inner { max-width: 680px; }
+.raza-badge {
     display: inline-block;
     background: #F5C4B3; color: #5A3E36;
     border-radius: 50px; padding: 5px 18px;
     font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    margin-bottom: 16px;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px;
 }
-.legal-header h1 {
+.raza-hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 42px; color: #5A3E36; font-weight: 700; margin-bottom: 12px;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    color: #5A3E36; font-weight: 700; line-height: 1.15; margin-bottom: 18px;
 }
-.legal-date { font-family: 'Lato', sans-serif; font-size: 13px; color: #8C6B62; }
+.raza-hero p {
+    font-size: 1.05rem; color: #8C6B62; line-height: 1.8; margin-bottom: 32px; max-width: 560px;
+}
+.raza-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--color-cta-principal); color: #fff;
+    padding: 13px 28px; border-radius: 50px;
+    font-weight: 700; font-size: .95rem; transition: var(--tr);
+}
+.btn-primary:hover { background: var(--color-cta-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--color-acento);
+    padding: 13px 28px; border-radius: 50px;
+    font-weight: 700; font-size: .95rem;
+    border: 2px solid var(--color-acento); transition: var(--tr);
+}
+.btn-outline:hover { background: var(--color-acento); color: #fff; transform: translateY(-2px); }
 
-/* CONTENT */
-.legal-content {
-    padding: 0 80px 80px;
-    max-width: calc(780px + 160px);
+/* CARACTERÍSTICAS */
+.raza-features { padding: 80px 0; background: rgba(245,196,179,0.22); }
+.features-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
 }
-.legal-block {
+.feature-card {
     background: #fff;
     border: 1px solid #EDD5CC;
-    border-radius: 12px;
-    padding: 24px 28px;
-    margin-bottom: 16px;
+    border-radius: 16px; padding: 28px 26px;
+    transition: transform .2s ease, box-shadow .2s ease;
 }
-.legal-block h2 {
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.feature-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(245,196,179,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 14px;
+}
+.feature-card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 18px; color: #5A3E36;
-    font-weight: 700; margin-bottom: 12px;
+    font-size: 1.1rem; color: #5A3E36; font-weight: 700; margin-bottom: 8px;
 }
-.legal-block p, .legal-block li {
-    font-family: 'Lato', sans-serif;
-    font-size: 15px; color: #8C6B62; line-height: 1.8;
+.feature-card p { font-size: .93rem; color: #8C6B62; line-height: 1.75; }
+
+/* SEO TEXT */
+.raza-seo { padding: 80px 0; background: #F9EDE8; }
+.raza-seo-inner { max-width: 780px; }
+.seo-block { margin-bottom: 48px; }
+.seo-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: #5A3E36; font-weight: 700; margin-bottom: 16px;
 }
-.legal-block a { color: #D4537E; }
-.legal-block ul { list-style: disc; padding-left: 20px; }
-.legal-block ul li { margin-bottom: 4px; }
+.seo-block p { font-size: 1rem; color: #8C6B62; line-height: 1.85; }
+.raza-seo-cta { text-align: center; margin-top: 48px; }
 
 /* FLOATING WHATSAPP */
 .float-wa {
@@ -187,15 +227,13 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    .legal-header { padding: 56px 40px 40px; }
-    .legal-content { padding: 0 40px 64px; }
 }
 @media (max-width: 820px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-    .legal-header { padding: 48px 24px 36px; }
-    .legal-content { padding: 0 24px 56px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .raza-hero { padding: 100px 0 56px; }
 }
     </style>
 </head>
@@ -212,7 +250,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     <a href="index.html#como-criamos">Cómo Criamos</a>
     <a href="index.html#galeria">Galería</a>
     <a href="index.html#contacto">Contacto</a>
-    <a href="camadas.html" class="mobile-wa"><i class="fab fa-paw"></i> Camadas</a>
+    <a href="camadas.html" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
 </div>
 
 <nav id="navbar" aria-label="Navegación principal">
@@ -241,45 +279,78 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     </div>
 </nav>
 
-<div class="legal-header">
-    <span class="legal-badge">Aviso Legal</span>
-    <h1>Aviso Legal</h1>
-    <p class="legal-date">Última actualización: mayo 2026</p>
-</div>
-
-<div class="legal-content">
-
-    <div class="legal-block">
-        <h2>1. Objeto y ámbito de aplicación</h2>
-        <p>El presente Aviso Legal regula el acceso y uso del sitio web deterrajaras.es, titularidad de Deterrajaras, criadero familiar con Núcleo Zoológico registrado en Cáceres, Extremadura. El acceso y uso de este sitio implica la aceptación de las presentes condiciones.</p>
+<!-- HERO -->
+<section class="raza-hero">
+    <div class="container">
+        <div class="raza-hero-inner">
+            <span class="raza-badge">Caniche Toy</span>
+            <h1>Caniches Toy criados con amor en Cáceres</h1>
+            <p>Pequeños, inteligentes e hipoalergénicos. Criados dentro de casa desde el primer día, socializados con niños y con toda la documentación en regla.</p>
+            <div class="raza-ctas">
+                <a href="camadas.html" class="btn-primary">Ver camadas disponibles</a>
+                <a href="https://wa.me/34670225384" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> Habla con nosotros</a>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="legal-block">
-        <h2>Datos del titular</h2>
-        <p><strong>Titular:</strong> Deterrajaras<br>
-        <strong>Actividad:</strong> Criadero familiar de animales de compañía<br>
-        <strong>Domicilio:</strong> Polígono Ganadero, C/ A 16B, Cáceres<br>
-        <strong>Email:</strong> <a href="mailto:deterrajaras@gmail.com">deterrajaras@gmail.com</a><br>
-        <strong>Teléfono:</strong> <a href="tel:+34670225384">670 225 384</a><br>
-        <strong>Registro:</strong> Núcleo Zoológico registrado en Extremadura</p>
+<!-- CARACTERÍSTICAS -->
+<section class="raza-features">
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📏</div>
+                <h3>Tamaño</h3>
+                <p>Peso adulto entre 2 y 4 kg. El compañero perfecto para piso o casa pequeña.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>Hipoalergénico</h3>
+                <p>No suelta pelo. Ideal para personas con alergia o asma.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Inteligencia</h3>
+                <p>Una de las razas más inteligentes del mundo. Aprende rápido y disfruta aprendiendo.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <h3>Carácter</h3>
+                <p>Cariñoso, sociable y equilibrado. Se adapta perfectamente a familias, mayores y personas que viven solas.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="legal-block">
-        <h2>2. Propiedad intelectual</h2>
-        <p>Los contenidos de este sitio web, incluyendo textos, fotografías e imágenes, son propiedad de Deterrajaras o de sus legítimos titulares. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa.</p>
+<!-- TEXTOS SEO -->
+<section class="raza-seo">
+    <div class="container">
+        <div class="raza-seo-inner">
+
+            <div class="seo-block">
+                <h2>¿Por qué elegir un Caniche Toy de Deterrajaras?</h2>
+                <p>En Deterrajaras llevamos más de 15 años criando Caniches Toy en Cáceres. Nuestros cachorros nacen y crecen dentro de nuestra casa familiar, en contacto diario con personas, niños y otros animales. Esto garantiza una socialización óptima desde el primer día de vida.</p>
+            </div>
+
+            <div class="seo-block">
+                <h2>Caniches Toy con toda la documentación en regla</h2>
+                <p>Todos nuestros cachorros salen con cartilla sanitaria, chip registrado, vacunas al día, desparasitación y contrato de compraventa. Somos Núcleo Zoológico registrado en Extremadura, lo que garantiza que toda nuestra actividad cumple con la normativa vigente de bienestar animal.</p>
+            </div>
+
+            <div class="seo-block">
+                <h2>Caniches Toy en Cáceres y toda Extremadura</h2>
+                <p>Nuestros cachorros han viajado a Madrid, Badajoz, Mérida, Plasencia y muchos otros puntos de España. Si estás buscando un Caniche Toy con garantías en Extremadura o provincias cercanas, contacta con nosotros sin compromiso.</p>
+            </div>
+
+            <div class="raza-seo-cta">
+                <a href="https://wa.me/34670225384" target="_blank" class="btn-primary" style="font-size:1.05rem;padding:15px 36px;">
+                    <i class="fab fa-whatsapp"></i> Escríbenos sin compromiso
+                </a>
+            </div>
+
+        </div>
     </div>
-
-    <div class="legal-block">
-        <h2>3. Responsabilidad</h2>
-        <p>Deterrajaras no se responsabiliza de los daños derivados del uso del sitio web ni de la información contenida en el mismo. La información publicada tiene carácter meramente informativo.</p>
-    </div>
-
-    <div class="legal-block">
-        <h2>4. Legislación aplicable</h2>
-        <p>Este aviso legal se rige por la legislación española vigente. Para cualquier controversia, las partes se someten a los juzgados de Cáceres.</p>
-    </div>
-
-</div>
+</section>
 
 <a href="https://wa.me/34670225384" target="_blank" class="float-wa" aria-label="Contactar por WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -300,8 +371,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="footer-col">
                 <h4>Razas</h4>
                 <ul>
-                    <li><a href="index.html#razas">Caniche Toy</a></li>
-                    <li><a href="index.html#razas">Schnauzer Miniatura</a></li>
+                    <li><a href="caniche-toy.html">Caniche Toy</a></li>
+                    <li><a href="schnauzer-mini.html">Schnauzer Miniatura</a></li>
                 </ul>
             </div>
             <div class="footer-col">
