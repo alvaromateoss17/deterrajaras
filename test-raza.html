@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Qué raza es para ti? · Test interactivo · Deterrajaras</title>
+    <meta name="description" content="Responde 5 preguntas rápidas y descubre si el Caniche Toy o el Schnauzer Mini es tu compañero ideal. Test gratuito del criadero Deterrajaras.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Deterrajaras">
+    <link rel="canonical" href="https://deterrajaras.es/test-raza.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: #F9EDE8; color: #5A3E36; line-height: 1.7; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+:root {
+    --color-fondo-principal:   #F9EDE8;
+    --color-fondo-alternativo: #F5C4B3;
+    --color-cta-principal:     #D4537E;
+    --color-cta-hover:         #B8436A;
+    --color-acento:            #8BAF82;
+    --color-texto:             #5A3E36;
+    --color-texto-suave:       #8C6B62;
+    --color-blanco:            #FFFFFF;
+    --color-borde:             #EDD5CC;
+    --shadow:         0 4px 24px rgba(212,83,126,.10);
+    --shadow-lg:      0 8px 40px rgba(212,83,126,.18);
+    --tr: 0.3s ease;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ── MOBILE MENU ── */
+.mobile-menu {
+    display: none; position: fixed; inset: 0;
+    background: #fff; z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--color-texto); padding: 10px 24px; transition: var(--tr); }
+.mobile-menu a:hover { color: var(--color-cta-principal); }
+.mobile-menu .mobile-wa {
+    margin-top: 16px; background: var(--color-cta-principal); color: #fff !important;
+    padding: 12px 32px !important; border-radius: 50px;
+    font-size: 1.1rem !important; display: flex; align-items: center; gap: 10px;
+}
+.mobile-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none; font-size: 1.8rem; color: var(--color-texto); cursor: pointer;
+}
+
+/* ── NAVBAR ── */
+#navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000; padding: 18px 0;
+    background: var(--color-blanco); border-bottom: 1px solid var(--color-borde); transition: var(--tr);
+}
+#navbar.scrolled { box-shadow: 0 2px 20px rgba(212,83,126,.10); padding: 12px 0; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--color-texto); transition: var(--tr); }
+.nav-logo span { color: var(--color-cta-principal); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { color: var(--color-texto-suave); font-weight: 600; font-size: .88rem; padding: 8px 14px; border-radius: 50px; transition: var(--tr); letter-spacing: .2px; }
+.nav-links a:hover { background: rgba(212,83,126,.07); color: var(--color-cta-principal); }
+.nav-camadas {
+    background: transparent !important; color: var(--color-cta-principal) !important;
+    padding: 8px 20px !important; border: 1.5px solid var(--color-cta-principal) !important;
+    border-radius: 50px !important; transition: var(--tr) !important; font-weight: 600 !important;
+}
+.nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
+.nav-has-dropdown { position: relative; }
+.nav-dropdown {
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: #fff; border: 1px solid #EDD5CC; border-radius: 12px; padding: 8px 0;
+    min-width: 180px; display: flex; flex-direction: column; gap: 0;
+    opacity: 0; pointer-events: none; transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease; z-index: 1100;
+}
+.nav-has-dropdown:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: #8C6B62 !important; border-radius: 0 !important; background: transparent !important; }
+.nav-dropdown a:hover { color: #D4537E !important; background: #F9EDE8 !important; }
+
+/* ── QUIZ LAYOUT ── */
+.quiz-wrap {
+    min-height: calc(100vh - 73px);
+    margin-top: 73px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-start;
+    padding: 56px 24px 80px;
+}
+
+/* ── SLIDES ── */
+.slide { display: none; width: 100%; max-width: 720px; animation: fadeIn 0.3s ease; }
+.slide.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── SLIDE 0 — INTRO ── */
+.intro-badge {
+    display: inline-block; background: #F5C4B3; color: #5A3E36;
+    border-radius: 50px; padding: 5px 18px;
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 20px;
+}
+.intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3rem); color: #5A3E36;
+    text-align: center; margin: 0 auto 16px; max-width: 600px;
+}
+.intro-sub {
+    font-size: 1.05rem; color: #8C6B62; text-align: center;
+    max-width: 480px; margin: 0 auto 40px; line-height: 1.8;
+}
+.intro-dogs {
+    display: flex; align-items: flex-end; justify-content: center; gap: 32px;
+    margin-bottom: 40px;
+}
+.intro-dogs svg { opacity: 0.75; }
+.btn-start {
+    display: block; margin: 0 auto;
+    background: #D4537E; color: #fff;
+    border: none; border-radius: 50px;
+    padding: 16px 40px; font-size: 16px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s ease, transform 0.2s ease;
+    font-family: 'Lato', sans-serif;
+}
+.btn-start:hover { background: #B8436A; transform: translateY(-2px); }
+
+/* ── PROGRESS ── */
+.progress-wrap { margin-bottom: 40px; }
+.progress-bar-bg {
+    background: #EDD5CC; height: 6px; border-radius: 3px;
+    width: 100%; max-width: 640px; margin: 0 auto 10px; overflow: hidden;
+}
+.progress-bar-fill {
+    background: #D4537E; height: 100%; border-radius: 3px;
+    width: 0%; transition: width 0.4s ease;
+}
+.progress-label { font-size: 13px; color: #8C6B62; text-align: center; }
+
+/* ── QUESTION ── */
+.question-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 1.75rem); color: #5A3E36;
+    text-align: center; max-width: 540px; margin: 0 auto 40px;
+}
+.options-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; max-width: 640px; margin: 0 auto;
+}
+.option-card {
+    background: #fff; border: 1.5px solid #EDD5CC;
+    border-radius: 16px; padding: 24px 16px;
+    cursor: pointer; text-align: center;
+    transition: border-color 0.15s, background 0.15s, transform 0.15s, box-shadow 0.15s;
+    user-select: none;
+}
+.option-card:hover {
+    border-color: #D4537E; background: #FFF5F8;
+    transform: scale(1.02);
+}
+.option-card.selected {
+    border: 2px solid #D4537E; background: #FFF0F5;
+    box-shadow: 0 4px 16px rgba(212,83,126,0.15);
+}
+.option-icon { display: flex; justify-content: center; margin-bottom: 12px; }
+.option-icon svg { width: 48px; height: 48px; }
+.option-label { font-size: 15px; font-weight: 600; color: #5A3E36; line-height: 1.3; }
+.option-sub { font-size: 13px; color: #8C6B62; margin-top: 4px; line-height: 1.4; }
+
+/* ── RESULT ── */
+.result-badge {
+    display: inline-block; background: #F5C4B3; color: #5A3E36;
+    border-radius: 50px; padding: 5px 18px;
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 16px;
+}
+.result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.4rem); color: #5A3E36;
+    text-align: center; margin-bottom: 28px;
+}
+.result-img {
+    width: 200px; height: 200px; object-fit: cover;
+    border-radius: 50%; border: 4px solid #F5C4B3;
+    display: block; margin: 0 auto 28px;
+}
+.result-imgs-pair {
+    display: flex; justify-content: center; gap: 24px; margin-bottom: 28px;
+}
+.result-imgs-pair img {
+    width: 140px; height: 140px; object-fit: cover;
+    border-radius: 50%; border: 4px solid #F5C4B3;
+}
+.result-text {
+    font-size: 1rem; color: #8C6B62; line-height: 1.85;
+    text-align: center; max-width: 560px; margin: 0 auto 32px;
+}
+.result-reasons {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; max-width: 600px; margin: 0 auto 36px;
+}
+.reason-card {
+    background: #fff; border: 1px solid #EDD5CC;
+    border-radius: 14px; padding: 18px 14px; text-align: center;
+}
+.reason-icon { font-size: 1.4rem; margin-bottom: 8px; }
+.reason-text { font-size: 13px; font-weight: 600; color: #5A3E36; line-height: 1.4; }
+.result-ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 8px; }
+.result-ctas .btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.btn-result-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #D4537E; color: #fff; border-radius: 50px;
+    padding: 14px 28px; font-size: 15px; font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+}
+.btn-result-primary:hover { background: #B8436A; transform: translateY(-2px); }
+.btn-result-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #8BAF82;
+    border: 2px solid #8BAF82; border-radius: 50px;
+    padding: 14px 28px; font-size: 15px; font-weight: 600;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-result-secondary:hover { background: #8BAF82; color: #fff; transform: translateY(-2px); }
+.btn-retake {
+    font-size: 14px; color: #8C6B62; cursor: pointer;
+    background: none; border: none; font-family: 'Lato', sans-serif;
+    display: block; text-align: center; margin-top: 4px;
+    transition: color 0.2s; text-decoration: underline; text-underline-offset: 3px;
+}
+.btn-retake:hover { color: #D4537E; }
+
+/* ── TEXT CENTER HELPER ── */
+.t-center { text-align: center; }
+
+/* ── FOOTER ── */
+footer { background: var(--color-texto); color: var(--color-fondo-alternativo); padding: 58px 0 28px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+.f-logo { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--color-fondo-alternativo); margin-bottom: 10px; }
+.f-logo span { color: var(--color-cta-principal); }
+.footer-brand p { font-size: .88rem; line-height: 1.82; margin-bottom: 18px; color: rgba(245,196,179,0.7); }
+.f-socials { display: flex; gap: 10px; }
+.f-soc {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(245,196,179,0.12); color: rgba(245,196,179,0.7);
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--tr); font-size: .95rem;
+}
+.f-soc:hover { background: var(--color-cta-principal); color: #fff; }
+.footer-col h4 { font-weight: 700; color: var(--color-fondo-alternativo); margin-bottom: 18px; font-size: .82rem; letter-spacing: .9px; text-transform: uppercase; }
+.footer-col ul { display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a { color: rgba(245,196,179,0.7); font-size: .88rem; transition: var(--tr); }
+.footer-col ul a:hover { color: var(--color-cta-principal); padding-left: 4px; }
+.footer-map { margin-bottom: 18px; }
+.footer-map iframe { width: 100%; height: 220px; border: 0; border-radius: 18px; }
+.footer-map p { margin-top: 12px; color: rgba(245,196,179,0.7); font-size: .92rem; line-height: 1.6; }
+.footer-bottom {
+    border-top: 1px solid rgba(245,196,179,0.15); padding-top: 22px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom p { font-size: .82rem; color: rgba(245,196,179,0.6); }
+.f-legal { display: flex; gap: 18px; }
+.f-legal a { font-size: .82rem; color: rgba(245,196,179,0.6); transition: var(--tr); }
+.f-legal a:hover { color: var(--color-cta-principal); }
+
+/* ── FLOAT WA ── */
+.float-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 990;
+    width: 62px; height: 62px; border-radius: 50%;
+    background: var(--color-cta-principal); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem; box-shadow: 0 4px 20px rgba(212,83,126,.50);
+    transition: var(--tr); animation: waGlow 2.5s ease-in-out infinite;
+}
+.float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(212,83,126,.7); }
+@keyframes waGlow {
+    0%,100% { box-shadow: 0 4px 20px rgba(212,83,126,.5); }
+    50%      { box-shadow: 0 4px 40px rgba(212,83,126,.85); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 820px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .options-grid { grid-template-columns: 1fr; max-width: 360px; }
+    .result-reasons { grid-template-columns: 1fr; max-width: 320px; }
+    .result-imgs-pair img { width: 110px; height: 110px; }
+}
+    </style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#historia">Historia</a>
+    <a href="index.html#razas">Razas</a>
+    <a href="caniche-toy.html" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="schnauzer-mini.html" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
+    <a href="test-raza.html">Test de raza</a>
+    <a href="index.html#como-criamos">Cómo Criamos</a>
+    <a href="index.html#galeria">Galería</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="camadas.html" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Deterra<span>jaras</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#historia">Historia</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="index.html#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="caniche-toy.html">Caniche Toy</a></li>
+                        <li><a href="schnauzer-mini.html">Schnauzer Mini</a></li>
+                    </ul>
+                </li>
+                <li><a href="test-raza.html">Test de raza</a></li>
+                <li><a href="index.html#como-criamos">Cómo Criamos</a></li>
+                <li><a href="index.html#galeria">Galería</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="camadas.html" class="nav-camadas">Camadas</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ================================================
+     QUIZ
+================================================ -->
+<main class="quiz-wrap">
+
+    <!-- ── SLIDE 0: INTRO ── -->
+    <div class="slide active t-center" id="slide-0">
+        <span class="intro-badge">Test Interactivo</span>
+        <h1 class="intro-title">¿Qué raza es para ti?</h1>
+        <p class="intro-sub">5 preguntas. 2 minutos. Y sabrás qué compañero encaja perfectamente con tu vida.</p>
+        <div class="intro-dogs">
+            <!-- Caniche Toy silhouette -->
+            <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="55" cy="32" r="18" fill="#F5C4B3"/>
+                <circle cx="41" cy="22" r="10" fill="#F5C4B3"/>
+                <circle cx="69" cy="22" r="10" fill="#F5C4B3"/>
+                <circle cx="55" cy="30" r="13" fill="#F5C4B3"/>
+                <ellipse cx="55" cy="68" rx="22" ry="26" fill="#F5C4B3"/>
+                <rect x="38" y="88" width="8" height="18" rx="4" fill="#F5C4B3"/>
+                <rect x="64" y="88" width="8" height="18" rx="4" fill="#F5C4B3"/>
+                <ellipse cx="45" cy="90" rx="5" ry="7" fill="#F5C4B3"/>
+                <ellipse cx="65" cy="90" rx="5" ry="7" fill="#F5C4B3"/>
+                <ellipse cx="55" cy="42" rx="5" ry="4" fill="#EDD5CC"/>
+            </svg>
+            <!-- Schnauzer Mini silhouette -->
+            <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="30" y="16" width="50" height="36" rx="12" fill="#F5C4B3"/>
+                <rect x="22" y="20" width="16" height="22" rx="8" fill="#EDD5CC"/>
+                <rect x="72" y="20" width="16" height="22" rx="8" fill="#EDD5CC"/>
+                <ellipse cx="55" cy="68" rx="24" ry="26" fill="#F5C4B3"/>
+                <rect x="38" y="88" width="8" height="18" rx="4" fill="#F5C4B3"/>
+                <rect x="64" y="88" width="8" height="18" rx="4" fill="#F5C4B3"/>
+                <rect x="42" y="46" width="26" height="10" rx="5" fill="#EDD5CC"/>
+                <line x1="36" y1="28" x2="26" y2="24" stroke="#D4537E" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="74" y1="28" x2="84" y2="24" stroke="#D4537E" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="36" y1="32" x2="24" y2="32" stroke="#D4537E" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="74" y1="32" x2="86" y2="32" stroke="#D4537E" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <button class="btn-start" onclick="startQuiz()">Empezar el test</button>
+    </div>
+
+    <!-- ── SLIDE 1: PREGUNTA 1 ── -->
+    <div class="slide" id="slide-1">
+        <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+            <p class="progress-label" id="progress-label">Pregunta 1 de 5</p>
+        </div>
+        <h2 class="question-title">¿Cómo es tu hogar?</h2>
+        <div class="options-grid">
+            <div class="option-card" onclick="selectOption(1,0,2,0)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="3" stroke="#D4537E" stroke-width="2.2" fill="none"/><rect x="14" y="12" width="8" height="6" rx="1.5" fill="#D4537E" opacity=".35"/><rect x="26" y="12" width="8" height="6" rx="1.5" fill="#D4537E" opacity=".35"/><rect x="14" y="22" width="8" height="6" rx="1.5" fill="#D4537E" opacity=".35"/><rect x="26" y="22" width="8" height="6" rx="1.5" fill="#D4537E" opacity=".35"/><rect x="19" y="32" width="10" height="10" rx="1" fill="#D4537E" opacity=".5"/></svg>
+                </div>
+                <div class="option-label">Piso o apartamento</div>
+                <div class="option-sub">Espacio más reducido</div>
+            </div>
+            <div class="option-card" onclick="selectOption(1,1,1,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="24,6 42,22 6,22" stroke="#D4537E" stroke-width="2.2" fill="none" stroke-linejoin="round"/><rect x="10" y="22" width="28" height="20" rx="2" stroke="#D4537E" stroke-width="2.2" fill="none"/><rect x="20" y="30" width="8" height="12" rx="1" fill="#D4537E" opacity=".4"/></svg>
+                </div>
+                <div class="option-label">Casa sin jardín</div>
+                <div class="option-sub">Espacio amplio interior</div>
+            </div>
+            <div class="option-card" onclick="selectOption(1,2,0,2)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="24,6 38,18 10,18" stroke="#D4537E" stroke-width="2.2" fill="none" stroke-linejoin="round"/><rect x="12" y="18" width="24" height="18" rx="2" stroke="#D4537E" stroke-width="2.2" fill="none"/><rect x="20" y="26" width="8" height="10" rx="1" fill="#D4537E" opacity=".4"/><line x1="38" y1="36" x2="38" y2="20" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="38" cy="18" rx="5" ry="6" stroke="#D4537E" stroke-width="2" fill="none"/></svg>
+                </div>
+                <div class="option-label">Casa con jardín</div>
+                <div class="option-sub">Espacio exterior disponible</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SLIDE 2: PREGUNTA 2 ── -->
+    <div class="slide" id="slide-2">
+        <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill2"></div></div>
+            <p class="progress-label" id="progress-label2">Pregunta 2 de 5</p>
+        </div>
+        <h2 class="question-title">¿Hay niños en casa?</h2>
+        <div class="options-grid">
+            <div class="option-card" onclick="selectOption(2,0,2,0)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="8" stroke="#D4537E" stroke-width="2.2" fill="none"/><path d="M24 24c-8 0-14 4-14 10v4h28v-4c0-6-6-10-14-10z" stroke="#D4537E" stroke-width="2.2" fill="none"/><circle cx="21" cy="12" r="1.5" fill="#D4537E"/><circle cx="27" cy="12" r="1.5" fill="#D4537E"/><path d="M21 17 Q24 20 27 17" stroke="#D4537E" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+                </div>
+                <div class="option-label">Niños pequeños</div>
+                <div class="option-sub">Menores de 6 años</div>
+            </div>
+            <div class="option-card" onclick="selectOption(2,1,1,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="11" r="6" stroke="#D4537E" stroke-width="2.2" fill="none"/><line x1="24" y1="17" x2="24" y2="32" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><line x1="14" y1="23" x2="34" y2="23" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="32" x2="16" y2="42" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="32" x2="32" y2="42" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/></svg>
+                </div>
+                <div class="option-label">Niños mayores</div>
+                <div class="option-sub">Entre 6 y 14 años</div>
+            </div>
+            <div class="option-card" onclick="selectOption(2,2,1,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="7" stroke="#D4537E" stroke-width="2.2" fill="none"/><line x1="24" y1="17" x2="24" y2="33" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><line x1="13" y1="24" x2="35" y2="24" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="33" x2="15" y2="44" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="33" x2="33" y2="44" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/></svg>
+                </div>
+                <div class="option-label">No hay niños</div>
+                <div class="option-sub">Solo adultos en casa</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SLIDE 3: PREGUNTA 3 ── -->
+    <div class="slide" id="slide-3">
+        <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill3"></div></div>
+            <p class="progress-label" id="progress-label3">Pregunta 3 de 5</p>
+        </div>
+        <h2 class="question-title">¿Cuántas horas estás fuera al día?</h2>
+        <div class="options-grid">
+            <div class="option-card" onclick="selectOption(3,0,2,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#D4537E" stroke-width="2.2" fill="none"/><line x1="24" y1="24" x2="24" y2="12" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="24" x2="32" y2="28" stroke="#D4537E" stroke-width="2.2" stroke-linecap="round"/><circle cx="24" cy="24" r="2" fill="#D4537E"/></svg>
+                </div>
+                <div class="option-label">Menos de 4 horas</div>
+                <div class="option-sub">Trabajo desde casa o media jornada</div>
+            </div>
+            <div class="option-card" onclick="selectOption(3,1,1,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="10" y="20" width="28" height="20" rx="3" stroke="#D4537E" stroke-width="2.2" fill="none"/><path d="M17 20v-4a7 7 0 0 1 14 0v4" stroke="#D4537E" stroke-width="2.2" fill="none"/><circle cx="24" cy="30" r="3" fill="#D4537E" opacity=".5"/></svg>
+                </div>
+                <div class="option-label">Entre 4 y 8 horas</div>
+                <div class="option-sub">Jornada laboral habitual</div>
+            </div>
+            <div class="option-card" onclick="selectOption(3,2,0,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M32 8a16 16 0 1 1-20.5 19.5" stroke="#D4537E" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M14 18 Q24 10 34 18" stroke="#D4537E" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="38" cy="10" r="3" fill="#D4537E" opacity=".4"/><circle cx="42" cy="16" r="2" fill="#D4537E" opacity=".3"/></svg>
+                </div>
+                <div class="option-label">Más de 8 horas</div>
+                <div class="option-sub">Jornada larga o viajes frecuentes</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SLIDE 4: PREGUNTA 4 ── -->
+    <div class="slide" id="slide-4">
+        <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill4"></div></div>
+            <p class="progress-label" id="progress-label4">Pregunta 4 de 5</p>
+        </div>
+        <h2 class="question-title">¿Tienes experiencia con perros?</h2>
+        <div class="options-grid">
+            <div class="option-card" onclick="selectOption(4,0,2,0)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="24,6 28,18 40,18 31,26 34,38 24,31 14,38 17,26 8,18 20,18" stroke="#D4537E" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="option-label">Es mi primer perro</div>
+                <div class="option-sub">Nunca he tenido uno</div>
+            </div>
+            <div class="option-card" onclick="selectOption(4,1,1,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="24,6 28,18 40,18 31,26 34,38 24,31 14,38 17,26 8,18 20,18" stroke="#D4537E" stroke-width="2.2" stroke-linejoin="round" fill="none"/><clipPath id="half"><rect x="0" y="0" width="24" height="48"/></clipPath><polygon points="24,6 28,18 40,18 31,26 34,38 24,31 14,38 17,26 8,18 20,18" fill="#D4537E" opacity=".5" clip-path="url(#half)"/></svg>
+                </div>
+                <div class="option-label">Alguna experiencia</div>
+                <div class="option-sub">Tuve perros de pequeño</div>
+            </div>
+            <div class="option-card" onclick="selectOption(4,2,0,2)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="24,6 28,18 40,18 31,26 34,38 24,31 14,38 17,26 8,18 20,18" fill="#D4537E" stroke="#D4537E" stroke-width="1.5" stroke-linejoin="round" opacity=".8"/></svg>
+                </div>
+                <div class="option-label">Tengo experiencia</div>
+                <div class="option-sub">He criado o entrenado perros</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SLIDE 5: PREGUNTA 5 ── -->
+    <div class="slide" id="slide-5">
+        <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill5"></div></div>
+            <p class="progress-label" id="progress-label5">Pregunta 5 de 5</p>
+        </div>
+        <h2 class="question-title">¿Qué es lo más importante para ti?</h2>
+        <div class="options-grid">
+            <div class="option-card" onclick="selectOption(5,0,2,0)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 38 C24 38 8 28 8 18a10 10 0 0 1 16-8 10 10 0 0 1 16 8c0 10-16 20-16 20z" stroke="#D4537E" stroke-width="2.2" fill="#D4537E" opacity=".3" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="option-label">Compañía y cariño</div>
+                <div class="option-sub">Un perro tranquilo y afectuoso</div>
+            </div>
+            <div class="option-card" onclick="selectOption(5,1,0,2)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><polygon points="28,6 18,24 24,24 20,42 32,20 25,20" fill="#D4537E" opacity=".7" stroke="#D4537E" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="option-label">Energía y juego</div>
+                <div class="option-sub">Un perro activo y divertido</div>
+            </div>
+            <div class="option-card" onclick="selectOption(5,2,1,1)">
+                <div class="option-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6 C14 6 8 14 8 22 C8 32 18 40 24 42 C30 40 40 32 40 22 C40 14 34 6 24 6Z" stroke="#D4537E" stroke-width="2.2" fill="none"/><path d="M24 6 C24 6 20 14 20 22 C20 30 24 42 24 42" stroke="#D4537E" stroke-width="1.8" stroke-linecap="round"/><path d="M8 22 C14 18 20 20 24 22 C28 24 34 22 40 22" stroke="#D4537E" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <div class="option-label">Bajo mantenimiento</div>
+                <div class="option-sub">Que no suelte pelo ni dé mucho trabajo</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SLIDE 6: RESULTADO CANICHE ── -->
+    <div class="slide t-center" id="slide-result-caniche">
+        <span class="result-badge">Tu raza ideal</span>
+        <h2 class="result-title">El Caniche Toy es para ti</h2>
+        <img src="imagenes_caniches/imagen_caniche_icon.webp" alt="Caniche Toy" class="result-img" onerror="this.style.display='none'">
+        <p class="result-text" id="result-text-caniche"></p>
+        <div class="result-reasons">
+            <div class="reason-card"><div class="reason-icon">📐</div><div class="reason-text">Tamaño perfecto para tu espacio</div></div>
+            <div class="reason-card"><div class="reason-icon">💛</div><div class="reason-text">Carácter dulce y equilibrado</div></div>
+            <div class="reason-card"><div class="reason-icon">🌿</div><div class="reason-text">Hipoalergénico y sin muda</div></div>
+        </div>
+        <div class="result-ctas">
+            <div class="btn-row">
+                <a href="camadas.html" class="btn-result-primary">Ver camadas disponibles</a>
+                <a href="https://wa.me/34670225384" target="_blank" class="btn-result-secondary"><i class="fab fa-whatsapp"></i> Habla con nosotros</a>
+            </div>
+            <button class="btn-retake" onclick="retakeQuiz()">Repetir el test</button>
+        </div>
+    </div>
+
+    <!-- ── SLIDE 7: RESULTADO SCHNAUZER ── -->
+    <div class="slide t-center" id="slide-result-schnauzer">
+        <span class="result-badge">Tu raza ideal</span>
+        <h2 class="result-title">El Schnauzer Mini es para ti</h2>
+        <img src="imagenes_caniches/schnauzer_mini_icon.jpg" alt="Schnauzer Mini" class="result-img" onerror="this.style.display='none'">
+        <p class="result-text" id="result-text-schnauzer"></p>
+        <div class="result-reasons">
+            <div class="reason-card"><div class="reason-icon">⚡</div><div class="reason-text">Activo y lleno de vida como tú</div></div>
+            <div class="reason-card"><div class="reason-icon">🏅</div><div class="reason-text">Leal e inteligente</div></div>
+            <div class="reason-card"><div class="reason-icon">🌿</div><div class="reason-text">Sin muda y fácil de cuidar</div></div>
+        </div>
+        <div class="result-ctas">
+            <div class="btn-row">
+                <a href="camadas.html" class="btn-result-primary">Ver camadas disponibles</a>
+                <a href="https://wa.me/34670225384" target="_blank" class="btn-result-secondary"><i class="fab fa-whatsapp"></i> Habla con nosotros</a>
+            </div>
+            <button class="btn-retake" onclick="retakeQuiz()">Repetir el test</button>
+        </div>
+    </div>
+
+    <!-- ── SLIDE 8: RESULTADO EMPATE ── -->
+    <div class="slide t-center" id="slide-result-empate">
+        <span class="result-badge">Tu raza ideal</span>
+        <h2 class="result-title">¡Los dos encajan contigo!</h2>
+        <p class="result-text">Tienes perfil para cualquiera de nuestras dos razas. Te recomendamos hablar con nosotros para ayudarte a decidir.</p>
+        <div class="result-imgs-pair">
+            <img src="imagenes_caniches/imagen_caniche_icon.webp" alt="Caniche Toy" onerror="this.style.display='none'">
+            <img src="imagenes_caniches/schnauzer_mini_icon.jpg" alt="Schnauzer Mini" onerror="this.style.display='none'">
+        </div>
+        <div class="result-ctas">
+            <div class="btn-row">
+                <a href="camadas.html" class="btn-result-primary">Ver camadas disponibles</a>
+                <a href="https://wa.me/34670225384" target="_blank" class="btn-result-secondary"><i class="fab fa-whatsapp"></i> Habla con nosotros</a>
+            </div>
+            <button class="btn-retake" onclick="retakeQuiz()">Repetir el test</button>
+        </div>
+    </div>
+
+</main>
+
+<a href="https://wa.me/34670225384" target="_blank" class="float-wa" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="f-logo">Deterra<span>jaras</span></div>
+                <p>Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
+                <div class="f-socials">
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:deterrajaras@gmail.com" class="f-soc"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Razas</h4>
+                <ul>
+                    <li><a href="caniche-toy.html">Caniche Toy</a></li>
+                    <li><a href="schnauzer-mini.html">Schnauzer Miniatura</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Criadero</h4>
+                <ul>
+                    <li><a href="index.html#historia">Nuestra Historia</a></li>
+                    <li><a href="index.html#como-criamos">Cómo Criamos</a></li>
+                    <li><a href="index.html#galeria">Galería</a></li>
+                    <li><a href="camadas.html">Camadas Disponibles</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <div class="footer-map">
+                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <p>Polígono Ganadero · Cáceres<br>Ubicación exacta en Google Maps.</p>
+                </div>
+                <ul>
+                    <li><a href="tel:+34670225384">670 225 384</a></li>
+                    <li><a href="mailto:deterrajaras@gmail.com">deterrajaras@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Ver en Google Maps</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025–2026 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
+            <div class="f-legal">
+                <a href="aviso-legal.html">Aviso Legal</a>
+                <a href="politica-privacidad.html">Privacidad</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ── STATE ──
+let scores = { C: 0, S: 0 };
+let answers = {}; // question (1-5) → option index (0/1/2)
+let currentSlide = 0;
+
+// ── SCORING TABLE ──
+// [C points, S points] per option per question
+const scoreTable = {
+    1: [[2,0],[1,1],[0,2]],
+    2: [[2,0],[1,1],[1,1]],
+    3: [[2,1],[1,1],[0,1]],
+    4: [[2,0],[1,1],[0,2]],
+    5: [[2,0],[0,2],[1,1]]
+};
+
+function showSlide(id) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startQuiz() {
+    scores = { C: 0, S: 0 };
+    answers = {};
+    updateProgress(1);
+    showSlide('slide-1');
+}
+
+function selectOption(question, optionIdx, cPts, sPts) {
+    answers[question] = optionIdx;
+    scores.C += cPts;
+    scores.S += sPts;
+
+    // brief visual feedback
+    const grid = document.querySelector('#slide-' + question + ' .options-grid');
+    const cards = grid.querySelectorAll('.option-card');
+    cards.forEach((c, i) => { if (i === optionIdx) c.classList.add('selected'); });
+
+    setTimeout(() => {
+        if (question < 5) {
+            updateProgress(question + 1);
+            showSlide('slide-' + (question + 1));
+        } else {
+            showResult();
+        }
+    }, 280);
+}
+
+function updateProgress(q) {
+    const pct = ((q - 1) / 5) * 100;
+    // update all progress bars (each slide has its own instance)
+    document.querySelectorAll('.progress-bar-fill').forEach(el => {
+        el.style.width = pct + '%';
+    });
+    document.querySelectorAll('.progress-label').forEach(el => {
+        el.textContent = 'Pregunta ' + q + ' de 5';
+    });
+}
+
+function showResult() {
+    const resultText = buildResultText();
+    if (scores.C > scores.S) {
+        document.getElementById('result-text-caniche').textContent = resultText.caniche;
+        showSlide('slide-result-caniche');
+    } else if (scores.S > scores.C) {
+        document.getElementById('result-text-schnauzer').textContent = resultText.schnauzer;
+        showSlide('slide-result-schnauzer');
+    } else {
+        showSlide('slide-result-empate');
+    }
+}
+
+function buildResultText() {
+    const hogar = answers[1];   // 0=piso, 1=casa, 2=jardin
+    const ninos = answers[2];   // 0=peq, 1=may, 2=ninguno
+    const horas = answers[3];   // 0=<4, 1=4-8, 2=>8
+    const exp   = answers[4];   // 0=ninguna, 1=algo, 2=exp
+    const prio  = answers[5];   // 0=cariño, 1=energia, 2=mantenimiento
+
+    // ── Caniche text ──
+    let c = 'El Caniche Toy encaja perfectamente contigo. ';
+    if (hogar === 0) c += 'Su tamaño compacto lo hace ideal para vivir en piso. ';
+    else if (hogar === 1) c += 'Se adapta estupendamente a casas amplias. ';
+    else c += 'Disfrutará muchísimo de tus espacios exteriores. ';
+    if (ninos === 0) c += 'Su carácter dulce y paciente es perfecto para los más pequeños de la casa. ';
+    else if (ninos === 1) c += 'Conectará enseguida con los niños de casa gracias a su carácter juguetón. ';
+    else c += 'Como compañero de adultos, el Caniche Toy es afectuoso e increíblemente atento. ';
+    if (prio === 2 || horas === 2) c += 'Además, al no soltar pelo, el mantenimiento del hogar es mucho más fácil.';
+    else c += 'Inteligente y fácil de educar, aprenderá rápidamente todo lo que le enseñes.';
+
+    // ── Schnauzer text ──
+    let s = 'El Schnauzer Mini es la combinación perfecta para tu estilo de vida. ';
+    if (hogar === 2) s += 'Con acceso a jardín, tendrá el espacio que necesita para desfogar su energía. ';
+    else if (hogar === 1) s += 'Se adapta bien a casas amplias y disfruta de los paseos diarios. ';
+    else s += 'Su tamaño compacto le permite adaptarse bien aunque vivas en piso. ';
+    if (exp === 2) s += 'Con tu experiencia, sabrás aprovechar toda su inteligencia y ganas de aprender. ';
+    else if (exp === 1) s += 'Tu experiencia previa con perros te ayudará a conectar rápido con él. ';
+    else s += 'Aunque es tu primer perro, su lealtad y claridad de carácter lo hacen fácil de entender. ';
+    if (prio === 1) s += 'Activo y lleno de vida, será el compañero de juegos que estabas buscando.';
+    else s += 'Leal a su familia por encima de todo, te dará una fidelidad difícil de encontrar en otra raza.';
+
+    return { caniche: c, schnauzer: s };
+}
+
+function retakeQuiz() {
+    // reset option card states
+    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    scores = { C: 0, S: 0 };
+    answers = {};
+    showSlide('slide-0');
+}
+
+// ── NAVBAR SCROLL ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.add('open');
+});
+document.getElementById('mobileClose').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('open');
+});
+</script>
+</body>
+</html>
