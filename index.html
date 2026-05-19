@@ -633,7 +633,19 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                             Ver camadas disponibles
                         </a>
                     </div>
-                    <a href="test-raza.html" style="display:inline-block;margin-top:18px;font-size:14px;color:var(--color-texto-suave);transition:color 0.2s;" onmouseover="this.style.color='#D4537E'" onmouseout="this.style.color='var(--color-texto-suave)'">¿No sabes qué raza elegir? Haz el test →</a>
+                    <div class="hero-test-banner" style="display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:1.5px solid #EDD5CC;border-radius:14px;padding:14px 20px;margin-top:24px;max-width:560px;flex-wrap:wrap;">
+                        <div style="display:flex;align-items:center;gap:12px;">
+                            <div style="width:40px;height:40px;border-radius:50%;background:#F5C4B3;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><polyline points="9 12 11 14 15 10"/></svg>
+                            </div>
+                            <div>
+                                <p style="font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:#5A3E36;margin:0 0 2px;">¿No sabes qué raza elegir?</p>
+                                <p style="font-family:'Lato',sans-serif;font-size:12px;color:#8C6B62;margin:0;">5 preguntas · 2 minutos · Resultado personalizado</p>
+                            </div>
+                        </div>
+                        <a href="test-raza.html" style="background:#D4537E;color:#fff;border-radius:50px;padding:9px 18px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;border:none;white-space:nowrap;flex-shrink:0;display:inline-block;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#B8436A'" onmouseout="this.style.background='#D4537E'">Hacer el test</a>
+                    </div>
+                    <style>@media(max-width:640px){.hero-test-banner{flex-direction:column!important;align-items:flex-start!important;}.hero-test-banner a{width:100%!important;text-align:center!important;padding:11px!important;}}</style>
                     <div class="hero-stats">
                         <div class="stat">
                             <div class="stat-n">+15</div>
