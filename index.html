@@ -450,30 +450,32 @@ ul { list-style: none; }
 ============================================ */
 #como-criamos {
     padding: 104px 0;
-    background: linear-gradient(155deg, #4A2E16 0%, #8B5E3C 100%);
-    position: relative; overflow: hidden;
+    background: var(--color-fondo-principal);
 }
-#como-criamos .section-title { color: #fff; }
-#como-criamos .section-subtitle { color: rgba(255,255,255,.78); }
-#como-criamos .badge { background: rgba(255,255,255,.12); color: var(--gold-light); border: 1px solid rgba(255,255,255,.15); }
+#como-criamos .section-title { color: var(--color-texto); }
+#como-criamos .section-subtitle { color: var(--color-texto-suave); }
+#como-criamos .badge {
+    background: var(--color-fondo-alternativo);
+    color: var(--color-texto);
+    border: none;
+}
 .criamos-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
 .criamos-item {
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.1);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius); padding: 28px 26px;
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: 16px; padding: 24px 28px;
     display: flex; gap: 18px; align-items: flex-start;
-    transition: var(--tr);
+    transition: transform .2s ease, box-shadow .2s ease;
 }
-.criamos-item:hover { background: rgba(255,255,255,.13); transform: translateY(-3px); }
+.criamos-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(90,62,54,0.08); }
 .criamos-ico {
     width: 54px; height: 54px; flex-shrink: 0;
-    background: var(--gold); border-radius: 14px;
+    background: var(--color-fondo-alternativo); border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem; color: #fff;
+    font-size: 1.3rem; color: var(--color-cta-principal);
 }
-.criamos-txt h3 { font-family: 'Playfair Display', serif; font-size: 1.12rem; color: #fff; margin-bottom: 7px; }
-.criamos-txt p { color: rgba(255,255,255,.72); font-size: .92rem; }
+.criamos-txt h3 { font-family: 'Playfair Display', serif; font-size: 1.12rem; color: var(--color-texto); font-weight: 700; margin-bottom: 7px; }
+.criamos-txt p { color: var(--color-texto-suave); font-size: .92rem; line-height: 1.7; }
 
 /* ============================================
    DIFERENCIADORES
