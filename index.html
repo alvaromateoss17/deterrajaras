@@ -135,8 +135,8 @@ ul { list-style: none; }
 }
 .btn-cta-green:hover { background: var(--color-acento); color: #fff; transform: translateY(-2px); }
 
-#hero .hero-content { padding-top: 70px; }
-#hero .hero-sub { margin-top: 30px; }
+#hero .hero-content { padding-top: 0; }
+#hero .hero-sub { margin-top: 0; }
 
 #diferenciadores .section-header { max-width: 720px; margin: 0 auto 40px; }
 #diferenciadores .section-title { font-size: clamp(2.6rem, 5vw, 3.4rem); }
@@ -261,31 +261,32 @@ ul { list-style: none; }
 #navbar.scrolled .nav-logo { color: var(--color-texto); }
 .nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-links a {
-    color: var(--color-texto); font-weight: 700;
+    color: var(--color-texto-suave); font-weight: 600;
     font-size: .88rem; padding: 8px 14px;
     border-radius: 50px; transition: var(--tr); letter-spacing: .2px;
 }
-#navbar.scrolled .nav-links a { color: var(--color-texto); }
-.nav-links a:hover { background: rgba(212,83,126,.08); color: var(--color-cta-principal); }
-#navbar.scrolled .nav-links a:hover { background: rgba(212,83,126,.08); color: var(--color-cta-principal); }
+#navbar.scrolled .nav-links a { color: var(--color-texto-suave); }
+.nav-links a:hover { background: rgba(212,83,126,.07); color: var(--color-cta-principal); }
+#navbar.scrolled .nav-links a:hover { background: rgba(212,83,126,.07); color: var(--color-cta-principal); }
 .nav-camadas {
     background: transparent !important;
-    color: var(--color-acento) !important;
-    padding: 9px 20px !important;
-    border: 2px solid var(--color-acento) !important;
+    color: var(--color-cta-principal) !important;
+    padding: 8px 20px !important;
+    border: 1.5px solid var(--color-cta-principal) !important;
     border-radius: 50px !important;
     transition: var(--tr) !important;
+    font-weight: 600 !important;
 }
 #navbar.scrolled .nav-camadas {
-    color: var(--color-acento) !important;
-    border-color: var(--color-acento) !important;
+    color: var(--color-cta-principal) !important;
+    border-color: var(--color-cta-principal) !important;
 }
 .nav-camadas:hover {
-    background: var(--color-acento) !important;
+    background: var(--color-cta-principal) !important;
     color: #fff !important;
 }
 #navbar.scrolled .nav-camadas:hover {
-    background: var(--color-acento) !important;
+    background: var(--color-cta-principal) !important;
     color: #fff !important;
 }
 .hamburger {
@@ -302,73 +303,74 @@ ul { list-style: none; }
    HERO
 ============================================ */
 #hero {
-    min-height: 100vh;
-    background: linear-gradient(155deg, #4A2E16 0%, #7A4E2C 45%, #B88050 100%);
-    display: flex; align-items: center;
+    background: var(--color-fondo-principal);
     position: relative; overflow: hidden;
 }
-.hero-deco {
-    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+.hero-main {
+    padding: 100px 0 64px;
 }
-.hero-paw {
-    position: absolute; font-size: 9rem;
-    opacity: .05; animation: floatPaw 9s ease-in-out infinite;
-}
-.hero-paw:nth-child(1) { top: 8%; right: 4%; animation-delay: 0s; }
-.hero-paw:nth-child(2) { bottom: 18%; right: 18%; font-size: 6rem; animation-delay: 3s; }
-.hero-paw:nth-child(3) { top: 50%; right: 38%; font-size: 4rem; animation-delay: 6s; }
-@keyframes floatPaw {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-22px) rotate(12deg); }
-}
-.hero-content { position: relative; z-index: 1; max-width: 680px; }
+.hero-content { max-width: 560px; }
 .hero-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.2);
-    backdrop-filter: blur(10px);
-    color: var(--gold-light);
-    padding: 8px 20px; border-radius: 50px;
-    font-size: .82rem; font-weight: 700;
-    letter-spacing: 1.2px; text-transform: uppercase;
-    margin-bottom: 28px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: 50px;
+    padding: 5px 16px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: var(--color-texto-suave);
+    margin-bottom: 20px;
 }
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 6vw, 4.4rem);
-    color: var(--white); line-height: 1.1;
-    font-weight: 700; margin-bottom: 22px;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    color: var(--color-texto);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 22px;
+    max-width: 560px;
 }
-.hero-title em { font-style: italic; color: var(--gold-light); }
+.hero-title em { font-style: italic; color: var(--color-cta-principal); font-weight: 700; }
 .hero-sub {
-    font-size: 1.12rem;
-    color: rgba(255,255,255,.82);
-    margin-bottom: 40px; max-width: 540px; line-height: 1.85;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: var(--color-texto-suave);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 32px;
 }
-.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-stats {
     display: flex; gap: 40px;
-    margin-top: 60px; padding-top: 40px;
-    border-top: 1px solid rgba(255,255,255,.14);
+    margin-top: 48px; padding-top: 32px;
+    border-top: 1px solid var(--color-borde);
 }
-.stat { text-align: center; }
 .stat-n {
     font-family: 'Playfair Display', serif;
     font-size: 2rem; font-weight: 700;
-    color: var(--gold-light); line-height: 1;
+    color: var(--color-cta-principal); line-height: 1;
 }
-.stat-l { font-size: .78rem; color: rgba(255,255,255,.65); margin-top: 4px; letter-spacing: .4px; }
-.scroll-hint {
-    position: absolute; bottom: 30px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    color: rgba(255,255,255,.45); font-size: .75rem; letter-spacing: .8px;
-    animation: hintBounce 2.2s ease-in-out infinite;
+.stat-l {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px; color: var(--color-texto-suave); margin-top: 4px;
 }
-@keyframes hintBounce {
-    0%,100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(9px); }
+.hero-razas-strip {
+    background: var(--color-fondo-alternativo);
+    padding: 18px 0;
 }
+.hero-razas-chips { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.hero-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: 50px;
+    padding: 9px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--color-texto);
+}
+.chip-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.scroll-hint { display: none; }
 
 /* ============================================
    HISTORIA
@@ -831,13 +833,17 @@ footer { background: rgba(245,196,179,0.35); color: var(--color-texto); padding:
     .modal-gal-item:first-child { grid-column: span 2; }
     .form-row         { grid-template-columns: 1fr; }
     .hero-stats       { gap: 24px; }
+    .hero-main        { padding: 88px 0 48px; }
     .contacto-form-box { padding: 26px 22px; }
 }
 @media (max-width: 480px) {
-    .dif-grid   { grid-template-columns: 1fr; }
-    .hero-ctas  { flex-direction: column; }
-    .btn-wa, .btn-outline-w { justify-content: center; }
-    .float-wa   { bottom: 20px; right: 20px; width: 54px; height: 54px; font-size: 1.5rem; }
+    .dif-grid         { grid-template-columns: 1fr; }
+    .hero-main        { padding: 80px 0 40px; }
+    .hero-ctas        { flex-direction: column; }
+    .hero-stats       { gap: 20px; flex-wrap: wrap; }
+    .btn-wa, .btn-outline-w, .btn-cta-green { justify-content: center; width: 100%; }
+    .float-wa         { bottom: 20px; right: 20px; width: 54px; height: 54px; font-size: 1.5rem; }
+    .hero-razas-strip { padding: 14px 0; }
 }
     </style>
 </head>
@@ -894,32 +900,54 @@ footer { background: rgba(245,196,179,0.35); color: var(--color-texto); padding:
 ================================================ -->
 <section id="inicio">
     <div id="hero">
-        <div class="hero-deco">
-            <div class="hero-paw">🐾</div>
-            <div class="hero-paw">🐾</div>
-            <div class="hero-paw">🐾</div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Criamos con <em>amor</em>,<br>desde el corazón<br>de nuestra familia.
-                </h1>
-                <p class="hero-sub">
-                    En Deterrajaras llevamos más de una década criando Caniches Toy y Schnauzer Mini de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
-                </p>
-                <div class="hero-ctas">
-                    <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
-                        <i class="fab fa-whatsapp"></i> Habla con nosotros
-                    </a>
-                    <button onclick="openCamadasModal()" class="btn-cta-green">
-                        Ver camadas disponibles
-                    </button>
+        <div class="hero-main">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-pill">Criadero familiar · Cáceres</span>
+                    <h1 class="hero-title">
+                        Criamos con <em>amor</em>,<br>desde el corazón<br>de nuestra familia.
+                    </h1>
+                    <p class="hero-sub">
+                        En Deterrajaras llevamos más de una década criando Caniches Toy y Schnauzer Mini de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
+                    </p>
+                    <div class="hero-ctas">
+                        <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
+                            <i class="fab fa-whatsapp"></i> Habla con nosotros
+                        </a>
+                        <button onclick="openCamadasModal()" class="btn-cta-green">
+                            Ver camadas disponibles
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-n">+15</div>
+                            <div class="stat-l">Años criando</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-n">2</div>
+                            <div class="stat-l">Razas selectas</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-n">100%</div>
+                            <div class="stat-l">Personalización total</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="scroll-hint">
-            <span>Descubre más</span>
-            <i class="fas fa-chevron-down"></i>
+        <div class="hero-razas-strip">
+            <div class="container">
+                <div class="hero-razas-chips">
+                    <div class="hero-chip">
+                        <div class="chip-dot" style="background:#D4537E"></div>
+                        Caniche Toy
+                    </div>
+                    <div class="hero-chip">
+                        <div class="chip-dot" style="background:#8BAF82"></div>
+                        Schnauzer Mini
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
