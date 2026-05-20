@@ -195,6 +195,23 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     text-align: center; cursor: pointer; transition: background var(--tr);
 }
 .camada-card:hover .camada-btn { background: var(--color-cta-hover); }
+.camada-btn-reservas { background: #5A3E36 !important; }
+.camada-card:hover .camada-btn-reservas { background: #3D2A22 !important; }
+
+.camada-thumb-ph {
+    height: 100%;
+    background: #F9EDE8;
+    border-bottom: 1px solid #EDD5CC;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px;
+}
+.camada-thumb-ph .ph-icon { font-size: 48px; color: #F5C4B3; }
+.camada-thumb-ph .ph-label {
+    font-size: 13px; font-weight: 600; color: #8C6B62;
+}
+.camada-thumb-ph .ph-dots { display: flex; gap: 6px; margin-top: 4px; }
+.camada-thumb-ph .ph-dot { width: 8px; height: 8px; border-radius: 50%; }
 
 /* ── FLOAT WA ── */
 .float-wa {
@@ -457,10 +474,25 @@ function getBadgeClass(c) {
     return 'st-reserved';
 }
 
-document.getElementById('camadasGrid').innerHTML = camadas.map(c => `
+document.getElementById('camadasGrid').innerHTML = camadas.map(c => {
+    const isReservas = c.estadoText === 'Reservas abiertas';
+    const thumbContent = isReservas
+        ? `<div class="camada-thumb-ph">
+                <i class="fas fa-paw ph-icon"></i>
+                <span class="ph-label">En camino...</span>
+                <div class="ph-dots">
+                    <span class="ph-dot" style="background:#D4537E;"></span>
+                    <span class="ph-dot" style="background:#EDD5CC;"></span>
+                    <span class="ph-dot" style="background:#EDD5CC;"></span>
+                </div>
+           </div>`
+        : `<img src="${c.fotoThumb}" alt="Camada ${c.raza}">`;
+    const btnClass = isReservas ? 'camada-btn camada-btn-reservas' : 'camada-btn';
+    const btnText  = isReservas ? 'Reservar mi lugar →' : 'Ver camada →';
+    return `
     <a class="camada-card" href="camada-detalle.html?id=${c.id}">
         <div class="camada-thumb">
-            <img src="${c.fotoThumb}" alt="Camada ${c.raza}">
+            ${thumbContent}
             <div class="camada-status ${getBadgeClass(c)}">${c.estadoText}</div>
         </div>
         <div class="camada-body">
@@ -470,10 +502,10 @@ document.getElementById('camadasGrid').innerHTML = camadas.map(c => `
                 <span><i class="fas fa-calendar-alt"></i> ${c.fecha}</span>
             </div>
             <p class="camada-resumen">${c.resumen}</p>
-            <span class="camada-btn">${c.estadoText === 'Reservas abiertas' ? 'Reservar mi lugar →' : 'Ver camada →'}</span>
+            <span class="${btnClass}">${btnText}</span>
         </div>
-    </a>
-`).join('');
+    </a>`;
+}).join('');
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
