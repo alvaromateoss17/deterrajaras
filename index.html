@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://deterrajaras.es">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
-    <meta property="og:image" content="https://deterrajaras.es/imagenes_caniches/cachirris 5.jpeg">
+    <meta property="og:image" content="https://deterrajaras.es/imagenes_caniches/cachirris 5.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -238,7 +238,7 @@ ul { list-style: none; }
    HERO
 ============================================ */
 #hero { background: var(--color-fondo-principal); position: relative; overflow: hidden; }
-.hero-main { padding: 100px 0 64px; }
+.hero-main { padding: 72px 0 64px; }
 .hero-content { max-width: 560px; }
 .hero-pill {
     display: inline-block; background: #fff;
@@ -270,7 +270,7 @@ ul { list-style: none; }
 .scroll-hint { display: none; }
 
 /* Hero two-column grid */
-.hero-grid { display: grid; grid-template-columns: 55fr 45fr; gap: 56px; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 55fr 45fr; gap: 48px; align-items: center; }
 .hero-right { display: flex; flex-direction: column; gap: 14px; }
 .hero-r-card { background: #fff; border: 1px solid var(--color-borde); border-radius: 14px; padding: 22px 24px; }
 .hero-r-stats { display: flex; }
@@ -589,6 +589,69 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     .proceso-grid         { grid-template-columns: 1fr; }
     .galeria-grid         { columns: 1; }
 }
+
+/* ============================================
+   HERO IMAGE — nuevo diseño blob
+============================================ */
+.hero-img-col { position: relative; }
+.hero-blob-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 48% 52% 42% 58% / 52% 44% 56% 48%;
+    display: block;
+}
+.hero-img-pill {
+    position: absolute; bottom: -12px; right: 16px;
+    background: #fff; border: 1px solid #EDD5CC;
+    border-radius: 50px; padding: 7px 16px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Lato', sans-serif; font-size: 13px; color: #8C6B62;
+    white-space: nowrap;
+}
+.hero-img-pill-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #8BAF82; flex-shrink: 0;
+}
+
+/* ============================================
+   CONTACTO — columna única centrada
+============================================ */
+.contacto-single { max-width: 680px; margin: 0 auto; }
+.contacto-header { text-align: center; margin-bottom: 40px; }
+.contacto-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    color: #5A3E36; line-height: 1.2; margin-bottom: 10px;
+}
+.contacto-header > p { font-family: 'Lato', sans-serif; font-size: 16px; color: #8C6B62; line-height: 1.7; }
+.contacto-wa-wrap { text-align: center; margin-bottom: 32px; }
+.contacto-wa-wrap .wa-cta-big { display: block; width: fit-content; margin: 0 auto 12px; }
+.contacto-wa-sub {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Lato', sans-serif; font-size: 13px; color: #8C6B62;
+}
+.contacto-wa-sub-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #8BAF82; flex-shrink: 0; display: inline-block;
+}
+.contacto-separator { margin: 32px 0; }
+.contacto-accordion { max-width: 100%; }
+.contacto-pills-wrap {
+    margin-top: 32px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+}
+
+/* Responsive hero nuevo */
+@media (max-width: 1024px) {
+    .hero-grid { gap: 32px; }
+    .hero-title { font-size: 2.75rem; }
+}
+@media (max-width: 768px) {
+    .hero-img-col { order: -1; }
+    .hero-blob-img { aspect-ratio: 1/1 !important; border-radius: 20px !important; }
+    .hero-title { font-size: 2.25rem; }
+}
     </style>
 </head>
 <body>
@@ -657,15 +720,16 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
         <div class="hero-main">
             <div class="container">
                 <div class="hero-grid">
+                    <!-- Columna izquierda -->
                     <div class="hero-content">
                         <span class="hero-pill">Criadero familiar · Cáceres</span>
                         <h1 class="hero-title">
                             Criamos con <em>amor</em>,<br>desde el corazón<br>de nuestra familia.
                         </h1>
                         <p class="hero-sub">
-                            En Deterrajaras llevamos más de una década criando Caniches Toy y Schnauzer Mini de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
+                            En Deterrajaras llevamos más de 15 años criando Caniches Toy y Schnauzer Mini de manera responsable, personalizada y con todo en regla, directamente desde nuestro hogar en Cáceres.
                         </p>
-                        <div class="hero-ctas">
+                        <div class="hero-ctas" style="margin-bottom:24px;">
                             <a href="https://wa.me/34670225384" target="_blank" class="btn-wa">
                                 <i class="fab fa-whatsapp"></i> Habla con nosotros
                             </a>
@@ -673,54 +737,26 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                                 Ver camadas disponibles
                             </a>
                         </div>
-                        <div class="hero-test-banner" style="display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:1.5px solid #EDD5CC;border-radius:14px;padding:14px 20px;margin-top:24px;max-width:560px;flex-wrap:wrap;">
+                        <div class="hero-test-banner" style="display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:1.5px solid #EDD5CC;border-radius:14px;padding:12px 18px;max-width:480px;flex-wrap:wrap;">
                             <div style="display:flex;align-items:center;gap:12px;">
-                                <div style="width:40px;height:40px;border-radius:50%;background:#F5C4B3;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <div style="width:38px;height:38px;border-radius:50%;background:#F5C4B3;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><polyline points="9 12 11 14 15 10"/></svg>
                                 </div>
                                 <div>
                                     <p style="font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:#5A3E36;margin:0 0 2px;">¿No sabes qué raza elegir?</p>
-                                    <p style="font-family:'Lato',sans-serif;font-size:12px;color:#8C6B62;margin:0;">5 preguntas · 2 minutos · Resultado personalizado</p>
+                                    <p style="font-family:'Lato',sans-serif;font-size:11px;color:#8C6B62;margin:0;">5 preguntas · 2 minutos · Resultado personalizado</p>
                                 </div>
                             </div>
-                            <a href="test-raza.html" style="background:#D4537E;color:#fff;border-radius:50px;padding:9px 18px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;border:none;white-space:nowrap;flex-shrink:0;display:inline-block;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#B8436A'" onmouseout="this.style.background='#D4537E'">Hacer el test</a>
+                            <a href="test-raza.html" style="background:#D4537E;color:#fff;border-radius:50px;padding:8px 16px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;white-space:nowrap;flex-shrink:0;display:inline-block;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#B8436A'" onmouseout="this.style.background='#D4537E'">Hacer el test</a>
                         </div>
-                        <style>@media(max-width:640px){.hero-test-banner{flex-direction:column!important;align-items:flex-start!important;}.hero-test-banner a{width:100%!important;text-align:center!important;padding:11px!important;}}</style>
+                        <style>@media(max-width:768px){.hero-test-banner{flex-direction:column!important;align-items:flex-start!important;}.hero-test-banner a{width:100%!important;text-align:center!important;padding:11px!important;}}</style>
                     </div>
-                    <div class="hero-right">
-                        <div class="hero-r-card">
-                            <div class="hero-r-stats">
-                                <div class="hero-r-stat">
-                                    <span class="hero-r-n">+15</span>
-                                    <span class="hero-r-l">Años criando</span>
-                                </div>
-                                <div class="hero-r-stat">
-                                    <span class="hero-r-n">2</span>
-                                    <span class="hero-r-l">Razas selectas</span>
-                                </div>
-                                <div class="hero-r-stat">
-                                    <span class="hero-r-n">100%</span>
-                                    <span class="hero-r-l">Personalización</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero-r-card">
-                            <div class="hero-r-raza-item">
-                                <div class="chip-dot" style="background:#D4537E"></div>
-                                <span class="hero-r-raza-name">Caniche Toy</span>
-                                <span class="hero-r-size-pill">Micro · Toy</span>
-                            </div>
-                            <div class="hero-r-raza-item">
-                                <div class="chip-dot" style="background:#8BAF82"></div>
-                                <span class="hero-r-raza-name">Schnauzer Mini</span>
-                                <span class="hero-r-size-pill">Miniatura</span>
-                            </div>
-                        </div>
-                        <div class="hero-r-card hero-r-trust">
-                            <div class="hero-r-shield-ico">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <span class="hero-r-trust-text">Núcleo Zoológico<br>Registrado</span>
+                    <!-- Columna derecha — imagen blob -->
+                    <div class="hero-img-col">
+                        <img src="imagenes_caniches/cachirris 5.webp" alt="Cachorros Deterrajaras" class="hero-blob-img">
+                        <div class="hero-img-pill">
+                            <span class="hero-img-pill-dot"></span>
+                            Cáceres, desde 2009
                         </div>
                     </div>
                 </div>
@@ -804,7 +840,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             </div>
             <div class="historia-images fade-in">
                 <div class="hist-img-main">
-                    <img src="imagenes_caniches/cachirris 5.jpeg" alt="Familia con perros en Deterrajaras">
+                    <img src="imagenes_caniches/cachirris 5.webp" alt="Familia con perros en Deterrajaras">
                 </div>
                 <div class="hist-loc-pill">
                     <i class="fas fa-map-marker-alt"></i> Cáceres, desde 2009
@@ -844,7 +880,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             </div>
             <div class="raza-card fade-in">
                 <div class="raza-img img-cover">
-                    <img src="imagenes_caniches/schnauzer_mini_icon.jpg" alt="Schnauzer Mini">
+                    <img src="imagenes_caniches/schnauzer_mini_icon.webp" alt="Schnauzer Mini">
                     <div class="raza-pil">Miniatura</div>
                 </div>
                 <div class="raza-body">
@@ -932,31 +968,31 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
         </div>
         <div class="galeria-grid">
             <div class="gal-item">
-                <img src="imagenes_caniches/caniche 4.jpeg" alt="Caniche Toy feliz">
+                <img src="imagenes_caniches/caniche 4.webp" alt="Caniche Toy feliz">
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
-                <img src="imagenes_caniches/caniche 5.jpeg" alt="Caniche Toy">
+                <img src="imagenes_caniches/caniche 5.webp" alt="Caniche Toy">
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
-                <img src="imagenes_caniches/cachorros 2.jpeg" alt="Cachorros al aire libre">
+                <img src="imagenes_caniches/cachorros 2.webp" alt="Cachorros al aire libre">
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
-                <img src="imagenes_caniches/cachorros 6.jpeg" alt="Camada de cachorros">
+                <img src="imagenes_caniches/cachorros 6.webp" alt="Camada de cachorros">
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
-                <img src="imagenes_caniches/caniche 1.jpeg" alt="Cachorro adorable">
+                <img src="imagenes_caniches/caniche 1.webp" alt="Cachorro adorable">
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
-                <img src="imagenes_caniches/caniche 3.jpeg" alt="Caniche Toy">
+                <img src="imagenes_caniches/caniche 3.webp" alt="Caniche Toy">
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
             <div class="gal-item">
-                <img src="imagenes_caniches/cachirris 5.jpeg" alt="Cachorros Deterrajaras">
+                <img src="imagenes_caniches/cachirris 5.webp" alt="Cachorros Deterrajaras">
                 <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
             </div>
         </div>
@@ -1029,42 +1065,39 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 ================================================ -->
 <section id="contacto">
     <div class="container">
-        <div class="contacto-grid">
-            <div class="contacto-info fade-in">
-                <span class="badge">Contacto</span>
+        <div class="contacto-single">
+            <!-- Bloque 1: Encabezado -->
+            <div class="contacto-header">
+                <span class="badge">CONTACTO</span>
                 <h2>¿Tienes alguna pregunta?<br>Escríbenos.</h2>
-                <p>Estamos aquí para ayudarte. Si tienes dudas sobre nuestras razas, camadas disponibles o simplemente quieres saber más, no dudes en contactarnos.</p>
+                <p>Estamos aquí para ayudarte. Respondemos siempre en menos de 24 horas.</p>
+            </div>
 
+            <!-- Bloque 2: Botón WhatsApp -->
+            <div class="contacto-wa-wrap">
                 <a href="https://wa.me/34670225384" target="_blank" class="wa-cta-big">
                     <i class="fab fa-whatsapp"></i>
                     Escríbenos por WhatsApp
                 </a>
-                <div class="wa-subtext">
-                    <i class="fas fa-clock"></i> Respondemos en menos de 24h
-                </div>
-
-                <div class="contact-pills">
-                    <a href="tel:+34670225384" class="contact-pill">
-                        <i class="fas fa-phone-alt"></i>
-                        670 225 384
-                    </a>
-                    <a href="mailto:deterrajaras@gmail.com" class="contact-pill">
-                        <i class="fas fa-envelope"></i>
-                        deterrajaras@gmail.com
-                    </a>
-                    <a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank" class="contact-pill">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Polígono Ganadero, Cáceres
-                    </a>
-                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="contact-pill">
-                        <i class="fab fa-instagram"></i>
-                        @caniches_lola_y_lilo
-                    </a>
+                <div style="text-align:center;">
+                    <span class="contacto-wa-sub">
+                        <span class="contacto-wa-sub-dot"></span>
+                        Respondemos en menos de 24h
+                    </span>
                 </div>
             </div>
 
-            <div class="fade-in">
-                <p class="ca-separator">─────── o si prefieres ───────</p>
+            <!-- Separador visual -->
+            <div class="contacto-separator">
+                <div style="display:flex;align-items:center;gap:16px;">
+                    <div style="flex:1;height:1px;background:#EDD5CC;"></div>
+                    <span style="font-family:Lato,sans-serif;font-size:13px;color:#8C6B62;">o si prefieres</span>
+                    <div style="flex:1;height:1px;background:#EDD5CC;"></div>
+                </div>
+            </div>
+
+            <!-- Bloque 3: Acordeón del formulario -->
+            <div class="contacto-accordion fade-in">
                 <button class="ca-toggle" id="caToggle" onclick="toggleCA()">
                     O si prefieres, escríbenos por aquí
                     <i class="fas fa-chevron-down ca-arrow"></i>
@@ -1102,6 +1135,26 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                         </form>
                     </div>
                 </div>
+            </div>
+
+            <!-- Bloque 4: Pills de contacto -->
+            <div class="contacto-pills-wrap">
+                <a href="tel:+34670225384" class="contact-pill">
+                    <i class="fas fa-phone-alt"></i>
+                    670 225 384
+                </a>
+                <a href="mailto:deterrajaras@gmail.com" class="contact-pill">
+                    <i class="fas fa-envelope"></i>
+                    deterrajaras@gmail.com
+                </a>
+                <a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank" class="contact-pill">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Polígono Ganadero, Cáceres
+                </a>
+                <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="contact-pill">
+                    <i class="fab fa-instagram"></i>
+                    @caniches_lola_y_lilo
+                </a>
             </div>
         </div>
     </div>
