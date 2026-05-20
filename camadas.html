@@ -470,7 +470,7 @@ document.getElementById('camadasGrid').innerHTML = camadas.map(c => `
                 <span><i class="fas fa-calendar-alt"></i> ${c.fecha}</span>
             </div>
             <p class="camada-resumen">${c.resumen}</p>
-            <span class="camada-btn">Ver camada →</span>
+            <span class="camada-btn">${c.estadoText === 'Reservas abiertas' ? 'Reservar mi lugar →' : 'Ver camada →'}</span>
         </div>
     </a>
 `).join('');

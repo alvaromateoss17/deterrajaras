@@ -251,6 +251,112 @@ footer {
 .f-legal a { font-size: .82rem; color: var(--color-texto-suave); transition: var(--tr); }
 .f-legal a:hover { color: var(--color-cta-principal); }
 
+/* ── RESERVAS ABIERTAS LAYOUT ── */
+.reservas-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 80px 80px;
+}
+.reservas-badge {
+    display: inline-block;
+    background: #F5C4B3; color: #5A3E36;
+    border-radius: 50px; padding: 5px 18px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 20px;
+}
+.reservas-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; color: #5A3E36;
+    margin-bottom: 8px; line-height: 1.15;
+}
+.reservas-subtitle {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px; color: #8C6B62;
+    font-style: italic; margin-bottom: 32px;
+}
+.reservas-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.reservas-info-block {
+    background: #fff; border: 1px solid #EDD5CC;
+    border-radius: 12px; padding: 18px 22px;
+}
+.reservas-info-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px; font-weight: 600;
+    color: #8C6B62; text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 6px;
+}
+.reservas-info-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: #5A3E36; font-weight: 700;
+}
+.reservas-status-value {
+    display: inline-flex; align-items: center; gap: 8px;
+}
+.reservas-status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #8BAF82; flex-shrink: 0;
+    display: inline-block;
+}
+.reservas-banner {
+    background: rgba(245,196,179,0.3);
+    border: 1px solid #EDD5CC;
+    border-radius: 16px; padding: 28px 32px;
+    margin-top: 32px;
+}
+.reservas-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: #5A3E36; margin-bottom: 16px;
+}
+.reservas-step {
+    display: flex; gap: 14px;
+    align-items: flex-start; margin-bottom: 14px;
+}
+.reservas-step:last-child { margin-bottom: 0; }
+.reservas-step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #F5C4B3; color: #D4537E;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px; font-weight: 600;
+    text-align: center; line-height: 28px;
+    flex-shrink: 0;
+}
+.reservas-step-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px; color: #8C6B62; line-height: 1.6;
+    padding-top: 4px;
+}
+.reservas-cta { margin-top: 40px; text-align: center; }
+.reservas-cta-pre {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px; color: #8C6B62;
+    font-style: italic; margin-bottom: 20px;
+}
+.reservas-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #D4537E; color: #fff;
+    border-radius: 50px; padding: 16px 36px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px; font-weight: 600;
+    transition: background 0.2s; text-decoration: none;
+}
+.reservas-btn:hover { background: #B8436A; }
+.reservas-btn-sub {
+    display: block; margin-top: 12px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px; color: #8C6B62;
+}
+.reservas-btn-sub a { color: #D4537E; }
+.reservas-nota { margin-top: 32px; text-align: center; }
+.reservas-nota-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px; color: #8C6B62; font-style: italic;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -261,10 +367,14 @@ footer {
     .info-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     .gallery-thumb { width: 70px; height: 70px; }
+    .reservas-info-grid { grid-template-columns: 1fr; }
+    .reservas-banner { padding: 20px; }
 }
 @media (max-width: 480px) {
     .detalle-container { padding: 24px 0 60px; }
     .float-wa { bottom: 20px; right: 20px; width: 54px; height: 54px; font-size: 1.5rem; }
+    .reservas-wrap { padding: 24px 16px 60px; }
+    .reservas-title { font-size: 28px; }
 }
     </style>
 </head>
@@ -473,6 +583,74 @@ function render() {
 
     document.title = c.nombre + ' · Deterrajaras';
 
+    // Diseño especial para camadas con "Reservas abiertas"
+    if (c.estadoText === 'Reservas abiertas') {
+        el.innerHTML = `
+            <div class="reservas-wrap">
+                <span class="reservas-badge">Reservas abiertas</span>
+                <h1 class="reservas-title">${c.nombre}</h1>
+                <p class="reservas-subtitle">Esta camada aún no ha nacido. ¡Pero puedes reservar tu lugar ahora!</p>
+
+                <div class="reservas-info-grid">
+                    <div class="reservas-info-block">
+                        <div class="reservas-info-label">Raza</div>
+                        <div class="reservas-info-value">${c.raza}</div>
+                    </div>
+                    <div class="reservas-info-block">
+                        <div class="reservas-info-label">Época prevista</div>
+                        <div class="reservas-info-value">${c.fecha}</div>
+                    </div>
+                    <div class="reservas-info-block">
+                        <div class="reservas-info-label">Entrega estimada</div>
+                        <div class="reservas-info-value">${c.entrega}</div>
+                    </div>
+                    <div class="reservas-info-block">
+                        <div class="reservas-info-label">Estado</div>
+                        <div class="reservas-info-value">
+                            <span class="reservas-status-value">
+                                <span class="reservas-status-dot"></span>
+                                Aceptando reservas
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reservas-banner">
+                    <i class="fas fa-clock" style="font-size:24px;color:#D4537E;margin-bottom:12px;display:block;"></i>
+                    <h2 class="reservas-banner-title">¿Cómo funciona una reserva anticipada?</h2>
+                    <div class="reservas-step">
+                        <span class="reservas-step-num">1</span>
+                        <p class="reservas-step-text">Escríbenos por WhatsApp indicando que quieres reservar un cachorro de esta camada.</p>
+                    </div>
+                    <div class="reservas-step">
+                        <span class="reservas-step-num">2</span>
+                        <p class="reservas-step-text">Te contamos todos los detalles: precio, documentación, cuidados previos a la entrega y resolveremos todas tus dudas.</p>
+                    </div>
+                    <div class="reservas-step">
+                        <span class="reservas-step-num">3</span>
+                        <p class="reservas-step-text">Con una pequeña señal, tu lugar queda reservado. Te mantendremos informado del avance del embarazo con fotos y actualizaciones.</p>
+                    </div>
+                </div>
+
+                <div class="reservas-cta">
+                    <p class="reservas-cta-pre">Las plazas son limitadas. No te quedes sin el tuyo.</p>
+                    <a href="https://wa.me/34670225384?text=Hola,%20me%20interesa%20reservar%20un%20cachorro%20de%20la%20pr%C3%B3xima%20camada" target="_blank" class="reservas-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Reservar mi cachorro por WhatsApp
+                    </a>
+                    <span class="reservas-btn-sub">O si prefieres, también puedes llamarnos al <a href="tel:+34670225384">670 225 384</a></span>
+                </div>
+
+                <div class="reservas-nota">
+                    <i class="fas fa-shield-alt" style="font-size:20px;color:#8BAF82;display:block;margin-bottom:8px;"></i>
+                    <p class="reservas-nota-text">Criadero con Núcleo Zoológico registrado. Toda la documentación en regla desde el primer día.</p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    // Layout estándar para camadas disponibles
     const waMsg = encodeURIComponent('Hola! Me interesa la ' + c.nombre + '. ¿Podéis darme más información?');
 
     el.innerHTML = `
