@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog de Deterrajaras · Consejos, razas y guías para nuevos dueños | Cáceres</title>
+    <meta name="description" content="Blog de Deterrajaras: guías para comprar un cachorro, consejos de cuidado, información sobre Caniches Toy y Schnauzer Mini. Criadero familiar en Cáceres.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Deterrajaras">
+    <link rel="canonical" href="https://deterrajaras.es/blog.html">
+    <meta property="og:title" content="Blog de Deterrajaras · Consejos y guías sobre Caniches Toy y Schnauzer Mini">
+    <meta property="og:description" content="Guías para comprar un cachorro, consejos de cuidado, información sobre razas. Criadero familiar en Cáceres.">
+    <meta property="og:url" content="https://deterrajaras.es/blog.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog de Deterrajaras",
+      "description": "Consejos, guías y artículos sobre Caniches Toy, Schnauzer Mini y cómo ser un dueño responsable.",
+      "url": "https://deterrajaras.es/blog.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Deterrajaras",
+        "url": "https://deterrajaras.es"
+      }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: #F9EDE8; color: #5A3E36; line-height: 1.7; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+:root {
+    --color-fondo-principal:   #F9EDE8;
+    --color-fondo-alternativo: #F5C4B3;
+    --color-cta-principal:     #D4537E;
+    --color-cta-hover:         #B8436A;
+    --color-acento:            #8BAF82;
+    --color-texto:             #5A3E36;
+    --color-texto-suave:       #8C6B62;
+    --color-blanco:            #FFFFFF;
+    --color-borde:             #EDD5CC;
+    --shadow:         0 4px 24px rgba(212,83,126,.10);
+    --shadow-lg:      0 8px 40px rgba(212,83,126,.18);
+    --radius:         18px;
+    --radius-sm:      10px;
+    --tr: 0.3s ease;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* MOBILE MENU */
+.mobile-menu {
+    display: none; position: fixed; inset: 0;
+    background: #fff; z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--color-texto); padding: 10px 24px; transition: var(--tr); }
+.mobile-menu a:hover { color: var(--color-cta-principal); }
+.mobile-menu .mobile-wa {
+    margin-top: 16px;
+    background: var(--color-cta-principal); color: #fff !important;
+    padding: 12px 32px !important; border-radius: 50px;
+    font-size: 1.1rem !important;
+    display: flex; align-items: center; gap: 10px;
+}
+.mobile-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none;
+    font-size: 1.8rem; color: var(--color-texto); cursor: pointer;
+}
+
+/* NAVBAR */
+#navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000; padding: 18px 0;
+    background: var(--color-blanco);
+    border-bottom: 1px solid var(--color-borde);
+    transition: var(--tr);
+}
+#navbar.scrolled { box-shadow: 0 2px 20px rgba(212,83,126,.10); padding: 12px 0; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--color-texto); transition: var(--tr); }
+.nav-logo span { color: var(--color-cta-principal); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { color: var(--color-texto-suave); font-weight: 600; font-size: .88rem; padding: 8px 14px; border-radius: 50px; transition: var(--tr); letter-spacing: .2px; }
+.nav-links a:hover { background: rgba(212,83,126,.07); color: var(--color-cta-principal); }
+.nav-links a.nav-active { color: var(--color-cta-principal); }
+.nav-camadas {
+    border: 2px solid var(--color-borde);
+    border-radius: 50px !important;
+    color: var(--color-texto) !important;
+    font-weight: 700 !important;
+    padding: 8px 18px !important;
+}
+.nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
+
+/* DROPDOWN */
+.nav-has-dropdown { position: relative; }
+.nav-dropdown {
+    display: none; position: absolute; top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: #fff; border: 1px solid var(--color-borde);
+    border-radius: 14px; min-width: 180px; padding: 10px 0;
+    box-shadow: var(--shadow); flex-direction: column;
+}
+.nav-has-dropdown:hover .nav-dropdown { display: flex; }
+.nav-dropdown li a { display: block; padding: 9px 20px; font-size: .88rem; color: var(--color-texto-suave); transition: var(--tr); border-radius: 0; }
+.nav-dropdown li a:hover { background: rgba(212,83,126,.06); color: var(--color-cta-principal); padding-left: 24px; }
+
+/* FLOAT WA */
+.float-wa {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; z-index: 900;
+    box-shadow: 0 4px 20px rgba(37,211,102,.35);
+    transition: var(--tr);
+}
+.float-wa:hover { transform: scale(1.1); background: #1eb957; }
+
+/* BLOG HERO */
+.blog-hero {
+    padding: 140px 0 80px;
+    background: linear-gradient(135deg, var(--color-fondo-principal) 0%, var(--color-fondo-alternativo) 100%);
+    text-align: center;
+}
+.blog-hero .badge {
+    display: inline-block;
+    background: var(--color-fondo-alternativo);
+    color: var(--color-texto);
+    padding: 6px 18px; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-borde);
+}
+.blog-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: var(--color-texto);
+    line-height: 1.15;
+    max-width: 700px;
+    margin: 0 auto 20px;
+}
+.blog-hero p {
+    font-size: 1.1rem;
+    color: var(--color-texto-suave);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* BLOG MAIN LAYOUT */
+.blog-main {
+    padding: 80px 0 100px;
+}
+.blog-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 60px;
+    align-items: start;
+}
+
+/* ARTICLE GRID */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+/* ARTICLE CARD */
+.article-card {
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-borde);
+    overflow: hidden;
+    transition: var(--tr);
+    display: flex;
+    flex-direction: column;
+}
+.article-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+.card-body { padding: 28px 28px 24px; flex: 1; display: flex; flex-direction: column; }
+.card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.card-cat {
+    display: inline-block;
+    background: rgba(212,83,126,.09);
+    color: var(--color-cta-principal);
+    padding: 4px 13px; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+}
+.card-new {
+    display: inline-block;
+    background: var(--color-cta-principal);
+    color: #fff;
+    padding: 3px 10px; border-radius: 50px;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+}
+.card-date { font-size: 0.8rem; color: var(--color-texto-suave); }
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--color-texto);
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+.card-excerpt {
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.card-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--color-cta-principal);
+    font-weight: 700; font-size: 0.88rem;
+    transition: var(--tr);
+    margin-top: auto;
+}
+.card-link:hover { gap: 14px; }
+
+/* SIDEBAR */
+.blog-sidebar {}
+.sidebar-box {
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    margin-bottom: 28px;
+}
+.sidebar-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--color-texto);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-borde);
+}
+.cat-list { display: flex; flex-direction: column; gap: 8px; }
+.cat-list a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 14px; border-radius: var(--radius-sm);
+    font-size: 0.88rem; color: var(--color-texto-suave);
+    transition: var(--tr); border: 1px solid transparent;
+}
+.cat-list a:hover, .cat-list a.active {
+    background: rgba(212,83,126,.07);
+    color: var(--color-cta-principal);
+    border-color: rgba(212,83,126,.15);
+}
+.cat-count {
+    background: var(--color-fondo-alternativo);
+    color: var(--color-texto);
+    font-size: 0.72rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 50px;
+}
+
+/* CTA BLOG */
+.blog-cta {
+    background: linear-gradient(135deg, var(--color-cta-principal) 0%, #B8436A 100%);
+    border-radius: var(--radius);
+    padding: 40px 36px;
+    text-align: center;
+    color: #fff;
+}
+.blog-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+.blog-cta p { font-size: 0.88rem; opacity: 0.9; line-height: 1.6; margin-bottom: 20px; }
+.blog-cta a {
+    display: block;
+    background: #fff;
+    color: var(--color-cta-principal);
+    padding: 11px 18px; border-radius: 50px;
+    font-weight: 700; font-size: 0.85rem;
+    transition: var(--tr);
+    margin-bottom: 10px;
+}
+.blog-cta a:hover { background: var(--color-fondo-alternativo); }
+.blog-cta a:last-child { margin-bottom: 0; }
+
+/* BOTTOM CTA */
+.blog-bottom-cta {
+    background: var(--color-fondo-alternativo);
+    padding: 80px 0;
+    text-align: center;
+}
+.blog-bottom-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--color-texto);
+    margin-bottom: 14px;
+}
+.blog-bottom-cta p {
+    font-size: 1.05rem;
+    color: var(--color-texto-suave);
+    max-width: 540px;
+    margin: 0 auto 36px;
+    line-height: 1.8;
+}
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--color-cta-principal); color: #fff;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
+    transition: var(--tr);
+}
+.btn-primary:hover { background: var(--color-cta-hover); transform: translateY(-2px); }
+.btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--color-texto);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
+    border: 2px solid var(--color-borde);
+    transition: var(--tr);
+}
+.btn-outline:hover { border-color: var(--color-cta-principal); color: var(--color-cta-principal); transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--color-texto); color: var(--color-fondo-alternativo); padding: 70px 0 0; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+.footer-brand .f-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.footer-brand .f-logo span { color: var(--color-cta-principal); }
+.footer-brand p { font-size: .88rem; line-height: 1.7; opacity: .75; max-width: 280px; }
+.f-socials { display: flex; gap: 12px; margin-top: 20px; }
+.f-soc { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff; transition: var(--tr); }
+.f-soc:hover { background: var(--color-cta-principal); transform: translateY(-2px); }
+.footer-col h4 { font-weight: 700; color: var(--color-fondo-alternativo); margin-bottom: 18px; font-size: .82rem; letter-spacing: .9px; text-transform: uppercase; }
+.footer-col ul { display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a { color: rgba(245,196,179,0.7); font-size: .88rem; transition: var(--tr); }
+.footer-col ul a:hover { color: var(--color-cta-principal); padding-left: 4px; }
+.footer-map iframe { width: 100%; height: 130px; border: 0; border-radius: 10px; margin-bottom: 12px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding: 22px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: .82rem; opacity: .6; }
+.f-legal { display: flex; gap: 20px; }
+.f-legal a { font-size: .8rem; opacity: .6; transition: var(--tr); }
+.f-legal a:hover { opacity: 1; color: var(--color-cta-principal); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .blog-layout { grid-template-columns: 1fr; }
+    .blog-sidebar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .blog-sidebar { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+}
+    </style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/34670225384" target="_blank" class="float-wa" title="Escríbenos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>
+    <a href="index.html#inicio" onclick="closeMobile()">Inicio</a>
+    <a href="index.html#historia" onclick="closeMobile()">Historia</a>
+    <a href="index.html#razas" onclick="closeMobile()">Razas</a>
+    <a href="caniche-toy.html" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="schnauzer-mini.html" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
+    <a href="test-raza.html" onclick="closeMobile()">Test de raza</a>
+    <a href="index.html#como-criamos" onclick="closeMobile()">Cómo Criamos</a>
+    <a href="index.html#galeria" onclick="closeMobile()">Galería</a>
+    <a href="index.html#contacto" onclick="closeMobile()">Contacto</a>
+    <a href="blog.html" onclick="closeMobile()">Blog</a>
+    <a href="camadas.html" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar" aria-label="Navegación principal">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Deterra<span>jaras</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#historia">Historia</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="index.html#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="caniche-toy.html">Caniche Toy</a></li>
+                        <li><a href="schnauzer-mini.html">Schnauzer Mini</a></li>
+                    </ul>
+                </li>
+                <li><a href="test-raza.html">Test de raza</a></li>
+                <li><a href="index.html#como-criamos">Cómo Criamos</a></li>
+                <li><a href="index.html#galeria">Galería</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="blog.html" class="nav-active">Blog</a></li>
+                <li><a href="camadas.html" class="nav-camadas">Camadas</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+    <div class="container">
+        <span class="badge">Blog</span>
+        <h1>Consejos, guías y todo sobre tus futuros compañeros</h1>
+        <p>Artículos escritos desde el criadero: crianza responsable, razas, cuidados y todo lo que necesitas saber antes y después de adoptar.</p>
+    </div>
+</section>
+
+<!-- MAIN -->
+<section class="blog-main">
+    <div class="container">
+        <div class="blog-layout">
+
+            <!-- ARTÍCULOS -->
+            <div>
+                <div class="articles-grid" id="articlesGrid">
+
+                    <!-- ARTÍCULO 1 -->
+                    <article class="article-card">
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-cat">Consejos para nuevos dueños</span>
+                                <span class="card-new">Nuevo</span>
+                            </div>
+                            <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>26 de mayo de 2026</div>
+                            <h2 class="card-title">¿Estás pensando en un nuevo miembro para la familia?</h2>
+                            <p class="card-excerpt">Guía completa para comprar un cachorro en España: cómo elegir criadero, documentación obligatoria, primeros cuidados y señales de alarma que nunca debes ignorar.</p>
+                            <a href="blog/como-comprar-un-cachorro.html" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- PRÓXIMOS ARTÍCULOS — placeholder visual -->
+                    <article class="article-card" style="opacity:0.5;pointer-events:none;">
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-cat">Cuidados</span>
+                            </div>
+                            <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>Próximamente</div>
+                            <h2 class="card-title">Alimentación del cachorro: qué pienso elegir y por qué</h2>
+                            <p class="card-excerpt">Todo lo que necesitas saber para elegir la alimentación más adecuada para tu nuevo compañero en cada etapa de su vida.</p>
+                            <span class="card-link" style="color:var(--color-texto-suave);">Próximamente</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside class="blog-sidebar">
+
+                <!-- CATEGORÍAS -->
+                <div class="sidebar-box">
+                    <h3>Categorías</h3>
+                    <nav class="cat-list" aria-label="Categorías del blog">
+                        <a href="blog.html" class="active">
+                            Todos los artículos <span class="cat-count">1</span>
+                        </a>
+                        <a href="blog.html">
+                            Consejos para nuevos dueños <span class="cat-count">1</span>
+                        </a>
+                        <a href="blog.html">
+                            Razas <span class="cat-count">0</span>
+                        </a>
+                        <a href="blog.html">
+                            Cuidados <span class="cat-count">0</span>
+                        </a>
+                        <a href="blog.html">
+                            Ley y documentación <span class="cat-count">0</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- CTA SIDEBAR -->
+                <div class="blog-cta">
+                    <h3>¿Te ha surgido alguna duda?</h3>
+                    <p>Escríbenos por WhatsApp y te respondemos sin compromiso.</p>
+                    <a href="https://wa.me/34670225384" target="_blank"><i class="fab fa-whatsapp"></i> Hablar por WhatsApp</a>
+                    <a href="camadas.html">Ver camadas disponibles →</a>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+</section>
+
+<!-- CTA INFERIOR -->
+<section class="blog-bottom-cta">
+    <div class="container">
+        <h2>¿Listo para conocer a tu futuro compañero?</h2>
+        <p>Criamos Caniches Toy y Schnauzer Mini con amor desde casa, con Núcleo Zoológico registrado y toda la documentación en regla.</p>
+        <div class="cta-btns">
+            <a href="https://wa.me/34670225384" target="_blank" class="btn-primary">
+                <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+            </a>
+            <a href="camadas.html" class="btn-outline">
+                Ver camadas disponibles →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="f-logo">Deterra<span>jaras</span></div>
+                <p>Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
+                <div class="f-socials">
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:deterrajaras@gmail.com" class="f-soc" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Razas</h4>
+                <ul>
+                    <li><a href="caniche-toy.html">Caniche Toy</a></li>
+                    <li><a href="schnauzer-mini.html">Schnauzer Miniatura</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Criadero</h4>
+                <ul>
+                    <li><a href="index.html#historia">Nuestra Historia</a></li>
+                    <li><a href="index.html#como-criamos">Cómo Criamos</a></li>
+                    <li><a href="index.html#galeria">Galería</a></li>
+                    <li><a href="camadas.html">Camadas Disponibles</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="tel:+34670225384">670 225 384</a></li>
+                    <li><a href="mailto:deterrajaras@gmail.com">deterrajaras@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Ver en Google Maps</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025–2026 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
+            <div class="f-legal">
+                <a href="aviso-legal.html">Aviso Legal</a>
+                <a href="politica-privacidad.html">Privacidad</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+});
+document.getElementById('mobileClose').addEventListener('click', closeMobile);
+function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+}
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+</script>
+</body>
+</html>
