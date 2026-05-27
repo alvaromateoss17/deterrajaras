@@ -21,10 +21,26 @@
     <meta property="og:image" content="https://deterrajaras.es/imagenes_caniches/cachirris 5.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="900">
+    <!-- Google Fonts — no bloqueante -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    </noscript>
+    <!-- Font Awesome — carga asíncrona, no bloquea el render -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </noscript>
+    <!-- Preload imagen hero — mejora LCP drásticamente -->
+    <link rel="preload" as="image"
+          href="imagenes_caniches/cachorros_caniches_001.jpeg"
+          fetchpriority="high">
     <style>
 /* ============================================
    RESET & BASE
@@ -33,6 +49,9 @@
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%; /* evita que iOS cambie tamaños de fuente al rotar */
+}
+@media (max-width: 767px) {
+    html { scroll-behavior: auto; } /* móvil — evita bloqueo del hilo principal */
 }
 body {
     font-family: 'Lato', sans-serif;
@@ -163,14 +182,10 @@ ul { list-style: none; }
     display: flex; align-items: center; justify-content: center;
     font-size: 1.75rem;
     box-shadow: 0 4px 20px rgba(212,83,126,.50);
-    transition: var(--tr);
-    animation: waGlow 2.5s ease-in-out infinite;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* SIN animation — mejora rendimiento mobile significativamente */
 }
 .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(212,83,126,.7); }
-@keyframes waGlow {
-    0%,100% { box-shadow: 0 4px 20px rgba(212,83,126,.5); }
-    50%      { box-shadow: 0 4px 40px rgba(212,83,126,.85); }
-}
 
 /* ============================================
    MOBILE MENU
@@ -842,6 +857,20 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 }
 
 /* (hero responsive fusionado en bloque RESPONSIVE principal) */
+
+/* ============================================
+   CONTENT VISIBILITY — renderizado diferido off-screen
+   Mejora Speed Index sin afectar al hero ni al navbar
+============================================ */
+#proceso,
+#historia,
+#razas,
+#como-criamos,
+#galeria,
+#contacto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+}
     </style>
 </head>
 <body>
@@ -942,6 +971,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                             src="imagenes_caniches/cachorros_caniches_001.jpeg"
                             alt="Cachorros Caniche Toy del criadero Deterrajaras en Cáceres"
                             loading="eager"
+                            fetchpriority="high"
+                            decoding="async"
                             width="520"
                             height="650"
                         >
@@ -1033,7 +1064,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             </div>
             <div class="historia-images fade-in">
                 <div class="hist-img-main">
-                    <img src="imagenes_caniches/cachirris 5.webp" alt="Criadores de Deterrajaras con sus cachorros en Cáceres">
+                    <img src="imagenes_caniches/cachirris 5.webp" alt="Criadores de Deterrajaras con sus cachorros en Cáceres" width="600" height="450" loading="lazy">
                 </div>
                 <div class="hist-loc-pill">
                     <i class="fas fa-map-marker-alt"></i> Cáceres, desde 2009
@@ -1056,7 +1087,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
         <div class="razas-grid">
             <div class="raza-card fade-in">
                 <div class="raza-img img-cover">
-                    <img src="imagenes_caniches/imagen_caniche_icon.webp" alt="Cachorro de Caniche Toy del criadero Deterrajaras en Cáceres">
+                    <img src="imagenes_caniches/imagen_caniche_icon.webp" alt="Cachorro de Caniche Toy del criadero Deterrajaras en Cáceres" width="400" height="400" loading="lazy">
                     <div class="raza-pil">Toy · Mini</div>
                 </div>
                 <div class="raza-body">
@@ -1073,7 +1104,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             </div>
             <div class="raza-card fade-in">
                 <div class="raza-img img-cover">
-                    <img src="imagenes_caniches/schnauzer_mini_icon.webp" alt="Cachorro de Schnauzer Miniatura criado en casa en Cáceres">
+                    <img src="imagenes_caniches/schnauzer_mini_icon.webp" alt="Cachorro de Schnauzer Miniatura criado en casa en Cáceres" width="400" height="400" loading="lazy">
                     <div class="raza-pil">Miniatura</div>
                 </div>
                 <div class="raza-body">
@@ -1167,63 +1198,63 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="galeria-slider-wrap">
                 <div class="galeria-track" id="galeriaTrack">
                     <div class="gal-item">
-                        <img src="imagenes_caniches/caniche 4.webp" alt="Cachorro de Caniche Toy del criadero Deterrajaras en Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/caniche 4.webp" alt="Cachorro de Caniche Toy del criadero Deterrajaras en Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/caniche 5.webp" alt="Caniche Toy del criadero familiar Deterrajaras Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/caniche 5.webp" alt="Caniche Toy del criadero familiar Deterrajaras Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/cachorros 2.webp" alt="Camada de Caniches Toy del criadero Deterrajaras en Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/cachorros 2.webp" alt="Camada de Caniches Toy del criadero Deterrajaras en Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/cachorros 6.webp" alt="Cachorros Caniche Toy y Schnauzer Mini de Deterrajaras con documentación" loading="lazy">
+                        <img src="imagenes_caniches/cachorros 6.webp" alt="Cachorros Caniche Toy y Schnauzer Mini de Deterrajaras con documentación" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/caniche 1.webp" alt="Cachorro de Caniche Toy criado en casa en Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/caniche 1.webp" alt="Cachorro de Caniche Toy criado en casa en Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/caniche 3.webp" alt="Caniche Toy hipoalergénico del criadero Deterrajaras Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/caniche 3.webp" alt="Caniche Toy hipoalergénico del criadero Deterrajaras Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/cachirris 5.webp" alt="Cachorros Deterrajaras" loading="lazy">
+                        <img src="imagenes_caniches/cachirris 5.webp" alt="Cachorros Deterrajaras" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/caniche 2.webp" alt="Caniche Toy criado en casa en Cáceres Extremadura" loading="lazy">
+                        <img src="imagenes_caniches/caniche 2.webp" alt="Caniche Toy criado en casa en Cáceres Extremadura" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/cachorr camada 1.webp" alt="Camada de Caniches Toy" loading="lazy">
+                        <img src="imagenes_caniches/cachorr camada 1.webp" alt="Camada de Caniches Toy" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/caniche_002.webp" alt="Caniche Toy del criadero Deterrajaras en Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/caniche_002.webp" alt="Caniche Toy del criadero Deterrajaras en Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/cachorros_caniches_002.jpeg" alt="Cachorros Caniche Toy del criadero Deterrajaras en Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/cachorros_caniches_002.jpeg" alt="Cachorros Caniche Toy del criadero Deterrajaras en Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche Toy</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/caniche_schnauzer_01.webp" alt="Caniche y Schnauzer Mini juntos" loading="lazy">
+                        <img src="imagenes_caniches/caniche_schnauzer_01.webp" alt="Caniche y Schnauzer Mini juntos" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Caniche &amp; Schnauzer</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/cachorros_schnauzer_mini.jpeg" alt="Cachorros Schnauzer Miniatura del criadero Deterrajaras en Cáceres" loading="lazy">
+                        <img src="imagenes_caniches/cachorros_schnauzer_mini.jpeg" alt="Cachorros Schnauzer Miniatura del criadero Deterrajaras en Cáceres" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Schnauzer Mini</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/cachorros_schnauzer_001.jpeg" alt="Cachorros Schnauzer Mini Deterrajaras" loading="lazy">
+                        <img src="imagenes_caniches/cachorros_schnauzer_001.jpeg" alt="Cachorros Schnauzer Mini Deterrajaras" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Schnauzer Mini</span></div>
                     </div>
                     <div class="gal-item">
-                        <img src="imagenes_caniches/schnauzer_macho_padre.jpeg" alt="Schnauzer Mini padre reproductor" loading="lazy">
+                        <img src="imagenes_caniches/schnauzer_macho_padre.jpeg" alt="Schnauzer Mini padre reproductor" width="400" height="400" loading="lazy">
                         <div class="gal-overlay"><span class="gal-breed-pill">Schnauzer Mini</span></div>
                     </div>
                 </div>

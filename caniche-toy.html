@@ -44,13 +44,26 @@
       }
     }
     </script>
+    <!-- Google Fonts — no bloqueante -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    </noscript>
+    <!-- Font Awesome — carga asíncrona, no bloquea el render -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </noscript>
     <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+@media (max-width: 767px) { html { scroll-behavior: auto; } }
 body { font-family: 'Lato', sans-serif; background: #F9EDE8; color: #5A3E36; line-height: 1.7; overflow-x: hidden; }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
@@ -232,14 +245,10 @@ ul { list-style: none; }
     display: flex; align-items: center; justify-content: center;
     font-size: 1.75rem;
     box-shadow: 0 4px 20px rgba(212,83,126,.50);
-    transition: var(--tr);
-    animation: waGlow 2.5s ease-in-out infinite;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* SIN animation — mejora rendimiento mobile significativamente */
 }
 .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(212,83,126,.7); }
-@keyframes waGlow {
-    0%,100% { box-shadow: 0 4px 20px rgba(212,83,126,.5); }
-    50%      { box-shadow: 0 4px 40px rgba(212,83,126,.85); }
-}
 
 /* FOOTER */
 footer { background: var(--color-texto); color: var(--color-fondo-alternativo); padding: 58px 0 28px; border-top: none; }
