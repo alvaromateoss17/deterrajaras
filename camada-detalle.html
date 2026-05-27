@@ -2,6 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <meta property="og:image" content="https://deterrajaras.es/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camada · Deterrajaras</title>
     <meta name="description" content="Información detallada sobre nuestra camada. Criadero familiar Deterrajaras en Cáceres.">
@@ -107,7 +112,11 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .hamburger span {
     display: block; width: 26px; height: 2px;
     background: var(--color-texto); border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-has-dropdown { position: relative; }
 .nav-dropdown {
     position: absolute; top: calc(100% + 8px); left: 0;
@@ -762,10 +771,12 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('active');
 });
 document.getElementById('mobileClose').addEventListener('click', () => {
     document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
 });
 </script>
 </body>

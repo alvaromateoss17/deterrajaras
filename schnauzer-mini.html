@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cachorros de Schnauzer Miniatura en Cáceres · Criadero Deterrajaras · Con Documentación</title>
     <meta name="description" content="Cachorros de Schnauzer Miniatura criados en casa en Cáceres. Sin muda de pelo, activos y equilibrados. Núcleo Zoológico registrado en Extremadura. Chip, vacunas y contrato incluidos.">
@@ -14,6 +18,9 @@
     <meta property="og:url" content="https://deterrajaras.es/schnauzer-mini.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
+    <meta property="og:image" content="https://deterrajaras.es/imagenes_caniches/cachorros_schnauzer_mini.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="900">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -124,7 +131,10 @@ ul { list-style: none; }
 }
 .nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-has-dropdown { position: relative; }
 .nav-dropdown {
     position: absolute; top: calc(100% + 8px); left: 0;
@@ -494,10 +504,12 @@ window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
 document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('active');
 });
 document.getElementById('mobileClose').addEventListener('click', () => {
     document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
 });
 </script>
 </body>

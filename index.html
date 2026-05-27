@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criadero Caniche Toy y Schnauzer Mini en Cáceres · Deterrajaras</title>
     <meta name="description" content="Criadero familiar de Caniche Toy y Schnauzer Mini en Cáceres. Cachorros con papeles, vacunados y criados en casa. Núcleo Zoológico registrado. Consulta camadas disponibles.">
@@ -15,6 +19,8 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
     <meta property="og:image" content="https://deterrajaras.es/imagenes_caniches/cachirris 5.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="900">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -24,7 +30,10 @@
    RESET & BASE
 ============================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%; /* evita que iOS cambie tamaños de fuente al rotar */
+}
 body {
     font-family: 'Lato', sans-serif;
     background: var(--color-fondo-principal);
@@ -237,7 +246,11 @@ ul { list-style: none; }
 .nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
 #navbar.scrolled .nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
+/* Hamburger animado → ✕ cuando menú abierto */
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 #navbar.scrolled .hamburger span { background: var(--color-texto); }
 .nav-has-dropdown { position: relative; }
 .nav-dropdown {
@@ -258,14 +271,14 @@ ul { list-style: none; }
 /* ============================================
    HERO
 ============================================ */
-#hero { background: var(--color-fondo-principal); position: relative; overflow: hidden; }
-.hero-main { padding: 72px 0 64px; }
+#hero { background: var(--color-fondo-principal); position: relative; overflow: clip; }
+.hero-main { padding: 104px 0 64px; }
 .hero-content { max-width: 560px; }
 .hero-pill {
     display: inline-block; background: #fff;
     border: 1px solid var(--color-borde); border-radius: 50px;
     padding: 5px 16px; font-family: 'Lato', sans-serif;
-    font-size: 13px; color: var(--color-texto-suave); margin-bottom: 20px;
+    font-size: 13px; color: var(--color-texto-suave); margin-bottom: 24px;
 }
 .hero-title {
     font-family: 'Playfair Display', serif;
@@ -645,19 +658,46 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     .container { padding: 0 16px; }
 
     /* Hero */
-    .hero-main { padding: 90px 0 48px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
-    /* Sin order: imagen va DESPUÉS del texto (orden natural del HTML) */
-    .hero-img-col { width: 100%; }
-    .hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .hero-blob-img { max-width: 260px; margin: 0 auto; border-radius: 20px !important; aspect-ratio: 1/1 !important; }
-    .hero-img-pill { right: 50%; transform: translateX(50%); bottom: -10px; white-space: nowrap; font-size: 12px; }
-    .hero-title { font-size: 2rem; text-align: center; }
-    .hero-sub { text-align: center; font-size: 1rem; max-width: 100%; }
-    .hero-pill { font-size: 12px; }
-    .hero-ctas { flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .hero-main { padding: 112px 0 48px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+    /* texto centrado */
+    .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero-title  { text-align: center; font-size: 2rem; }
+    .hero-sub    { text-align: center; font-size: 1rem; max-width: 100%; }
+    .hero-ctas   { justify-content: center; flex-direction: column; align-items: center; gap: 12px; }
     .hero-ctas a { width: 100%; max-width: 340px; justify-content: center; }
-    .hero-stats { justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .hero-stats  { justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .hero-pill   { text-align: center; font-size: 12px; }
+    /* imagen: SIN order:-1 — va después del texto (orden natural del HTML) */
+    .hero-img-col {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    /* imagen: tamaño compacto en móvil, círculo */
+    .hero-blob-img {
+        width: 200px !important;
+        height: 200px !important;
+        aspect-ratio: 1/1 !important;
+        border-radius: 50% !important;
+        object-fit: cover;
+        margin: 0 auto;
+    }
+    /* pill de la imagen: sale del flujo absoluto y queda centrada */
+    .hero-img-pill {
+        position: static;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 12px auto 0;
+        width: fit-content;
+        max-width: calc(100% - 32px);
+        white-space: normal;
+        text-align: center;
+        font-size: 11px;
+        transform: none;
+    }
     .hero-razas-strip { padding: 12px 0; font-size: 13px; }
 
     /* Tipografía */
@@ -724,13 +764,20 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 
 /* Móvil pequeño ≤480px */
 @media (max-width: 480px) {
-    .hero-main { padding: 80px 0 40px; }
+    .hero-main { padding: 100px 0 40px; }
     .hero-title { font-size: 1.75rem !important; }
-    .hero-blob-img { max-width: 220px; }
     .gal-item { flex: 0 0 100%; }
     section, [id*="historia"], [id*="razas"], [id*="criamos"],
     [id*="diferenciadores"], [id*="testimonios"], [id*="galeria"], [id*="contacto"] {
         padding-top: 44px !important; padding-bottom: 44px !important;
+    }
+}
+
+/* Móvil muy pequeño ≤400px */
+@media (max-width: 400px) {
+    .hero-blob-img {
+        width: 160px !important;
+        height: 160px !important;
     }
 }
 
@@ -1421,11 +1468,13 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('active');
 });
 document.getElementById('mobileClose').addEventListener('click', closeMobile);
 function closeMobile() {
     document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
 }
 
 const observer = new IntersectionObserver(entries => {
