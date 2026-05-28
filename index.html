@@ -1689,44 +1689,38 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// ============================================================
-// NAV OBSERVER + URL CLEANER
-// Mantiene las URLs limpias sin index.html ni anclas visibles
-// ============================================================
-const navSections = document.querySelectorAll('#inicio, #historia, #razas, #como-criamos, #galeria, #contacto, #faq, #proceso, #diferenciadores, #testimonios');
+/* ── NAVBAR: link activo + URLs limpias ── */
+const navSections = document.querySelectorAll(
+    '#inicio, #historia, #razas, #como-criamos, #galeria, #contacto, #faq, #proceso'
+);
 const navLinks = document.querySelectorAll('.nav-links a');
 
-// 1. Intercepta clicks en anclas del navbar para limpiar la URL
-document.querySelectorAll('.nav-links a[href^="#"], .mobile-menu a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href && href.startsWith('#')) {
-            // Dejamos que el scroll ocurra normalmente
-            // pero limpiamos la URL con history API
-            setTimeout(() => {
-                history.replaceState(null, '', '/');
-            }, 50);
-        }
+/* Intercepta clicks en anclas del navbar y del menú mobile
+   para que la URL quede como deterrajaras.es/ sin fragmento */
+document.querySelectorAll(
+    '.nav-links a[href^="#"], .mobile-menu a[href^="#"]'
+).forEach(function(link) {
+    link.addEventListener('click', function() {
+        /* Esperamos un tick para que el scroll arranque primero */
+        setTimeout(function() {
+            window.history.replaceState(null, document.title, '/');
+        }, 10);
     });
 });
 
-// 2. Limpia la URL si carga con index.html en la barra
-if (window.location.pathname === '/index.html') {
-    const hash = window.location.hash;
-    history.replaceState(null, '', '/' + hash);
-}
-
-// 3. IntersectionObserver para marcar el link activo en el navbar
-const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+/* IntersectionObserver: marca el link activo en el navbar */
+const navObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-            navLinks.forEach(a => a.classList.remove('nav-active'));
-            const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+            navLinks.forEach(function(a) { a.classList.remove('nav-active'); });
+            var link = document.querySelector(
+                '.nav-links a[href="#' + entry.target.id + '"]'
+            );
             if (link) link.classList.add('nav-active');
         }
     });
 }, { threshold: 0.3 });
-navSections.forEach(s => navObserver.observe(s));
+navSections.forEach(function(s) { navObserver.observe(s); });
 
 function toggleCA() {
     document.getElementById('caToggle').classList.toggle('open');
