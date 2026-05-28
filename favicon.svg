@@ -1,17 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <!-- Fondo circular con color crema de la marca -->
-  <circle cx="100" cy="100" r="100" fill="#F9EDE8"/>
-  <!-- Letra D estilizada en color marrón de la marca -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="10" fill="#D4537E"/>
   <text
     x="50%"
-    y="50%"
+    y="53%"
     dominant-baseline="central"
     text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="110"
+    font-family="Georgia, serif"
+    font-size="30"
     font-weight="700"
-    fill="#5A3E36"
+    fill="#FFFFFF"
   >D</text>
-  <!-- Punto decorativo en rosa (color principal de la marca) -->
-  <circle cx="138" cy="130" r="12" fill="#D4537E"/>
 </svg>
