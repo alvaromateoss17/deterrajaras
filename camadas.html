@@ -220,7 +220,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     overflow: hidden;
     cursor: pointer;
     transition: transform var(--tr), box-shadow var(--tr);
-    display: block; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; text-decoration: none; color: inherit;
 }
 .camada-card:hover {
     transform: translateY(-4px);
@@ -243,7 +243,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .st-reservas  { background: #F5C4B3; color: #5A3E36; }
 .st-reserved  { background: #D4537E; color: #fff; }
 
-.camada-body { padding: 20px 24px; }
+.camada-body { padding: 20px 24px; flex: 1; display: flex; flex-direction: column; }
 .camada-body h3 {
     font-size: 1.25rem; font-weight: 700;
     color: var(--color-texto); margin-bottom: 12px;
@@ -263,7 +263,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     overflow: hidden;
 }
 .camada-btn {
-    display: block; width: 100%; margin-top: 20px;
+    display: block; width: 100%; margin-top: auto; padding-top: 20px;
     background: var(--color-cta-principal); color: #fff;
     border: none; border-radius: 50px; padding: 12px;
     font-size: 14px; font-weight: 600;
@@ -581,7 +581,7 @@ document.getElementById('camadasGrid').innerHTML = camadas.map(c => {
     const btnClass = isReservas ? 'camada-btn camada-btn-reservas' : 'camada-btn';
     const btnText  = isReservas ? 'Reservar mi lugar →' : 'Ver camada →';
     return `
-    <a class="camada-card" href="camada-detalle.html?id=${c.id}">
+    <a class="camada-card" href="camada-detalle?id=${c.id}">
         <div class="camada-thumb">
             ${thumbContent}
             <div class="camada-status ${getBadgeClass(c)}">${c.estadoText}</div>
