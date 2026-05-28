@@ -2,11 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Limpia /index.html de la URL via redirect inmediato -->
     <script>
-    if (window.location.pathname === '/index.html') {
-        window.history.replaceState({}, document.title, '/' + window.location.search + window.location.hash);
-    }
+    /* ── URL CLEANER: elimina /index.html de la barra de direcciones ── */
+    (function() {
+        var p = window.location.pathname;
+        if (p === '/index.html' || p.indexOf('/index.html') === 0) {
+            var clean = '/' + window.location.search + window.location.hash;
+            window.history.replaceState(null, document.title, clean);
+        }
+    })();
     </script>
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -1207,7 +1211,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <div class="raza-body">
                     <div class="raza-sub">Tamaño: Micro · Toy</div>
                     <h3><a href="caniche-toy.html" title="Cachorros de Caniche Toy en Cáceres" style="color:inherit;text-decoration:none;">Caniche Toy en Cáceres</a></h3>
-                    <p>El Caniche Toy es hipoalergénico, inteligente y perfecto para familias. Criamos cachorros de Caniche Toy en Cáceres con todas las vacunas, chip y documentación en regla.</p>
+                    <p>Inteligente, <strong>hipoalergénico</strong> y sin muda de pelo. El Caniche Toy es el compañero ideal para familias con niños, personas con alergias o que viven en piso. Criamos en colores <strong>rojo, albaricoque y crema</strong>, con toda la documentación en regla y entrega en toda España.</p>
                     <div class="raza-tags">
                         <span class="raza-tag">Muy inteligente</span>
                         <span class="raza-tag">Cariñoso</span>
@@ -1225,7 +1229,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <div class="raza-body">
                     <div class="raza-sub">Tamaño: Miniatura</div>
                     <h3><a href="schnauzer-mini.html" title="Cachorros de Schnauzer Miniatura en Cáceres" style="color:inherit;text-decoration:none;">Schnauzer Miniatura en Cáceres</a></h3>
-                    <p>El Schnauzer Miniatura es activo, leal y no suelta pelo. Nuestros cachorros nacen y crecen en casa, socializados con niños desde el primer día.</p>
+                    <p>Activo, leal y lleno de personalidad. El <strong>Schnauzer Miniatura</strong> es perfecto para familias con niños y pisos. Nuestro criador <strong>Juanra lleva más de 20 años</strong> en competiciones con la raza — conocemos cada detalle del Schnauzer Mini mejor que nadie.</p>
                     <div class="raza-tags">
                         <span class="raza-tag">Activo</span>
                         <span class="raza-tag">Guardián</span>
