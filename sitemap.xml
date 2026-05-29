@@ -8,9 +8,15 @@
   </url>
   <url>
     <loc>https://deterrajaras.es/blog.html</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/alimentacion-cachorro-pienso.html</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deterrajaras.es/blog/como-comprar-un-cachorro.html</loc>
