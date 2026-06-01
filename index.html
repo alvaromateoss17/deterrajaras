@@ -1664,10 +1664,42 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
      JAVASCRIPT
 ================================================ -->
 <script>
-function submitContact(e) {
+async function submitContact(e) {
     e.preventDefault();
-    e.target.style.display = 'none';
-    document.getElementById('contactOk').style.display = 'block';
+    const form = e.target;
+    const btn = form.querySelector('.form-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+    const data = {
+        access_key: '304f42cd-dcac-46b0-87f5-2fe8b77c3582',
+        name: document.getElementById('cf-nombre').value,
+        email: document.getElementById('cf-email').value,
+        phone: document.getElementById('cf-tel').value,
+        message: document.getElementById('cf-msg').value,
+        subject: 'Nuevo mensaje desde deterrajaras.es'
+    };
+
+    try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (json.success) {
+            form.style.display = 'none';
+            document.getElementById('contactOk').style.display = 'block';
+        } else {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar mensaje';
+            alert('Error al enviar. Inténtalo de nuevo o escríbenos directamente.');
+        }
+    } catch {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar mensaje';
+        alert('Error de conexión. Inténtalo de nuevo.');
+    }
 }
 
 const navbar = document.getElementById('navbar');
