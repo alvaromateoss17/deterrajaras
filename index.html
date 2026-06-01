@@ -22,6 +22,7 @@
     <meta name="keywords" content="criadero caniche toy Extremadura, caniche toy España, caniche toy cachorro, caniche toy rojo, caniche toy en venta, schnauzer mini sal y pimienta, cachorro schnauzer miniatura, criadero schnauzer mini España, perro hipoalergénico pequeño, perro pequeño para piso, criadero caniche toy Cáceres, caniche toy en Extremadura, schnauzer miniatura cachorro, criadero familiar Extremadura, cachorros con papeles España">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Deterrajaras">
+    <meta name="google-site-verification" content="ea354cc8a80f6f47">
     <link rel="canonical" href="https://deterrajaras.es/">
     <meta property="og:title" content="Criadero de Caniche Toy y Schnauzer Mini en Cáceres · Deterrajaras">
     <meta property="og:description" content="Cachorros de Caniche Toy y Schnauzer Mini criados en casa en Cáceres. Núcleo Zoológico registrado. Más de 15 años de experiencia. Consulta camadas disponibles.">
@@ -1857,10 +1858,10 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["LocalBusiness", "AnimalShelter"],
+      "@type": ["LocalBusiness", "PetStore"],
       "@id": "https://deterrajaras.es/#negocio",
       "name": "Deterrajaras",
-      "description": "Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado en Extremadura. Más de 15 años de experiencia.",
+      "description": "Criadero familiar de Caniche Toy y Schnauzer Miniatura en Cáceres, Extremadura. Núcleo Zoológico registrado. Más de 15 años de experiencia. Cachorros con chip, vacunas y documentación completa.",
       "url": "https://deterrajaras.es",
       "telephone": "+34670225384",
       "email": "criaderodeterrajaras@gmail.com",
@@ -1869,6 +1870,7 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
         "streetAddress": "Polígono Ganadero, C/ A 16B",
         "addressLocality": "Cáceres",
         "addressRegion": "Extremadura",
+        "postalCode": "10001",
         "addressCountry": "ES"
       },
       "geo": {
@@ -1876,18 +1878,35 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
         "latitude": 39.4753,
         "longitude": -6.3724
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-        "opens": "09:00",
-        "closes": "21:00"
-      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday","Sunday"],
+          "opens": "10:00",
+          "closes": "20:00"
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/caniches_lola_y_lilo/"
       ],
       "priceRange": "€€",
       "image": "https://deterrajaras.es/imagenes_caniches/cachorros_caniches_001.jpeg",
-      "knowsAbout": ["Caniche Toy", "Schnauzer Miniatura", "Crianza responsable de perros", "Núcleo Zoológico"]
+      "knowsAbout": ["Caniche Toy", "Schnauzer Miniatura", "Crianza responsable de perros", "Núcleo Zoológico"],
+      "areaServed": [
+        {"@type": "City", "name": "Cáceres"},
+        {"@type": "City", "name": "Badajoz"},
+        {"@type": "City", "name": "Madrid"},
+        {"@type": "City", "name": "Salamanca"},
+        {"@type": "City", "name": "Sevilla"},
+        {"@type": "AdministrativeArea", "name": "Extremadura"}
+      ],
+      "hasMap": "https://maps.app.goo.gl/3uMik3d3o2PUAysY8"
     }
   ]
 }
