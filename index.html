@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -114,14 +114,16 @@ ul { list-style: none; }
 :root {
     --color-fondo-principal:   #F9EDE8;
     --color-fondo-alternativo: #F5C4B3;
-    --color-cta-principal:     #D4537E;
-    --color-cta-hover:         #B8436A;
+    --color-cta-principal:     #AD3E64;
+    --color-cta-hover:         #93325A;
     --color-acento:            #8BAF82;
+    --color-rosa-decorativo:   #D4537E;
+    --color-acento-texto:      #4E6B47;
     --color-texto:             #5A3E36;
-    --color-texto-suave:       #8C6B62;
+    --color-texto-suave:       #6E5048;
     --color-blanco:            #FFFFFF;
     --color-borde:             #EDD5CC;
-    --primary:        #D4537E;
+    --primary:        #AD3E64;
     --primary-dark:   #5A3E36;
     --primary-light:  #F5C4B3;
     --gold:           #8BAF82;
@@ -129,7 +131,7 @@ ul { list-style: none; }
     --cream:          #F9EDE8;
     --cream-alt:      rgba(245, 196, 179, 0.4);
     --text:           #5A3E36;
-    --text-light:     #8C6B62;
+    --text-light:     #6E5048;
     --white:          #FFFFFF;
     --shadow:         0 4px 24px rgba(212, 83, 126, 0.10);
     --shadow-lg:      0 8px 40px rgba(212, 83, 126, 0.18);
@@ -171,14 +173,7 @@ ul { list-style: none; }
     transition: var(--tr); border: none; cursor: pointer;
 }
 .btn-wa:hover { background: var(--color-cta-hover); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,83,126,.38); }
-.btn-outline-w {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: transparent; color: var(--color-acento);
-    padding: 14px 28px; border-radius: 50px;
-    font-weight: 600; font-size: 1rem;
-    border: 2px solid var(--color-acento); transition: var(--tr); cursor: pointer;
-}
-.btn-outline-w:hover { background: var(--color-acento); color: #fff; }
+/* .btn-outline-w — see updated rules in BTN-OUTLINE-W block below */
 .btn-primary {
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--primary); color: #fff;
@@ -187,14 +182,7 @@ ul { list-style: none; }
     transition: var(--tr); border: none; cursor: pointer;
 }
 .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
-.btn-cta-green {
-    display: inline-flex; align-items: center; justify-content: center;
-    background: transparent; color: var(--color-acento);
-    padding: 14px 28px; border-radius: 50px;
-    font-weight: 600; font-size: 1rem;
-    border: 2px solid var(--color-acento); cursor: pointer; transition: var(--tr);
-}
-.btn-cta-green:hover { background: var(--color-acento); color: #fff; transform: translateY(-2px); }
+/* .btn-cta-green — see updated rules in BTN-CTA-GREEN block below */
 
 #hero .hero-content { padding-top: 0; }
 #hero .hero-sub { margin-top: 0; }
@@ -324,8 +312,8 @@ ul { list-style: none; }
     z-index: 1100;
 }
 .nav-has-dropdown:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: #8C6B62 !important; border-radius: 0 !important; background: transparent !important; }
-.nav-dropdown a:hover { color: #D4537E !important; background: #F9EDE8 !important; }
+.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: var(--color-texto-suave) !important; border-radius: 0 !important; background: transparent !important; }
+.nav-dropdown a:hover { color: var(--color-cta-principal) !important; background: #F9EDE8 !important; }
 
 /* ============================================
    HERO
@@ -385,7 +373,7 @@ ul { list-style: none; }
 #proceso { padding: 104px 0; background: rgba(245, 196, 179, 0.28); }
 .proceso-grid { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 20px; align-items: stretch; }
 .proceso-arrow { align-self: center; }
-.proceso-arrow { display: flex; align-items: center; justify-content: center; color: #D4537E; font-size: 1.25rem; font-weight: 700; }
+.proceso-arrow { display: flex; align-items: center; justify-content: center; color: var(--color-cta-principal); font-size: 1.25rem; font-weight: 700; }
 .proceso-card {
     background: var(--color-blanco); border-radius: 18px;
     padding: 32px 24px;
@@ -529,17 +517,7 @@ ul { list-style: none; }
 .gal-arrow:hover { background: var(--color-cta-principal); color: #fff; box-shadow: 0 4px 20px rgba(212,83,126,.28); }
 .gal-arrow:disabled { opacity: 0.3; pointer-events: none; }
 
-/* Dots */
-.gal-dots {
-    display: flex; justify-content: center; gap: 7px;
-    margin-top: 20px;
-}
-.gal-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--color-borde); border: none; cursor: pointer; padding: 0;
-    transition: background .25s, width .25s, border-radius .25s;
-}
-.gal-dot.active { background: var(--color-cta-principal); width: 22px; border-radius: 4px; }
+/* Dots — see updated rules below in GAL-DOTS block */
 
 .galeria-cta { text-align: center; margin-top: 32px; }
 
@@ -657,7 +635,7 @@ ul { list-style: none; }
 .ca-body.open { max-height: 900px; }
 
 /* Nav active */
-.nav-links a.nav-active { color: #D4537E !important; font-weight: 600; }
+.nav-links a.nav-active { color: var(--color-cta-principal) !important; font-weight: 600; }
 
 /* ============================================
    FOOTER
@@ -939,7 +917,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     background: #fff; border: 1px solid #EDD5CC;
     border-radius: 50px; padding: 7px 16px;
     display: inline-flex; align-items: center; gap: 6px;
-    font-family: 'Lato', sans-serif; font-size: 13px; color: #8C6B62;
+    font-family: 'Lato', sans-serif; font-size: 13px; color: var(--color-texto-suave);
     white-space: nowrap;
 }
 .hero-img-pill-dot {
@@ -957,12 +935,12 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     font-size: clamp(1.9rem, 3vw, 2.6rem);
     color: #5A3E36; line-height: 1.2; margin-bottom: 10px;
 }
-.contacto-header > p { font-family: 'Lato', sans-serif; font-size: 16px; color: #8C6B62; line-height: 1.7; }
+.contacto-header > p { font-family: 'Lato', sans-serif; font-size: 16px; color: var(--color-texto-suave); line-height: 1.7; }
 .contacto-wa-wrap { text-align: center; margin-bottom: 32px; }
 .contacto-wa-wrap .wa-cta-big { display: block; width: fit-content; margin: 0 auto 12px; }
 .contacto-wa-sub {
     display: inline-flex; align-items: center; gap: 6px;
-    font-family: 'Lato', sans-serif; font-size: 13px; color: #8C6B62;
+    font-family: 'Lato', sans-serif; font-size: 13px; color: var(--color-texto-suave);
 }
 .contacto-wa-sub-dot {
     width: 8px; height: 8px; border-radius: 50%;
@@ -990,6 +968,85 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     content-visibility: auto;
     contain-intrinsic-size: 0 600px;
 }
+
+/* ============================================
+   BTN-TEST-MINI
+============================================ */
+.btn-test-mini {
+    display: inline-block;
+    background: var(--color-cta-principal);
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 18px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: background var(--tr);
+}
+.btn-test-mini:hover { background: var(--color-cta-hover); }
+@media(max-width:768px){.hero-test-banner{flex-direction:column!important;align-items:flex-start!important;}.hero-test-banner a{width:100%!important;text-align:center!important;padding:11px!important;}}
+
+/* ============================================
+   GAL-DOTS — ÁREA TÁCTIL AMPLIADA
+============================================ */
+.gal-dots { display: flex; gap: 6px; justify-content: center; margin-top: 20px; }
+.gal-dot {
+    width: 32px; height: 32px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--tr);
+}
+.gal-dot::before {
+    content: '';
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--color-borde);
+    transition: background .25s, width .25s, border-radius .25s;
+}
+.gal-dot.active::before { background: var(--color-cta-principal); width: 22px; border-radius: 4px; }
+
+/* ============================================
+   RAZAS SEO LINKS — CHIPS
+============================================ */
+.razas-seo-links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin-top: 28px; }
+.chip-link {
+    display: inline-flex; align-items: center;
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--color-borde);
+    border-radius: 50px;
+    background: #fff;
+    color: var(--color-cta-principal);
+    font-weight: 600; font-size: .9rem;
+    transition: var(--tr);
+}
+.chip-link:hover { background: var(--color-cta-principal); color: #fff; border-color: var(--color-cta-principal); }
+
+/* ============================================
+   BTN-OUTLINE-W & BTN-CTA-GREEN — VERDE ACCESIBLE
+============================================ */
+.btn-outline-w {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #fff; color: var(--color-acento-texto);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 1rem;
+    border: 2px solid var(--color-acento-texto); transition: var(--tr); cursor: pointer;
+}
+.btn-outline-w:hover { background: var(--color-acento-texto); color: #fff; }
+.btn-cta-green {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #fff; color: var(--color-acento-texto);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 1rem;
+    border: 2px solid var(--color-acento-texto); cursor: pointer; transition: var(--tr);
+}
+.btn-cta-green:hover { background: var(--color-acento-texto); color: #fff; transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -1044,6 +1101,11 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 </nav>
 
 <!-- ================================================
+     MAIN CONTENT
+================================================ -->
+<main id="contenido">
+
+<!-- ================================================
      HERO
 ================================================ -->
 <section id="inicio">
@@ -1075,12 +1137,11 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                                 </div>
                                 <div>
                                     <p style="font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:#5A3E36;margin:0 0 2px;">¿No sabes qué raza elegir?</p>
-                                    <p style="font-family:'Lato',sans-serif;font-size:11px;color:#8C6B62;margin:0;">5 preguntas · 2 minutos · Resultado personalizado</p>
+                                    <p style="font-family:'Lato',sans-serif;font-size:11px;color:var(--color-texto-suave);margin:0;">5 preguntas · 2 minutos · Resultado personalizado</p>
                                 </div>
                             </div>
-                            <a href="test-raza" style="background:#D4537E;color:#fff;border-radius:50px;padding:8px 16px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;white-space:nowrap;flex-shrink:0;display:inline-block;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#B8436A'" onmouseout="this.style.background='#D4537E'">Hacer el test</a>
+                            <a href="test-raza" class="btn-test-mini">Hacer el test</a>
                         </div>
-                        <style>@media(max-width:768px){.hero-test-banner{flex-direction:column!important;align-items:flex-start!important;}.hero-test-banner a{width:100%!important;text-align:center!important;padding:11px!important;}}</style>
                     </div>
                     <!-- Columna derecha — imagen blob -->
                     <div class="hero-img-col">
@@ -1242,13 +1303,11 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 </div>
             </div>
         </div>
-        <p style="text-align:center;margin-top:28px;font-size:.9rem;color:var(--color-texto-suave);line-height:1.85;">
+        <p class="razas-seo-links">
             Entregamos en toda Extremadura y España —
-            <a href="caniche-toy-extremadura" style="color:var(--color-cta-principal);font-weight:600;">Caniche Toy en Extremadura</a>
-            ·
-            <a href="schnauzer-mini-extremadura" style="color:var(--color-cta-principal);font-weight:600;">Schnauzer Mini en Extremadura</a>
-            ·
-            <a href="cachorros-madrid" style="color:var(--color-cta-principal);font-weight:600;">Entrega en Madrid</a>
+            <a href="caniche-toy-extremadura" class="chip-link">Caniche Toy en Extremadura</a>
+            <a href="schnauzer-mini-extremadura" class="chip-link">Schnauzer Mini en Extremadura</a>
+            <a href="cachorros-madrid" class="chip-link">Entrega en Madrid</a>
         </p>
     </div>
 </section>
@@ -1525,7 +1584,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="contacto-separator">
                 <div style="display:flex;align-items:center;gap:16px;">
                     <div style="flex:1;height:1px;background:#EDD5CC;"></div>
-                    <span style="font-family:Lato,sans-serif;font-size:13px;color:#8C6B62;">o si prefieres</span>
+                    <span style="font-family:Lato,sans-serif;font-size:13px;color:var(--color-texto-suave);">o si prefieres</span>
                     <div style="flex:1;height:1px;background:#EDD5CC;"></div>
                 </div>
             </div>
@@ -1614,6 +1673,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     </div>
 </section>
 
+</main>
+
 <!-- ================================================
      FOOTER
 ================================================ -->
@@ -1624,9 +1685,9 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <div class="f-logo">Deterra<span>jaras</span></div>
                 <p>Criadero familiar de <a href="caniche-toy" style="color:inherit;text-decoration:underline;">Caniches Toy</a> y <a href="schnauzer-mini" style="color:inherit;text-decoration:underline;">Schnauzer Mini</a> en Cáceres, Extremadura. Núcleo Zoológico registrado. Cachorros con papeles, vacunados y criados en casa.</p>
                 <div class="f-socials">
-                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc" aria-label="Instagram de Deterrajaras"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc" aria-label="WhatsApp de Deterrajaras"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                    <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc" aria-label="Enviar email a Deterrajaras"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -1651,7 +1712,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="footer-col">
                 <h4>Contacto</h4>
                 <div class="footer-map">
-                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" title="Mapa de ubicación de Deterrajaras en el Polígono Ganadero, Cáceres" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <p>Polígono Ganadero · Cáceres<br>Ubicación exacta en Google Maps.</p>
                 </div>
                 <ul>

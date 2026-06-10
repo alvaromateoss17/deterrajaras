@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,14 +6,14 @@
     <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criadero de Perros en Extremadura · Caniche Toy y Schnauzer Mini · Deterrajaras</title>
-    <meta name="description" content="Criadero de Caniche Toy y Schnauzer Miniatura en Extremadura. Criadero familiar en Cáceres con Núcleo Zoológico registrado. Entregamos en Badajoz, Mérida, Plasencia y toda Extremadura.">
+    <title>Criadero de Perros en Extremadura · Deterrajaras</title>
+    <meta name="description" content="Criadero oficial de Caniche Toy y Schnauzer en Extremadura. Núcleo Zoológico legal. Entrega a domicilio en Badajoz, Mérida y toda la región.">
     <meta name="keywords" content="criadero perros Extremadura, criadero caniche toy Extremadura, criadero schnauzer Extremadura, cachorros Extremadura, criadero familiar Extremadura, perros en venta Extremadura, criadero Badajoz, criadero Mérida">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Deterrajaras">
     <link rel="canonical" href="https://deterrajaras.es/criadero-extremadura">
-    <meta property="og:title" content="Criadero de Perros en Extremadura · Caniche Toy y Schnauzer Mini · Deterrajaras">
-    <meta property="og:description" content="Criadero familiar de Caniche Toy y Schnauzer Miniatura en Extremadura. Núcleo Zoológico registrado en Cáceres. Entregamos en toda Extremadura y España.">
+    <meta property="og:title" content="Criadero de Perros en Extremadura · Deterrajaras">
+    <meta property="og:description" content="Criadero oficial de Caniche Toy y Schnauzer en Extremadura. Núcleo Zoológico legal. Entrega a domicilio en Badajoz, Mérida y toda la región.">
     <meta property="og:url" content="https://deterrajaras.es/criadero-extremadura">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
@@ -106,11 +106,13 @@ ul { list-style: none; }
 :root {
     --color-fondo-principal:   #F9EDE8;
     --color-fondo-alternativo: #F5C4B3;
-    --color-cta-principal:     #D4537E;
-    --color-cta-hover:         #B8436A;
+    --color-cta-principal:     #AD3E64;
+    --color-cta-hover:         #93325A;
     --color-acento:            #8BAF82;
+    --color-rosa-decorativo:   #D4537E;
+    --color-acento-texto:      #4E6B47;
     --color-texto:             #5A3E36;
-    --color-texto-suave:       #8C6B62;
+    --color-texto-suave:       #6E5048;
     --color-blanco:            #FFFFFF;
     --color-borde:             #EDD5CC;
     --shadow:         0 4px 24px rgba(212,83,126,.10);
@@ -151,13 +153,13 @@ ul { list-style: none; }
 .nav-has-dropdown { position: relative; }
 .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1px solid #EDD5CC; border-radius: 12px; padding: 8px 0; min-width: 180px; display: flex; flex-direction: column; gap: 0; opacity: 0; pointer-events: none; transform: translateY(-4px); transition: opacity 0.15s ease, transform 0.15s ease; z-index: 1100; }
 .nav-has-dropdown:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: #8C6B62 !important; border-radius: 0 !important; background: transparent !important; }
-.nav-dropdown a:hover { color: #D4537E !important; background: #F9EDE8 !important; }
+.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: var(--color-texto-suave) !important; border-radius: 0 !important; background: transparent !important; }
+.nav-dropdown a:hover { color: var(--color-cta-principal) !important; background: #F9EDE8 !important; }
 .raza-hero { background: var(--color-fondo-principal); padding: 120px 0 72px; }
 .raza-hero-inner { max-width: 680px; }
 .raza-badge { display: inline-block; background: #F5C4B3; color: #5A3E36; border-radius: 50px; padding: 5px 18px; font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px; }
 .raza-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3rem); color: #5A3E36; font-weight: 700; line-height: 1.15; margin-bottom: 18px; }
-.raza-hero p { font-size: 1.05rem; color: #8C6B62; line-height: 1.8; margin-bottom: 32px; max-width: 560px; }
+.raza-hero p { font-size: 1.05rem; color: var(--color-texto-suave); line-height: 1.8; margin-bottom: 32px; max-width: 560px; }
 .raza-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--color-cta-principal); color: #fff; padding: 13px 28px; border-radius: 50px; font-weight: 700; font-size: .95rem; transition: var(--tr); }
 .btn-primary:hover { background: var(--color-cta-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
@@ -169,12 +171,12 @@ ul { list-style: none; }
 .ciudad-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 .ciudad-card .ciudad-icon { font-size: 2rem; margin-bottom: 12px; }
 .ciudad-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #5A3E36; font-weight: 700; margin-bottom: 8px; }
-.ciudad-card p { font-size: .9rem; color: #8C6B62; line-height: 1.7; }
+.ciudad-card p { font-size: .9rem; color: var(--color-texto-suave); line-height: 1.7; }
 .raza-seo { padding: 80px 0; background: var(--color-fondo-principal); }
 .raza-seo-inner { max-width: 780px; }
 .seo-block { margin-bottom: 48px; }
 .seo-block h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #5A3E36; font-weight: 700; margin-bottom: 16px; }
-.seo-block p { font-size: 1rem; color: #8C6B62; line-height: 1.85; }
+.seo-block p { font-size: 1rem; color: var(--color-texto-suave); line-height: 1.85; }
 .raza-seo-cta { text-align: center; margin-top: 48px; }
 .float-wa { position: fixed; bottom: 28px; right: 28px; z-index: 990; width: 62px; height: 62px; border-radius: 50%; background: var(--color-cta-principal); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; box-shadow: 0 4px 20px rgba(212,83,126,.50); transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(212,83,126,.7); }
@@ -238,6 +240,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
         </div>
     </div>
 </nav>
+
+<main id="contenido">
 
 <section class="raza-hero">
     <div class="container">
@@ -324,6 +328,10 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     <i class="fab fa-whatsapp"></i>
 </a>
 
+
+</main>
+
+
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -331,9 +339,9 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <div class="f-logo">Deterra<span>jaras</span></div>
                 <p>Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
                 <div class="f-socials">
-                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc" aria-label="Instagram de Deterrajaras"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc" aria-label="WhatsApp de Deterrajaras"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                    <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc" aria-label="Enviar email a Deterrajaras"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -356,7 +364,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="footer-col">
                 <h4>Contacto</h4>
                 <div class="footer-map">
-                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" title="Mapa de ubicación de Deterrajaras en el Polígono Ganadero, Cáceres" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <p>Polígono Ganadero · Cáceres<br>Visitas con cita previa.</p>
                 </div>
                 <ul>

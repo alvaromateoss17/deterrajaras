@@ -41,11 +41,13 @@ ul { list-style: none; }
 :root {
     --color-fondo-principal:   #F9EDE8;
     --color-fondo-alternativo: #F5C4B3;
-    --color-cta-principal:     #D4537E;
-    --color-cta-hover:         #B8436A;
+    --color-cta-principal:     #AD3E64;
+    --color-cta-hover:         #93325A;
     --color-acento:            #8BAF82;
+    --color-rosa-decorativo:   #D4537E;
+    --color-acento-texto:      #4E6B47;
     --color-texto:             #5A3E36;
-    --color-texto-suave:       #8C6B62;
+    --color-texto-suave:       #6E5048;
     --color-blanco:            #FFFFFF;
     --color-borde:             #EDD5CC;
     --shadow:         0 4px 24px rgba(212,83,126,.10);
@@ -123,8 +125,8 @@ ul { list-style: none; }
     transition: opacity 0.15s ease, transform 0.15s ease; z-index: 1100;
 }
 .nav-has-dropdown:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: #8C6B62 !important; border-radius: 0 !important; background: transparent !important; }
-.nav-dropdown a:hover { color: #D4537E !important; background: #F9EDE8 !important; }
+.nav-dropdown a { display: block; padding: 10px 20px; font-family: 'Lato', sans-serif; font-size: 14px; color: var(--color-texto-suave) !important; border-radius: 0 !important; background: transparent !important; }
+.nav-dropdown a:hover { color: var(--color-cta-principal) !important; background: #F9EDE8 !important; }
 
 /* ── QUIZ LAYOUT ── */
 .quiz-wrap {
@@ -153,7 +155,7 @@ ul { list-style: none; }
     text-align: center; margin: 0 auto 16px; max-width: 600px;
 }
 .intro-sub {
-    font-size: 1.05rem; color: #8C6B62; text-align: center;
+    font-size: 1.05rem; color: var(--color-texto-suave); text-align: center;
     max-width: 480px; margin: 0 auto 40px; line-height: 1.8;
 }
 .intro-dogs {
@@ -181,7 +183,7 @@ ul { list-style: none; }
     background: #D4537E; height: 100%; border-radius: 3px;
     width: 0%; transition: width 0.4s ease;
 }
-.progress-label { font-size: 13px; color: #8C6B62; text-align: center; }
+.progress-label { font-size: 13px; color: var(--color-texto-suave); text-align: center; }
 
 /* ── QUESTION ── */
 .question-title {
@@ -201,7 +203,7 @@ ul { list-style: none; }
     user-select: none;
 }
 .option-card:hover {
-    border-color: #D4537E; background: #FFF5F8;
+    border-color: var(--color-cta-principal); background: #FFF5F8;
     transform: scale(1.02);
 }
 .option-card.selected {
@@ -211,7 +213,7 @@ ul { list-style: none; }
 .option-icon { display: flex; justify-content: center; margin-bottom: 12px; }
 .option-icon svg { width: 48px; height: 48px; }
 .option-label { font-size: 15px; font-weight: 600; color: #5A3E36; line-height: 1.3; }
-.option-sub { font-size: 13px; color: #8C6B62; margin-top: 4px; line-height: 1.4; }
+.option-sub { font-size: 13px; color: var(--color-texto-suave); margin-top: 4px; line-height: 1.4; }
 
 /* ── RESULT ── */
 .result-badge {
@@ -238,7 +240,7 @@ ul { list-style: none; }
     border-radius: 50%; border: 4px solid #F5C4B3;
 }
 .result-text {
-    font-size: 1rem; color: #8C6B62; line-height: 1.85;
+    font-size: 1rem; color: var(--color-texto-suave); line-height: 1.85;
     text-align: center; max-width: 560px; margin: 0 auto 32px;
 }
 .result-reasons {
@@ -269,12 +271,12 @@ ul { list-style: none; }
 }
 .btn-result-secondary:hover { background: #8BAF82; color: #fff; transform: translateY(-2px); }
 .btn-retake {
-    font-size: 14px; color: #8C6B62; cursor: pointer;
+    font-size: 14px; color: var(--color-texto-suave); cursor: pointer;
     background: none; border: none; font-family: 'Lato', sans-serif;
     display: block; text-align: center; margin-top: 4px;
     transition: color 0.2s; text-decoration: underline; text-underline-offset: 3px;
 }
-.btn-retake:hover { color: #D4537E; }
+.btn-retake:hover { color: var(--color-cta-principal); }
 
 /* ── TEXT CENTER HELPER ── */
 .t-center { text-align: center; }
@@ -432,7 +434,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 <!-- ================================================
      QUIZ
 ================================================ -->
-<main class="quiz-wrap">
+<main id="contenido" class="quiz-wrap">
 
     <!-- ── SLIDE 0: INTRO ── -->
     <div class="slide active t-center" id="slide-0">
@@ -702,9 +704,9 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <div class="f-logo">Deterra<span>jaras</span></div>
                 <p>Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
                 <div class="f-socials">
-                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc" aria-label="Instagram de Deterrajaras"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc" aria-label="WhatsApp de Deterrajaras"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                    <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc" aria-label="Enviar email a Deterrajaras"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -727,7 +729,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="footer-col">
                 <h4>Contacto</h4>
                 <div class="footer-map">
-                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Pol%C3%ADgono%20Ganadero%2C%20C%C3%A1ceres&amp;output=embed" title="Mapa de ubicación de Deterrajaras en el Polígono Ganadero, Cáceres" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <p>Polígono Ganadero · Cáceres<br>Ubicación exacta en Google Maps.</p>
                 </div>
                 <ul>
