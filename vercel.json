@@ -6,6 +6,19 @@
       "source": "/blog/perros-hipoalergenicos-pequenos",
       "destination": "/blog/perros-hipoalergenicos-pequeños",
       "permanent": true
-    }
+    },
+    { "source": "/schnauzer-mini.html", "destination": "/schnauzer-mini", "permanent": true },
+    { "source": "/caniche-toy.html", "destination": "/caniche-toy", "permanent": true },
+    { "source": "/aviso-legal.html", "destination": "/aviso-legal", "permanent": true },
+    { "source": "/politica-privacidad.html", "destination": "/politica-privacidad", "permanent": true },
+    { "source": "/camadas.html", "destination": "/camadas", "permanent": true },
+    { "source": "/test-raza.html", "destination": "/test-raza", "permanent": true },
+    { "source": "/caniche-toy-extremadura.html", "destination": "/caniche-toy-extremadura", "permanent": true },
+    { "source": "/schnauzer-mini-extremadura.html", "destination": "/schnauzer-mini-extremadura", "permanent": true },
+    { "source": "/cachorros-madrid.html", "destination": "/cachorros-madrid", "permanent": true },
+    { "source": "/criadero-caceres.html", "destination": "/criadero-caceres", "permanent": true },
+    { "source": "/criadero-extremadura.html", "destination": "/criadero-extremadura", "permanent": true },
+    { "source": "/blog/como-comprar-un-cachorro.html", "destination": "/blog/como-comprar-un-cachorro", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true }
   ]
 }
