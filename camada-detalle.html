@@ -1,4 +1,10 @@
 ﻿<!DOCTYPE html>
+<!--
+  ⚠️ ESTA PÁGINA SE SIRVE DESDE /camadas/[slug] (subdirectorio virtual vía rewrite).
+  TODAS las rutas internas (href, src) DEBEN ser absolutas (empezar por "/").
+  Una ruta relativa aquí se resolverá como /camadas/loquesea y dará 404.
+  Las imágenes del array de camadas se normalizan con el helper `abs()` en render().
+-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -484,11 +490,11 @@ footer {
     <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>
     <a href="/#inicio">Inicio</a>
     <a href="/#razas">Razas</a>
-    <a href="caniche-toy" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
-    <a href="schnauzer-mini" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
+    <a href="/caniche-toy" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="/schnauzer-mini" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
     <a href="/#contacto">Contacto</a>
-    <a href="blog">Blog</a>
-    <a href="camadas" class="active">Camadas</a>
+    <a href="/blog">Blog</a>
+    <a href="/camadas" class="active">Camadas</a>
 </div>
 
 <nav id="navbar">
@@ -500,13 +506,13 @@ footer {
                 <li class="nav-has-dropdown">
                     <a href="/#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
                     <ul class="nav-dropdown">
-                        <li><a href="caniche-toy">Caniche Toy</a></li>
-                        <li><a href="schnauzer-mini">Schnauzer Mini</a></li>
+                        <li><a href="/caniche-toy">Caniche Toy</a></li>
+                        <li><a href="/schnauzer-mini">Schnauzer Mini</a></li>
                     </ul>
                 </li>
                 <li><a href="/#contacto">Contacto</a></li>
-                <li><a href="blog">Blog</a></li>
-                <li><a href="camadas" class="active">Camadas</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/camadas" class="active">Camadas</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -520,7 +526,7 @@ footer {
 <div class="detalle-wrap">
     <div class="container">
         <div class="back-btn-wrap">
-            <a href="camadas" class="back-btn">← Volver a camadas</a>
+            <a href="/camadas" class="back-btn">← Volver a camadas</a>
         </div>
         <div class="detalle-container" id="detalleContent"></div>
     </div>
@@ -554,8 +560,8 @@ footer {
                     <li><a href="/#como-criamos">Cómo Criamos</a></li>
                     <li><a href="/#diferenciadores">Por Qué Elegirnos</a></li>
                     <li><a href="/#galeria">Galería</a></li>
-                    <li><a href="camadas">Camadas Disponibles</a></li>
-                    <li><a href="blog">Blog</a></li>
+                    <li><a href="/camadas">Camadas Disponibles</a></li>
+                    <li><a href="/blog">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -574,8 +580,8 @@ footer {
         <div class="footer-bottom">
             <p>© 2025–2026 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
             <div class="f-legal">
-                <a href="aviso-legal">Aviso Legal</a>
-                <a href="politica-privacidad">Privacidad</a>
+                <a href="/aviso-legal">Aviso Legal</a>
+                <a href="/politica-privacidad">Privacidad</a>
             </div>
         </div>
     </div>
@@ -724,7 +730,7 @@ function render() {
     const el = document.getElementById('detalleContent');
 
     if (!c) {
-        el.innerHTML = '<div class="not-found"><p>Camada no encontrada. <a href="camadas">Ver todas las camadas</a></p></div>';
+        el.innerHTML = '<div class="not-found"><p>Camada no encontrada. <a href="/camadas">Ver todas las camadas</a></p></div>';
         return;
     }
 
@@ -811,15 +817,17 @@ function render() {
 
     // Layout estándar para camadas disponibles
     const waMsg = encodeURIComponent('Hola! Me interesa la ' + c.nombre + '. ¿Podéis darme más información?');
+    // Esta página se sirve desde /camadas/[slug]: las rutas de imagen DEBEN ser absolutas.
+    const abs = (s) => s.startsWith('/') || /^https?:/.test(s) ? s : '/' + s;
 
     el.innerHTML = `
-        <img id="mainImg" src="${c.fotos[0]}" alt="${(c.alts && c.alts[0]) || c.nombre}" class="main-img">
+        <img id="mainImg" src="${abs(c.fotos[0])}" alt="${(c.alts && c.alts[0]) || c.nombre}" class="main-img">
         <div class="gallery-row">
             ${c.fotos.map((src, i) => `
-                <img src="${src}" alt="${(c.alts && c.alts[i]) || ('Foto ' + (i + 1) + ' — ' + c.raza)}"
+                <img src="${abs(src)}" alt="${(c.alts && c.alts[i]) || ('Foto ' + (i + 1) + ' — ' + c.raza)}"
                      ${i === 0 ? '' : 'loading="lazy"'}
                      class="gallery-thumb${i === 0 ? ' active' : ''}"
-                     onclick="changeMain('${src}', this)">
+                     onclick="changeMain('${abs(src)}', this)">
             `).join('')}
         </div>
         <div class="info-grid">
