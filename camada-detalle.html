@@ -587,26 +587,34 @@ footer {
 const camadas = [
     {
         id: 1,
-        nombre: "Próxima Camada · Caniches Toy",
+        nombre: "Camada Julio 2026 · Caniche Toy",
         raza: "Caniche Toy",
-        fecha: "Prevista Junio-Julio 2026",
-        estado: "reserved",
-        estadoText: "Reservas abiertas",
-        cachorros: "Camada en preparación",
-        entrega: "Junio-Julio 2026",
+        fecha: "Nacida el 6 de julio de 2026",
+        estado: "available",
+        estadoText: "Disponibles",
+        cachorros: "5 cachorros (machos y hembras)",
+        entrega: "Septiembre 2026",
         colores: ["Rojo", "Albaricoque", "Crema"],
         icono: "🐩",
-        fotoThumb: "imagenes_caniches/cachorros 2.webp",
+        fotoThumb: "imagenes_caniches/camada_caniche_toy_julio1.webp",
         fotos: [
-            "imagenes_caniches/cachorros 2.webp",
-            "imagenes_caniches/cachirris 5.webp"
+            "imagenes_caniches/camada_caniche_toy_julio1.webp",
+            "imagenes_caniches/camada_caniche_toy_julio2.webp",
+            "imagenes_caniches/camada_caniche_toy_julio3.webp",
+            "imagenes_caniches/camada_caniche_toy_julio4.webp"
         ],
-        resumen: "Nuestra próxima camada de Caniches Toy. Hipoalergénicos, sin muda de pelo y criados en casa. Reserva ya tu lugar.",
-        waMsg: "Hola, me interesa reservar un cachorro de la próxima camada de Caniche Toy. ¿Podéis darme más información?",
+        alts: [
+            "Cachorro de Caniche Toy en Cáceres - camada nacida el 6 de julio de 2026 - foto 1",
+            "Cachorros de Caniche Toy recién nacidos con su madre Lola en Cáceres - julio 2026 - foto 2",
+            "Camada de Caniche Toy color albaricoque criada en casa en Cáceres - julio 2026 - foto 3",
+            "Cachorros hipoalergénicos de Caniche Toy disponibles en Cáceres - camada julio 2026 - foto 4"
+        ],
+        resumen: "¡Nacidos el 6 de julio de 2026! Cinco cachorros de Caniche Toy criados en casa. Hipoalergénicos, sin muda de pelo. Reservas abiertas.",
+        waMsg: "Hola, me interesa uno de los cachorros de la camada de Caniche Toy nacida en julio de 2026. ¿Podéis darme más información?",
         desc: [
-            "Estamos esperando nuestra próxima camada de Caniches Toy, prevista para junio-julio de 2026. Nuestra perra Lola (madre) y un magnífico ejemplar de línea francesa serán los padres de esta nueva camada.",
-            "El Caniche Toy es hipoalergénico, no suelta pelo y es ideal para familias con niños o personas con alergias. Son inteligentes, afectuosos y se adaptan perfectamente a pisos.",
-            "Si quieres asegurarte un cachorro, reserva tu lugar ahora. Las plazas son limitadas y se completan con rapidez. Escríbenos sin compromiso."
+            "¡Nacidos el 6 de julio de 2026! Nuestra nueva camada de Caniche Toy ha llegado al mundo con cinco preciosos cachorros, machos y hembras. Padre y madre son ejemplares con excelente genealogía y temperamento propio de la raza.",
+            "Desde el primer día están siendo criados en casa, rodeados de cariño y estímulos variados para garantizar su socialización y adaptación a cualquier entorno familiar.",
+            "El Caniche Toy es hipoalergénico, cariñoso e ideal para pisos y familias con niños. ¡Escríbenos ahora para reservar el tuyo!"
         ]
     },
     {
@@ -773,10 +781,11 @@ function render() {
     const waMsg = encodeURIComponent('Hola! Me interesa la ' + c.nombre + '. ¿Podéis darme más información?');
 
     el.innerHTML = `
-        <img id="mainImg" src="${c.fotos[0]}" alt="${c.nombre}" class="main-img">
+        <img id="mainImg" src="${c.fotos[0]}" alt="${(c.alts && c.alts[0]) || c.nombre}" class="main-img">
         <div class="gallery-row">
             ${c.fotos.map((src, i) => `
-                <img src="${src}" alt="Foto ${i + 1} — ${c.raza}"
+                <img src="${src}" alt="${(c.alts && c.alts[i]) || ('Foto ' + (i + 1) + ' — ' + c.raza)}"
+                     ${i === 0 ? '' : 'loading="lazy"'}
                      class="gallery-thumb${i === 0 ? ' active' : ''}"
                      onclick="changeMain('${src}', this)">
             `).join('')}
