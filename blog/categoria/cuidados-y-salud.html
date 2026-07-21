@@ -2,30 +2,49 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Deterrajaras · Guías Caniche Toy y Schnauzer Mini | Cáceres</title>
-    <meta name="description" content="Blog de Deterrajaras: guías para comprar un cachorro, consejos de cuidado, información sobre Caniches Toy y Schnauzer Mini. Criadero familiar en Cáceres.">
+    <title>Cuidados y salud del cachorro · Blog de Deterrajaras</title>
+    <meta name="description" content="Guías de cuidados y salud para Caniche Toy y Schnauzer Mini: alimentación, golpe de calor, pelaje y prevención. Criadero Deterrajaras, Cáceres.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Deterrajaras">
-    <link rel="canonical" href="https://deterrajaras.es/blog">
-    <meta property="og:title" content="Blog de Deterrajaras · Consejos y guías sobre Caniches Toy y Schnauzer Mini">
-    <meta property="og:description" content="Guías para comprar un cachorro, consejos de cuidado, información sobre razas. Criadero familiar en Cáceres.">
-    <meta property="og:url" content="https://deterrajaras.es/blog">
+    <link rel="canonical" href="https://deterrajaras.es/blog/categoria/cuidados-y-salud">
     <meta property="og:type" content="website">
+    <meta property="og:title" content="Cuidados y salud del cachorro · Blog de Deterrajaras">
+    <meta property="og:description" content="Guías de cuidados y salud para Caniche Toy y Schnauzer Mini: alimentación, golpe de calor, pelaje y prevención. Criadero Deterrajaras, Cáceres.">
+    <meta property="og:url" content="https://deterrajaras.es/blog/categoria/cuidados-y-salud">
     <meta property="og:locale" content="es_ES">
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Blog de Deterrajaras",
-      "description": "Consejos, guías y artículos sobre Caniches Toy, Schnauzer Mini y cómo ser un dueño responsable.",
-      "url": "https://deterrajaras.es/blog",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Deterrajaras",
-        "url": "https://deterrajaras.es"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Cuidados y salud del cachorro",
+        "description": "Guías de cuidados y salud para Caniche Toy y Schnauzer Mini: alimentación, golpe de calor, pelaje y prevención. Criadero Deterrajaras, Cáceres.",
+        "url": "https://deterrajaras.es/blog/categoria/cuidados-y-salud",
+        "inLanguage": "es-ES",
+        "isPartOf": { "@type": "Blog", "name": "Blog de Deterrajaras", "url": "https://deterrajaras.es/blog" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "numberOfItems": 3,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "url": "https://deterrajaras.es/blog/golpe-de-calor-perros-pequenos" },
+            { "@type": "ListItem", "position": 2, "url": "https://deterrajaras.es/blog/schnauzer-miniatura-pierde-pelo" },
+            { "@type": "ListItem", "position": 3, "url": "https://deterrajaras.es/blog/alimentacion-cachorro-pienso" }
+          ]
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://deterrajaras.es" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://deterrajaras.es/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Cuidados y salud", "item": "https://deterrajaras.es/blog/categoria/cuidados-y-salud" }
+        ]
       }
-    }
+    ]
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -445,6 +464,18 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     .float-wa { bottom: 12px; right: 12px; width: 46px; height: 46px; }
     .mobile-menu a { font-size: 1.3rem; padding: 10px 16px; }
 }
+
+/* BREADCRUMB DE CATEGORIA */
+.cat-breadcrumb { background: #fff; border-bottom: 1px solid var(--color-borde); padding: 14px 0; margin-top: 74px; }
+.cat-breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--color-texto-suave); flex-wrap: wrap; }
+.cat-breadcrumb-inner a { color: var(--color-texto-suave); transition: var(--tr); }
+.cat-breadcrumb-inner a:hover { color: var(--color-cta-principal); }
+.cat-breadcrumb-inner .sep { opacity: 0.4; }
+.cat-breadcrumb-inner .current { color: var(--color-texto); font-weight: 600; }
+.blog-hero.is-cat { padding-top: 46px; }
+.blog-hero.is-cat h1 { margin-bottom: 14px; }
+.cat-empty { background: #fff; border: 1px solid var(--color-borde); border-radius: var(--radius); padding: 32px; text-align: center; color: var(--color-texto-suave); }
+
     </style>
 </head>
 <body>
@@ -459,11 +490,11 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>
     <a href="/#inicio" onclick="closeMobile()">Inicio</a>
     <a href="/#razas" onclick="closeMobile()">Razas</a>
-    <a href="caniche-toy" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
-    <a href="schnauzer-mini" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
+    <a href="/caniche-toy" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="/schnauzer-mini" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
     <a href="/#contacto" onclick="closeMobile()">Contacto</a>
-    <a href="blog" onclick="closeMobile()">Blog</a>
-    <a href="camadas" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
+    <a href="/blog" onclick="closeMobile()">Blog</a>
+    <a href="/camadas" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
 </div>
 
 <!-- NAVBAR -->
@@ -476,13 +507,13 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <li class="nav-has-dropdown">
                     <a href="/#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
                     <ul class="nav-dropdown">
-                        <li><a href="caniche-toy">Caniche Toy</a></li>
-                        <li><a href="schnauzer-mini">Schnauzer Mini</a></li>
+                        <li><a href="/caniche-toy">Caniche Toy</a></li>
+                        <li><a href="/schnauzer-mini">Schnauzer Mini</a></li>
                     </ul>
                 </li>
                 <li><a href="/#contacto">Contacto</a></li>
-                <li><a href="blog" class="nav-active">Blog</a></li>
-                <li><a href="camadas" class="nav-camadas">Camadas</a></li>
+                <li><a href="/blog" class="nav-active">Blog</a></li>
+                <li><a href="/camadas" class="nav-camadas">Camadas</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -493,12 +524,25 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 
 <main id="contenido">
 
-<!-- HERO -->
-<section class="blog-hero">
+<!-- BREADCRUMB -->
+<div class="cat-breadcrumb">
     <div class="container">
-        <span class="badge">Blog</span>
-        <h1>Consejos, guías y todo sobre tus futuros compañeros</h1>
-        <p>Artículos escritos desde el criadero: crianza responsable, razas, cuidados y todo lo que necesitas saber antes y después de adoptar.</p>
+        <nav class="cat-breadcrumb-inner" aria-label="Ruta de navegación">
+            <a href="/">Inicio</a>
+            <span class="sep">&rsaquo;</span>
+            <a href="/blog">Blog</a>
+            <span class="sep">&rsaquo;</span>
+            <span class="current">Cuidados y salud</span>
+        </nav>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="blog-hero is-cat">
+    <div class="container">
+        <span class="badge">Cuidados y salud</span>
+        <h1>Cuidados y salud del cachorro</h1>
+        <p>Todo lo que necesitas para mantener sano a un perro de raza pequeña: qué darle de comer en cada etapa, cómo actuar ante una urgencia de verano y qué cuidados de pelaje necesita cada raza. Son los artículos que más nos preguntan las familias durante el primer año.</p>
     </div>
 </section>
 
@@ -509,23 +553,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 
             <!-- ARTÍCULOS -->
             <div>
-                <div class="articles-grid" id="articlesGrid">
+                <div class="articles-grid">
 
-                    <!-- ARTÍCULO 8: ENSEÑAR A UN CACHORRO A HACER SUS NECESIDADES -->
-                    <article class="article-card">
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="card-cat">Consejos para nuevos dueños</span>
-                                <span class="card-new">Nuevo</span>
-                            </div>
-                            <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>21 de julio de 2026</div>
-                            <h2 class="card-title">Cómo enseñar a un cachorro a hacer sus necesidades</h2>
-                            <p class="card-excerpt">Cuánto aguanta un cachorro según su edad, la rutina que funciona y por qué un Caniche Toy o un Schnauzer Mini tardan más en aprender.</p>
-                            <a href="blog/ensenar-cachorro-hacer-sus-necesidades" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- ARTÍCULO 7: GOLPE DE CALOR EN PERROS PEQUEÑOS -->
                     <article class="article-card">
                         <div class="card-body">
                             <div class="card-meta">
@@ -535,53 +564,10 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                             <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>6 de julio de 2026</div>
                             <h2 class="card-title">Golpe de calor en perros pequeños: síntomas y primeros auxilios</h2>
                             <p class="card-excerpt">El golpe de calor mata en minutos y es la urgencia veterinaria más frecuente del verano. Aprende a reconocer los síntomas, aplicar los primeros auxilios correctos y prevenirlo en tu Caniche Toy o Schnauzer Miniatura.</p>
-                            <a href="blog/golpe-de-calor-perros-pequenos" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                            <a href="/blog/golpe-de-calor-perros-pequenos" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </article>
 
-                    <!-- ARTÍCULO 6: PERROS HIPOALERGÉNICOS PEQUEÑOS -->
-                    <article class="article-card">
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="card-cat">Razas</span>
-                                <span class="card-new">Nuevo</span>
-                            </div>
-                            <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>28 de junio de 2026</div>
-                            <h2 class="card-title">Perros hipoalergénicos pequeños: las mejores razas para alérgicos</h2>
-                            <p class="card-excerpt">¿Tienes alergia pero quieres un perro? Te explicamos qué razas pequeñas sueltan menos pelo y producen menos alérgenos, y por qué el Caniche Toy y el Schnauzer Mini destacan. Con la verdad sobre los perros hipoalergénicos.</p>
-                            <a href="blog/perros-hipoalergenicos-peque%C3%B1os" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- ARTÍCULO 5: SEGURO OBLIGATORIO PERROS 2026 -->
-                    <article class="article-card">
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="card-cat">Ley y documentación</span>
-                                <span class="card-new">Nuevo</span>
-                            </div>
-                            <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>15 de junio de 2026</div>
-                            <h2 class="card-title">Seguro obligatorio para perros 2026: ¿ya es obligatorio?</h2>
-                            <p class="card-excerpt">¿Es obligatorio el seguro para perros en 2026? Te explicamos qué dice la Ley de Bienestar Animal, el reglamento pendiente, multas y la documentación que debe darte un criadero legal.</p>
-                            <a href="blog/seguro-obligatorio-perros-2026" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- ARTÍCULO 4: CUÁNTO CUESTA UN CANICHE TOY -->
-                    <article class="article-card">
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="card-cat">Compra de Cachorros</span>
-                                <span class="card-new">Nuevo</span>
-                            </div>
-                            <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>9 de junio de 2026</div>
-                            <h2 class="card-title">¿Cuánto cuesta un Caniche Toy en España? Guía 2026</h2>
-                            <p class="card-excerpt">Rango de precios, factores que influyen en el coste, diferencias entre criadores responsables y opciones más económicas. Todo lo que debes saber antes de comprar.</p>
-                            <a href="blog/cuanto-cuesta-caniche-toy" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- ARTÍCULO 3: SCHNAUZER MINIATURA PIERDE PELO -->
                     <article class="article-card">
                         <div class="card-body">
                             <div class="card-meta">
@@ -591,11 +577,10 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                             <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>9 de junio de 2026</div>
                             <h2 class="card-title">¿Pierde pelo el Schnauzer Miniatura? Todo lo que debes saber</h2>
                             <p class="card-excerpt">Descubre cómo es el manto del Schnauzer Miniatura, la diferencia entre mudanza y pérdida de pelo, cuidados de peluquería profesional y si es apto para personas con alergias.</p>
-                            <a href="blog/schnauzer-miniatura-pierde-pelo" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                            <a href="/blog/schnauzer-miniatura-pierde-pelo" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </article>
 
-                    <!-- ARTÍCULO 2: ALIMENTACIÓN -->
                     <article class="article-card">
                         <div class="card-body">
                             <div class="card-meta">
@@ -604,20 +589,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                             <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>29 de mayo de 2026</div>
                             <h2 class="card-title">Alimentación del cachorro: qué pienso elegir y por qué</h2>
                             <p class="card-excerpt">Todo lo que necesitas saber para elegir la alimentación más adecuada para tu nuevo compañero: cómo leer una etiqueta, cuántas veces al día comer, qué alimentos son tóxicos y cuándo cambiar al pienso de adulto.</p>
-                            <a href="blog/alimentacion-cachorro-pienso" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- ARTÍCULO 1 -->
-                    <article class="article-card">
-                        <div class="card-body">
-                            <div class="card-meta">
-                                <span class="card-cat">Consejos para nuevos dueños</span>
-                            </div>
-                            <div class="card-date"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>26 de mayo de 2026</div>
-                            <h2 class="card-title">¿Estás pensando en un nuevo miembro para la familia?</h2>
-                            <p class="card-excerpt">Guía completa para comprar un cachorro en España: cómo elegir criadero, documentación obligatoria, primeros cuidados y señales de alarma que nunca debes ignorar.</p>
-                            <a href="blog/como-comprar-un-cachorro" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                            <a href="/blog/alimentacion-cachorro-pienso" class="card-link">Leer artículo <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </article>
 
@@ -631,22 +603,22 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <div class="sidebar-box">
                     <h3>Categorías</h3>
                     <nav class="cat-list" aria-label="Categorías del blog">
-                        <a href="blog" class="active">
+                        <a href="/blog">
                             Todos los artículos <span class="cat-count">8</span>
                         </a>
-                        <a href="blog/categoria/cuidados-y-salud">
+                        <a href="/blog/categoria/cuidados-y-salud" class="active">
                             Cuidados y salud <span class="cat-count">3</span>
                         </a>
-                        <a href="blog/categoria/consejos-para-nuevos-duenos">
+                        <a href="/blog/categoria/consejos-para-nuevos-duenos">
                             Consejos para nuevos dueños <span class="cat-count">2</span>
                         </a>
-                        <a href="blog/categoria/compra-de-cachorros">
+                        <a href="/blog/categoria/compra-de-cachorros">
                             Compra de Cachorros <span class="cat-count">1</span>
                         </a>
-                        <a href="blog/categoria/razas">
+                        <a href="/blog/categoria/razas">
                             Razas <span class="cat-count">1</span>
                         </a>
-                        <a href="blog/categoria/ley-y-documentacion">
+                        <a href="/blog/categoria/ley-y-documentacion">
                             Ley y documentación <span class="cat-count">1</span>
                         </a>
                     </nav>
@@ -657,7 +629,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                     <h3>¿Te ha surgido alguna duda?</h3>
                     <p>Escríbenos por WhatsApp y te respondemos sin compromiso.</p>
                     <a href="https://wa.me/34670225384" target="_blank"><i class="fab fa-whatsapp"></i> Hablar por WhatsApp</a>
-                    <a href="camadas">Ver camadas disponibles →</a>
+                    <a href="/camadas">Ver camadas disponibles →</a>
                 </div>
 
             </aside>
@@ -674,17 +646,14 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <a href="https://wa.me/34670225384" target="_blank" class="btn-primary">
                 <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
             </a>
-            <a href="camadas" class="btn-outline">
+            <a href="/camadas" class="btn-outline">
                 Ver camadas disponibles →
             </a>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
-
 </main>
-
 
 <footer>
     <div class="container">
@@ -701,8 +670,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="footer-col">
                 <h4>Razas</h4>
                 <ul>
-                    <li><a href="caniche-toy">Caniche Toy</a></li>
-                    <li><a href="schnauzer-mini">Schnauzer Miniatura</a></li>
+                    <li><a href="/caniche-toy">Caniche Toy</a></li>
+                    <li><a href="/schnauzer-mini">Schnauzer Miniatura</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -711,8 +680,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                     <li><a href="/#historia">Nuestra Historia</a></li>
                     <li><a href="/#como-criamos">Cómo Criamos</a></li>
                     <li><a href="/#galeria">Galería</a></li>
-                    <li><a href="camadas">Camadas Disponibles</a></li>
-                    <li><a href="blog">Blog</a></li>
+                    <li><a href="/camadas">Camadas Disponibles</a></li>
+                    <li><a href="/blog">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -727,8 +696,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
         <div class="footer-bottom">
             <p>© 2025–2026 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
             <div class="f-legal">
-                <a href="aviso-legal">Aviso Legal</a>
-                <a href="politica-privacidad">Privacidad</a>
+                <a href="/aviso-legal">Aviso Legal</a>
+                <a href="/politica-privacidad">Privacidad</a>
             </div>
         </div>
     </div>
