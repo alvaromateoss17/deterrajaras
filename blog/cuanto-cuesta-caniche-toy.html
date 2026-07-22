@@ -67,142 +67,941 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-/* Reuse blog styles (kept minimal here for brevity) */
-body{font-family:'Lato',sans-serif;background:#F9EDE8;color:#5A3E36;}
-.container{max-width:1180px;margin:0 auto;padding:24px}
-.article-lead{border-left:4px solid #AD3E64;padding-left:20px}
-.toc{background:#fff;padding:20px;border-radius:12px}
-.content-list{list-style:none;padding-left:0}
-.callout{background:#fff;padding:18px;border-left:4px solid #AD3E64;border-radius:8px}
-</style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: #F9EDE8; color: #5A3E36; line-height: 1.7; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+:root {
+    --color-fondo-principal:   #F9EDE8;
+    --color-fondo-alternativo: #F5C4B3;
+    --color-cta-principal:     #AD3E64;
+    --color-cta-hover:         #93325A;
+    --color-acento:            #8BAF82;
+    --color-rosa-decorativo:   #D4537E;
+    --color-acento-texto:      #4E6B47;
+    --color-texto:             #5A3E36;
+    --color-texto-suave:       #6E5048;
+    --color-blanco:            #FFFFFF;
+    --color-borde:             #EDD5CC;
+    --shadow:         0 4px 24px rgba(212,83,126,.10);
+    --shadow-lg:      0 8px 40px rgba(212,83,126,.18);
+    --radius:         18px;
+    --radius-sm:      10px;
+    --tr: 0.3s ease;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* MOBILE MENU */
+.mobile-menu {
+    display: flex; position: fixed; inset: 0;
+    background: #fff; z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    overflow-y: auto; padding: 60px 24px 40px;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transform: translateX(100%);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+.mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); }
+.mobile-menu a {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    color: var(--color-texto); padding: 12px 24px;
+    border-radius: 12px; transition: var(--tr);
+    width: 100%; text-align: center;
+    min-height: 44px; display: flex; align-items: center; justify-content: center;
+}
+.mobile-menu a:hover, .mobile-menu a.active { color: var(--color-cta-principal); background: var(--color-fondo-principal); }
+.mobile-menu .mobile-wa {
+    margin-top: 20px !important; background: var(--color-cta-principal) !important;
+    color: #fff !important; padding: 14px 32px !important; border-radius: 50px !important;
+    font-size: 1rem !important; font-family: 'Lato', sans-serif !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    gap: 10px !important; width: 100% !important; max-width: 300px !important; min-height: 44px !important;
+}
+.mobile-close {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; font-size: 1.6rem;
+    color: var(--color-texto); cursor: pointer;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; transition: background var(--tr);
+}
+.mobile-close:hover { background: var(--color-fondo-principal); }
+
+/* NAVBAR */
+#navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000; padding: 18px 0;
+    background: var(--color-blanco);
+    border-bottom: 1px solid var(--color-borde);
+    transition: var(--tr);
+}
+#navbar.scrolled { box-shadow: 0 2px 20px rgba(212,83,126,.10); padding: 12px 0; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--color-texto); transition: var(--tr); }
+.nav-logo span { color: var(--color-cta-principal); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { color: var(--color-texto-suave); font-weight: 600; font-size: .88rem; padding: 8px 14px; border-radius: 50px; transition: var(--tr); letter-spacing: .2px; }
+.nav-links a:hover { background: rgba(212,83,126,.07); color: var(--color-cta-principal); }
+.nav-links a.nav-active { color: var(--color-cta-principal); }
+.nav-camadas {
+    border: 2px solid var(--color-borde);
+    border-radius: 50px !important;
+    color: var(--color-texto) !important;
+    font-weight: 700 !important;
+    padding: 8px 18px !important;
+}
+.nav-camadas:hover { background: var(--color-cta-principal) !important; color: #fff !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--color-texto); border-radius: 2px; transition: var(--tr); }
+.nav-has-dropdown { position: relative; }
+.nav-dropdown {
+    display: none; position: absolute; top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: #fff; border: 1px solid var(--color-borde);
+    border-radius: 14px; min-width: 180px; padding: 10px 0;
+    box-shadow: var(--shadow); flex-direction: column;
+}
+.nav-has-dropdown:hover .nav-dropdown { display: flex; }
+.nav-dropdown li a { display: block; padding: 9px 20px; font-size: .88rem; color: var(--color-texto-suave); transition: var(--tr); border-radius: 0; }
+.nav-dropdown li a:hover { background: rgba(212,83,126,.06); color: var(--color-cta-principal); padding-left: 24px; }
+
+/* FLOAT WA */
+.float-wa {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; z-index: 900;
+    box-shadow: 0 4px 20px rgba(37,211,102,.35);
+    transition: var(--tr);
+}
+.float-wa:hover { transform: scale(1.1); background: #1eb957; }
+
+/* BREADCRUMB */
+.breadcrumb {
+    background: #fff;
+    border-bottom: 1px solid var(--color-borde);
+    padding: 80px 0 0;
+}
+.breadcrumb-inner {
+    padding: 14px 0;
+    font-size: 0.82rem;
+    color: var(--color-texto-suave);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.breadcrumb-inner a { color: var(--color-texto-suave); transition: var(--tr); }
+.breadcrumb-inner a:hover { color: var(--color-cta-principal); }
+.breadcrumb-inner .sep { opacity: 0.4; }
+.breadcrumb-inner .current { color: var(--color-texto); font-weight: 600; }
+
+/* ARTICLE LAYOUT */
+.article-wrap {
+    padding: 60px 0 100px;
+}
+.article-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 60px;
+    align-items: start;
+}
+
+/* ARTICLE HEADER */
+.article-header { margin-bottom: 40px; }
+.article-cat {
+    display: inline-block;
+    background: rgba(212,83,126,.09);
+    color: var(--color-cta-principal);
+    padding: 5px 14px; border-radius: 50px;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.article-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    color: var(--color-texto);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+.article-lead {
+    font-size: 1.12rem;
+    color: var(--color-texto);
+    line-height: 1.8;
+    border-left: 4px solid var(--color-cta-principal);
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--color-texto-suave);
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-borde);
+    border-bottom: 1px solid var(--color-borde);
+}
+.article-meta .sep { opacity: 0.4; }
+
+/* TABLE OF CONTENTS */
+.toc {
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    margin: 40px 0;
+}
+.toc h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--color-texto);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-borde);
+}
+.toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.toc ol li { counter-increment: toc-counter; display: flex; align-items: flex-start; gap: 10px; }
+.toc ol li::before {
+    content: counter(toc-counter);
+    min-width: 22px; height: 22px;
+    background: rgba(212,83,126,.1);
+    color: var(--color-cta-principal);
+    border-radius: 50%;
+    font-size: 0.72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+}
+.toc ol li a { font-size: 0.88rem; color: var(--color-texto-suave); transition: var(--tr); line-height: 1.4; }
+.toc ol li a:hover { color: var(--color-cta-principal); }
+
+/* ARTICLE BODY */
+.article-body { color: var(--color-texto); }
+.article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    color: var(--color-texto);
+    margin: 48px 0 18px;
+    line-height: 1.25;
+    padding-top: 16px;
+    border-top: 2px solid var(--color-borde);
+}
+.article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+.article-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--color-texto);
+    margin: 32px 0 14px;
+}
+.article-body p { margin-bottom: 18px; font-size: 1rem; line-height: 1.8; }
+.article-body a.inline-link { color: var(--color-cta-principal); font-weight: 600; }
+.article-body ul.content-list {
+    list-style: none; margin: 16px 0 24px; padding: 0;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.article-body ul.content-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.95rem; line-height: 1.6;
+}
+.article-body ul.content-list li::before {
+    content: "✦";
+    color: var(--color-cta-principal);
+    font-size: 0.7rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+/* CALLOUTS */
+.callout {
+    border-radius: var(--radius-sm);
+    padding: 22px 24px;
+    margin: 28px 0;
+    border-left: 4px solid;
+}
+.callout-ley {
+    background: rgba(139,175,130,.08);
+    border-color: var(--color-acento);
+}
+.callout-alerta {
+    background: rgba(212,83,126,.07);
+    border-color: var(--color-cta-principal);
+}
+.callout-tip {
+    background: rgba(245,196,179,.35);
+    border-color: var(--color-fondo-alternativo);
+}
+.callout-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+}
+.callout-ley .callout-title { color: var(--color-acento-texto); }
+.callout-alerta .callout-title { color: var(--color-cta-principal); }
+.callout-tip .callout-title { color: var(--color-texto); }
+.callout ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.callout ul li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; line-height: 1.6; }
+.callout ul li::before { content: "→"; color: inherit; opacity: 0.7; flex-shrink: 0; }
+.callout p { font-size: 0.92rem; line-height: 1.7; margin-bottom: 0; }
+.callout p + p { margin-top: 12px; }
+
+/* PULL QUOTE */
+.pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--color-texto);
+    text-align: center;
+    padding: 32px 40px;
+    margin: 36px 0;
+    position: relative;
+    border-top: 2px solid var(--color-borde);
+    border-bottom: 2px solid var(--color-borde);
+    line-height: 1.5;
+}
+.pull-quote::before {
+    content: '"';
+    font-size: 5rem;
+    color: var(--color-cta-principal);
+    opacity: 0.2;
+    position: absolute;
+    top: -10px; left: 20px;
+    line-height: 1;
+    font-family: 'Playfair Display', serif;
+}
+
+/* CHECKLIST */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0 28px; }
+.checklist li {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: #fff; padding: 14px 18px; border-radius: var(--radius-sm);
+    border: 1px solid var(--color-borde); font-size: 0.92rem; line-height: 1.6;
+}
+.checklist li .check-icon {
+    width: 22px; height: 22px; min-width: 22px;
+    background: rgba(139,175,130,.15); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: var(--color-acento-texto); margin-top: 1px;
+}
+.checklist li .check-icon.pending {
+    background: rgba(245,196,179,.5); color: var(--color-texto-suave);
+}
+
+/* DISCLAIMER */
+.article-disclaimer {
+    background: rgba(245,196,179,.22);
+    border: 1px dashed var(--color-borde);
+    border-radius: var(--radius-sm);
+    padding: 18px 22px;
+    margin: 40px 0 8px;
+    font-size: 0.86rem;
+    font-style: italic;
+    color: var(--color-texto-suave);
+    line-height: 1.7;
+}
+
+/* ARTICLE CTA */
+.article-cta {
+    background: linear-gradient(135deg, var(--color-cta-principal) 0%, #B8436A 100%);
+    border-radius: var(--radius);
+    padding: 40px 40px;
+    margin: 48px 0;
+    color: #fff;
+    text-align: center;
+}
+.article-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin: 0 0 14px;
+    border: none;
+    padding: 0;
+}
+.article-cta p {
+    opacity: 0.92;
+    max-width: 480px;
+    margin: 0 auto 28px;
+    font-size: 1rem;
+}
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-white {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #fff; color: var(--color-cta-principal);
+    padding: 13px 26px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem;
+    transition: var(--tr);
+}
+.btn-white:hover { background: var(--color-fondo-alternativo); transform: translateY(-2px); }
+.btn-outline-white {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: #fff;
+    padding: 13px 26px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem;
+    border: 2px solid rgba(255,255,255,.5);
+    transition: var(--tr);
+}
+.btn-outline-white:hover { border-color: #fff; transform: translateY(-2px); }
+
+/* FAQ ACCORDION */
+.faq-section { margin: 48px 0; }
+.faq-section > h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    color: var(--color-texto);
+    margin-bottom: 28px;
+    padding-top: 16px;
+    border-top: 2px solid var(--color-borde);
+}
+.faq-item {
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+.faq-q {
+    width: 100%; text-align: left; padding: 18px 20px;
+    background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.98rem; font-weight: 700;
+    color: var(--color-texto);
+    transition: var(--tr);
+    gap: 12px;
+}
+.faq-q:hover { color: var(--color-cta-principal); }
+.faq-q .faq-icon { color: var(--color-cta-principal); font-size: 0.85rem; flex-shrink: 0; transition: var(--tr); }
+.faq-q[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+.faq-a {
+    display: none; padding: 0 20px 18px;
+    font-size: 0.92rem; line-height: 1.8;
+    color: var(--color-texto-suave);
+    border-top: 1px solid var(--color-borde);
+}
+.faq-a.open { display: block; }
+
+/* RELATED ARTICLES */
+.related-section { margin-top: 64px; padding-top: 48px; border-top: 2px solid var(--color-borde); }
+.related-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--color-texto);
+    margin-bottom: 28px;
+}
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.related-card {
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-sm);
+    padding: 22px 22px 18px;
+    transition: var(--tr);
+    display: block;
+}
+.related-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.related-cat {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--color-cta-principal);
+    margin-bottom: 8px;
+}
+.related-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--color-texto);
+    line-height: 1.35;
+}
+
+/* SIDEBAR STICKY */
+.article-sidebar { position: sticky; top: 90px; }
+.sidebar-toc {
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    margin-bottom: 24px;
+}
+.sidebar-toc h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--color-texto);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-borde);
+}
+.sidebar-toc ol { list-style: none; display: flex; flex-direction: column; gap: 6px; counter-reset: stoc; }
+.sidebar-toc ol li { counter-increment: stoc; display: flex; align-items: flex-start; gap: 8px; }
+.sidebar-toc ol li::before {
+    content: counter(stoc);
+    min-width: 18px; height: 18px;
+    background: rgba(212,83,126,.1); color: var(--color-cta-principal);
+    border-radius: 50%; font-size: 0.65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 3px; flex-shrink: 0;
+}
+.sidebar-toc ol li a { font-size: 0.82rem; color: var(--color-texto-suave); transition: var(--tr); line-height: 1.4; }
+.sidebar-toc ol li a:hover { color: var(--color-cta-principal); }
+.sidebar-cta {
+    background: linear-gradient(135deg, var(--color-cta-principal) 0%, #B8436A 100%);
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 24px;
+}
+.sidebar-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 10px; }
+.sidebar-cta p { font-size: 0.82rem; opacity: 0.9; line-height: 1.6; margin-bottom: 16px; }
+.sidebar-cta a {
+    display: block; background: #fff; color: var(--color-cta-principal);
+    padding: 10px 16px; border-radius: 50px;
+    font-weight: 700; font-size: 0.82rem;
+    transition: var(--tr); margin-bottom: 8px;
+}
+.sidebar-cta a:hover { background: var(--color-fondo-alternativo); }
+.sidebar-cta a:last-child { margin-bottom: 0; }
+
+/* FOOTER */
+footer { background: var(--color-texto); color: var(--color-fondo-alternativo); padding: 70px 0 0; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+.footer-brand .f-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.footer-brand .f-logo span { color: var(--color-cta-principal); }
+.footer-brand p { font-size: .88rem; line-height: 1.7; opacity: .75; max-width: 280px; }
+.f-socials { display: flex; gap: 12px; margin-top: 20px; }
+.f-soc { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff; transition: var(--tr); }
+.f-soc:hover { background: var(--color-cta-principal); transform: translateY(-2px); }
+.footer-col h4 { font-weight: 700; color: var(--color-fondo-alternativo); margin-bottom: 18px; font-size: .82rem; letter-spacing: .9px; text-transform: uppercase; }
+.footer-col ul { display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a { color: rgba(245,196,179,0.7); font-size: .88rem; transition: var(--tr); }
+.footer-col ul a:hover { color: var(--color-cta-principal); padding-left: 4px; }
+.footer-map iframe { width: 100%; height: 130px; border: 0; border-radius: 10px; margin-bottom: 12px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding: 22px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: .82rem; opacity: .6; }
+.f-legal { display: flex; gap: 20px; }
+.f-legal a { font-size: .8rem; opacity: .6; transition: var(--tr); }
+.f-legal a:hover { opacity: 1; color: var(--color-cta-principal); }
+
+/* RESPONSIVE — MOBILE OPTIMIZADO */
+@media (max-width: 1024px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { position: static; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 767px) {
+    #navbar { padding: 12px 0; }
+    #navbar.scrolled { padding: 8px 0; }
+    .nav-logo { font-size: 1.3rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .container { padding: 0 16px; }
+
+    h1 { font-size: clamp(1.7rem, 7vw, 2.2rem) !important; line-height: 1.2 !important; }
+    h2 { font-size: clamp(1.4rem, 5.5vw, 1.85rem) !important; line-height: 1.25 !important; }
+    h3 { font-size: clamp(1.1rem, 4.5vw, 1.3rem) !important; line-height: 1.35 !important; }
+    p  { font-size: 0.97rem; line-height: 1.72; }
+    .pull-quote { font-size: clamp(1.1rem, 4vw, 1.35rem); padding: 24px 20px; }
+
+    .btn-wa, .btn-outline-w, .btn-cta-green, .btn-primary, .btn-outline,
+    .wa-cta-big, [class*="btn-"] { min-height: 44px; display: inline-flex !important;
+        align-items: center; justify-content: center; padding: 12px 24px !important; font-size: 0.95rem !important; }
+    a, button, [role="button"] { min-height: 44px; min-width: 44px; }
+    p a, li a { min-height: unset; min-width: unset; }
+
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { position: static; }
+    .related-grid { grid-template-columns: 1fr !important; }
+    .article-cta { padding: 32px 20px; }
+    .toc { padding: 20px 18px; }
+    .breadcrumb-inner { font-size: 0.76rem; }
+    [class*="-grid"] { gap: 20px; }
+    [class*="-card"] { padding: 20px 18px !important; border-radius: 14px !important;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important; }
+
+    section { padding-top: 56px !important; padding-bottom: 56px !important; }
+
+    footer { padding: 48px 0 32px; }
+    .footer-grid { grid-template-columns: 1fr !important; gap: 28px; }
+    .footer-brand { text-align: center; }
+    .footer-brand .f-socials { justify-content: center; }
+    .footer-col { text-align: center; }
+    .footer-map iframe { height: 160px; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+    .f-legal { justify-content: center; }
+
+    .float-wa { bottom: 16px; right: 16px; width: 50px; height: 50px; font-size: 1.35rem; }
+    input, textarea, select { font-size: 16px !important; -webkit-appearance: none; appearance: none; border-radius: 10px; }
+}
+@media (max-width: 480px) {
+    section { padding-top: 44px !important; padding-bottom: 44px !important; }
+    .breadcrumb-inner { font-size: 0.72rem; }
+}
+@media (max-width: 360px) {
+    .nav-logo { font-size: 1.15rem; }
+    h1 { font-size: 1.55rem !important; }
+    h2 { font-size: 1.3rem !important; }
+    .float-wa { bottom: 12px; right: 12px; width: 46px; height: 46px; }
+    .mobile-menu a { font-size: 1.3rem; padding: 10px 16px; }
+}
+    </style>
 </head>
 <body>
 
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/34670225384" target="_blank" class="float-wa" title="Escríbenos por WhatsApp" aria-label="Escríbenos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>
+    <a href="/#inicio" onclick="closeMobile()">Inicio</a>
+    <a href="/#razas" onclick="closeMobile()">Razas</a>
+    <a href="/caniche-toy" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="/schnauzer-mini" onclick="closeMobile()" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
+    <a href="/#contacto" onclick="closeMobile()">Contacto</a>
+    <a href="/blog" onclick="closeMobile()">Blog</a>
+    <a href="/camadas" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar" aria-label="Navegación principal">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">Deterra<span>jaras</span></a>
+            <ul class="nav-links">
+                <li><a href="/#inicio">Inicio</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="/#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/caniche-toy">Caniche Toy</a></li>
+                        <li><a href="/schnauzer-mini">Schnauzer Mini</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#contacto">Contacto</a></li>
+                <li><a href="/blog" class="nav-active">Blog</a></li>
+                <li><a href="/camadas" class="nav-camadas">Camadas</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
 <main id="contenido">
-<section class="container">
-    <header>
-        <a href="/blog/categoria/compra-de-cachorros" class="article-cat">Compra de Cachorros</a>
-        <h1>¿Cuánto cuesta un Caniche Toy en España? Guía completa para 2026</h1>
-        <p class="article-lead">Si estás buscando comprar un Caniche Toy, lo más probable es que te preguntes: ¿cuánto cuesta realmente? En este artículo desgranamos los factores que influyen en el precio, rangos orientativos y qué debes exigir para comprar con seguridad.</p>
-        <div style="color:#6E5048;font-size:.95rem;margin-top:8px">Deterrajaras · 9 de junio de 2026 · Lectura: 7 min</div>
-    </header>
 
-    <div class="toc" style="margin-top:18px">
-        <h2>Índice</h2>
-        <ol>
-            <li><a href="#rango">Rango de precios en España</a></li>
-            <li><a href="#factores">Factores que influyen en el precio</a></li>
-            <li><a href="#criador-responsable">Criador responsable vs opciones más económicas</a></li>
-            <li><a href="#que-exigir">Qué debes exigir al comprar</a></li>
-            <li><a href="#ahorro">Cómo ahorrar sin arriesgar la salud del cachorro</a></li>
-            <li><a href="#contacto">Contacto y camadas en Deterrajaras</a></li>
-            <li><a href="#faq">FAQ</a></li>
-        </ol>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+    <div class="container">
+        <nav class="breadcrumb-inner" aria-label="Ruta de navegación">
+            <a href="/">Inicio</a>
+            <span class="sep">›</span>
+            <a href="/blog">Blog</a>
+            <span class="sep">›</span>
+            <span class="current">Cuánto cuesta un Caniche Toy</span>
+        </nav>
     </div>
+</div>
 
-    <h2 id="rango">1. ¿Cuál es el rango de precio de un Caniche Toy en España?</h2>
-    <p>En 2026 el precio promedio de un <strong>Caniche Toy</strong> en España suele moverse entre <strong>1.000 € y 2.500 €</strong>. Este rango es orientativo: los ejemplares con pedigree, pruebas genéticas completas o dirigidos a reproducción pueden superar los 2.500 €.</p>
+<!-- ARTÍCULO -->
+<div class="article-wrap">
+    <div class="container">
+        <div class="article-layout">
 
-    <p>En el extremo inferior (600–900 €) suelen encontrarse anuncios más económicos; en muchos casos provienen de crías sin control, refugios o intermediarios. Antes de dejarte llevar por el precio, valora qué incluye exactamente y las garantías ofrecidas.</p>
+            <!-- CONTENIDO PRINCIPAL -->
+            <main>
+                <header class="article-header">
+                    <a href="/blog/categoria/compra-de-cachorros" class="article-cat">Compra de Cachorros</a>
+                    <h1>¿Cuánto cuesta un Caniche Toy en España? Guía completa para 2026</h1>
+                    <p class="article-lead">Si estás buscando comprar un Caniche Toy, lo más probable es que te preguntes: ¿cuánto cuesta realmente? En este artículo desgranamos los factores que influyen en el precio, los rangos orientativos del mercado español y qué debes exigir para comprar con seguridad.</p>
+                    <div class="article-meta">
+                        <span>Por <strong>Deterrajaras</strong></span>
+                        <span class="sep">·</span>
+                        <span><i class="far fa-calendar-alt" style="margin-right:4px;"></i>9 de junio de 2026</span>
+                        <span class="sep">·</span>
+                        <span><i class="far fa-clock" style="margin-right:4px;"></i>7 min de lectura</span>
+                    </div>
+                </header>
 
-    <h2 id="factores">2. Factores que influyen en el precio</h2>
-    <p>El precio de un cachorro no es arbitrario. Detrás hay costes reales y decisiones éticas:</p>
-    <ul class="content-list">
-        <li><strong>Salud y controles veterinarios:</strong> revisiones, desparasitaciones, vacunas, pruebas de salud y revisiones postparto.</li>
-        <li><strong>Pedigree y registros:</strong> perros inscritos en la RSCE u organizaciones internacionales suelen costar más por el valor genético y documental.</li>
-        <li><strong>Pruebas genéticas:</strong> test para enfermedades hereditarias, displasia u otras patologías exigidas para criadores responsables.</li>
-        <li><strong>Socialización y cuidados:</strong> tiempo y recursos dedicados a socializar a los cachorros, alimentación premium y cuidados tempranos.</li>
-        <li><strong>Gastos de mantenimiento:</strong> alimentación de reproductores, instalaciones, electricidad, limpieza, personal y transporte.</li>
-        <li><strong>Garantías y contratos:</strong> contratos de compraventa, garantías de salud y soporte postventa incrementan el precio.</li>
-        <li><strong>Demanda y línea de sangre:</strong> ejemplares de líneas muy demandadas o con campeonatos ancestrales suben de precio.</li>
-    </ul>
+                <div class="callout callout-tip">
+                    <div class="callout-title"><i class="fas fa-bolt"></i> Resumen rápido</div>
+                    <p>En 2026 un cachorro de Caniche Toy en España cuesta entre <strong>1.000 € y 2.500 €</strong>. La diferencia no es capricho del criador: refleja pruebas genéticas, controles veterinarios, socialización y garantías. Por debajo de <strong>800–900 €</strong> es muy difícil cubrir esos costes sin recortar en algo, y ese algo suele ser la salud del cachorro.</p>
+                </div>
 
-    <div class="callout" style="margin-top:12px">
-        <strong>Nota:</strong> Un precio bajo puede esconder ausencia de pruebas, mala socialización o problemas de salud. Comprar barato puede salir caro.
+                <nav class="toc" aria-label="Tabla de contenidos">
+                    <h2><i class="fas fa-list" style="margin-right:8px;color:var(--color-cta-principal);"></i>Contenido del artículo</h2>
+                    <ol>
+                        <li><a href="#rango">Rango de precios en España</a></li>
+                        <li><a href="#factores">Factores que influyen en el precio</a></li>
+                        <li><a href="#criador-responsable">Criador responsable vs opciones económicas</a></li>
+                        <li><a href="#que-exigir">Qué debes exigir al comprar</a></li>
+                        <li><a href="#ahorro">Cómo ahorrar sin arriesgar la salud</a></li>
+                        <li><a href="#precio-desglosado">Desglose real del precio</a></li>
+                        <li><a href="#contacto">Por qué elegir Deterrajaras</a></li>
+                        <li><a href="#faq">Preguntas frecuentes</a></li>
+                    </ol>
+                </nav>
+
+                <article class="article-body">
+                    <h2 id="rango">1. ¿Cuál es el rango de precio de un Caniche Toy en España?</h2>
+                    <p>En 2026 el precio promedio de un <strong>Caniche Toy</strong> en España suele moverse entre <strong>1.000 € y 2.500 €</strong>. Este rango es orientativo: los ejemplares con pedigree, pruebas genéticas completas o dirigidos a reproducción pueden superar los 2.500 €.</p>
+
+                    <p>En el extremo inferior (600–900 €) suelen encontrarse anuncios más económicos; en muchos casos provienen de crías sin control, refugios o intermediarios. Antes de dejarte llevar por el precio, valora qué incluye exactamente y las garantías ofrecidas.</p>
+
+                    <h2 id="factores">2. Factores que influyen en el precio</h2>
+                    <p>El precio de un cachorro no es arbitrario. Detrás hay costes reales y decisiones éticas:</p>
+                    <ul class="content-list">
+                    <li><strong>Salud y controles veterinarios:</strong> revisiones, desparasitaciones, vacunas, pruebas de salud y revisiones postparto.</li>
+                    <li><strong>Pedigree y registros:</strong> perros inscritos en la RSCE u organizaciones internacionales suelen costar más por el valor genético y documental.</li>
+                    <li><strong>Pruebas genéticas:</strong> test para enfermedades hereditarias, displasia u otras patologías exigidas para criadores responsables.</li>
+                    <li><strong>Socialización y cuidados:</strong> tiempo y recursos dedicados a socializar a los cachorros, alimentación premium y cuidados tempranos.</li>
+                    <li><strong>Gastos de mantenimiento:</strong> alimentación de reproductores, instalaciones, electricidad, limpieza, personal y transporte.</li>
+                    <li><strong>Garantías y contratos:</strong> contratos de compraventa, garantías de salud y soporte postventa incrementan el precio.</li>
+                    <li><strong>Demanda y línea de sangre:</strong> ejemplares de líneas muy demandadas o con campeonatos ancestrales suben de precio.</li>
+                    </ul>
+
+                    <div class="callout" style="margin-top:12px">
+                    <strong>Nota:</strong> Un precio bajo puede esconder ausencia de pruebas, mala socialización o problemas de salud. Comprar barato puede salir caro.
+                    </div>
+
+                    <h2 id="criador-responsable">3. Criador responsable vs opciones más económicas</h2>
+                    <p>Comparar criadores implica mirar más allá del precio:</p>
+                    <h3>Criador responsable</h3>
+                    <ul class="content-list">
+                    <li>Reproductores con controles veterinarios y pruebas genéticas.</li>
+                    <li>Documentación completa: pedigrí, cartilla, microchip y contrato.</li>
+                    <li>Socialización en ambiente familiar, no en jaulas.</li>
+                    <li>Garantía de salud y seguimiento postventa.</li>
+                    <li>Transparencia: visitas permitidas y comunicación abierta.</li>
+                    </ul>
+
+                    <h3>Opciones económicas (mercado informal)</h3>
+                    <ul class="content-list">
+                    <li>Anuncios con fotos escasas o reutilizadas.</li>
+                    <li>Falta de documentación o microchip registrado a nombre del vendedor.</li>
+                    <li>Padres sin pruebas de salud o visibles en malas condiciones.</li>
+                    <li>Sin contrato ni garantías; altos riesgos de problemas veterinarios posteriores.</li>
+                    </ul>
+
+                    <p>Elegir un criador responsable significa pagar un precio justo por la salud y el bienestar del cachorro. Es una inversión que reduce riesgos y costes veterinarios futuros.</p>
+
+                    <h2 id="que-exigir">4. ¿Qué debes exigir al comprar un Caniche Toy?</h2>
+                    <p>Antes de comprar, exige y verifica:</p>
+                    <ul class="content-list">
+                    <li>Cartilla sanitaria con vacunas y desparasitaciones.</li>
+                    <li>Microchip y que el criador te facilite el traspaso o registro.</li>
+                    <li>Contrato de compraventa con condiciones de devolución/garantía por enfermedades hereditarias.</li>
+                    <li>Certificado de pedigrí (si aplica) y datos de los progenitores.</li>
+                    <li>Pruebas genéticas o certificaciones sanitarias de los padres.</li>
+                    <li>Posibilidad de ver instalaciones y a la madre con la camada.</li>
+                    <li>Soporte postventa y comunicación clara sobre cuidados iniciales.</li>
+                    </ul>
+
+                    <h2 id="ahorro">5. ¿Cómo ahorrar sin arriesgar la salud del cachorro?</h2>
+                    <p>Si tu presupuesto es limitado, hay formas responsables de reducir costes:</p>
+                    <ul class="content-list">
+                    <li><strong>Reservar con antelación:</strong> comprar directamente al criador evita intermediarios y suele ser más barato que tiendas o plataformas.</li>
+                    <li><strong>Comparar incluidas:</strong> compara qué incluye el precio (vacunas, microchip, contrato) y no solo el número.</li>
+                    <li><strong>Adopción y refugios:</strong> si buscas ahorrar y no necesitas pedigrí, la adopción es una opción ética y económica.</li>
+                    <li><strong>Planificar gastos:</strong> calcula el coste total el primer año (alimentación, vacunas, peluquería, seguro) y ahorra en otros apartados.</li>
+                    </ul>
+
+                    <h2 id="precio-desglosado">6. Ejemplo: desglosando el precio de un cachorro</h2>
+                    <p>A modo orientativo, así se desglosa el coste real asociado a un cachorro:</p>
+                    <ul class="content-list">
+                    <li><strong>Pruebas y controles reproductores:</strong> 150–400 € por reproductor (repartido entre camadas).</li>
+                    <li><strong>Vacunas y revisiones:</strong> 60–120 € por cachorro hasta la entrega.</li>
+                    <li><strong>Alimentación premium:</strong> 60–120 € por cachorro durante crianza.</li>
+                    <li><strong>Microchip y registro:</strong> 30–50 €.</li>
+                    <li><strong>Documentación y gestión:</strong> 50–150 €.</li>
+                    <li><strong>Tiempo de cría y socialización:</strong> coste humano indirecto (variable).</li>
+                    </ul>
+                    <p>Estos costes suman una parte importante del precio final. Un criador responsable raramente podrá vender cachorros por debajo de 800–900 € sin comprometer alguno de estos puntos.</p>
+
+                    <h2 id="contacto">7. ¿Por qué elegir Deterrajaras?</h2>
+                    <p>En Deterrajaras criamos Caniche Toy con enfoque familiar y controles completos. Nuestros cachorros salen con:</p>
+                    <ul class="content-list">
+                    <li>Cartilla sanitaria con vacunas al día.</li>
+                    <li>Microchip y contrato de compraventa.</li>
+                    <li>Pruebas veterinarias en madres y reproductores.</li>
+                    <li>Socialización en entorno doméstico y contacto humano continuo.</li>
+                    <li>Soporte postventa y asesoramiento personalizado.</li>
+                    </ul>
+
+                    <div class="callout" style="margin-top:12px">
+                    <strong>¿Quieres saber el precio exacto?</strong> Contáctanos para recibir información sobre la próxima camada, el precio por cachorro y qué incluye. Te enviaremos fotos, vídeos y el historial sanitario completo.
+                    <div style="margin-top:10px"><a href="https://wa.me/34670225384" style="background:#25D366;color:#fff;padding:10px 14px;border-radius:8px;display:inline-block;margin-top:8px;text-decoration:none">Escríbenos por WhatsApp</a></div>
+                    </div>
+
+                    <section class="faq" id="faq" style="margin-top:18px">
+                    <h2>Preguntas frecuentes</h2>
+                    <h3>¿Cuánto cuesta de media un Caniche Toy?</h3>
+                    <p>Entre 1.000 € y 2.500 € en función de pedigree, pruebas y garantías.</p>
+                    <h3>¿Puedo pagar a plazos?</h3>
+                    <p>Algunos criadores ofrecen pago fraccionado; en Deterrajaras estudiamos opciones y condiciones en cada caso.</p>
+                    <h3>¿Incluye vacunas y microchip?</h3>
+                    <p>En criaderos responsables sí; verifica siempre qué incluye el precio.</p>
+                    </section>
+
+                    <p class="article-disclaimer">Los rangos de precio de este artículo son orientativos y reflejan el mercado español en 2026. El precio final depende de cada camada, de la línea de sangre y de lo que el criador incluya. Pide siempre el desglose por escrito antes de reservar.</p>
+
+                    <!-- ARTÍCULOS RELACIONADOS -->
+                    <section class="related-section">
+                        <h2>Artículos relacionados</h2>
+                        <div class="related-grid">
+                            <a href="/blog/como-comprar-un-cachorro" class="related-card">
+                                <div class="related-cat">Compra de cachorros</div>
+                                <h3>Cómo comprar un cachorro con garantías</h3>
+                                <p style="font-size:0.82rem;color:var(--color-texto-suave);margin-top:8px;line-height:1.6;">Qué papeles exigir, cómo detectar un criador poco fiable y qué preguntar antes de reservar.</p>
+                            </a>
+                            <a href="/caniche-toy" class="related-card">
+                                <div class="related-cat">Razas</div>
+                                <h3>Caniche Toy</h3>
+                                <p style="font-size:0.82rem;color:var(--color-texto-suave);margin-top:8px;line-height:1.6;">Carácter, cuidados, salud y todo lo que necesitas saber sobre la raza.</p>
+                            </a>
+                            <a href="/criadero-caceres" class="related-card">
+                                <div class="related-cat">Criadero</div>
+                                <h3>Nuestro criadero en Cáceres</h3>
+                                <p style="font-size:0.82rem;color:var(--color-texto-suave);margin-top:8px;line-height:1.6;">Núcleo Zoológico registrado en el Polígono Ganadero. Visitas con cita previa.</p>
+                            </a>
+                        </div>
+                    </section>
+
+                </article>
+            </main>
+
+            <!-- SIDEBAR -->
+            <aside class="article-sidebar">
+                <div class="sidebar-toc">
+                    <h3><i class="fas fa-list" style="margin-right:7px;color:var(--color-cta-principal);"></i>En este artículo</h3>
+                    <ol>
+                        <li><a href="#rango">Rango de precios</a></li>
+                        <li><a href="#factores">Qué influye en el precio</a></li>
+                        <li><a href="#criador-responsable">Criador responsable</a></li>
+                        <li><a href="#que-exigir">Qué exigir</a></li>
+                        <li><a href="#ahorro">Cómo ahorrar</a></li>
+                        <li><a href="#precio-desglosado">Desglose del precio</a></li>
+                        <li><a href="#faq">Preguntas frecuentes</a></li>
+                    </ol>
+                </div>
+                <div class="sidebar-cta">
+                    <h3>¿Tienes alguna duda?</h3>
+                    <p>Escríbenos sin compromiso. Te ayudamos con los cuidados y todo lo que necesitas para tu cachorro.</p>
+                    <a href="https://wa.me/34670225384" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> WhatsApp</a>
+                    <a href="/camadas">Ver camadas →</a>
+                </div>
+                <div style="background:#fff;border:1px solid var(--color-borde);border-radius:var(--radius);padding:24px 22px;">
+                    <p style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--color-texto-suave);margin-bottom:12px;">Volver al blog</p>
+                    <a href="/blog" style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--color-cta-principal);font-weight:600;transition:var(--tr);">
+                        <i class="fas fa-arrow-left"></i> Blog de Deterrajaras
+                    </a>
+                </div>
+            </aside>
+
+        </div>
     </div>
+</div>
 
-    <h2 id="criador-responsable">3. Criador responsable vs opciones más económicas</h2>
-    <p>Comparar criadores implica mirar más allá del precio:</p>
-    <h3>Criador responsable</h3>
-    <ul class="content-list">
-        <li>Reproductores con controles veterinarios y pruebas genéticas.</li>
-        <li>Documentación completa: pedigrí, cartilla, microchip y contrato.</li>
-        <li>Socialización en ambiente familiar, no en jaulas.</li>
-        <li>Garantía de salud y seguimiento postventa.</li>
-        <li>Transparencia: visitas permitidas y comunicación abierta.</li>
-    </ul>
-
-    <h3>Opciones económicas (mercado informal)</h3>
-    <ul class="content-list">
-        <li>Anuncios con fotos escasas o reutilizadas.</li>
-        <li>Falta de documentación o microchip registrado a nombre del vendedor.</li>
-        <li>Padres sin pruebas de salud o visibles en malas condiciones.</li>
-        <li>Sin contrato ni garantías; altos riesgos de problemas veterinarios posteriores.</li>
-    </ul>
-
-    <p>Elegir un criador responsable significa pagar un precio justo por la salud y el bienestar del cachorro. Es una inversión que reduce riesgos y costes veterinarios futuros.</p>
-
-    <h2 id="que-exigir">4. ¿Qué debes exigir al comprar un Caniche Toy?</h2>
-    <p>Antes de comprar, exige y verifica:</p>
-    <ul class="content-list">
-        <li>Cartilla sanitaria con vacunas y desparasitaciones.</li>
-        <li>Microchip y que el criador te facilite el traspaso o registro.</li>
-        <li>Contrato de compraventa con condiciones de devolución/garantía por enfermedades hereditarias.</li>
-        <li>Certificado de pedigrí (si aplica) y datos de los progenitores.</li>
-        <li>Pruebas genéticas o certificaciones sanitarias de los padres.</li>
-        <li>Posibilidad de ver instalaciones y a la madre con la camada.</li>
-        <li>Soporte postventa y comunicación clara sobre cuidados iniciales.</li>
-    </ul>
-
-    <h2 id="ahorro">5. ¿Cómo ahorrar sin arriesgar la salud del cachorro?</h2>
-    <p>Si tu presupuesto es limitado, hay formas responsables de reducir costes:</p>
-    <ul class="content-list">
-        <li><strong>Reservar con antelación:</strong> comprar directamente al criador evita intermediarios y suele ser más barato que tiendas o plataformas.</li>
-        <li><strong>Comparar incluidas:</strong> compara qué incluye el precio (vacunas, microchip, contrato) y no solo el número.</li>
-        <li><strong>Adopción y refugios:</strong> si buscas ahorrar y no necesitas pedigrí, la adopción es una opción ética y económica.</li>
-        <li><strong>Planificar gastos:</strong> calcula el coste total el primer año (alimentación, vacunas, peluquería, seguro) y ahorra en otros apartados.</li>
-    </ul>
-
-    <h2 id="precio-desglosado">6. Ejemplo: desglosando el precio de un cachorro</h2>
-    <p>A modo orientativo, así se desglosa el coste real asociado a un cachorro:</p>
-    <ul class="content-list">
-        <li><strong>Pruebas y controles reproductores:</strong> 150–400 € por reproductor (repartido entre camadas).</li>
-        <li><strong>Vacunas y revisiones:</strong> 60–120 € por cachorro hasta la entrega.</li>
-        <li><strong>Alimentación premium:</strong> 60–120 € por cachorro durante crianza.</li>
-        <li><strong>Microchip y registro:</strong> 30–50 €.</li>
-        <li><strong>Documentación y gestión:</strong> 50–150 €.</li>
-        <li><strong>Tiempo de cría y socialización:</strong> coste humano indirecto (variable).</li>
-    </ul>
-    <p>Estos costes suman una parte importante del precio final. Un criador responsable raramente podrá vender cachorros por debajo de 800–900 € sin comprometer alguno de estos puntos.</p>
-
-    <h2 id="contacto">7. ¿Por qué elegir Deterrajaras?</h2>
-    <p>En Deterrajaras criamos Caniche Toy con enfoque familiar y controles completos. Nuestros cachorros salen con:</p>
-    <ul class="content-list">
-        <li>Cartilla sanitaria con vacunas al día.</li>
-        <li>Microchip y contrato de compraventa.</li>
-        <li>Pruebas veterinarias en madres y reproductores.</li>
-        <li>Socialización en entorno doméstico y contacto humano continuo.</li>
-        <li>Soporte postventa y asesoramiento personalizado.</li>
-    </ul>
-
-    <div class="callout" style="margin-top:12px">
-        <strong>¿Quieres saber el precio exacto?</strong> Contáctanos para recibir información sobre la próxima camada, el precio por cachorro y qué incluye. Te enviaremos fotos, vídeos y el historial sanitario completo.
-        <div style="margin-top:10px"><a href="https://wa.me/34670225384" style="background:#25D366;color:#fff;padding:10px 14px;border-radius:8px;display:inline-block;margin-top:8px;text-decoration:none">Escríbenos por WhatsApp</a></div>
-    </div>
-
-    <section class="faq" id="faq" style="margin-top:18px">
-        <h2>Preguntas frecuentes</h2>
-        <h3>¿Cuánto cuesta de media un Caniche Toy?</h3>
-        <p>Entre 1.000 € y 2.500 € en función de pedigree, pruebas y garantías.</p>
-        <h3>¿Puedo pagar a plazos?</h3>
-        <p>Algunos criadores ofrecen pago fraccionado; en Deterrajaras estudiamos opciones y condiciones en cada caso.</p>
-        <h3>¿Incluye vacunas y microchip?</h3>
-        <p>En criaderos responsables sí; verifica siempre qué incluye el precio.</p>
-    </section>
-
-    <footer style="margin-top:24px;color:#6E5048;font-size:.95rem">Deterrajaras · Criadero familiar en Cáceres · Núcleo Zoológico Registrado</footer>
-</section>
 </main>
 
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="f-logo">Deterra<span>jaras</span></div>
+                <p>Criadero familiar de Caniches Toy y Schnauzer Mini en Cáceres. Núcleo Zoológico registrado. Criamos con amor desde casa.</p>
+                <div class="f-socials">
+                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc" aria-label="Instagram de Deterrajaras"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/34670225384" target="_blank" class="f-soc" aria-label="WhatsApp de Deterrajaras"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                    <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc" aria-label="Enviar email a Deterrajaras"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Razas</h4>
+                <ul>
+                    <li><a href="/caniche-toy">Caniche Toy</a></li>
+                    <li><a href="/schnauzer-mini">Schnauzer Miniatura</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Criadero</h4>
+                <ul>
+                    <li><a href="/#historia">Nuestra Historia</a></li>
+                    <li><a href="/#como-criamos">Cómo Criamos</a></li>
+                    <li><a href="/#galeria">Galería</a></li>
+                    <li><a href="/criadero-caceres" title="Criadero de Caniche Toy y Schnauzer Mini en Cáceres">Criadero en Cáceres</a></li>
+                    <li><a href="/camadas">Camadas Disponibles</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="tel:+34670225384">670 225 384</a></li>
+                    <li><a href="mailto:criaderodeterrajaras@gmail.com">criaderodeterrajaras@gmail.com</a></li>
+                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Ver en Google Maps</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025–2026 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
+            <div class="f-legal">
+                <a href="/aviso-legal">Aviso Legal</a>
+                <a href="/politica-privacidad">Privacidad</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+});
+document.getElementById('mobileClose').addEventListener('click', closeMobile);
+function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+}
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const targetId = btn.getAttribute('aria-controls');
+        const answer = document.getElementById(targetId);
+
+        document.querySelectorAll('.faq-q').forEach(b => {
+            b.setAttribute('aria-expanded', 'false');
+        });
+        document.querySelectorAll('.faq-a').forEach(a => {
+            a.classList.remove('open');
+        });
+
+        if (!expanded) {
+            btn.setAttribute('aria-expanded', 'true');
+            answer.classList.add('open');
+        }
+    });
+});
+</script>
 </body>
 </html>
