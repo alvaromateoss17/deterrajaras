@@ -222,6 +222,13 @@ ul { list-style: none; }
 }
 .btn-outline:hover { background: var(--color-acento); color: #fff; transform: translateY(-2px); }
 
+.ciudades-section { padding: 72px 0; }
+.ciudades-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.ciudad-card { background: #fff; border: 1px solid #EDD5CC; border-radius: 16px; padding: 28px 24px; text-align: center; transition: transform .2s ease, box-shadow .2s ease; }
+.ciudad-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.ciudad-card .ciudad-icon { font-size: 2rem; margin-bottom: 12px; }
+.ciudad-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #5A3E36; font-weight: 700; margin-bottom: 8px; }
+.ciudad-card p { font-size: .9rem; color: var(--color-texto-suave); line-height: 1.7; }
 .razas-grid-section { padding: 80px 0; background: rgba(245,196,179,0.22); }
 .razas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 .raza-card {
@@ -310,8 +317,9 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 .f-legal a { font-size: .82rem; color: rgba(245,196,179,0.6); transition: var(--tr); }
 .f-legal a:hover { color: var(--color-cta-principal); }
 
-@media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } .razas-grid { grid-template-columns: 1fr; } .info-strip-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } .razas-grid { grid-template-columns: 1fr; } .info-strip-grid { grid-template-columns: 1fr 1fr; } .ciudades-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 767px) {
+    .ciudades-grid { grid-template-columns: 1fr; }
     #navbar { padding: 12px 0; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
@@ -340,11 +348,11 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú">✕</button>
     <a href="/#inicio">Inicio</a>
     <a href="/#razas">Razas</a>
-    <a href="caniche-toy" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
-    <a href="schnauzer-mini" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
+    <a href="/caniche-toy" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Caniche Toy</a>
+    <a href="/schnauzer-mini" style="font-size:1.1rem;padding-left:32px;color:var(--color-texto-suave);">↳ Schnauzer Mini</a>
     <a href="/#contacto">Contacto</a>
-    <a href="blog">Blog</a>
-    <a href="camadas" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
+    <a href="/blog">Blog</a>
+    <a href="/camadas" class="mobile-wa"><i class="fas fa-paw"></i> Camadas</a>
 </div>
 
 <nav id="navbar" aria-label="Navegación principal">
@@ -356,13 +364,13 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 <li class="nav-has-dropdown">
                     <a href="/#razas">Razas <i class="fas fa-chevron-down" style="font-size:0.6rem;margin-left:2px;vertical-align:middle;"></i></a>
                     <ul class="nav-dropdown">
-                        <li><a href="caniche-toy">Caniche Toy</a></li>
-                        <li><a href="schnauzer-mini">Schnauzer Mini</a></li>
+                        <li><a href="/caniche-toy">Caniche Toy</a></li>
+                        <li><a href="/schnauzer-mini">Schnauzer Mini</a></li>
                     </ul>
                 </li>
                 <li><a href="/#contacto">Contacto</a></li>
-                <li><a href="blog">Blog</a></li>
-                <li><a href="camadas" class="nav-camadas">Camadas</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/camadas" class="nav-camadas">Camadas</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -380,7 +388,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <h1>Criadero de Perros en Cáceres — Caniche Toy y Schnauzer Miniatura</h1>
             <p>Somos un <strong>criadero familiar en Cáceres</strong> con más de 15 años criando <strong>Caniche Toy</strong> y <strong>Schnauzer Miniatura</strong>. Nuestros cachorros nacen y crecen en casa, en contacto con personas desde el primer día. Somos <strong>Núcleo Zoológico registrado en Extremadura</strong>. Todos los cachorros salen con chip, vacunas, cartilla sanitaria y documentación completa según la Ley 7/2023.</p>
             <div class="raza-ctas">
-                <a href="camadas" class="btn-primary">Ver camadas disponibles</a>
+                <a href="/camadas" class="btn-primary">Ver camadas disponibles</a>
                 <a href="https://wa.me/34670225384" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
             </div>
         </div>
@@ -423,7 +431,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                     <li>Muy sociable con niños y otros animales</li>
                     <li>Vidas de 14-18 años con buena salud</li>
                 </ul>
-                <a href="caniche-toy" class="card-link">Ver más sobre el Caniche Toy <i class="fas fa-arrow-right"></i></a>
+                <a href="/caniche-toy" class="card-link">Ver más sobre el Caniche Toy <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="raza-card">
                 <div class="raza-card-icon">🐕</div>
@@ -435,7 +443,45 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                     <li>Carácter equilibrado y muy fiel</li>
                     <li>Tamaño compacto: 5-8 kg</li>
                 </ul>
-                <a href="schnauzer-mini" class="card-link">Ver más sobre el Schnauzer Mini <i class="fas fa-arrow-right"></i></a>
+                <a href="/schnauzer-mini" class="card-link">Ver más sobre el Schnauzer Mini <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ciudades-section">
+    <div class="container">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);color:#5A3E36;font-weight:700;text-align:center;margin-bottom:40px;">Desde Cáceres entregamos en toda Extremadura</h2>
+        <div class="ciudades-grid">
+            <div class="ciudad-card">
+                <div class="ciudad-icon">📍</div>
+                <h3>Cáceres</h3>
+                <p>Nuestra sede. Visitas con cita previa al Polígono Ganadero.</p>
+            </div>
+            <div class="ciudad-card">
+                <div class="ciudad-icon">📍</div>
+                <h3>Badajoz</h3>
+                <p>Entrega en Badajoz capital y provincia. A solo 1h de nuestro criadero.</p>
+            </div>
+            <div class="ciudad-card">
+                <div class="ciudad-icon">📍</div>
+                <h3>Mérida</h3>
+                <p>Entrega en Mérida y la comarca de la Tierra de Barros.</p>
+            </div>
+            <div class="ciudad-card">
+                <div class="ciudad-icon">📍</div>
+                <h3>Plasencia</h3>
+                <p>Entrega en el norte de Extremadura: Plasencia, Coria y comarca.</p>
+            </div>
+            <div class="ciudad-card">
+                <div class="ciudad-icon">📍</div>
+                <h3>Navalmoral</h3>
+                <p>Entrega en Navalmoral de la Mata y Comarca de la Vera.</p>
+            </div>
+            <div class="ciudad-card">
+                <div class="ciudad-icon">📍</div>
+                <h3>Toda España</h3>
+                <p>También llevamos cachorros a <a href="/cachorros-madrid" style="color:var(--color-cta-principal);">Madrid</a>, Salamanca, Sevilla y toda España.</p>
             </div>
         </div>
     </div>
@@ -452,7 +498,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 
             <div class="seo-block">
                 <h2>Criadero con Núcleo Zoológico registrado en Extremadura</h2>
-                <p>Contamos con <strong>Núcleo Zoológico registrado</strong> en la Junta de Extremadura, lo que garantiza que toda nuestra actividad cumple con la normativa de bienestar animal vigente. Todos los cachorros salen con <strong>microchip registrado</strong>, cartilla sanitaria sellada por veterinario, vacunas y desparasitaciones al día, y contrato de compraventa según la <strong>Ley 7/2023 de Bienestar Animal</strong>. Si tienes dudas sobre cómo comprar un cachorro con garantías, lee nuestra <a href="blog/como-comprar-un-cachorro" style="color:var(--color-cta-principal);">guía en el blog</a>.</p>
+                <p>Contamos con <strong>Núcleo Zoológico registrado</strong> en la Junta de Extremadura, lo que garantiza que toda nuestra actividad cumple con la normativa de bienestar animal vigente. Todos los cachorros salen con <strong>microchip registrado</strong>, cartilla sanitaria sellada por veterinario, vacunas y desparasitaciones al día, y contrato de compraventa según la <strong>Ley 7/2023 de Bienestar Animal</strong>. Si tienes dudas sobre cómo comprar un cachorro con garantías, lee nuestra <a href="/blog/como-comprar-un-cachorro" style="color:var(--color-cta-principal);">guía en el blog</a>.</p>
             </div>
 
             <div class="seo-block">
@@ -493,8 +539,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="footer-col">
                 <h4>Razas</h4>
                 <ul>
-                    <li><a href="caniche-toy">Caniche Toy</a></li>
-                    <li><a href="schnauzer-mini">Schnauzer Miniatura</a></li>
+                    <li><a href="/caniche-toy">Caniche Toy</a></li>
+                    <li><a href="/schnauzer-mini">Schnauzer Miniatura</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -503,8 +549,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                     <li><a href="/#historia">Nuestra Historia</a></li>
                     <li><a href="/#como-criamos">Cómo Criamos</a></li>
                     <li><a href="/#galeria">Galería</a></li>
-                    <li><a href="camadas">Camadas Disponibles</a></li>
-                    <li><a href="blog">Blog</a></li>
+                    <li><a href="/camadas">Camadas Disponibles</a></li>
+                    <li><a href="/blog">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -523,8 +569,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
         <div class="footer-bottom">
             <p>© 2025–2026 Deterrajaras · Cáceres, España · Núcleo Zoológico Registrado</p>
             <div class="f-legal">
-                <a href="aviso-legal">Aviso Legal</a>
-                <a href="politica-privacidad">Privacidad</a>
+                <a href="/aviso-legal">Aviso Legal</a>
+                <a href="/politica-privacidad">Privacidad</a>
             </div>
         </div>
     </div>

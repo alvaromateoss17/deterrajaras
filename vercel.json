@@ -23,7 +23,8 @@
     { "source": "/schnauzer-mini-extremadura.html", "destination": "/schnauzer-mini-extremadura", "permanent": true },
     { "source": "/cachorros-madrid.html", "destination": "/cachorros-madrid", "permanent": true },
     { "source": "/criadero-caceres.html", "destination": "/criadero-caceres", "permanent": true },
-    { "source": "/criadero-extremadura.html", "destination": "/criadero-extremadura", "permanent": true },
+    { "source": "/criadero-extremadura.html", "destination": "/criadero-caceres", "permanent": true },
+    { "source": "/criadero-extremadura", "destination": "/criadero-caceres", "permanent": true },
     { "source": "/blog/como-comprar-un-cachorro.html", "destination": "/blog/como-comprar-un-cachorro", "permanent": true },
     { "source": "/index.html", "destination": "/", "permanent": true }
   ]
