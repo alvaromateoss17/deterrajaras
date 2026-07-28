@@ -26,6 +26,7 @@
     { "source": "/criadero-extremadura.html", "destination": "/criadero-caceres", "permanent": true },
     { "source": "/criadero-extremadura", "destination": "/criadero-caceres", "permanent": true },
     { "source": "/blog/como-comprar-un-cachorro.html", "destination": "/blog/como-comprar-un-cachorro", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/blog/schnauzer-miniatura-pierde-pelo", "destination": "/blog/schnauzer-miniatura-suelta-pelo", "permanent": true }
   ]
 }
