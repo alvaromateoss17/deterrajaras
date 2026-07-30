@@ -639,8 +639,8 @@ const camadas = [
         nombre: "Camada Mayo 2026 · Schnauzer Mini",
         raza: "Schnauzer Miniatura",
         fecha: "Nacida el 29 de mayo de 2026",
-        estado: "available",
-        estadoText: "Disponibles",
+        estado: "agotada",
+        estadoText: "Agotada",
         cachorros: "5 cachorros",
         entrega: "Agosto 2026",
         colores: ["Sal y pimienta", "Negro"],
@@ -692,8 +692,8 @@ const camadas = [
         nombre: "Schnauzer Mini · Nacidos el 07/06/2026",
         raza: "Schnauzer Miniatura",
         fecha: "Nacida el 7 de junio de 2026",
-        estado: "available",
-        estadoText: "Disponibles",
+        estado: "agotada",
+        estadoText: "Agotada",
         cachorros: "5 cachorros",
         entrega: "Agosto 2026",
         colores: ["Negro"],
@@ -709,6 +709,27 @@ const camadas = [
             "Esta camada nació el 7 de junio de 2026, fruto de nuestros reproductores con décadas de experiencia en la raza Schnauzer Miniatura. Los cinco cachorros son de color negro y han nacido con la tipología característica de la raza.",
             "Desde el primer día crecen en casa, rodeados de estímulos, contacto humano constante y los cuidados propios de un criadero familiar. Cada cachorro sale con chip, vacunas, cartilla sanitaria y toda la documentación en regla.",
             "El Schnauzer Miniatura es una raza inteligente, activa y muy fiel a su familia. Se adapta tanto a pisos como a casas con jardín, y es un compañero ideal para familias con niños. Escríbenos por WhatsApp para reservar el tuyo."
+        ]
+    },
+    {
+        id: 5,
+        slug: "schnauzer-mini-agosto-2026",
+        mesTexto: "agosto de 2026",
+        nombre: "Próxima Camada · Schnauzer Mini",
+        raza: "Schnauzer Miniatura",
+        fecha: "Prevista para mediados de agosto de 2026",
+        estado: "reserved",
+        estadoText: "Reservas abiertas",
+        cachorros: "Camada en preparación",
+        entrega: "Octubre 2026",
+        colores: ["Por confirmar"],
+        icono: "🐕",
+        resumen: "Nuestra próxima camada de Schnauzer Miniatura, prevista para mediados de agosto de 2026. Reserva tu lugar ahora.",
+        waMsg: "Hola, me interesa reservar un cachorro de la próxima camada de Schnauzer Mini prevista para mediados de agosto. ¿Podéis darme más información?",
+        desc: [
+            "Estamos esperando nuestra próxima camada de Schnauzer Miniatura, prevista para mediados de agosto de 2026. Criados en casa desde el primer día con todo el amor.",
+            "El Schnauzer Miniatura es valiente, inteligente y muy activo. Se adapta perfectamente tanto a pisos como a casas con jardín y son grandes compañeros para los niños.",
+            "Si quieres asegurarte un cachorro, reserva tu lugar ahora. Las plazas son limitadas y se completan con rapidez. Escríbenos sin compromiso."
         ]
     }
 ];
@@ -748,6 +769,19 @@ function render() {
         + ' en Cáceres. Criados en casa, con papeles y vacunados. Consulta disponibilidad.';
     const descTag = document.querySelector('meta[name="description"]');
     if (descTag) descTag.setAttribute('content', metaDesc);
+
+    // Camadas vendidas/agotadas: mantener la URL viva (SEO), sin 404.
+    if (c.estado === 'agotada') {
+        el.innerHTML = `
+            <div class="not-found">
+                <i class="fas fa-paw" style="font-size:2.5rem;color:var(--color-cta-principal);margin-bottom:16px;display:block;"></i>
+                <h1 style="font-size:1.4rem;margin-bottom:12px;">Esta camada ya no está disponible</h1>
+                <p>Esta camada de ${c.raza} (${c.mesTexto || c.fecha}) ya se ha entregado por completo.</p>
+                <p style="margin-top:16px;"><a href="/camadas">Ver las camadas actuales →</a></p>
+            </div>
+        `;
+        return;
+    }
 
     // Diseño especial para camadas con "Reservas abiertas"
     if (c.estadoText === 'Reservas abiertas') {
