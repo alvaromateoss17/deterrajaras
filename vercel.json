@@ -1,13 +1,15 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/camadas/:slug", "destination": "/camada-detalle" }
+  ],
   "redirects": [
-    { "source": "/camadas/:slug", "destination": "/camadas", "permanent": false },
     { "source": "/blog/perros-hipoalergenicos-peque%C3%B1os", "destination": "/blog/perros-hipoalergenicos-pequenos", "permanent": true },
     { "source": "/blog/perros-hipoalergenicos-pequeños", "destination": "/blog/perros-hipoalergenicos-pequenos", "permanent": true },
-    { "source": "/camada-detalle", "has": [{ "type": "query", "key": "id", "value": "1" }], "destination": "/camadas", "permanent": true },
-    { "source": "/camada-detalle", "has": [{ "type": "query", "key": "id", "value": "2" }], "destination": "/camadas", "permanent": true },
-    { "source": "/camada-detalle", "has": [{ "type": "query", "key": "id", "value": "4" }], "destination": "/camadas", "permanent": true },
+    { "source": "/camada-detalle", "has": [{ "type": "query", "key": "id", "value": "1" }], "destination": "/camadas/caniche-toy-julio-2026", "permanent": true },
+    { "source": "/camada-detalle", "has": [{ "type": "query", "key": "id", "value": "2" }], "destination": "/camadas/schnauzer-mini-mayo-2026", "permanent": true },
+    { "source": "/camada-detalle", "has": [{ "type": "query", "key": "id", "value": "4" }], "destination": "/camadas/schnauzer-mini-junio-2026", "permanent": true },
     { "source": "/schnauzer-mini.html", "destination": "/schnauzer-mini", "permanent": true },
     { "source": "/caniche-toy.html", "destination": "/caniche-toy", "permanent": true },
     { "source": "/aviso-legal.html", "destination": "/aviso-legal", "permanent": true },

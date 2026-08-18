@@ -563,7 +563,7 @@ footer {
                     <li><a href="/#diferenciadores">Por Qué Elegirnos</a></li>
                     <li><a href="/#galeria">Galería</a></li>
                     <li><a href="/criadero-caceres" title="Criadero de Caniche Toy y Schnauzer Mini en Cáceres">Criadero en Cáceres</a></li>
-                    <li><a href="/camadas">Camadas Disponibles</a></li>
+                    <li><a href="/camadas">Camadas y Lista de Espera</a></li>
                     <li><a href="/blog">Blog</a></li>
                 </ul>
             </div>
@@ -591,11 +591,14 @@ footer {
 </footer>
 
 <script>
-// CRITERIO cuando una camada se vende/agota: NO borrar la entrada ni la URL.
-// Cambiar el campo `estado`/`estadoText` a "agotada" y mantener la página viva con
-// un mensaje tipo "Esta camada ya no está disponible, consulta las camadas actuales"
-// + enlace a /camadas. Solo si pasan más de 12 meses sin tráfico a esa URL,
-// valorar un 301 a /camadas general. Así evitamos 404 de URLs ya indexadas.
+// CRITERIO cuando una camada se completa o entrega: NO borrar la entrada ni la URL.
+// Cambiar `estado` a "cerrada" y fijar `entregada: true/false` (false = todas las
+// plazas ocupadas pero aún no se ha hecho la entrega física; true = cachorros ya
+// entregados a sus familias). La página se mantiene viva con las fotos reales y un
+// mensaje claro de que esa camada concreta ya no admite reservas, más una CTA a la
+// lista de espera de /camadas. NO usar "estado: available" ni "reserved" salvo que
+// haya una camada real con plazas abiertas ahora mismo: no crear entradas de camadas
+// futuras especulativas si no hay fecha de parto confirmada.
 // NOMBRADO de slug para nuevas camadas: [raza]-[mes]-[año] (minúsculas, sin tildes,
 // con guiones). Si dos camadas de la misma raza nacen el mismo mes, añadir el día:
 // [raza]-[dd]-[mes]-[año].
@@ -607,8 +610,9 @@ const camadas = [
         nombre: "Camada Julio 2026 · Caniche Toy",
         raza: "Caniche Toy",
         fecha: "Nacida el 6 de julio de 2026",
-        estado: "available",
-        estadoText: "Disponibles",
+        estado: "cerrada",
+        entregada: false,
+        estadoText: "Plazas completas",
         cachorros: "5 cachorros (machos y hembras)",
         entrega: "Septiembre 2026",
         colores: ["Rojo", "Albaricoque", "Crema"],
@@ -624,14 +628,12 @@ const camadas = [
             "Cachorro de Caniche Toy en Cáceres - camada nacida el 6 de julio de 2026 - foto 1",
             "Cachorros de Caniche Toy recién nacidos con su madre Lola en Cáceres - julio 2026 - foto 2",
             "Camada de Caniche Toy color albaricoque criada en casa en Cáceres - julio 2026 - foto 3",
-            "Cachorros hipoalergénicos de Caniche Toy disponibles en Cáceres - camada julio 2026 - foto 4"
+            "Cachorros de Caniche Toy criados en casa en Cáceres - camada julio 2026 - foto 4"
         ],
-        resumen: "¡Nacidos el 6 de julio de 2026! Cinco cachorros de Caniche Toy criados en casa. Hipoalergénicos, sin muda de pelo. Reservas abiertas.",
-        waMsg: "Hola, me interesa uno de los cachorros de la camada de Caniche Toy nacida en julio de 2026. ¿Podéis darme más información?",
+        resumen: "Nacidos el 6 de julio de 2026: cinco cachorros de Caniche Toy criados en casa. Todas las plazas de esta camada están ya reservadas.",
         desc: [
-            "¡Nacidos el 6 de julio de 2026! Nuestra nueva camada de Caniche Toy ha llegado al mundo con cinco preciosos cachorros, machos y hembras. Padre y madre son ejemplares con excelente genealogía y temperamento propio de la raza.",
-            "Desde el primer día están siendo criados en casa, rodeados de cariño y estímulos variados para garantizar su socialización y adaptación a cualquier entorno familiar.",
-            "El Caniche Toy es hipoalergénico, cariñoso e ideal para pisos y familias con niños. ¡Escríbenos ahora para reservar el tuyo!"
+            "Nacidos el 6 de julio de 2026, esta camada de Caniche Toy llegó al mundo con cinco cachorros, machos y hembras. Padre y madre son ejemplares con excelente genealogía y temperamento propio de la raza.",
+            "Desde el primer día están siendo criados en casa, rodeados de cariño y estímulos variados para garantizar su socialización y adaptación a cualquier entorno familiar."
         ]
     },
     {
@@ -641,8 +643,9 @@ const camadas = [
         nombre: "Camada Mayo 2026 · Schnauzer Mini",
         raza: "Schnauzer Miniatura",
         fecha: "Nacida el 29 de mayo de 2026",
-        estado: "agotada",
-        estadoText: "Agotada",
+        estado: "cerrada",
+        entregada: true,
+        estadoText: "Entregada",
         cachorros: "5 cachorros",
         entrega: "Agosto 2026",
         colores: ["Sal y pimienta", "Negro"],
@@ -654,37 +657,10 @@ const camadas = [
             "imagenes_caniches/caniche_schnauzer_01.webp",
             "imagenes_caniches/schnauzer_macho_padre.jpeg"
         ],
-        resumen: "¡Nacidos el 29 de mayo de 2026! Cinco cachorros de Schnauzer Mini con temperamento equilibrado y activo. Reservas abiertas.",
+        resumen: "Nacidos el 29 de mayo de 2026: cinco cachorros de Schnauzer Mini con temperamento equilibrado y activo. Camada ya entregada.",
         desc: [
-            "¡Nacidos hoy, 29 de mayo de 2026! Nuestra nueva camada de Schnauzer Miniatura ha llegado al mundo con cinco preciosos cachorros. Padre y madre son ejemplares con excelente genealogía y temperamento propio de la raza.",
-            "Desde el primer día están siendo criados en casa, rodeados de cariño y estímulos variados para garantizar su socialización y adaptación a cualquier entorno familiar.",
-            "El Schnauzer Mini es valiente, inteligente y muy activo. Se adapta perfectamente tanto a pisos como a casas con jardín y son grandes compañeros para los niños. ¡Escríbenos ahora para reservar el tuyo!"
-        ]
-    },
-    {
-        id: 3,
-        slug: "caniche-toy-proxima-2026",
-        mesTexto: "junio-julio de 2026",
-        nombre: "Próxima Camada · Caniches Toy",
-        raza: "Caniche Toy",
-        fecha: "Prevista Junio-Julio 2026",
-        estado: "reserved",
-        estadoText: "Reservas abiertas",
-        cachorros: "Camada en preparación",
-        entrega: "Junio-Julio 2026",
-        colores: ["Rojo", "Albaricoque", "Crema"],
-        icono: "🐩",
-        fotoThumb: "imagenes_caniches/cachorros 2.webp",
-        fotos: [
-            "imagenes_caniches/cachorros 2.webp",
-            "imagenes_caniches/cachirris 5.webp"
-        ],
-        resumen: "Nuestra próxima camada de Caniches Toy, prevista para junio-julio de 2026. Reserva tu lugar ahora.",
-        waMsg: "Hola, me interesa reservar un cachorro de la próxima camada de Caniche Toy. ¿Podéis darme más información?",
-        desc: [
-            "Estamos esperando nuestra próxima camada de Caniches Toy, prevista para junio-julio de 2026. Criados en casa desde el primer día con todo el amor.",
-            "El Caniche Toy es hipoalergénico, no suelta pelo y es ideal para familias con niños o personas con alergias. Son inteligentes, afectuosos y se adaptan perfectamente a pisos.",
-            "Si quieres asegurarte un cachorro, reserva tu lugar ahora. Las plazas son limitadas y se completan con rapidez. Escríbenos sin compromiso."
+            "Nacidos el 29 de mayo de 2026, esta camada de Schnauzer Miniatura llegó al mundo con cinco cachorros. Padre y madre son ejemplares con excelente genealogía y temperamento propio de la raza.",
+            "Desde el primer día estuvieron criados en casa, rodeados de cariño y estímulos variados para garantizar su socialización y adaptación a cualquier entorno familiar."
         ]
     },
     {
@@ -694,8 +670,9 @@ const camadas = [
         nombre: "Schnauzer Mini · Nacidos el 07/06/2026",
         raza: "Schnauzer Miniatura",
         fecha: "Nacida el 7 de junio de 2026",
-        estado: "agotada",
-        estadoText: "Agotada",
+        estado: "cerrada",
+        entregada: true,
+        estadoText: "Entregada",
         cachorros: "5 cachorros",
         entrega: "Agosto 2026",
         colores: ["Negro"],
@@ -706,32 +683,10 @@ const camadas = [
             "imagenes_caniches/camada_schnauzer_7junio2.jpeg",
             "imagenes_caniches/camada_schnauzer_7junio3.jpeg"
         ],
-        resumen: "Cinco cachorros de Schnauzer Miniatura negro, nacidos el 7 de junio de 2026 en Cáceres. Criados en casa desde el primer día.",
+        resumen: "Cinco cachorros de Schnauzer Miniatura negro, nacidos el 7 de junio de 2026 en Cáceres. Camada ya entregada.",
         desc: [
-            "Esta camada nació el 7 de junio de 2026, fruto de nuestros reproductores con décadas de experiencia en la raza Schnauzer Miniatura. Los cinco cachorros son de color negro y han nacido con la tipología característica de la raza.",
-            "Desde el primer día crecen en casa, rodeados de estímulos, contacto humano constante y los cuidados propios de un criadero familiar. Cada cachorro sale con chip, vacunas, cartilla sanitaria y toda la documentación en regla.",
-            "El Schnauzer Miniatura es una raza inteligente, activa y muy fiel a su familia. Se adapta tanto a pisos como a casas con jardín, y es un compañero ideal para familias con niños. Escríbenos por WhatsApp para reservar el tuyo."
-        ]
-    },
-    {
-        id: 5,
-        slug: "schnauzer-mini-agosto-2026",
-        mesTexto: "agosto de 2026",
-        nombre: "Próxima Camada · Schnauzer Mini",
-        raza: "Schnauzer Miniatura",
-        fecha: "Prevista para mediados de agosto de 2026",
-        estado: "reserved",
-        estadoText: "Reservas abiertas",
-        cachorros: "Camada en preparación",
-        entrega: "Octubre 2026",
-        colores: ["Negro"],
-        icono: "🐕",
-        resumen: "Nuestra próxima camada de Schnauzer Miniatura, prevista para mediados de agosto de 2026. Reserva tu lugar ahora.",
-        waMsg: "Hola, me interesa reservar un cachorro de la próxima camada de Schnauzer Mini prevista para mediados de agosto. ¿Podéis darme más información?",
-        desc: [
-            "Estamos esperando nuestra próxima camada de Schnauzer Miniatura, prevista para mediados de agosto de 2026. Criados en casa desde el primer día con todo el amor.",
-            "El Schnauzer Miniatura es valiente, inteligente y muy activo. Se adapta perfectamente tanto a pisos como a casas con jardín y son grandes compañeros para los niños.",
-            "Si quieres asegurarte un cachorro, reserva tu lugar ahora. Las plazas son limitadas y se completan con rapidez. Escríbenos sin compromiso."
+            "Esta camada nació el 7 de junio de 2026, fruto de nuestros reproductores con décadas de experiencia en la raza Schnauzer Miniatura. Los cinco cachorros son de color negro y nacieron con la tipología característica de la raza.",
+            "Desde el primer día crecieron en casa, rodeados de estímulos, contacto humano constante y los cuidados propios de un criadero familiar. Cada cachorro salió con chip, vacunas, cartilla sanitaria y toda la documentación en regla."
         ]
     }
 ];
@@ -766,20 +721,55 @@ function render() {
         const ogUrl = document.querySelector('meta[property="og:url"]');
         if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
     }
-    document.title = c.raza + ' · ' + c.fecha + ' · Deterrajaras';
-    const metaDesc = 'Cachorros de ' + c.raza + ' nacidos en ' + (c.mesTexto || '2026')
-        + ' en Cáceres. Criados en casa, con papeles y vacunados. Consulta disponibilidad.';
+    document.title = c.raza + ' · ' + c.fecha + (c.estado === 'cerrada' ? (c.entregada ? ' · Camada entregada' : ' · Plazas completas') : '') + ' · Deterrajaras';
+    const metaDesc = c.estado === 'cerrada'
+        ? 'Camada de ' + c.raza + ' nacida en ' + (c.mesTexto || '2026') + ' en Cáceres, criada en casa. '
+            + (c.entregada ? 'Ya entregada a sus familias.' : 'Todas las plazas están reservadas.')
+            + ' Apúntate a la lista de espera de la próxima.'
+        : 'Cachorros de ' + c.raza + ' nacidos en ' + (c.mesTexto || '2026')
+            + ' en Cáceres. Criados en casa, con papeles y vacunados. Consulta disponibilidad.';
     const descTag = document.querySelector('meta[name="description"]');
     if (descTag) descTag.setAttribute('content', metaDesc);
 
-    // Camadas vendidas/agotadas: mantener la URL viva (SEO), sin 404.
-    if (c.estado === 'agotada') {
+    // Camadas con plazas completas o ya entregadas: mantener la URL viva (SEO) con
+    // fotos y descripción reales, sin 404, marcando con claridad que no admite reservas.
+    if (c.estado === 'cerrada') {
+        const abs = (s) => s.startsWith('/') || /^https?:/.test(s) ? s : '/' + s;
+        const introText = c.entregada
+            ? `Esta camada nació el ${c.fecha.replace('Nacida el ', '')} y todos sus cachorros ya han sido entregados a sus familias. La mantenemos publicada como muestra real de cómo criamos: en casa, con seguimiento veterinario desde el primer día.`
+            : `Esta camada nació el ${c.fecha.replace('Nacida el ', '')} y todas sus plazas están reservadas; la entrega está prevista para ${c.entrega}. La mantenemos publicada como muestra real de cómo criamos: en casa, con seguimiento veterinario desde el primer día.`;
         el.innerHTML = `
-            <div class="not-found">
-                <i class="fas fa-paw" style="font-size:2.5rem;color:var(--color-cta-principal);margin-bottom:16px;display:block;"></i>
-                <h1 style="font-size:1.4rem;margin-bottom:12px;">Esta camada ya no está disponible</h1>
-                <p>Esta camada de ${c.raza} (${c.mesTexto || c.fecha}) ya se ha entregado por completo.</p>
-                <p style="margin-top:16px;"><a href="/camadas">Ver las camadas actuales →</a></p>
+            <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--color-texto);margin-bottom:16px;">${c.nombre}</h1>
+            <img id="mainImg" src="${abs(c.fotos[0])}" alt="${(c.alts && c.alts[0]) || c.nombre}" class="main-img">
+            <div class="gallery-row">
+                ${c.fotos.map((src, i) => `
+                    <img src="${abs(src)}" alt="${(c.alts && c.alts[i]) || ('Foto ' + (i + 1) + ' — ' + c.raza)}"
+                         ${i === 0 ? '' : 'loading="lazy"'}
+                         class="gallery-thumb${i === 0 ? ' active' : ''}"
+                         onclick="changeMain('${abs(src)}', this)">
+                `).join('')}
+            </div>
+            <span class="reservas-badge" style="margin-top:16px;display:inline-block;">${c.estadoText}</span>
+            <div class="info-grid">
+                <div class="info-block">
+                    <div class="info-label">Raza</div>
+                    <div class="info-value">${c.raza}</div>
+                </div>
+                <div class="info-block">
+                    <div class="info-label">Fecha nacimiento</div>
+                    <div class="info-value">${c.fecha}</div>
+                </div>
+            </div>
+            <div class="detalle-desc">
+                <p>${introText}</p>
+                ${c.desc.map(p => `<p>${p}</p>`).join('')}
+            </div>
+            <div class="reservas-cta" style="margin-top:32px;">
+                <p class="reservas-cta-pre">¿Buscas un cachorro de Caniche Toy o Schnauzer Mini?</p>
+                <a href="/camadas#lista-espera" class="reservas-btn">
+                    <i class="fas fa-envelope"></i>
+                    Apuntarme a la lista de espera
+                </a>
             </div>
         `;
         return;
