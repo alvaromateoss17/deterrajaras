@@ -5,6 +5,7 @@
     { "source": "/camadas/:slug", "destination": "/camada-detalle" }
   ],
   "redirects": [
+    { "source": "/camadas/:slug", "destination": "/camadas", "permanent": false },
     { "source": "/blog/perros-hipoalergenicos-peque%C3%B1os", "destination": "/blog/perros-hipoalergenicos-pequenos", "permanent": true },
     { "source": "/blog/perros-hipoalergenicos-pequeños", "destination": "/blog/perros-hipoalergenicos-pequenos", "permanent": true },
     { "source": "/camada-detalle", "has": [{ "type": "query", "key": "id", "value": "1" }], "destination": "/camadas/caniche-toy-julio-2026", "permanent": true },

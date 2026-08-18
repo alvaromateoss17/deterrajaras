@@ -7,13 +7,13 @@
     <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
     <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camadas disponibles de Caniche Toy y Schnauzer Mini | Cáceres</title>
-    <meta name="description" content="Cachorros disponibles ahora mismo en nuestro criadero de Cáceres. Fotos reales, fecha de entrega y reserva con garantía de salud. Envío a toda España.">
+    <title>Lista de espera de Caniche Toy y Schnauzer Mini | Cáceres</title>
+    <meta name="description" content="Ahora mismo no tenemos cachorros disponibles. Apúntate a la lista de espera de nuestro criadero de Cáceres y te avisamos por email cuando nazca la próxima camada.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Deterrajaras">
     <link rel="canonical" href="https://deterrajaras.es/camadas">
-    <meta property="og:title" content="Camadas disponibles de Caniche Toy y Schnauzer Mini | Cáceres">
-    <meta property="og:description" content="Cachorros disponibles ahora mismo en nuestro criadero de Cáceres. Fotos reales, fecha de entrega y reserva con garantía de salud. Envío a toda España.">
+    <meta property="og:title" content="Lista de espera de Caniche Toy y Schnauzer Mini | Cáceres">
+    <meta property="og:description" content="Ahora mismo no tenemos cachorros disponibles. Apúntate a la lista de espera y te avisamos por email cuando nazca la próxima camada.">
     <meta property="og:url" content="https://deterrajaras.es/camadas">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
@@ -24,9 +24,9 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Camadas Disponibles de Caniche Toy y Schnauzer Mini · Criadero Deterrajaras Cáceres",
+      "name": "Lista de espera de Caniche Toy y Schnauzer Mini · Criadero Deterrajaras Cáceres",
       "url": "https://deterrajaras.es/camadas",
-      "description": "Consulta las camadas disponibles de Caniche Toy y Schnauzer Mini en el criadero Deterrajaras de Cáceres. Núcleo Zoológico registrado en Extremadura.",
+      "description": "Ahora mismo no hay camadas disponibles en el criadero Deterrajaras de Cáceres. Apúntate a la lista de espera y te avisamos cuando nazca la próxima camada. Núcleo Zoológico registrado en Extremadura.",
       "inLanguage": "es",
       "isPartOf": { "@type": "WebSite", "url": "https://deterrajaras.es/" },
       "about": {
@@ -289,7 +289,78 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .camada-thumb-ph .ph-dots { display: flex; gap: 6px; margin-top: 4px; }
 .camada-thumb-ph .ph-dot { width: 8px; height: 8px; border-radius: 50%; }
 
+/* ── LISTA DE ESPERA ── */
+.espera-aviso {
+    max-width: 720px; margin: 0 auto 32px;
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius);
+    padding: 40px 32px; text-align: center;
+}
+.espera-aviso-icon { font-size: 42px; color: var(--color-fondo-alternativo); margin-bottom: 14px; display: block; }
+.espera-aviso h2 { font-size: 1.5rem; color: var(--color-texto); margin-bottom: 14px; }
+.espera-aviso p { font-size: .97rem; color: var(--color-texto-suave); margin-bottom: 12px; }
+.espera-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 14px; padding: 14px 30px;
+    background: var(--color-cta-principal); color: #fff;
+    border-radius: 50px; font-weight: 600; font-size: .97rem;
+    transition: background var(--tr), transform var(--tr);
+}
+.espera-cta:hover { background: var(--color-cta-hover); transform: translateY(-2px); }
+
+.espera-form-box {
+    max-width: 720px; margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    scroll-margin-top: 96px;
+}
+.espera-form-box h2 { font-size: 1.35rem; color: var(--color-texto); margin-bottom: 8px; }
+.espera-form-intro { font-size: .93rem; color: var(--color-texto-suave); margin-bottom: 24px; }
+.espera-form-box .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.espera-form-box .form-group { margin-bottom: 16px; display: flex; flex-direction: column; }
+.espera-form-box label { font-size: .82rem; font-weight: 600; color: var(--color-texto); margin-bottom: 6px; }
+.espera-form-box input,
+.espera-form-box select,
+.espera-form-box textarea {
+    font-family: 'Lato', sans-serif; font-size: .95rem; color: var(--color-texto);
+    background: var(--color-fondo-principal);
+    border: 1px solid var(--color-borde); border-radius: 10px;
+    padding: 12px 14px; width: 100%;
+    transition: border-color var(--tr);
+}
+.espera-form-box textarea { min-height: 110px; resize: vertical; }
+.espera-form-box input:focus,
+.espera-form-box select:focus,
+.espera-form-box textarea:focus { outline: none; border-color: var(--color-cta-principal); }
+.espera-form-box .form-btn {
+    width: 100%; border: none; cursor: pointer;
+    background: var(--color-cta-principal); color: #fff;
+    border-radius: 50px; padding: 14px 24px;
+    font-family: 'Lato', sans-serif; font-size: .97rem; font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    transition: background var(--tr);
+}
+.espera-form-box .form-btn:hover { background: var(--color-cta-hover); }
+.espera-form-box .form-btn:disabled { opacity: .7; cursor: default; }
+.espera-legal { font-size: .78rem; color: var(--color-texto-suave); margin-top: 14px; text-align: center; }
+.espera-legal a { text-decoration: underline; }
+.form-ok {
+    display: none; margin-top: 18px; padding: 16px;
+    background: rgba(139,175,130,.16); border: 1px solid var(--color-acento);
+    border-radius: 12px; color: var(--color-acento-texto);
+    font-size: .93rem; text-align: center;
+}
+@media (max-width: 600px) {
+    .espera-aviso { padding: 32px 20px; }
+    .espera-form-box { padding: 28px 20px; }
+    .espera-form-box .form-row { grid-template-columns: 1fr; gap: 0; }
+}
+
 /* ── FLOAT WA ── */
+
 .float-wa {
     position: fixed; bottom: 28px; right: 28px; z-index: 990;
     width: 62px; height: 62px; border-radius: 50%;
@@ -402,10 +473,6 @@ footer {
 </head>
 <body>
 
-<a href="https://wa.me/34670225384" target="_blank" class="float-wa" title="Escríbenos por WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
 <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" id="mobileClose" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>
     <a href="/#inicio">Inicio</a>
@@ -445,15 +512,67 @@ footer {
 
 <div class="page-header">
     <div class="container">
-        <span class="page-badge">Próximas Camadas</span>
-        <h1>Reserva tu cachorro de Caniche Toy o Schnauzer Mini en Cáceres</h1>
-        <p>Nuestras próximas camadas están en preparación. Escríbenos para reservar tu lugar — las plazas son limitadas y se agotan antes de que nazcan los cachorros.</p>
+        <span class="page-badge">Lista de espera</span>
+        <h1>Ahora mismo no tenemos cachorros disponibles</h1>
+        <p>Todos nuestros cachorros de Caniche Toy y Schnauzer Mini están ya reservados y no tenemos camadas previstas a corto plazo. Si quieres uno de la próxima camada, apúntate a la lista de espera: avisamos por email primero a quienes están en ella, antes de publicar nada en la web.</p>
     </div>
 </div>
 
 <section class="camadas-section">
     <div class="container">
-        <div class="camadas-grid" id="camadasGrid"></div>
+
+        <div class="espera-aviso">
+            <i class="fas fa-paw espera-aviso-icon" aria-hidden="true"></i>
+            <h2>Sin camadas disponibles</h2>
+            <p>Criamos pocas camadas al año para poder criarlas en casa y con tiempo. Por eso no siempre hay cachorros, y cuando los hay se reservan rápido.</p>
+            <p><strong>La lista de espera no es un compromiso ni tiene coste.</strong> Solo nos dejas tus datos y te escribimos cuando haya una camada en camino.</p>
+            <a href="#lista-espera" class="espera-cta">Apuntarme a la lista de espera →</a>
+        </div>
+
+        <div class="espera-form-box" id="lista-espera">
+            <h2>Apúntate a la lista de espera</h2>
+            <p class="espera-form-intro">Rellena este formulario y te avisaremos por email en cuanto tengamos fecha de la próxima camada. No hace falta que nos escribas por WhatsApp: te contactamos nosotros.</p>
+
+            <form id="esperaForm" onsubmit="submitEspera(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="le-nombre">Nombre *</label>
+                        <input type="text" id="le-nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="le-tel">Teléfono (opcional)</label>
+                        <input type="tel" id="le-tel" placeholder="Tu teléfono">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="le-email">Correo electrónico *</label>
+                        <input type="email" id="le-email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="le-raza">Raza que te interesa *</label>
+                        <select id="le-raza" required>
+                            <option value="Caniche Toy">Caniche Toy</option>
+                            <option value="Schnauzer Miniatura">Schnauzer Miniatura</option>
+                            <option value="Indiferente">Me da igual / las dos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="le-msg">¿Algo que quieras contarnos? (opcional)</label>
+                    <textarea id="le-msg" placeholder="Preferencia de sexo o color, provincia desde la que escribes, fechas..."></textarea>
+                </div>
+                <button type="submit" class="form-btn">
+                    <i class="fas fa-envelope" aria-hidden="true"></i> Apuntarme a la lista de espera
+                </button>
+                <p class="espera-legal">Al enviar aceptas nuestra <a href="politica-privacidad">política de privacidad</a>. Usamos tus datos solo para avisarte de las próximas camadas.</p>
+            </form>
+            <div class="form-ok" id="esperaOk">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                ¡Listo! Ya estás en la lista de espera. Te escribiremos en cuanto tengamos noticias de la próxima camada.
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -516,94 +635,47 @@ footer {
 </footer>
 
 <script>
-const camadas = [
-    {
-        id: 5,
-        slug: "schnauzer-mini-agosto-2026",
-        nombre: "Próxima Camada · Schnauzer Mini",
-        raza: "Schnauzer Miniatura",
-        fecha: "Prevista para mediados de agosto de 2026",
-        estado: "reserved",
-        estadoText: "Reservas abiertas",
-        cachorros: "Camada en preparación",
-        entrega: "Octubre 2026",
-        colores: ["Negro"],
-        icono: "🐕",
-        resumen: "Nuestra próxima camada de Schnauzer Miniatura, prevista para mediados de agosto de 2026. Reserva tu lugar ahora.",
-        waMsg: "Hola, me interesa reservar un cachorro de la próxima camada de Schnauzer Mini prevista para mediados de agosto. ¿Podéis darme más información?",
-        desc: [
-            "Estamos esperando nuestra próxima camada de Schnauzer Miniatura, prevista para mediados de agosto de 2026. Criados en casa desde el primer día con todo el amor.",
-            "El Schnauzer Miniatura es valiente, inteligente y muy activo. Se adapta perfectamente tanto a pisos como a casas con jardín y son grandes compañeros para los niños.",
-            "Si quieres asegurarte un cachorro, reserva tu lugar ahora. Las plazas son limitadas y se completan con rapidez. Escríbenos sin compromiso."
-        ]
-    },
-    {
-        id: 1,
-        slug: "caniche-toy-julio-2026",
-        nombre: "Caniche Toy · Nacidos el 06/07/2026",
-        raza: "Caniche Toy",
-        fecha: "Nacida el 6 de julio de 2026",
-        estado: "available",
-        estadoText: "Disponibles",
-        cachorros: "5 cachorros (machos y hembras)",
-        entrega: "Septiembre 2026",
-        colores: ["Rojo", "Albaricoque", "Crema"],
-        icono: "🐩",
-        fotoThumb: "imagenes_caniches/camada_caniche_toy_julio1.webp",
-        fotos: [
-            "imagenes_caniches/camada_caniche_toy_julio1.webp",
-            "imagenes_caniches/camada_caniche_toy_julio2.webp",
-            "imagenes_caniches/camada_caniche_toy_julio3.webp",
-            "imagenes_caniches/camada_caniche_toy_julio4.webp"
-        ],
-        resumen: "¡Nacidos el 6 de julio de 2026! Cinco cachorros de Caniche Toy criados en casa. Hipoalergénicos y sin muda de pelo. Reservas abiertas.",
-        waMsg: "Hola, me interesa uno de los cachorros de la camada de Caniche Toy nacida en julio de 2026. ¿Podéis darme más información?",
-        desc: [
-            "¡Nacidos el 6 de julio de 2026! Nuestra nueva camada de Caniche Toy ha llegado al mundo con cinco preciosos cachorros, machos y hembras. Padre y madre son ejemplares con excelente genealogía y temperamento propio de la raza.",
-            "Desde el primer día están siendo criados en casa, rodeados de cariño y estímulos variados para garantizar su socialización y adaptación a cualquier entorno familiar.",
-            "El Caniche Toy es hipoalergénico, cariñoso e ideal para pisos y familias con niños. ¡Escríbenos ahora para reservar el tuyo!"
-        ]
+async function submitEspera(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.form-btn');
+    const btnHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+    const raza = document.getElementById('le-raza').value;
+    const comentario = document.getElementById('le-msg').value;
+
+    const data = {
+        access_key: '304f42cd-dcac-46b0-87f5-2fe8b77c3582',
+        name: document.getElementById('le-nombre').value,
+        email: document.getElementById('le-email').value,
+        phone: document.getElementById('le-tel').value,
+        message: 'LISTA DE ESPERA\nRaza de interés: ' + raza + '\nComentario: ' + (comentario || '—'),
+        subject: 'Lista de espera (' + raza + ') — deterrajaras.es'
+    };
+
+    try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (json.success) {
+            form.style.display = 'none';
+            document.getElementById('esperaOk').style.display = 'block';
+        } else {
+            btn.disabled = false;
+            btn.innerHTML = btnHTML;
+            alert('No se ha podido enviar. Inténtalo de nuevo o escríbenos a criaderodeterrajaras@gmail.com');
+        }
+    } catch {
+        btn.disabled = false;
+        btn.innerHTML = btnHTML;
+        alert('Error de conexión. Inténtalo de nuevo en unos minutos.');
     }
-];
-
-function getBadgeClass(c) {
-    if (c.estado === 'available') return 'st-available';
-    if (c.estadoText.toLowerCase().includes('abiertas')) return 'st-reservas';
-    return 'st-reserved';
 }
-
-document.getElementById('camadasGrid').innerHTML = camadas.map(c => {
-    const isReservas = c.estadoText === 'Reservas abiertas';
-    const thumbContent = isReservas
-        ? `<div class="camada-thumb-ph">
-                <i class="fas fa-paw ph-icon"></i>
-                <span class="ph-label">En camino...</span>
-                <div class="ph-dots">
-                    <span class="ph-dot" style="background:#D4537E;"></span>
-                    <span class="ph-dot" style="background:#EDD5CC;"></span>
-                    <span class="ph-dot" style="background:#EDD5CC;"></span>
-                </div>
-           </div>`
-        : `<img src="${c.fotoThumb}" alt="Camada ${c.raza}">`;
-    const btnClass = isReservas ? 'camada-btn camada-btn-reservas' : 'camada-btn';
-    const btnText  = isReservas ? 'Reservar mi lugar →' : 'Ver camada →';
-    return `
-    <a class="camada-card" href="/camadas/${c.slug}">
-        <div class="camada-thumb">
-            ${thumbContent}
-            <div class="camada-status ${getBadgeClass(c)}">${c.estadoText}</div>
-        </div>
-        <div class="camada-body">
-            <h3>${c.nombre}</h3>
-            <div class="camada-meta">
-                <span><i class="fas fa-paw"></i> ${c.raza}</span>
-                <span><i class="fas fa-calendar-alt"></i> ${c.fecha}</span>
-            </div>
-            <p class="camada-resumen">${c.resumen}</p>
-            <span class="${btnClass}">${btnText}</span>
-        </div>
-    </a>`;
-}).join('');
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
