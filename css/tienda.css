@@ -1,0 +1,114 @@
+/* ============================================
+   TIENDA — Estilos de integración
+   Verde salvia (--color-acento). Jerárquicamente
+   SUBORDINADO al CTA de Camadas (rosa).
+============================================ */
+
+/* --- Botón en navbar --- */
+.nav-tienda {
+    background: transparent !important;
+    color: var(--color-acento) !important;
+    padding: 7px 16px !important;
+    border: 1.5px solid var(--color-acento) !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: .82rem !important;
+    transition: var(--tr) !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+}
+.nav-tienda:hover { background: var(--color-acento) !important; color: #fff !important; }
+.nav-tienda i { font-size: .78rem; }
+
+/* --- Enlace tienda en menú móvil --- */
+.mobile-tienda {
+    color: var(--color-acento) !important;
+    font-weight: 700;
+}
+
+/* --- Sección de tienda en home --- */
+.tienda-section { padding: 80px 0; background: var(--color-fondo-principal); }
+.tienda-head { text-align: center; margin-bottom: 44px; }
+.tienda-badge {
+    display: inline-block;
+    background: rgba(139,175,130,.14);
+    color: var(--color-acento);
+    font-size: .74rem; font-weight: 700;
+    letter-spacing: 1.4px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 16px;
+}
+.tienda-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    color: var(--color-texto); line-height: 1.2; margin-bottom: 12px;
+}
+.tienda-head p {
+    color: var(--color-texto-suave); max-width: 620px;
+    margin: 0 auto; line-height: 1.8; font-size: 1.02rem;
+}
+.tienda-grid {
+    display: grid; gap: 20px; margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.tienda-card {
+    background: #fff; border: 1px solid var(--color-borde);
+    border-radius: var(--radius); padding: 30px 22px;
+    text-align: center; transition: var(--tr); display: block;
+}
+.tienda-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-acento);
+    box-shadow: 0 8px 28px rgba(139,175,130,.16);
+}
+.tienda-card i {
+    font-size: 1.7rem; color: var(--color-acento); margin-bottom: 14px; display: block;
+}
+.tienda-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem;
+    color: var(--color-texto); margin-bottom: 6px; font-weight: 600;
+}
+.tienda-card span { font-size: .88rem; color: var(--color-texto-suave); line-height: 1.5; }
+.tienda-cta-wrap { text-align: center; }
+.btn-tienda {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--color-acento); color: #fff !important;
+    padding: 15px 36px; border-radius: 50px;
+    font-weight: 700; font-size: .96rem;
+    transition: var(--tr); border: none;
+}
+.btn-tienda:hover { background: #7a9d72; transform: translateY(-2px); }
+
+/* --- Bloque contextual dentro de artículos del blog --- */
+.tienda-inline {
+    background: rgba(139,175,130,.08);
+    border-left: 3px solid var(--color-acento);
+    border-radius: var(--radius-sm);
+    padding: 24px 26px; margin: 38px 0;
+}
+.tienda-inline p {
+    margin: 0 0 14px; color: var(--color-texto);
+    font-size: .98rem; line-height: 1.7;
+}
+.tienda-inline a.tienda-inline-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--color-acento); font-weight: 700;
+    font-size: .94rem; transition: var(--tr);
+}
+.tienda-inline a.tienda-inline-link:hover { color: #7a9d72; gap: 12px; }
+
+/* --- Enlace discreto en camadas --- */
+.tienda-nota {
+    text-align: center; padding: 34px 20px 10px;
+    color: var(--color-texto-suave); font-size: .94rem; line-height: 1.7;
+}
+.tienda-nota a { color: var(--color-acento); font-weight: 700; }
+.tienda-nota a:hover { text-decoration: underline; }
+
+/* --- Columna de tienda en footer --- */
+.footer-tienda h4 { color: var(--color-acento); }
+
+@media (max-width: 900px) {
+    .nav-tienda { display: none !important; }
+    .tienda-section { padding: 56px 0; }
+}
