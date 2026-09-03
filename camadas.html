@@ -595,47 +595,10 @@ footer {
 
         <div class="espera-form-box" id="lista-espera">
             <h2>Apúntate a la lista de espera</h2>
-            <p class="espera-form-intro">Rellena este formulario y te avisaremos por email en cuanto tengamos fecha de la próxima camada. Si lo prefieres, también puedes escribirnos por WhatsApp.</p>
-
-            <form id="esperaForm" onsubmit="submitEspera(event)">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="le-nombre">Nombre *</label>
-                        <input type="text" id="le-nombre" placeholder="Tu nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="le-tel">Teléfono (opcional)</label>
-                        <input type="tel" id="le-tel" placeholder="Tu teléfono">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="le-email">Correo electrónico *</label>
-                        <input type="email" id="le-email" placeholder="tu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="le-raza">Raza que te interesa *</label>
-                        <select id="le-raza" required>
-                            <option value="Caniche Toy">Caniche Toy</option>
-                            <option value="Schnauzer Miniatura">Schnauzer Miniatura</option>
-                            <option value="Indiferente">Me da igual / las dos</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="le-msg">¿Algo que quieras contarnos? (opcional)</label>
-                    <textarea id="le-msg" placeholder="Preferencia de sexo o color, provincia desde la que escribes, fechas..."></textarea>
-                </div>
-                <button type="submit" class="form-btn">
-                    <i class="fas fa-envelope" aria-hidden="true"></i> Apuntarme a la lista de espera
-                </button>
-                <p class="espera-legal">Al enviar aceptas nuestra <a href="politica-privacidad">política de privacidad</a>. Usamos tus datos solo para avisarte de las próximas camadas.</p>
-            </form>
-            <div class="form-ok" id="esperaOk">
-                <i class="fas fa-check-circle" aria-hidden="true"></i>
-                ¡Listo! Ya estás en la lista de espera. Te escribiremos en cuanto tengamos noticias de la próxima camada.
-            </div>
-            <p class="wa-secondary">¿Prefieres hablar directamente? Escríbenos por <a href="https://wa.me/34670225384?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20lista%20de%20espera%20de%20Caniche%20Toy%20o%20Schnauzer%20Mini" target="_blank">WhatsApp</a> indicando que vienes por la lista de espera.</p>
+            <p class="espera-form-intro">Escríbenos por WhatsApp indicando la raza que te interesa (Caniche Toy o Schnauzer Miniatura) y te avisaremos en cuanto tengamos fecha de la próxima camada.</p>
+            <a href="https://wa.me/34670225384?text=Hola%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20de%20Caniche%20Toy%20o%20Schnauzer%20Mini" target="_blank" rel="noopener" class="form-btn">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> Apuntarme por WhatsApp
+            </a>
         </div>
 
     </div>
@@ -716,48 +679,6 @@ footer {
 </footer>
 
 <script>
-async function submitEspera(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('.form-btn');
-    const btnHTML = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-
-    const raza = document.getElementById('le-raza').value;
-    const comentario = document.getElementById('le-msg').value;
-
-    const data = {
-        access_key: '304f42cd-dcac-46b0-87f5-2fe8b77c3582',
-        name: document.getElementById('le-nombre').value,
-        email: document.getElementById('le-email').value,
-        phone: document.getElementById('le-tel').value,
-        message: 'LISTA DE ESPERA\nRaza de interés: ' + raza + '\nComentario: ' + (comentario || '—'),
-        subject: 'Lista de espera (' + raza + ') — deterrajaras.es'
-    };
-
-    try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        const json = await res.json();
-        if (json.success) {
-            form.style.display = 'none';
-            document.getElementById('esperaOk').style.display = 'block';
-        } else {
-            btn.disabled = false;
-            btn.innerHTML = btnHTML;
-            alert('No se ha podido enviar. Inténtalo de nuevo o escríbenos a criaderodeterrajaras@gmail.com');
-        }
-    } catch {
-        btn.disabled = false;
-        btn.innerHTML = btnHTML;
-        alert('Error de conexión. Inténtalo de nuevo en unos minutos.');
-    }
-}
-
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 55);
