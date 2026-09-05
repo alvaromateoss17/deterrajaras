@@ -1,3 +1,4 @@
 .vercel
 prompts/
 _local/
+.DS_Store
