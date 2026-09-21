@@ -2,3 +2,9 @@
 prompts/
 _local/
 .DS_Store
+
+# Originales de cámara (pesados): en la web van las versiones optimizadas
+imagenes_caniches/video_camada.mov
+imagenes_caniches/video_camada2.MOV
+imagenes_caniches/camada_caniche.jpeg
+imagenes_caniches/cachorro_schnauzer.JPG
