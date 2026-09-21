@@ -46,6 +46,9 @@
     </script>
     <!-- Google Fonts — no bloqueante -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" href="imagenes_caniches/raza_schnauzer_hero_600.jpg"
+          imagesrcset="imagenes_caniches/raza_schnauzer_hero_300.jpg 300w, imagenes_caniches/raza_schnauzer_hero_600.jpg 600w"
+          imagesizes="(max-width: 767px) 260px, 380px" fetchpriority="high">
     <!-- Fuentes auto-alojadas: sin peticiones a terceros ni cadena de dependencias -->
     <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/playfair-display-700-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -227,14 +230,91 @@ ul { list-style: none; }
 
 /* SEO TEXT */
 .raza-seo { padding: 80px 0; background: #F9EDE8; }
-.raza-seo-inner { max-width: 780px; }
-.seo-block { margin-bottom: 48px; }
-.seo-block h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; color: #5A3E36; font-weight: 700; margin-bottom: 16px;
+/* ── HERO CON IMAGEN ── */
+.raza-hero-grid {
+    display: grid; grid-template-columns: 1fr 380px;
+    gap: 56px; align-items: center;
 }
-.seo-block p { font-size: 1rem; color: var(--color-texto-suave); line-height: 1.85; }
-.raza-seo-cta { text-align: center; margin-top: 48px; }
+.raza-hero-foto { position: relative; }
+.raza-hero-foto img {
+    width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+    border-radius: 48% 52% 42% 58% / 52% 44% 56% 48%;
+    box-shadow: 0 18px 50px rgba(212,83,126,.20);
+}
+.raza-hero-pill {
+    position: absolute; right: 4px; bottom: 14px;
+    background: #fff; border: 1px solid var(--color-borde);
+    border-radius: 50px; padding: 9px 18px;
+    font-size: .8rem; font-weight: 700; color: var(--color-texto);
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 6px 22px rgba(212,83,126,.14);
+}
+.raza-hero-pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--color-cta-principal); }
+
+/* ── BLOQUE SEO REDISEÑADO ── */
+.seo-head { max-width: 720px; margin: 0 auto 52px; text-align: center; }
+.seo-head .raza-badge { margin-bottom: 14px; }
+.seo-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem); color: #5A3E36;
+    font-weight: 700; line-height: 1.24; margin-bottom: 14px;
+}
+.seo-head p { font-size: 1.02rem; color: var(--color-texto-suave); line-height: 1.8; }
+.seo-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 56px; }
+.seo-card {
+    background: #fff; border: 1px solid var(--color-borde);
+    border-radius: 20px; padding: 32px 28px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.seo-card:hover { transform: translateY(-5px); box-shadow: 0 10px 34px rgba(212,83,126,.15); }
+.seo-card-ico {
+    width: 50px; height: 50px; border-radius: 14px;
+    background: rgba(245,196,179,.42); color: var(--color-cta-principal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 18px;
+}
+.seo-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.16rem;
+    color: #5A3E36; font-weight: 700; margin-bottom: 11px; line-height: 1.35;
+}
+.seo-card p { font-size: .94rem; color: var(--color-texto-suave); line-height: 1.8; }
+.seo-card a { color: var(--color-cta-principal); font-weight: 600; }
+
+.seo-destacado {
+    display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px;
+    align-items: center; background: #fff;
+    border: 1px solid var(--color-borde); border-radius: 24px;
+    padding: 48px; margin-bottom: 48px;
+}
+.seo-destacado-txt h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 2.6vw, 1.75rem); color: #5A3E36;
+    font-weight: 700; line-height: 1.28; margin-bottom: 16px;
+}
+.seo-destacado-txt p { font-size: .98rem; color: var(--color-texto-suave); line-height: 1.85; }
+.seo-destacado-txt p + p { margin-top: 13px; }
+.seo-destacado-foto img {
+    width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block;
+    border-radius: 20px; box-shadow: 0 12px 36px rgba(212,83,126,.16);
+}
+.raza-seo-cta { text-align: center; margin-top: 0; }
+
+@media (max-width: 1024px) {
+    .raza-hero-grid { grid-template-columns: 1fr 320px; gap: 36px; }
+    .seo-cards { grid-template-columns: 1fr; }
+    .seo-destacado { grid-template-columns: 1fr; gap: 32px; padding: 36px; }
+}
+@media (max-width: 767px) {
+    .raza-hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .raza-hero-foto { max-width: 260px; margin: 0 auto; }
+    .raza-hero-foto img { border-radius: 46% 54% 44% 56% / 50% 46% 54% 50%; }
+    .raza-hero-pill { right: -6px; bottom: 8px; font-size: .72rem; padding: 7px 14px; }
+    .seo-head { margin-bottom: 32px; }
+    .seo-cards { gap: 16px; margin-bottom: 36px; }
+    .seo-card { padding: 26px 22px !important; }
+    .seo-destacado { padding: 26px 22px !important; border-radius: 18px !important; margin-bottom: 36px; }
+    .seo-destacado-foto { order: -1; }
+}
 
 /* FLOATING WHATSAPP */
 .float-wa {
@@ -384,6 +464,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 <!-- HERO -->
 <section class="raza-hero">
     <div class="container">
+        <div class="raza-hero-grid">
         <div class="raza-hero-inner">
             <span class="raza-badge">Schnauzer Mini</span>
             <h1>Schnauzer Miniatura en Cáceres — Cachorros Sal y Pimienta con Papeles</h1>
@@ -391,6 +472,16 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="raza-ctas">
                 <a href="camadas" class="btn-primary" title="Disponibilidad y lista de espera de Schnauzer Miniatura">Ver camadas y lista de espera</a>
                 <a href="https://wa.me/34670225384" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> Consultar disponibilidad por WhatsApp</a>
+            </div>
+        </div>
+            <div class="raza-hero-foto">
+                <img src="imagenes_caniches/raza_schnauzer_hero_600.jpg"
+                     srcset="imagenes_caniches/raza_schnauzer_hero_300.jpg 300w, imagenes_caniches/raza_schnauzer_hero_600.jpg 600w"
+                     sizes="(max-width: 767px) 260px, 380px"
+                     alt="Cachorros de Schnauzer Miniatura negros del criadero Deterrajaras en Cáceres"
+                     width="600" height="800"
+                     fetchpriority="high" decoding="async">
+                <span class="raza-hero-pill">Schnauzer Mini negro</span>
             </div>
         </div>
     </div>
@@ -427,47 +518,49 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 <!-- TEXTOS SEO -->
 <section class="raza-seo">
     <div class="container">
-        <div class="raza-seo-inner">
 
-            <div class="seo-block">
-                <h2>Características del Schnauzer Miniatura: tamaño, carácter y cuidados</h2>
-                <p>En Deterrajaras llevamos más de 15 años criando Schnauzer Miniatura en Cáceres. Nuestros cachorros nacen y crecen dentro de nuestra casa familiar, en contacto diario con personas, niños y otros animales. Este entorno garantiza una socialización excelente y un carácter equilibrado desde el primer día de vida.</p>
-            </div>
-
-            <div class="seo-block">
-                <h2>¿Por qué el Schnauzer Mini es el perro perfecto para tu familia?</h2>
-                <p>Todos nuestros cachorros salen con cartilla sanitaria, chip registrado, vacunas al día, desparasitación y contrato de compraventa. Somos Núcleo Zoológico registrado en Extremadura, lo que garantiza que toda nuestra actividad cumple con la normativa vigente de bienestar animal. Consulta nuestra <a href="blog" style="color:var(--color-cta-principal);">guía para comprar un cachorro</a> antes de dar el paso.</p>
-            </div>
-
-            <div class="seo-block">
-                <h2>Cachorros de Schnauzer Mini disponibles en nuestro criadero de Cáceres</h2>
-                <p>Nuestros cachorros han llegado a familias en Madrid, Badajoz, Mérida, Plasencia y muchas otras ciudades de España. Si estás buscando un Schnauzer Miniatura con garantías en Extremadura o provincias cercanas, consulta nuestras <a href="camadas" style="color:var(--color-cta-principal);">camadas y lista de espera</a> o contacta con nosotros sin compromiso.</p>
-            </div>
-
-            <div class="seo-block">
-                <h2>Schnauzer Miniatura negro: carácter y elegancia</h2>
-                <p>El Schnauzer Miniatura negro es una de las variedades más
-                demandadas de la raza, y en Deterrajaras contamos con líneas de
-                competición supervisadas por Juanra, nuestro experto con más de
-                20 años de experiencia en competiciones nacionales de Schnauzer
-                Miniatura.</p>
-                <p>Nuestros Schnauzer negros se caracterizan por un manto negro
-                intenso y uniforme, sin manchas blancas ni zonas decoloradas,
-                resultado de una selección genética rigurosa. Son ejemplares con
-                temperamento equilibrado, estructura correcta y una presencia
-                impactante.</p>
-                <p>Si buscas un Schnauzer Miniatura negro en Cáceres, Extremadura
-                o alrededores, contacta con nosotros para conocer nuestras camadas
-                actuales y planificadas.</p>
-            </div>
-
-            <div class="raza-seo-cta">
-                <a href="https://wa.me/34670225384" target="_blank" class="btn-primary" style="font-size:1.05rem;padding:15px 36px;">
-                    <i class="fab fa-whatsapp"></i> Escríbenos sin compromiso
-                </a>
-            </div>
-
+        <div class="seo-head">
+            <span class="raza-badge">Criadero familiar</span>
+            <h2>Todo lo que debes saber antes de traer un Schnauzer Mini a casa</h2>
+            <p>Criamos en casa, con pocas camadas al año y con toda la documentación en regla. Esto es lo que nos diferencia.</p>
         </div>
+
+        <div class="seo-cards">
+            <div class="seo-card">
+                <div class="seo-card-ico"><i class="fas fa-house-chimney" aria-hidden="true"></i></div>
+                <h3>Criados dentro de casa</h3>
+                <p>Llevamos más de 15 años criando Schnauzer Miniatura en Cáceres. Nuestros cachorros nacen y crecen dentro de nuestra casa familiar, en contacto diario con personas, niños y otros animales. Ese entorno les da una socialización excelente y un carácter equilibrado desde el primer día.</p>
+            </div>
+            <div class="seo-card">
+                <div class="seo-card-ico"><i class="fas fa-file-shield" aria-hidden="true"></i></div>
+                <h3>Con todos los papeles en regla</h3>
+                <p>Cada cachorro sale con cartilla sanitaria, chip registrado, vacunas al día, desparasitación y contrato de compraventa. Somos Núcleo Zoológico registrado en Extremadura, así que toda nuestra actividad cumple la normativa de bienestar animal. Consulta nuestra <a href="blog">guía para comprar un cachorro</a> antes de dar el paso.</p>
+            </div>
+            <div class="seo-card">
+                <div class="seo-card-ico"><i class="fas fa-location-dot" aria-hidden="true"></i></div>
+                <h3>Entregamos en toda España</h3>
+                <p>Nuestros cachorros han llegado a familias de Madrid, Badajoz, Mérida, Plasencia y muchísimas otras ciudades del país. Si buscas un Schnauzer Miniatura con garantías, consulta nuestras <a href="camadas">camadas y lista de espera</a> o escríbenos sin compromiso.</p>
+            </div>
+        </div>
+
+        <div class="seo-destacado">
+            <div class="seo-destacado-txt">
+                <h3>Schnauzer Miniatura negro: carácter y elegancia</h3>
+                <p>El <strong>Schnauzer Miniatura negro</strong> es una de las variedades más demandadas de la raza, y en Deterrajaras contamos con líneas de competición supervisadas por Juanra, nuestro experto con más de 20 años de experiencia en competiciones nacionales.</p>
+                <p>Nuestros Schnauzer negros se caracterizan por un manto negro intenso y uniforme, sin manchas blancas ni zonas decoloradas, resultado de una selección genética rigurosa. Son ejemplares con temperamento equilibrado, estructura correcta y una presencia que se nota.</p>
+                <p>Si buscas un Schnauzer Miniatura negro en Cáceres o Extremadura, escríbenos y te contamos qué camadas tenemos previstas.</p>
+            </div>
+            <div class="seo-destacado-foto">
+                <img src="imagenes_caniches/schnauzer_mini_patio.jpg" alt="Cachorro de Schnauzer Miniatura negro descansando al sol en el patio del criadero" width="1050" height="1400" loading="lazy" decoding="async">
+            </div>
+        </div>
+
+        <div class="raza-seo-cta">
+            <a href="https://wa.me/34670225384" target="_blank" rel="noopener" class="btn-primary" style="font-size:1.05rem;padding:15px 36px;">
+                <i class="fab fa-whatsapp"></i> Escríbenos sin compromiso
+            </a>
+        </div>
+
     </div>
 </section>
 
