@@ -562,15 +562,6 @@ ul { list-style: none; }
     -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
 .video-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-.video-tools { position: absolute; top: 12px; right: 12px; z-index: 2; display: flex; flex-direction: column; gap: 8px; }
-.v-btn {
-    width: 36px; height: 36px; border-radius: 50%; border: none;
-    background: rgba(43,29,25,.55); color: #fff; font-size: .8rem; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-    transition: background .2s ease, transform .2s ease;
-}
-.v-btn:hover { background: var(--primary); transform: scale(1.08); }
 .videos-nota {
     text-align: center; max-width: 580px; margin: 32px auto 0;
     font-size: .95rem; color: var(--text-light); line-height: 1.8;
@@ -583,9 +574,7 @@ ul { list-style: none; }
     .video-cap { left: 11px; right: 11px; bottom: 11px; font-size: .74rem; }
     .video-cap span { font-size: .68rem; }
     .video-live { top: 9px; left: 9px; font-size: .58rem; padding: 4px 9px; }
-    .video-tools { top: 9px; right: 9px; gap: 6px; }
-    .v-btn { width: 31px; height: 31px; font-size: .7rem; }
-}
+        }
 
 /* ============================================
    TESTIMONIOS
@@ -1550,10 +1539,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 
             <div class="video-card">
                 <span class="video-live">Vídeo real</span>
-                <div class="video-tools">
-                    <button class="v-btn v-full" type="button" aria-label="Ver a pantalla completa"><i class="fas fa-expand" aria-hidden="true"></i></button>
-                </div>
-                <video muted loop playsinline preload="none"
+                <video muted loop playsinline preload="none" disablepictureinpicture controlslist="nofullscreen nodownload noplaybackrate"
                        poster="imagenes_caniches/poster_camada_patio.jpg"
                        aria-label="Cachorros de Caniche Toy jugando en el patio del criadero al atardecer">
                     <source src="imagenes_caniches/camada_caniche_patio.mp4" type="video/mp4">
@@ -1564,10 +1550,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
 
             <div class="video-card">
                 <span class="video-live">Vídeo real</span>
-                <div class="video-tools">
-                    <button class="v-btn v-full" type="button" aria-label="Ver a pantalla completa"><i class="fas fa-expand" aria-hidden="true"></i></button>
-                </div>
-                <video muted loop playsinline preload="none"
+                <video muted loop playsinline preload="none" disablepictureinpicture controlslist="nofullscreen nodownload noplaybackrate"
                        poster="imagenes_caniches/poster_camada_cesped.jpg"
                        aria-label="Camada de cachorros de Caniche Toy corriendo por el césped del criadero">
                     <source src="imagenes_caniches/camada_caniche_cesped.mp4" type="video/mp4">
@@ -2101,15 +2084,6 @@ function toggleCA() {
         }, { threshold: 0.35 });
         videos.forEach(v => io.observe(v));
     }
-
-    document.querySelectorAll('.v-full').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const v = btn.closest('.video-card').querySelector('video');
-            if (v.requestFullscreen) v.requestFullscreen();
-            else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
-            else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
-        });
-    });
 })();
 
 // FAQ accordion

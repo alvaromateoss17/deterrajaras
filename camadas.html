@@ -214,6 +214,52 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .camadas-anteriores h2 { font-size: 1.35rem; color: var(--color-texto); margin-bottom: 8px; }
 .camadas-anteriores > p { font-size: .93rem; color: var(--color-texto-suave); margin-bottom: 24px; }
 
+/* ── BLOQUE DE RESERVA ── */
+.reserva-bloque {
+    background: var(--color-texto); color: var(--color-fondo-alternativo);
+    border-radius: 24px; padding: 52px 48px; margin: 0 auto 48px;
+    max-width: 880px; text-align: center;
+}
+.reserva-badge {
+    display: inline-block; background: var(--color-cta-principal); color: #fff;
+    border-radius: 50px; padding: 5px 18px; font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: 18px;
+}
+.reserva-bloque h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.45rem, 3vw, 1.9rem);
+    color: #fff; font-weight: 700; line-height: 1.25; margin-bottom: 16px;
+}
+.reserva-intro { font-size: .98rem; line-height: 1.85; color: rgba(245,196,179,.9); max-width: 700px; margin: 0 auto; }
+.reserva-porque {
+    background: rgba(245,196,179,.09); border-left: 3px solid var(--color-cta-principal);
+    border-radius: 0 16px 16px 0; padding: 24px 28px; text-align: left; margin: 28px 0 30px;
+}
+.reserva-porque h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; font-weight: 700; margin-bottom: 10px; }
+.reserva-porque p { font-size: .94rem; line-height: 1.85; color: rgba(245,196,179,.88); }
+.reserva-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; text-align: left; }
+.reserva-card { background: rgba(245,196,179,.09); border: 1px solid rgba(245,196,179,.16); border-radius: 16px; padding: 22px 20px; }
+.reserva-card i { font-size: 1.1rem; color: var(--color-fondo-alternativo); margin-bottom: 11px; display: block; }
+.reserva-card h4 { font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 7px; line-height: 1.4; }
+.reserva-card p { font-size: .87rem; line-height: 1.72; color: rgba(245,196,179,.82); }
+.reserva-aclara {
+    font-size: .89rem; line-height: 1.75; color: rgba(245,196,179,.72);
+    max-width: 620px; margin: 0 auto 26px; padding-top: 22px;
+    border-top: 1px solid rgba(245,196,179,.15);
+}
+.reserva-aclara strong { color: var(--color-fondo-alternativo); }
+.btn-light {
+    display: inline-flex; align-items: center; gap: 10px; background: #fff;
+    color: var(--color-cta-principal); padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; transition: transform var(--tr), box-shadow var(--tr);
+}
+.btn-light:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+@media (max-width: 767px) {
+    .reserva-bloque { padding: 34px 22px; border-radius: 18px; margin-bottom: 36px; }
+    .reserva-porque { padding: 20px 20px; margin: 24px 0 26px; }
+    .reserva-grid { grid-template-columns: 1fr; gap: 12px; }
+    .btn-light { width: 100%; justify-content: center; }
+}
+
 /* ── VÍDEOS DE CAMADAS ── */
 .videos-camadas { max-width: 840px; margin: 0 auto 48px; text-align: center; }
 .videos-camadas h2 { font-size: 1.35rem; color: var(--color-texto); margin-bottom: 8px; }
@@ -244,15 +290,6 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
 .video-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--color-acento); }
-.video-tools { position: absolute; top: 12px; right: 12px; z-index: 2; display: flex; flex-direction: column; gap: 8px; }
-.v-btn {
-    width: 36px; height: 36px; border-radius: 50%; border: none;
-    background: rgba(43,29,25,.55); color: #fff; font-size: .8rem; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-    transition: background var(--tr), transform var(--tr);
-}
-.v-btn:hover { background: var(--color-cta-principal); transform: scale(1.08); }
 .videos-nota { font-size: .9rem; color: var(--color-texto-suave); line-height: 1.75; max-width: 520px; margin: 24px auto 0; }
 @media (max-width: 767px) {
     .videos-duo { gap: 12px; }
@@ -260,9 +297,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .video-cap { left: 11px; right: 11px; bottom: 11px; font-size: .74rem; }
     .video-cap span { font-size: .68rem; }
     .video-live { top: 9px; left: 9px; font-size: .58rem; padding: 4px 9px; }
-    .video-tools { top: 9px; right: 9px; gap: 6px; }
-    .v-btn { width: 31px; height: 31px; font-size: .7rem; }
-}
+        }
 
 /* ── CAMADAS GRID ── */
 .camadas-section { padding: 0 0 80px; background: var(--color-fondo-principal); }
@@ -648,10 +683,7 @@ footer {
             <div class="videos-duo">
                 <div class="video-card">
                     <span class="video-live">Vídeo real</span>
-                    <div class="video-tools">
-                        <button class="v-btn v-full" type="button" aria-label="Ver a pantalla completa"><i class="fas fa-expand" aria-hidden="true"></i></button>
-                    </div>
-                    <video muted loop playsinline preload="none"
+                    <video muted loop playsinline preload="none" disablepictureinpicture controlslist="nofullscreen nodownload noplaybackrate"
                            poster="/imagenes_caniches/poster_camada_patio.jpg"
                            aria-label="Cachorros de Caniche Toy jugando en el patio del criadero al atardecer">
                         <source src="/imagenes_caniches/camada_caniche_patio.mp4" type="video/mp4">
@@ -661,10 +693,7 @@ footer {
                 </div>
                 <div class="video-card">
                     <span class="video-live">Vídeo real</span>
-                    <div class="video-tools">
-                        <button class="v-btn v-full" type="button" aria-label="Ver a pantalla completa"><i class="fas fa-expand" aria-hidden="true"></i></button>
-                    </div>
-                    <video muted loop playsinline preload="none"
+                    <video muted loop playsinline preload="none" disablepictureinpicture controlslist="nofullscreen nodownload noplaybackrate"
                            poster="/imagenes_caniches/poster_camada_cesped.jpg"
                            aria-label="Camada de cachorros de Caniche Toy corriendo por el césped del criadero">
                         <source src="/imagenes_caniches/camada_caniche_cesped.mp4" type="video/mp4">
@@ -674,6 +703,39 @@ footer {
                 </div>
             </div>
             <p class="videos-nota">Los cachorros crecen en casa y en el patio, con sus madres y con nosotros. Esto es lo que verías si vinieras cualquier tarde.</p>
+        </div>
+
+        <div class="reserva-bloque">
+            <span class="reserva-badge">Novedad</span>
+            <h2>Cómo funciona la reserva del cachorro</h2>
+            <p class="reserva-intro">Hemos empezado a trabajar con <strong>reserva previa</strong>. Funciona así de simple: cuando eliges al cachorro que quieres, se reserva a tu nombre con una señal, y <strong>ese importe se descuenta del precio final</strong>. No es dinero extra: es la primera parte del pago. A partir de ahí, ese cachorro deja de estar disponible para cualquier otra familia.</p>
+
+            <div class="reserva-porque">
+                <h3>¿Por qué pedimos una señal?</h3>
+                <p>Porque nos ha pasado varias veces: una familia aparta un cachorro, nosotros decimos que no a otras familias interesadas durante semanas, y a pocos días de la entrega se echan atrás. El cachorro se queda sin casa, y las personas que sí lo querían ya se han hecho con otro. La señal es la forma de que el compromiso sea real por las dos partes: tú te aseguras tu cachorro y nosotros dejamos de enseñárselo a nadie más con tranquilidad.</p>
+            </div>
+
+            <div class="reserva-grid">
+                <div class="reserva-card">
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                    <h4>Se descuenta del precio final</h4>
+                    <p>La señal no es un coste añadido. Es parte de lo que pagas por el cachorro, adelantado.</p>
+                </div>
+                <div class="reserva-card">
+                    <i class="fas fa-lock" aria-hidden="true"></i>
+                    <h4>El cachorro queda apartado</h4>
+                    <p>Desde ese momento es tuyo. Dejamos de enseñarlo y de ofrecerlo a otras familias.</p>
+                </div>
+                <div class="reserva-card">
+                    <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                    <h4>El importe te lo decimos al hablar</h4>
+                    <p>Varía según la camada. Te lo explicamos todo por WhatsApp, con sus condiciones y sin compromiso.</p>
+                </div>
+            </div>
+
+            <p class="reserva-aclara"><strong>Ojo, no confundas las dos cosas:</strong> apuntarte a la lista de espera sigue siendo gratis y sin ningún compromiso. La señal solo entra en juego más adelante, el día que elijas un cachorro concreto y quieras reservarlo a tu nombre.</p>
+
+            <a href="https://wa.me/34670225384?text=Hola%2C%20quer%C3%ADa%20preguntar%20por%20la%20reserva%20de%20un%20cachorro" target="_blank" rel="noopener" class="btn-light"><i class="fab fa-whatsapp" aria-hidden="true"></i> Preguntar por la reserva</a>
         </div>
 
         <div class="espera-form-box" id="lista-espera">
@@ -801,15 +863,6 @@ document.getElementById('mobileClose').addEventListener('click', () => {
         }, { threshold: 0.35 });
         videos.forEach(v => io.observe(v));
     }
-
-    document.querySelectorAll('.v-full').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const v = btn.closest('.video-card').querySelector('video');
-            if (v.requestFullscreen) v.requestFullscreen();
-            else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
-            else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
-        });
-    });
 })();
 </script>
 </body>
