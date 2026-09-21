@@ -649,7 +649,6 @@ footer {
                 <div class="video-card">
                     <span class="video-live">Vídeo real</span>
                     <div class="video-tools">
-                        <button class="v-btn v-sound" type="button" aria-label="Activar sonido"><i class="fas fa-volume-xmark" aria-hidden="true"></i></button>
                         <button class="v-btn v-full" type="button" aria-label="Ver a pantalla completa"><i class="fas fa-expand" aria-hidden="true"></i></button>
                     </div>
                     <video muted loop playsinline preload="none"
@@ -663,7 +662,6 @@ footer {
                 <div class="video-card">
                     <span class="video-live">Vídeo real</span>
                     <div class="video-tools">
-                        <button class="v-btn v-sound" type="button" aria-label="Activar sonido"><i class="fas fa-volume-xmark" aria-hidden="true"></i></button>
                         <button class="v-btn v-full" type="button" aria-label="Ver a pantalla completa"><i class="fas fa-expand" aria-hidden="true"></i></button>
                     </div>
                     <video muted loop playsinline preload="none"
@@ -705,7 +703,7 @@ footer {
                 <div class="f-logo">Deterra<span>jaras</span></div>
                 <p>Criadero familiar de <a href="caniche-toy" style="color:inherit;text-decoration:underline;">Caniches Toy</a> y <a href="schnauzer-mini" style="color:inherit;text-decoration:underline;">Schnauzer Mini</a> en Cáceres, Extremadura. Núcleo Zoológico registrado. Cachorros con papeles, vacunados y criados en casa.</p>
                 <div class="f-socials">
-                    <a href="https://www.instagram.com/caniches_lola_y_lilo/" target="_blank" class="f-soc" aria-label="Instagram de Deterrajaras"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/deterrajaras/" target="_blank" class="f-soc" aria-label="Instagram de Deterrajaras"><i class="fab fa-instagram" aria-hidden="true"></i></a>
                     <a href="https://wa.me/34670225384" target="_blank" class="f-soc" aria-label="WhatsApp de Deterrajaras"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                     <a href="mailto:criaderodeterrajaras@gmail.com" class="f-soc" aria-label="Enviar email a Deterrajaras"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
@@ -803,29 +801,6 @@ document.getElementById('mobileClose').addEventListener('click', () => {
         }, { threshold: 0.35 });
         videos.forEach(v => io.observe(v));
     }
-
-    const iconoMute = '<i class="fas fa-volume-xmark" aria-hidden="true"></i>';
-    const iconoAudio = '<i class="fas fa-volume-high" aria-hidden="true"></i>';
-
-    document.querySelectorAll('.v-sound').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const v = btn.closest('.video-card').querySelector('video');
-            v.muted = !v.muted;
-            btn.innerHTML = v.muted ? iconoMute : iconoAudio;
-            btn.setAttribute('aria-label', v.muted ? 'Activar sonido' : 'Silenciar');
-            if (!v.muted) {
-                v.play().catch(() => {});
-                // Solo un vídeo puede sonar a la vez
-                videos.forEach(otro => {
-                    if (otro !== v && !otro.muted) {
-                        otro.muted = true;
-                        const b = otro.closest('.video-card').querySelector('.v-sound');
-                        if (b) { b.innerHTML = iconoMute; b.setAttribute('aria-label', 'Activar sonido'); }
-                    }
-                });
-            }
-        });
-    });
 
     document.querySelectorAll('.v-full').forEach(btn => {
         btn.addEventListener('click', () => {
