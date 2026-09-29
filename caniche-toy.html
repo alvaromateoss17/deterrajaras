@@ -45,6 +45,46 @@
       }
     }
     </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿El Caniche Toy es hipoalergénico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No al 100 %, porque ninguna raza lo es. Pero el Caniche Toy apenas suelta pelo y libera poca caspa, así que es de las razas que menos síntomas provocan en personas con alergia leve. La tolerancia varía mucho entre personas: si tienes alergia fuerte o asma, habla con tu alergólogo y pasa tiempo con un caniche antes de decidir. Lo explicamos a fondo en nuestra guía de perros hipoalergénicos pequeños."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto pesa y mide un Caniche Toy adulto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un Caniche Toy adulto mide entre 24 y 28 cm a la cruz y suele pesar entre 2,5 y 4 kg. Es el más pequeño de los cuatro tamaños de caniche. Por su tamaño es ideal para piso, pero también es frágil: con niños pequeños hay que vigilar las caídas desde el sofá o desde los brazos. Si dudas entre razas, mira nuestra comparativa Caniche Toy o Schnauzer Mini."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Existe el Caniche \"micro toy\" o \"teacup\"?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No como tamaño oficial. El estándar reconoce cuatro tamaños de caniche y el Toy es el más pequeño. «Micro toy» y «teacup» son etiquetas comerciales para cobrar más por perros por debajo del tamaño Toy, que suelen tener problemas de salud serios. Nosotros no criamos para reducir el tamaño, y te recomendamos desconfiar de quien use esas etiquetas como reclamo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿De qué colores criáis Caniche Toy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Criamos sobre todo en rojo, albaricoque y crema. El rojo es el color más demandado y suele ser el primero en reservarse en cada camada. Ten en cuenta que muchos caniches cambian de tono con la edad: el albaricoque, por ejemplo, tiende a aclararse. Te lo explicamos en nuestra guía de colores del Caniche Toy."
+      }
+    }
+  ]
+}
+    </script>
     <!-- Google Fonts — no bloqueante -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preload" as="image" href="imagenes_caniches/raza_caniche_hero_600.jpg"
@@ -300,6 +340,86 @@ ul { list-style: none; }
 }
 .raza-seo-cta { text-align: center; margin-top: 0; }
 
+/* ============================================
+   FAQ
+============================================ */
+.raza-faq { padding: 72px 0; background: var(--color-fondo-principal); }
+.raza-faq-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--color-texto);
+    text-align: center;
+    margin-bottom: 32px;
+}
+.faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.faq-item {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: box-shadow var(--tr);
+}
+.faq-item:hover { box-shadow: 0 4px 16px rgba(212,83,126,.10); }
+.faq-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-texto);
+    transition: color var(--tr);
+}
+.faq-btn:hover { color: var(--color-cta-principal); }
+.faq-btn[aria-expanded="true"] { color: var(--color-cta-principal); }
+.faq-icon {
+    font-size: .75rem;
+    color: var(--color-cta-principal);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+.faq-btn[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+.faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    padding: 0 24px;
+}
+.faq-body.open {
+    max-height: 400px;
+    padding: 0 24px 20px;
+}
+.faq-body p {
+    font-size: .95rem;
+    color: var(--color-texto-suave);
+    line-height: 1.78;
+    margin: 0;
+}
+.faq-body a {
+    color: var(--color-cta-principal);
+    font-weight: 600;
+    text-decoration: none;
+}
+.faq-body a:hover { text-decoration: underline; }
+@media (max-width: 767px) {
+    .raza-faq { padding: 56px 0; }
+    .faq-btn { padding: 16px 18px; font-size: .95rem; }
+    .faq-body.open { padding: 0 18px 16px; }
+}
+
 @media (max-width: 1024px) {
     .raza-hero-grid { grid-template-columns: 1fr 320px; gap: 36px; }
     .seo-cards { grid-template-columns: 1fr; }
@@ -498,12 +618,12 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <div class="feature-card">
                 <div class="feature-icon">📏</div>
                 <h3>Tamaño</h3>
-                <p>Peso adulto entre 2 y 4 kg. El compañero perfecto para piso o casa pequeña.</p>
+                <p>Peso adulto entre 2,5 y 4 kg. El compañero perfecto para piso o casa pequeña.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🌿</div>
                 <h3>Hipoalergénico</h3>
-                <p>No suelta pelo. Ideal para personas con alergia o asma.</p>
+                <p>Apenas suelta pelo. Suele dar menos síntomas a personas con alergia leve.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🧠</div>
@@ -568,6 +688,58 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
     </div>
 </section>
 
+<!-- ================================================
+     FAQ — PREGUNTAS FRECUENTES
+================================================ -->
+<section id="faq" class="raza-faq">
+    <div class="container">
+        <h2 class="raza-faq-title">Preguntas frecuentes sobre el Caniche Toy</h2>
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false">
+                    <span>¿El Caniche Toy es hipoalergénico?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-body">
+                    <p>No al 100 %, porque ninguna raza lo es. Pero el Caniche Toy apenas suelta pelo y libera poca caspa, así que es de las razas que menos síntomas provocan en personas con alergia leve. La tolerancia varía mucho entre personas: si tienes alergia fuerte o asma, habla con tu alergólogo y pasa tiempo con un caniche antes de decidir. Lo explicamos a fondo en nuestra guía de <a href="blog/perros-hipoalergenicos-pequenos">perros hipoalergénicos pequeños</a>.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false">
+                    <span>¿Cuánto pesa y mide un Caniche Toy adulto?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-body">
+                    <p>Un Caniche Toy adulto mide entre 24 y 28 cm a la cruz y suele pesar entre 2,5 y 4 kg. Es el más pequeño de los cuatro tamaños de caniche. Por su tamaño es ideal para piso, pero también es frágil: con niños pequeños hay que vigilar las caídas desde el sofá o desde los brazos. Si dudas entre razas, mira nuestra comparativa <a href="blog/caniche-toy-o-schnauzer-mini">Caniche Toy o Schnauzer Mini</a>.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false">
+                    <span>¿Existe el Caniche "micro toy" o "teacup"?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-body">
+                    <p>No como tamaño oficial. El estándar reconoce cuatro tamaños de caniche y el Toy es el más pequeño. «Micro toy» y «teacup» son etiquetas comerciales para cobrar más por perros por debajo del tamaño Toy, que suelen tener problemas de salud serios. Nosotros no criamos para reducir el tamaño, y te recomendamos desconfiar de quien use esas etiquetas como reclamo.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false">
+                    <span>¿De qué colores criáis Caniche Toy?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-body">
+                    <p>Criamos sobre todo en rojo, albaricoque y crema. El rojo es el color más demandado y suele ser el primero en reservarse en cada camada. Ten en cuenta que muchos caniches cambian de tono con la edad: el albaricoque, por ejemplo, tiende a aclararse. Te lo explicamos en nuestra guía de <a href="blog/colores-caniche-toy">colores del Caniche Toy</a>.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <section style="padding: 64px 0; background: var(--color-fondo-alternativo);">
     <div class="container">
         <div style="max-width: 740px; margin: 0 auto;">
@@ -575,8 +747,9 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
             <p style="color:var(--color-texto-suave); font-size:.97rem; line-height:1.85; margin-bottom:16px;">
                 Nuestros cachorros de <strong>Caniche Toy en España</strong> se entregan a familias de todo el país.
                 El <strong>Caniche Toy rojo</strong> es nuestra variedad más demandada, aunque también criamos en albaricoque y crema.
-                Si buscas un <strong>perro pequeño para piso</strong> que no suelte pelo y sea apto para personas con alergias,
-                el <strong>Caniche Toy hipoalergénico</strong> es la respuesta. Te lo explicamos en nuestra guía sobre los
+                Si buscas un <strong>perro pequeño para piso</strong> que apenas suelte pelo, el Caniche Toy es de las mejores
+                opciones: no existe un <strong>Caniche Toy hipoalergénico</strong> al 100 %, pero es de las razas que menos
+                síntomas dan a personas con alergia leve. Te lo explicamos en nuestra guía sobre los
                 <a href="blog/perros-hipoalergenicos-pequenos" style="color:var(--color-cta-principal);font-weight:600;">mejores perros hipoalergénicos pequeños</a>.
             </p>
             <p style="color:var(--color-texto-suave); font-size:.97rem; line-height:1.85; margin-bottom:24px;">
@@ -682,6 +855,27 @@ document.getElementById('hamburger').addEventListener('click', () => {
 document.getElementById('mobileClose').addEventListener('click', () => {
     document.getElementById('mobileMenu').classList.remove('open');
     document.getElementById('hamburger').classList.remove('active');
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const body = item.querySelector('.faq-body');
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+        // Cerrar todos los demás
+        document.querySelectorAll('.faq-item').forEach(i => {
+            i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+            i.querySelector('.faq-body').classList.remove('open');
+        });
+
+        // Abrir el actual si estaba cerrado
+        if (!isOpen) {
+            btn.setAttribute('aria-expanded', 'true');
+            body.classList.add('open');
+        }
+    });
 });
 </script>
 </body>
