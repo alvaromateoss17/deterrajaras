@@ -73,12 +73,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://deterrajaras.es/test-raza</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://deterrajaras.es/blog/categoria/cuidados-y-salud</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -87,24 +81,6 @@
   <url>
     <loc>https://deterrajaras.es/blog/categoria/consejos-para-nuevos-duenos</loc>
     <lastmod>2026-07-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deterrajaras.es/blog/categoria/compra-de-cachorros</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deterrajaras.es/blog/categoria/razas</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deterrajaras.es/blog/categoria/ley-y-documentacion</loc>
-    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
