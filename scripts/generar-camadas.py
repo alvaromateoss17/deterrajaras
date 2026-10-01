@@ -161,6 +161,10 @@ def sustituir_una(texto, patron, reemplazo, que, slug):
 
 # --------------------------------------------------------------------------
 def construir(plantilla, c):
+    # El title y la descripcion de abajo deben salir identicos a los que calculan
+    # tituloCamada() y descripcionCamada() en el JS de camada-detalle.html. Si
+    # cambias uno, cambia el otro: si no, el HTML que ve Google y el que deja el
+    # JS al cargar dejan de coincidir.
     slug = c["slug"]
     url = "%s/camadas/%s" % (BASE, slug)
     titulo = "%s | Deterrajaras" % c["nombre"]

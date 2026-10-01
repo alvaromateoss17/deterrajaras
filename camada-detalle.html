@@ -676,7 +676,7 @@ const camadas = [
         id: 4,
         slug: "schnauzer-mini-junio-2026",
         mesTexto: "junio de 2026",
-        nombre: "Schnauzer Mini · Nacidos el 07/06/2026",
+        nombre: "Camada Junio 2026 · Schnauzer Mini",
         raza: "Schnauzer Miniatura",
         fecha: "Nacida el 7 de junio de 2026",
         estado: "cerrada",
@@ -699,6 +699,30 @@ const camadas = [
         ]
     }
 ];
+
+// Title y description de una camada. Replican exactamente lo que
+// scripts/generar-camadas.py escribe en el HTML estático de /camadas/<slug>.html:
+// si cambias uno, cambia el otro o el HTML inicial y el que deja el JS dejarán de
+// coincidir (Google ve el estático; el usuario, el del JS).
+function recortarResumen(texto, limite) {
+    texto = texto.split(/\s+/).filter(Boolean).join(' ');
+    if (texto.length <= limite) return texto;
+    const corte = texto.slice(0, limite + 1);
+    const espacio = corte.lastIndexOf(' ');
+    if (espacio === -1) return texto.slice(0, limite).replace(/\s+$/, '');
+    return corte.slice(0, espacio).replace(/[\s,;:.\u2014-]+$/, '');
+}
+
+function tituloCamada(c) {
+    const titulo = c.nombre + ' | Deterrajaras';
+    return titulo.length > 60
+        ? c.raza + ' · ' + (c.mesTexto || '') + ' | Deterrajaras'
+        : titulo;
+}
+
+function descripcionCamada(c) {
+    return recortarResumen(c.resumen, 155);
+}
 
 function changeMain(src, el) {
     document.getElementById('mainImg').src = src;
@@ -730,15 +754,15 @@ function render() {
         const ogUrl = document.querySelector('meta[property="og:url"]');
         if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
     }
-    document.title = c.raza + ' · ' + c.fecha + (c.estado === 'cerrada' ? (c.entregada ? ' · Camada entregada' : ' · Plazas completas') : '') + ' · Deterrajaras';
-    const metaDesc = c.estado === 'cerrada'
-        ? 'Camada de ' + c.raza + ' nacida en ' + (c.mesTexto || '2026') + ' en Cáceres, criada en casa. '
-            + (c.entregada ? 'Ya entregada a sus familias.' : 'Todas las plazas están reservadas.')
-            + ' Apúntate a la lista de espera de la próxima.'
-        : 'Cachorros de ' + c.raza + ' nacidos en ' + (c.mesTexto || '2026')
-            + ' en Cáceres. Criados en casa, con papeles y vacunados. Consulta disponibilidad.';
+    const titulo = tituloCamada(c);
+    const descripcion = descripcionCamada(c);
+    document.title = titulo;
     const descTag = document.querySelector('meta[name="description"]');
-    if (descTag) descTag.setAttribute('content', metaDesc);
+    if (descTag) descTag.setAttribute('content', descripcion);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', titulo);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', descripcion);
 
     // Camadas con plazas completas o ya entregadas: mantener la URL viva (SEO) con
     // fotos y descripción reales, sin 404, marcando con claridad que no admite reservas.
