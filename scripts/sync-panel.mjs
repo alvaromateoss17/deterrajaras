@@ -190,7 +190,10 @@ function tarjetas(camadas) {
                         <span class="camada-btn camada-btn-reservas">Ver esta camada →</span>
                     </div>
                 </a>`).join('\n');
-  return `            <h2>${hayActivas ? 'Nuestras camadas' : 'Camadas anteriores'}</h2>
+  // Marca invisible con la hora de la sincronización: sirve para comprobar que
+  // un guardado en el panel ha llegado a la web (ver el código de la página).
+  return `            <!-- sincronizado con el Panel de Webcare: ${new Date().toISOString()} -->
+            <h2>${hayActivas ? 'Nuestras camadas' : 'Camadas anteriores'}</h2>
             <p>Así son nuestras camadas reales: criadas en casa, con seguimiento veterinario desde el primer día.</p>
             <div class="camadas-grid">
 ${cards}
