@@ -881,6 +881,7 @@ function render() {
     const abs = (s) => s.startsWith('/') || /^https?:/.test(s) ? s : '/' + s;
 
     el.innerHTML = `
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--color-texto);margin-bottom:16px;">${c.nombre}</h1>
         <img id="mainImg" src="${abs(c.fotos[0])}" alt="${(c.alts && c.alts[0]) || c.nombre}" class="main-img">
         <div class="gallery-row">
             ${c.fotos.map((src, i) => `
