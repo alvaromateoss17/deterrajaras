@@ -11,6 +11,9 @@
  *   - las tarjetas de camadas.html y el aviso de su cabecera   <!-- panel:… -->
  *   - una página estática por camada en /camadas/<slug>.html   (para Google)
  *   - las URL de camadas del sitemap.xml                        <!-- panel:… -->
+ *   - las fotos: se descargan del panel a /imagenes_panel/ y se publican
+ *     desde este mismo dominio (sin conexión extra a Supabase al visitar la
+ *     web, con la caché de Vercel, y siguen ahí aunque el panel falle)
  *
  * Si el panel no responde, NO toca nada: se publica la web tal como está en
  * el repo. Así un fallo del panel nunca tumba la web.
@@ -20,7 +23,7 @@
  * Sustituye a scripts/generar-camadas.py, que ya no hace falta ejecutar.
  */
 
-import { readFileSync, writeFileSync, readdirSync, unlinkSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, unlinkSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -82,6 +85,32 @@ async function leerPanel() {
     camadas: sitio.modulos.includes('camadas') ? elementos.filter((e) => e.modulo === 'camadas') : null,
     aviso: sitio.modulos.includes('aviso') ? elementos.find((e) => e.modulo === 'aviso')?.datos ?? null : null,
   };
+}
+
+// ── Fotos: del panel a /imagenes_panel/ de esta web ──────────────────────
+const DIR_FOTOS = 'imagenes_panel';
+
+/** Descarga las fotos del panel y devuelve un mapa URL remota → ruta local. */
+async function traerFotos(urls) {
+  mkdirSync(join(RAIZ, DIR_FOTOS), { recursive: true });
+  const mapa = new Map();
+  await Promise.all([...new Set(urls)].map(async (url) => {
+    if (!url.startsWith(`${SUPABASE_URL}/storage/`)) return;
+    const nombre = url.split('/').pop().split('?')[0].toLowerCase().replace(/[^a-z0-9._-]+/g, '-');
+    const local = `${DIR_FOTOS}/${nombre}`;
+    try {
+      if (!existsSync(join(RAIZ, local))) {
+        const r = await fetch(url, { signal: AbortSignal.timeout(20000) });
+        if (!r.ok) throw new Error(String(r.status));
+        writeFileSync(join(RAIZ, local), Buffer.from(await r.arrayBuffer()));
+      }
+      mapa.set(url, local);
+    } catch (e) {
+      // Si una foto no baja, se sigue usando su URL del panel: la web no se rompe.
+      console.warn(`[sync-panel] Foto no descargada (${e.message}): ${url}`);
+    }
+  }));
+  return mapa;
 }
 
 // ── 2. Del formato del panel al formato de la web ────────────────────────
@@ -239,6 +268,11 @@ async function main() {
   }
 
   if (panel.camadas) {
+    if (!PROBAR) {
+      const fotos = await traerFotos(panel.camadas.flatMap((c) => c.datos.fotos || []));
+      for (const c of panel.camadas) c.datos.fotos = (c.datos.fotos || []).map((u) => fotos.get(u) ?? u);
+      console.log(`[sync-panel] ${fotos.size} fotos publicadas desde /${DIR_FOTOS}/`);
+    }
     const camadas = aWeb(panel.camadas);
     console.log(`[sync-panel] ${camadas.length} camadas: ${camadas.map((c) => `${c.slug} (${c.estadoText})`).join(', ')}`);
     if (PROBAR) return;
