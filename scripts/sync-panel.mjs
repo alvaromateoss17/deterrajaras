@@ -261,9 +261,35 @@ function reemplazarArray(texto, camadas) {
 }
 
 // ── Principal ────────────────────────────────────────────────────────────
+// ── Contador de estadísticas del panel en todas las páginas ─────────────
+// Visitas y clics en teléfono/WhatsApp/email, sin cookies ni datos personales.
+// Se añade al publicar (no toca los archivos del repo).
+const PANEL_URL = process.env.PANEL_URL ?? 'https://panel-webcare.vercel.app';
+const CONTADOR = `<script async src="${PANEL_URL}/e.js" data-sitio="${SLUG_SITIO}"></script>`;
+
+function paginasHtml(dir) {
+  const fuera = new Set(['.git', 'node_modules', '_local', 'prompts', 'scripts', '.vercel', 'imagenes_caniches', 'imagenes_panel']);
+  return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+    if (e.isDirectory()) return fuera.has(e.name) ? [] : paginasHtml(join(dir, e.name));
+    return e.name.endsWith('.html') && !e.name.startsWith('google') ? [join(dir, e.name)] : [];
+  });
+}
+
+function ponerContador() {
+  let n = 0;
+  for (const ruta of paginasHtml(RAIZ)) {
+    const f = leer(ruta);
+    if (f.texto.includes('/e.js" data-sitio=') || !f.texto.includes('</head>')) continue;
+    escribir(ruta, f.texto.replace('</head>', `    ${CONTADOR}\n</head>`), f);
+    n++;
+  }
+  console.log(`[sync-panel] Contador de estadísticas añadido a ${n} páginas`);
+}
+
 async function main() {
   let panel;
   try {
+    if (!PROBAR) ponerContador(); // primero: no depende de que el panel responda
     panel = await leerPanel();
   } catch (e) {
     console.warn(`[sync-panel] No se ha podido leer el panel (${e.message}). Se publica la web tal como está.`);
