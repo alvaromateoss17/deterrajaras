@@ -18,8 +18,10 @@
  * Si el panel no responde, NO toca nada: se publica la web tal como está en
  * el repo. Así un fallo del panel nunca tumba la web.
  *
- * Uso local:  node scripts/sync-panel.mjs            (escribe los archivos)
- *             node scripts/sync-panel.mjs --probar   (solo lee y resume)
+ * Uso local:  node scripts/sync-panel.mjs                (escribe los archivos)
+ *             node scripts/sync-panel.mjs --probar       (solo lee y resume)
+ *             node scripts/sync-panel.mjs --desde-repo   (regenera /camadas/*.html
+ *               con el array del repo, sin panel: refresca el respaldo)
  * Sustituye a scripts/generar-camadas.py, que ya no hace falta ejecutar.
  */
 
@@ -34,6 +36,7 @@ const SUPABASE_URL = process.env.PANEL_SUPABASE_URL ?? 'https://tgffgspdeboedypi
 const SUPABASE_KEY = process.env.PANEL_SUPABASE_KEY ?? 'sb_publishable_cPNLqIWoNndpHGF91qpRVQ_b87POFy9';
 const SLUG_SITIO = process.env.PANEL_SLUG ?? 'deterrajaras';
 const PROBAR = process.argv.includes('--probar');
+const DESDE_REPO = process.argv.includes('--desde-repo');
 
 // ── Lectura/escritura conservando BOM y saltos de línea de cada archivo ──
 function leer(ruta) {
@@ -127,7 +130,8 @@ const RAZA_URL = { 'schnauzer miniatura': 'schnauzer-mini', 'schnauzer mini': 's
 function aWeb(filas) {
   const usados = new Set();
   return filas.map(({ datos: d, updated_at }, i) => {
-    const est = ESTADOS[d.estado] ?? ESTADOS.proxima;
+    const clave = ESTADOS[d.estado] ? d.estado : 'proxima';
+    const est = ESTADOS[clave];
     const raza = (d.raza || '').trim() || (d.nombre || '').split('·')[0].trim();
     const [a, m, dia] = (d.nacimiento || '').split('-').map(Number);
     const mesTexto = a && m ? `${MESES[m - 1]} de ${a}` : '';
@@ -148,6 +152,7 @@ function aWeb(filas) {
       raza,
       fecha: a ? `Nacida el ${dia} de ${MESES[m - 1]} de ${a}` : 'Próximamente',
       estado: est.estado,
+      estadoClave: clave,
       entregada: est.entregada,
       estadoText: est.texto,
       cachorros: d.cachorros || '',
@@ -209,8 +214,25 @@ function aviso(datos) {
   }`;
 }
 
+/** Última frase de la description de la home, según lo que haya en el panel.
+ *  El texto del repo ("Lista de espera abierta") vale siempre, así que si el
+ *  panel falla la home no promete camadas que no existen. */
+const BASE_HOME = 'Criadero familiar con Núcleo Zoológico en Cáceres. Caniche Toy y Schnauzer Mini criados en casa, con chip, vacunas y contrato.';
+
+function descripcionHome(camadas) {
+  const hay = (clave) => camadas.some((c) => c.estadoClave === clave);
+  const frase = hay('disponible')
+    ? 'Camadas disponibles ahora.'
+    : hay('proxima')
+      ? 'Próxima camada con reservas abiertas.'
+      : 'Lista de espera abierta.';
+  return `${BASE_HOME} ${frase}`;
+}
+
 function sitemap(camadas) {
-  return camadas.map((c) => `  <url>
+  // Solo las camadas que se indexan (ver paginaCamada): una camada cerrada en
+  // el sitemap es pedirle a Google que rastree una página marcada noindex.
+  return camadas.filter((c) => c.estado === 'abierta').map((c) => `  <url>
     <loc>${BASE}/camadas/${c.slug}</loc>
     <lastmod>${c._lastmod}</lastmod>
     <changefreq>monthly</changefreq>
@@ -218,22 +240,156 @@ function sitemap(camadas) {
   </url>`).join('\n');
 }
 
+/** Mide una imagen local (PNG/WebP/JPEG) para poder poner width/height.
+ *  Si no se puede medir, devuelve null: no se inventan dimensiones. */
+function medir(foto) {
+  if (/^https?:/.test(foto)) return null;
+  try {
+    const b = readFileSync(join(RAIZ, foto.replace(/^\//, '')));
+    if (b.length > 24 && b.readUInt32BE(0) === 0x89504e47) return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+    if (b.length > 30 && b.toString('latin1', 0, 4) === 'RIFF' && b.toString('latin1', 8, 12) === 'WEBP') {
+      const tipo = b.toString('latin1', 12, 16);
+      if (tipo === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+      if (tipo === 'VP8L') {
+        const n = b.readUInt32LE(21);
+        return { w: (n & 0x3fff) + 1, h: ((n >> 14) & 0x3fff) + 1 };
+      }
+      if (tipo === 'VP8X') return { w: b.readUIntLE(24, 3) + 1, h: b.readUIntLE(27, 3) + 1 };
+    }
+    if (b[0] === 0xff && b[1] === 0xd8) {
+      for (let i = 2; i < b.length - 9; ) {
+        if (b[i] !== 0xff) { i++; continue; }
+        const marca = b[i + 1];
+        if (marca >= 0xc0 && marca <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marca)) {
+          return { h: b.readUInt16BE(i + 5), w: b.readUInt16BE(i + 7) };
+        }
+        i += 2 + b.readUInt16BE(i + 2);
+      }
+    }
+  } catch {
+    // Foto no legible (p. ej. no se descargó del panel): se publica sin medidas.
+  }
+  return null;
+}
+
+/** Alt de la foto n. Si el array no trae alts (respaldo antiguo), se calcula
+ *  con la misma fórmula que aWeb(): mismo texto, no uno nuevo. */
+const alt = (c, n) => (c.alts && c.alts[n]) || (n === 0
+  ? `Camada de ${c.raza} ${c.mesTexto ? `nacida en ${c.mesTexto}` : 'próximamente'} en Cáceres`
+  : `Cachorros de ${c.raza} criados en casa en Cáceres - ${c.mesTexto || 'próxima camada'} - foto ${n + 1}`);
+
+const dim = (foto) => {
+  const m = medir(foto);
+  return m ? ` width="${m.w}" height="${m.h}"` : '';
+};
+
+/** La fecha sin el "Nacida el", para encajarla en una frase. */
+const fechaCorta = (c) => c.fecha.replace('Nacida el ', '');
+
+/** Meta description a partir del ESTADO REAL, no del resumen del panel: el
+ *  resumen lo escribe el criador a mano y se queda desfasado cuando la camada
+ *  cambia de estado (la de julio seguía diciendo "plazas reservadas" estando
+ *  ya entregada). Si cambias esto, cambia descripcionCamada() de
+ *  camada-detalle.html: el estático lo ve Google y el del JS, el usuario. */
+function metaCamada(c) {
+  const donde = 'en Cáceres';
+  const cachorros = c.cachorros ? `${c.cachorros}` : '';
+  const entrega = c.entrega ? ` Entrega prevista: ${c.entrega}.` : '';
+  let texto;
+  if (c.estadoClave === 'proxima') {
+    texto = `Próxima camada de ${c.raza} ${donde}: reservas abiertas.${entrega}`;
+  } else if (c.estadoClave === 'disponible') {
+    texto = `Cachorros de ${c.raza} disponibles ${donde}, nacidos el ${fechaCorta(c)}.${cachorros ? ` ${cachorros}.` : ''}${entrega}`;
+  } else if (c.estadoClave === 'completa') {
+    texto = `Camada de ${c.raza} nacida el ${fechaCorta(c)} ${donde}${cachorros ? `: ${cachorros}` : ''}, con todas las plazas reservadas.${entrega}`;
+  } else {
+    texto = `Camada de ${c.raza} nacida el ${fechaCorta(c)} ${donde}${cachorros ? `: ${cachorros}` : ''}, ya entregados. Fotos reales de cómo criamos en casa.`;
+  }
+  return recortar(texto, 155);
+}
+
+/** Párrafo que explica el estado. Mismo texto que pinta el JS de la ficha. */
+function introCamada(c) {
+  if (c.estadoClave === 'entregada') {
+    return `Esta camada nació el ${fechaCorta(c)} y todos sus cachorros ya han sido entregados a sus familias. La mantenemos publicada como muestra real de cómo criamos: en casa, con seguimiento veterinario desde el primer día.`;
+  }
+  if (c.estadoClave === 'completa') {
+    return `Esta camada nació el ${fechaCorta(c)} y todas sus plazas están reservadas${c.entrega ? `; la entrega está prevista para ${c.entrega}` : ''}. La mantenemos publicada como muestra real de cómo criamos: en casa, con seguimiento veterinario desde el primer día.`;
+  }
+  if (c.estadoClave === 'proxima') return 'Esta camada aún no ha nacido: puedes reservar tu lugar ahora.';
+  return '';
+}
+
+/** Todo lo que hoy pinta el JS, escrito ya en el HTML: estado, raza, fecha,
+ *  nº de cachorros, colores, entrega, las fotos con alt y medidas, y la
+ *  descripción del panel. Solo datos del panel; nada inventado. */
+function cuerpoCamada(c) {
+  const bloque = (etiqueta, valor) => (valor
+    ? `                <div class="info-block">
+                    <div class="info-label">${etiqueta}</div>
+                    <div class="info-value">${esc(valor)}</div>
+                </div>`
+    : '');
+  const info = [
+    bloque('Raza', c.raza),
+    bloque(c.estadoClave === 'proxima' ? 'Época prevista' : 'Fecha nacimiento', c.fecha),
+    bloque('Cachorros', c.cachorros),
+    bloque('Colores', (c.colores || []).join(', ')),
+    bloque('Entrega estimada', c.entrega),
+  ].filter(Boolean).join('\n');
+
+  const galeria = c.fotos.map((f, n) => `                    <img src="${esc(absRuta(f))}" alt="${esc(alt(c, n))}"${dim(f)}${n === 0 ? '' : ' loading="lazy"'}
+                         class="gallery-thumb${n === 0 ? ' active' : ''}" onclick="changeMain('${esc(absRuta(f))}', this)">`).join('\n');
+
+  const intro = introCamada(c);
+  const parrafos = [...(intro ? [intro] : []), ...(c.desc || [])].map((pa) => `                <p>${esc(pa)}</p>`).join('\n');
+
+  const cta = c.estado === 'abierta'
+    ? `            <a href="https://wa.me/34670225384?text=${encodeURIComponent(`Hola! Me interesa la ${c.nombre}. ¿Podéis darme más información?`)}" target="_blank" class="cta-wa">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> Contactar por WhatsApp
+            </a>`
+    : `            <div class="reservas-cta" style="margin-top:32px;">
+                <p class="reservas-cta-pre">¿Buscas un cachorro de Caniche Toy o Schnauzer Mini?</p>
+                <a href="/camadas#lista-espera" class="reservas-btn">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    Apuntarme a la lista de espera
+                </a>
+            </div>`;
+
+  return `            <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--color-texto);margin-bottom:16px;">${esc(c.nombre)}</h1>
+            <img id="mainImg" src="${esc(absRuta(c.fotoThumb))}" alt="${esc(alt(c, 0))}"${dim(c.fotoThumb)} class="main-img">
+            <div class="gallery-row">
+${galeria}
+            </div>
+            <span class="reservas-badge" style="margin-top:16px;display:inline-block;">${esc(c.estadoText)}</span>
+            <div class="info-grid">
+${info}
+            </div>
+            <div class="detalle-desc">
+${parrafos}
+            </div>
+${cta}`;
+}
+
 /** Página estática de una camada: misma lógica que generar-camadas.py. */
 function paginaCamada(plantilla, c) {
   const url = `${BASE}/camadas/${c.slug}`;
   let titulo = `${c.nombre} | Deterrajaras`;
   if (titulo.length > 60) titulo = `${c.raza} · ${c.mesTexto} | Deterrajaras`;
-  const descripcion = recortar(c.resumen, 155);
+  const descripcion = metaCamada(c);
   const una = (t, re, nuevo, que) => {
     if (!re.test(t)) throw new Error(`[${c.slug}] no se encuentra ${que} en camada-detalle.html`);
     return t.replace(re, () => nuevo);
   };
   let t = plantilla.replace('<!DOCTYPE html>\n', '<!DOCTYPE html>\n<!-- ARCHIVO GENERADO por scripts/sync-panel.mjs con los datos del Panel de Webcare. No lo edites a mano. -->\n');
   t = una(t, /<title>[\s\S]*?<\/title>/, `<title>${esc(titulo)}</title>`, 'el <title>');
-  // La plantilla va noindex (su URL /camada-detalle no debe indexarse); cada
-  // página de camada sí se indexa: es la que ve Google.
+  // Indexación según el estado real de la camada: se indexa lo que aporta algo
+  // a quien busca (se puede reservar o comprar) y no lo que ya pasó. Las camadas
+  // cerradas siguen publicadas y enlazadas desde /camadas, pero en noindex y
+  // fuera del sitemap. La plantilla /camada-detalle va siempre noindex.
+  const robots = c.estado === 'abierta' ? 'index, follow' : 'noindex, follow';
   t = una(t, /[ \t]*<!-- Plantilla: noindex[\s\S]*?-->\n[ \t]*<meta name="robots" content="noindex, follow">/,
-    '    <meta name="robots" content="index, follow">', 'la meta robots');
+    `    <meta name="robots" content="${robots}">`, 'la meta robots');
   t = una(t, /<meta name="description" content="[^"]*">/,
     `<meta name="description" content="${esc(descripcion)}">\n    <meta property="og:title" content="${esc(titulo)}">\n    <meta property="og:description" content="${esc(descripcion)}">\n    <meta property="og:url" content="${url}">`,
     'la meta description');
@@ -241,7 +397,7 @@ function paginaCamada(plantilla, c) {
   t = una(t, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${esc(absUrl(c.fotoThumb))}">`, 'twitter:image');
   t = una(t, /<link rel="canonical" id="canonicalTag" href="[^"]*">/, `<link rel="canonical" id="canonicalTag" href="${url}">`, 'el canonical');
   t = una(t, /<div class="detalle-container" id="detalleContent"><\/div>/,
-    `<div class="detalle-container" id="detalleContent">\n            <h1>${esc(c.nombre)}</h1>\n            <p>${esc(c.resumen)}</p>\n            <img src="${esc(absRuta(c.fotoThumb))}" alt="${esc(c.alts[0])}" loading="lazy">\n        </div>`,
+    `<div class="detalle-container" id="detalleContent" data-slug="${c.slug}">\n${cuerpoCamada(c)}\n        </div>`,
     'el contenedor #detalleContent');
   return t;
 }
@@ -266,6 +422,24 @@ function reemplazarArray(texto, camadas) {
 
 // ── Principal ────────────────────────────────────────────────────────────
 async function main() {
+  // Modo local: regenera solo /camadas/<slug>.html con el array que ya está en
+  // camada-detalle.html (fotos del repo), sin tocar el panel. Sirve para
+  // refrescar el respaldo que se publica si el panel falla, después de cambiar
+  // la plantilla. Vercel nunca lo usa.
+  if (DESDE_REPO) {
+    const rutaDetalle = join(RAIZ, 'camada-detalle.html');
+    const detalle = leer(rutaDetalle);
+    const ini = detalle.texto.indexOf('const camadas = [');
+    const fin = detalle.texto.indexOf('\n];', ini);
+    if (ini === -1 || fin === -1) throw new Error("no se encuentra el array 'const camadas' en camada-detalle.html");
+    const camadas = new Function(`return ${detalle.texto.slice(ini + 'const camadas = '.length, fin + 2)}`)();
+    for (const c of camadas) {
+      escribir(join(RAIZ, 'camadas', `${c.slug}.html`), paginaCamada(detalle.texto, c), detalle);
+      console.log(`[sync-panel] respaldo regenerado: camadas/${c.slug}.html (${c.estadoText})`);
+    }
+    return;
+  }
+
   let panel;
   try {
     panel = await leerPanel();
@@ -296,6 +470,17 @@ async function main() {
     const vigentes = new Set(camadas.map((c) => `${c.slug}.html`));
     for (const f of readdirSync(dirCamadas)) if (f.endsWith('.html') && !vigentes.has(f)) unlinkSync(join(dirCamadas, f));
     for (const c of camadas) escribir(join(dirCamadas, `${c.slug}.html`), paginaCamada(nuevoDetalle, c), detalle);
+
+    // index.html: la description de la home no puede prometer camadas que no hay
+    const desc = descripcionHome(camadas);
+    const rutaHome = join(RAIZ, 'index.html');
+    const home = leer(rutaHome);
+    let textoHome = reemplazarMarcas(home.texto, 'meta-desc',
+      `    <meta name="description" content="${esc(desc)}">`, 'index.html');
+    textoHome = reemplazarMarcas(textoHome, 'meta-og',
+      `    <meta property="og:description" content="${esc(desc)}">`, 'index.html');
+    escribir(rutaHome, textoHome, home);
+    console.log(`[sync-panel] Home: "${desc.slice(desc.lastIndexOf('. ') + 2)}"`);
 
     // camadas.html y sitemap.xml
     const rutaListado = join(RAIZ, 'camadas.html');

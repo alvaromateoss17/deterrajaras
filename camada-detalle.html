@@ -626,8 +626,9 @@ const camadas = [
         raza: "Caniche Toy",
         fecha: "Nacida el 6 de julio de 2026",
         estado: "cerrada",
-        entregada: false,
-        estadoText: "Plazas completas",
+        estadoClave: "entregada",
+        entregada: true,
+        estadoText: "Entregada",
         cachorros: "5 cachorros (machos y hembras)",
         entrega: "Septiembre 2026",
         colores: ["Rojo", "Albaricoque", "Crema"],
@@ -659,6 +660,7 @@ const camadas = [
         raza: "Schnauzer Miniatura",
         fecha: "Nacida el 29 de mayo de 2026",
         estado: "cerrada",
+        estadoClave: "entregada",
         entregada: true,
         estadoText: "Entregada",
         cachorros: "5 cachorros",
@@ -684,6 +686,7 @@ const camadas = [
         raza: "Schnauzer Miniatura",
         fecha: "Nacida el 7 de junio de 2026",
         estado: "cerrada",
+        estadoClave: "entregada",
         entregada: true,
         estadoText: "Entregada",
         cachorros: "5 cachorros",
@@ -724,8 +727,40 @@ function tituloCamada(c) {
         : titulo;
 }
 
+// Estado del panel. Las camadas que escribe sync-panel.mjs ya traen
+// estadoClave; esta deducción cubre un array antiguo sin ese campo.
+function claveEstado(c) {
+    if (c.estadoClave) return c.estadoClave;
+    if (c.entregada) return 'entregada';
+    if (c.estado === 'cerrada') return 'completa';
+    return c.estadoText === 'Reservas abiertas' ? 'proxima' : 'disponible';
+}
+
+// Description a partir del estado real, no del resumen (que el criador escribe
+// a mano y se desfasa al cambiar el estado). Replica metaCamada() de
+// scripts/sync-panel.mjs: si cambias una, cambia la otra.
 function descripcionCamada(c) {
-    return recortarResumen(c.resumen, 155);
+    const corta = c.fecha.replace('Nacida el ', '');
+    const entrega = c.entrega ? ' Entrega prevista: ' + c.entrega + '.' : '';
+    const cachorros = c.cachorros ? c.cachorros : '';
+    let texto;
+    switch (claveEstado(c)) {
+        case 'proxima':
+            texto = 'Próxima camada de ' + c.raza + ' en Cáceres: reservas abiertas.' + entrega;
+            break;
+        case 'disponible':
+            texto = 'Cachorros de ' + c.raza + ' disponibles en Cáceres, nacidos el ' + corta + '.'
+                + (cachorros ? ' ' + cachorros + '.' : '') + entrega;
+            break;
+        case 'completa':
+            texto = 'Camada de ' + c.raza + ' nacida el ' + corta + ' en Cáceres'
+                + (cachorros ? ': ' + cachorros : '') + ', con todas las plazas reservadas.' + entrega;
+            break;
+        default:
+            texto = 'Camada de ' + c.raza + ' nacida el ' + corta + ' en Cáceres'
+                + (cachorros ? ': ' + cachorros : '') + ', ya entregados. Fotos reales de cómo criamos en casa.';
+    }
+    return recortarResumen(texto, 155);
 }
 
 function changeMain(src, el) {
@@ -749,6 +784,13 @@ function render() {
         el.innerHTML = '<div class="not-found"><p>Camada no encontrada. <a href="/camadas">Ver todas las camadas</a></p></div>';
         return;
     }
+
+    // La ficha ya viene escrita en el HTML (sync-panel.mjs la genera con todos
+    // los datos del panel y marca el contenedor con data-slug). No se repinta:
+    // así el usuario, quien no tiene JS y Google ven exactamente lo mismo.
+    // Única excepción: las camadas con reservas abiertas, que tienen un diseño
+    // propio con los pasos de la reserva.
+    if (el.dataset.slug === c.slug && claveEstado(c) !== 'proxima') return;
 
     // SEO dinámico por camada: canonical + title + meta description.
     if (c.slug) {
