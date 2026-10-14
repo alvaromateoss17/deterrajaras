@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <!--
-  ⚠️ ESTA PÁGINA SE SIRVE DESDE /camadas/[slug] (subdirectorio virtual vía rewrite).
-  TODAS las rutas internas (href, src) DEBEN ser absolutas (empezar por "/").
-  Una ruta relativa aquí se resolverá como /camadas/loquesea y dará 404.
+  ⚠️ PLANTILLA de las fichas de camada: scripts/sync-panel.mjs copia esta página a
+  /camadas/<slug>.html, una por camada del panel. Esta URL (/camada-detalle) va
+  noindex: las que indexa Google son las de /camadas/.
+  TODAS las rutas internas (href, src) DEBEN ser absolutas (empezar por "/"):
+  una ruta relativa se resolvería como /camadas/loquesea y daría 404.
   Las imágenes del array de camadas se normalizan con el helper `abs()` en render().
 -->
-<!-- Cada camada nueva: añadirla al array y ejecutar "python3 scripts/generar-camadas.py"
-     para crear su página estática en /camadas/ -->
+<!-- Las camadas se editan en el Panel de Webcare, no aquí: al guardar, el panel
+     reconstruye la web y regenera las páginas de /camadas/. -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +19,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://deterrajaras.es/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Plantilla: noindex. sync-panel.mjs la cambia a "index, follow" en cada /camadas/<slug>.html. -->
+    <meta name="robots" content="noindex, follow">
     <title>Camada | Deterrajaras</title>
     <meta name="description" content="Fotos, vídeos e información de nuestra camada de cachorros. Criados en ambiente familiar con todas las vacunas y garantías legales.">
     <!-- Canonical: se ajusta dinámicamente en render() a /camadas/[slug]. /camadas es un fallback seguro. -->
@@ -587,7 +591,7 @@ footer {
                 <ul>
                     <li><a href="tel:+34670225384">670 225 384</a></li>
                     <li><a href="mailto:criaderodeterrajaras@gmail.com">criaderodeterrajaras@gmail.com</a></li>
-                    <li><a href="https://maps.app.goo.gl/3uMik3d3o2PUAysY8" target="_blank">Ver en Google Maps</a></li>
+                    <li><a href="https://www.google.com/maps?cid=7009104399665267109" target="_blank">Ver en Google Maps</a></li>
                 </ul>
             </div>
         </div>
@@ -701,7 +705,7 @@ const camadas = [
 ];
 
 // Title y description de una camada. Replican exactamente lo que
-// scripts/generar-camadas.py escribe en el HTML estático de /camadas/<slug>.html:
+// scripts/sync-panel.mjs escribe en el HTML estático de /camadas/<slug>.html:
 // si cambias uno, cambia el otro o el HTML inicial y el que deja el JS dejarán de
 // coincidir (Google ve el estático; el usuario, el del JS).
 function recortarResumen(texto, limite) {

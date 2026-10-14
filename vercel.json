@@ -41,12 +41,6 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/camadas/:slug",
-      "destination": "/camada-detalle"
-    }
-  ],
   "redirects": [
     {
       "source": "/blog/perros-hipoalergenicos-peque%C3%B1os",
@@ -167,6 +161,21 @@
     {
       "source": "/blog/schnauzer-miniatura-pierde-pelo",
       "destination": "/blog/schnauzer-miniatura-suelta-pelo",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-saber-si-un-criador-de-perros-is-legal",
+      "destination": "/blog/como-saber-si-un-criador-de-perros-es-legal",
+      "permanent": true
+    },
+    {
+      "source": "/blog/curso-obligatorio-tener-perro",
+      "destination": "/blog/curso-obligatorio-para-tener-perro",
+      "permanent": true
+    },
+    {
+      "source": "/blog/caniche-toy-schnauzer-mini",
+      "destination": "/blog/caniche-toy-o-schnauzer-mini",
       "permanent": true
     }
   ]

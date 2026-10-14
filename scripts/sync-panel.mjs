@@ -230,6 +230,10 @@ function paginaCamada(plantilla, c) {
   };
   let t = plantilla.replace('<!DOCTYPE html>\n', '<!DOCTYPE html>\n<!-- ARCHIVO GENERADO por scripts/sync-panel.mjs con los datos del Panel de Webcare. No lo edites a mano. -->\n');
   t = una(t, /<title>[\s\S]*?<\/title>/, `<title>${esc(titulo)}</title>`, 'el <title>');
+  // La plantilla va noindex (su URL /camada-detalle no debe indexarse); cada
+  // página de camada sí se indexa: es la que ve Google.
+  t = una(t, /[ \t]*<!-- Plantilla: noindex[\s\S]*?-->\n[ \t]*<meta name="robots" content="noindex, follow">/,
+    '    <meta name="robots" content="index, follow">', 'la meta robots');
   t = una(t, /<meta name="description" content="[^"]*">/,
     `<meta name="description" content="${esc(descripcion)}">\n    <meta property="og:title" content="${esc(titulo)}">\n    <meta property="og:description" content="${esc(descripcion)}">\n    <meta property="og:url" content="${url}">`,
     'la meta description');
