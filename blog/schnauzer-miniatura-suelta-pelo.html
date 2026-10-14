@@ -29,7 +29,7 @@
         "@type": "Article",
         "headline": "¿El Schnauzer Miniatura suelta pelo? Todo lo que debes saber",
         "datePublished": "2026-06-09",
-        "dateModified": "2026-06-09",
+        "dateModified": "2026-08-19",
         "author": {
           "@type": "Person",
           "name": "Juanra",
@@ -331,11 +331,13 @@ ul { list-style: none; }
     padding: 28px 28px 24px;
     margin: 40px 0;
 }
-.toc h2 {
+.toc .toc-titulo {
     font-family: 'Playfair Display', serif;
     font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
     color: var(--color-texto);
-    margin-bottom: 16px;
+    margin: 0 0 16px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--color-borde);
 }
@@ -809,8 +811,8 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                 </header>
 
                 <!-- TABLE OF CONTENTS -->
-                <div class="toc">
-                    <h2>Índice del artículo</h2>
+                <nav class="toc" aria-label="Índice">
+                    <p class="toc-titulo">Índice del artículo</p>
                     <ol>
                         <li><a href="#manto">Cómo es el manto del Schnauzer Miniatura</a></li>
                         <li><a href="#mudanza-vs-perdida">Mudanza vs pérdida de pelo natural: ¿cuál es la diferencia?</a></li>
@@ -820,7 +822,7 @@ footer { background: var(--color-texto); color: var(--color-fondo-alternativo); 
                         <li><a href="#alergias">¿Es hipoalergénico? ¿Apto para personas con alergias?</a></li>
                         <li><a href="#faq">Preguntas frecuentes</a></li>
                     </ol>
-                </div>
+                </nav>
 
                 <!-- SECCIÓN 1 -->
                 <h2 id="manto">1. Cómo es el manto del Schnauzer Miniatura</h2>
