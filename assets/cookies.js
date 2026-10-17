@@ -1,9 +1,10 @@
 /* Aviso de cookies y medición con Google Analytics.
  *
  * ──────────────────────────────────────────────────────────────────────────
- * PARA PONER ANALYTICS: pega aquí tu identificador de medición (G-XXXXXXXXXX)
- * entre las comillas. Mientras esté vacío, la web no carga Analytics ni pide
- * cookies a nadie.
+ * EL IDENTIFICADOR VA EN LA CONSTANTE MEDICION, unas líneas más abajo. Vale
+ * tanto el de medición de Analytics (G-XXXXXXXXXX, lo da Analytics en
+ * Administrar › Flujos de datos) como el de un contenedor de Tag Manager
+ * (GTM-XXXXXXX). Si se deja vacío, la web no carga nada ni pide cookies.
  * ──────────────────────────────────────────────────────────────────────────
  *
  * Cómo funciona, para cumplir con la AEPD:
@@ -16,7 +17,10 @@
 (function () {
     'use strict';
 
-    var MEDICION = '';
+    var MEDICION = 'GTM-KB2NCDN9';
+
+    /* Un contenedor de Tag Manager se carga distinto que Analytics a secas */
+    var ES_CONTENEDOR = /^GTM-/i.test(MEDICION);
 
     var d = document;
     var CLAVE = 'deterrajaras:cookies';
@@ -58,12 +62,18 @@
         gtag('consent', 'update', { analytics_storage: 'granted' });
         if (cargado) return;
         cargado = true;
+        if (ES_CONTENEDOR) {
+            window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+        }
         var s = d.createElement('script');
         s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEDICION;
+        s.src = 'https://www.googletagmanager.com/' +
+            (ES_CONTENEDOR ? 'gtm.js' : 'gtag/js') + '?id=' + MEDICION;
         d.head.appendChild(s);
-        gtag('js', new Date());
-        gtag('config', MEDICION, { anonymize_ip: true });
+        if (!ES_CONTENEDOR) {
+            gtag('js', new Date());
+            gtag('config', MEDICION, { anonymize_ip: true });
+        }
     }
 
     /* ── El cartel ── */
