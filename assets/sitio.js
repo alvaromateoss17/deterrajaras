@@ -62,6 +62,28 @@
         });
     }
 
+    /* ── Preguntas frecuentes: un solo acordeón para toda la web ──
+       Delegado en el documento: vale para los dos marcados que hay
+       (.faq-q + #aria-controls y .faq-btn + .faq-body) y para las
+       preguntas que se añadan después. */
+    d.addEventListener('click', function (e) {
+        var boton = e.target.closest && e.target.closest('.faq-q, .faq-btn');
+        if (!boton) return;
+        var abierto = boton.getAttribute('aria-expanded') === 'true';
+        d.querySelectorAll('.faq-q, .faq-btn').forEach(function (b) {
+            b.setAttribute('aria-expanded', 'false');
+        });
+        d.querySelectorAll('.faq-a, .faq-body').forEach(function (a) {
+            a.classList.remove('open');
+        });
+        if (abierto) return;
+        boton.setAttribute('aria-expanded', 'true');
+        var destino = boton.getAttribute('aria-controls')
+            ? d.getElementById(boton.getAttribute('aria-controls'))
+            : (boton.closest('.faq-item') || d).querySelector('.faq-body');
+        if (destino) destino.classList.add('open');
+    });
+
     /* ── Wordmark del pie: ocupa exactamente el ancho disponible ── */
     var wordBox = d.querySelector('.ft-word');
     var wordEl = wordBox && wordBox.querySelector('.ft-word-in');

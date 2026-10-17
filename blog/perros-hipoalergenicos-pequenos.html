@@ -120,7 +120,7 @@
     <link rel="preload" href="/fonts/iconos-36d83211.css"
           as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/fonts/iconos-36d83211.css"></noscript>
-    <style>.tienda-section{padding:80px 0;background:var(--color-fondo-principal)}.tienda-head{text-align:center;margin-bottom:44px}.tienda-badge{display:inline-block;background:rgba(139,175,130,.14);color:var(--color-acento);font-size:.74rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:16px}.tienda-head h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.6vw,2.6rem);color:var(--color-texto);line-height:1.2;margin-bottom:12px}.tienda-head p{color:var(--color-texto-suave);max-width:620px;margin:0 auto;line-height:1.8;font-size:1.02rem}.tienda-grid{display:grid;gap:20px;margin-bottom:40px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}.tienda-card{background:#fff;border:1px solid var(--color-borde);border-radius:var(--radius);padding:30px 22px;text-align:center;transition:var(--tr);display:block}.tienda-card:hover{transform:translateY(-4px);border-color:var(--color-acento);box-shadow:0 8px 28px rgba(139,175,130,.16)}.tienda-card i{font-size:1.7rem;color:var(--color-acento);margin-bottom:14px;display:block}.tienda-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--color-texto);margin-bottom:6px;font-weight:600}.tienda-card span{font-size:.88rem;color:var(--color-texto-suave);line-height:1.5}.tienda-cta-wrap{text-align:center}.btn-tienda{display:inline-flex;align-items:center;gap:10px;background:var(--color-acento);color:#fff !important;padding:15px 36px;border-radius:50px;font-weight:700;font-size:.96rem;transition:var(--tr);border:none}.btn-tienda:hover{background:#7a9d72;transform:translateY(-2px)}.tienda-inline{background:rgba(139,175,130,.08);border-left:3px solid var(--color-acento);border-radius:var(--radius-sm);padding:24px 26px;margin:38px 0}.tienda-inline p{margin:0 0 14px;color:var(--color-texto);font-size:.98rem;line-height:1.7}.tienda-inline a.tienda-inline-link{display:inline-flex;align-items:center;gap:8px;color:var(--color-acento);font-weight:700;font-size:.94rem;transition:var(--tr)}.tienda-inline a.tienda-inline-link:hover{color:#7a9d72;gap:12px}.tienda-nota{text-align:center;padding:34px 20px 10px;color:var(--color-texto-suave);font-size:.94rem;line-height:1.7}.tienda-nota a{color:var(--color-acento);font-weight:700}.tienda-nota a:hover{text-decoration:underline}@media (max-width:900px){.tienda-section{padding:56px 0}}</style>
+    <style>.tienda-inline{background:rgba(139,175,130,.08);border-left:3px solid var(--color-acento);border-radius:var(--radius-sm);padding:24px 26px;margin:38px 0}.tienda-inline p{margin:0 0 14px;color:var(--color-texto);font-size:.98rem;line-height:1.7}.tienda-inline a.tienda-inline-link{display:inline-flex;align-items:center;gap:8px;color:var(--color-acento);font-weight:700;font-size:.94rem;transition:var(--tr)}.tienda-inline a.tienda-inline-link:hover{color:#7a9d72;gap:12px}.tienda-nota{text-align:center;padding:34px 20px 10px;color:var(--color-texto-suave);font-size:.94rem;line-height:1.7}.tienda-nota a{color:var(--color-acento);font-weight:700}.tienda-nota a:hover{text-decoration:underline}</style>
     <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -134,6 +134,7 @@ ul { list-style: none; }
     --color-fondo-alternativo: #F5C4B3;
     --color-cta-principal:     #AD3E64;
     --color-cta-hover:         #93325A;
+    --color-cta-texto:         #93325A;
     --color-acento:            #8BAF82;
     --color-rosa-decorativo:   #D4537E;
     --color-acento-texto:      #4E6B47;
@@ -577,10 +578,7 @@ ul { list-style: none; }
     h2 { font-size: clamp(1.4rem, 5.5vw, 1.85rem) !important; line-height: 1.25 !important; }
     h3 { font-size: clamp(1.1rem, 4.5vw, 1.3rem) !important; line-height: 1.35 !important; }
     p  { font-size: 0.97rem; line-height: 1.72; }
-    .pull-quote { font-size: clamp(1.1rem, 4vw, 1.35rem); padding: 24px 20px; }
-
-    .btn-wa, .btn-outline-w, .btn-cta-green, .btn-primary, .btn-outline,
-    .wa-cta-big, [class*="btn-"] { min-height: 44px; display: inline-flex !important;
+    .pull-quote { font-size: clamp(1.1rem, 4vw, 1.35rem); padding: 24px 20px; }.btn-primary, .btn-outline, [class*="btn-"]{ min-height: 44px; display: inline-flex !important;
         align-items: center; justify-content: center; padding: 12px 24px !important; font-size: 0.95rem !important; }
     a, button, [role="button"] { min-height: 44px; min-width: 44px; }
     p a, li a { min-height: unset; min-width: unset; }
@@ -668,11 +666,11 @@ ul { list-style: none; }
 .ft-logo-t b{font-family:var(--serif);font-weight:700;font-size:1.875rem;line-height:1;color:var(--crema)}
 .ft-logo-t small{font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--melocoton)}
 .ft-marca p{font-size:1rem;line-height:1.7;margin-top:22px;max-width:36ch;color:#EBDAD3;text-wrap:pretty}
-.ft-marca p a{color:var(--crema)}
+.ft-marca p a{color:var(--crema);text-decoration:underline}
 .ft-marca p a:hover,.ft a:hover{color:var(--melocoton)}
 .ft-col{flex:1 1 140px}
 .ft-col.ancha{flex:1.3 1 210px}
-.ft h4{margin:0 0 20px;font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--melocoton)}
+.ft h3{margin:0 0 20px;font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--melocoton)}
 .ft-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:14px;font-size:1.0625rem}
 .ft-col a{color:var(--crema);text-decoration:none;word-break:break-word}
 .ft-col a:hover{text-decoration:underline}
@@ -685,6 +683,20 @@ ul { list-style: none; }
 .ft-word-in{display:inline-flex;white-space:nowrap;font-family:var(--serif);font-weight:600;font-size:clamp(3rem,15vw,12.5rem);line-height:1.28;letter-spacing:-.02em;color:var(--crema)}
 .ft-word-in span{display:inline-block}
 .ft-word-in span:last-child{color:var(--melocoton)}
+
+/* ── Aviso de cookies ── */
+.ck{position:fixed;left:clamp(14px,2vw,24px);right:clamp(14px,2vw,24px);bottom:clamp(14px,2vw,24px);z-index:50;max-width:640px;background:#fff;color:var(--texto);border-radius:var(--r-m);padding:20px 22px;box-shadow:0 10px 30px -10px rgba(58,40,35,.35),0 0 0 1px rgba(90,62,54,.1);display:flex;flex-direction:column;gap:16px;font-family:var(--sans)}
+.ck:focus{outline:none}
+.ck-txt{margin:0;font-size:.9375rem;line-height:1.6}
+.ck-txt a{color:var(--burdeos);text-decoration:underline}
+.ck-btns{display:flex;gap:10px}
+.ck-btn{flex:1 1 0;padding:12px 18px;border-radius:var(--pill);font:700 .9375rem/1.2 var(--sans);cursor:pointer;border:1.5px solid var(--burdeos);transition:background .2s ease,color .2s ease}
+.ck-no{background:#fff;color:var(--burdeos)}
+.ck-no:hover{background:rgba(173,62,100,.08)}
+.ck-si{background:var(--burdeos);color:#fff}
+.ck-si:hover{background:var(--burdeos-h)}
+@media (min-width:600px){.ck{flex-direction:row;align-items:center;gap:22px}.ck-btns{flex:none}.ck-btn{flex:none}}
+body:has(.ck) .wa-float{opacity:0;pointer-events:none}
 
 /* ── WhatsApp flotante ── */
 .wa-float{position:fixed;right:clamp(14px,2vw,24px);bottom:clamp(14px,2vw,24px);z-index:20;width:54px;height:54px;border-radius:var(--pill);background:var(--salvia);color:#fff;display:grid;place-items:center;box-shadow:0 4px 8px rgba(58,40,35,.25);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s ease,transform .4s var(--ease),background .2s ease}
@@ -793,7 +805,7 @@ ul { list-style: none; }
 
                 <!-- TABLA DE CONTENIDOS -->
                 <nav class="toc" aria-label="Índice">
-                    <p class="toc-titulo"><i class="fas fa-list" style="margin-right:8px;color:var(--color-cta-principal);"></i>Contenido del artículo</p>
+                    <p class="toc-titulo"><i class="fas fa-list" style="margin-right:8px;color:var(--color-cta-texto);"></i>Contenido del artículo</p>
                     <ol>
                         <li><a href="#que-es">¿Existen perros antialérgicos?</a></li>
                         <li><a href="#el-problema">Por qué el pelo no es el problema (y qué lo es)</a></li>
@@ -1020,7 +1032,7 @@ ul { list-style: none; }
             <!-- SIDEBAR -->
             <aside class="article-sidebar">
                 <div class="sidebar-toc">
-                    <h3><i class="fas fa-list" style="margin-right:7px;color:var(--color-cta-principal);"></i>En este artículo</h3>
+                    <h3><i class="fas fa-list" style="margin-right:7px;color:var(--color-cta-texto);"></i>En este artículo</h3>
                     <ol>
                         <li><a href="#que-es">Qué es un perro antialérgico</a></li>
                         <li><a href="#el-problema">Por qué el pelo no es el problema</a></li>
@@ -1040,7 +1052,7 @@ ul { list-style: none; }
                 </div>
                 <div style="background:#fff;border:1px solid var(--color-borde);border-radius:var(--radius);padding:24px 22px;">
                     <p style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--color-texto-suave);margin-bottom:12px;">Volver al blog</p>
-                    <a href="../blog" style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--color-cta-principal);font-weight:600;transition:var(--tr);">
+                    <a href="../blog" style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--color-cta-texto);font-weight:600;transition:var(--tr);">
                         <i class="fas fa-arrow-left"></i> Blog de Deterrajaras
                     </a>
                 </div>
@@ -1065,7 +1077,7 @@ ul { list-style: none; }
                 <p>Criadero familiar de <a href="https://deterrajaras.es/caniche-toy">Caniches Toy</a> y <a href="https://deterrajaras.es/schnauzer-mini">Schnauzer Mini</a> en Cáceres, Extremadura. Núcleo Zoológico registrado. Cachorros con papeles, vacunados y criados en casa.</p>
             </div>
             <nav class="ft-col" aria-label="Razas">
-                <h4>Razas</h4>
+                <h3>Razas</h3>
                 <ul>
                     <li><a href="https://deterrajaras.es/caniche-toy" title="Cachorros de Caniche Toy en Cáceres">Caniche Toy</a></li>
                     <li><a href="https://deterrajaras.es/schnauzer-mini" title="Cachorros de Schnauzer Miniatura en Cáceres">Schnauzer Mini</a></li>
@@ -1074,7 +1086,7 @@ ul { list-style: none; }
                 </ul>
             </nav>
             <nav class="ft-col" aria-label="Criadero">
-                <h4>Criadero</h4>
+                <h3>Criadero</h3>
                 <ul>
                     <li><a href="https://deterrajaras.es/camadas">Camadas y lista de espera</a></li>
                     <li><a href="https://deterrajaras.es/criadero-caceres" title="Criadero de Caniche Toy y Schnauzer Mini en Cáceres">Criadero en Cáceres</a></li>
@@ -1085,7 +1097,7 @@ ul { list-style: none; }
                 </ul>
             </nav>
             <nav class="ft-col" aria-label="Tienda">
-                <h4>Tienda</h4>
+                <h3>Tienda</h3>
                 <ul>
                     <li><a href="https://tienda.deterrajaras.es/collections/arneses-y-collares-para-mascotas">Arneses y collares</a></li>
                     <li><a href="https://tienda.deterrajaras.es/collections/camas-y-mantas-para-mascotas">Camas y mantas</a></li>
@@ -1093,7 +1105,7 @@ ul { list-style: none; }
                 </ul>
             </nav>
             <div class="ft-col ancha">
-                <h4>Contacto</h4>
+                <h3>Contacto</h3>
                 <ul>
                     <li><a href="tel:+34670225384">670 225 384</a></li>
                     <li><a href="https://wa.me/34670225384">WhatsApp</a></li>
@@ -1105,7 +1117,7 @@ ul { list-style: none; }
         <div class="ft-bottom">
             <p>© 2026 Deterrajaras · Cáceres, España</p>
             <p><svg class="ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Núcleo Zoológico registrado en Extremadura</p>
-            <div class="ft-legal"><a href="https://deterrajaras.es/aviso-legal">Aviso Legal</a><span aria-hidden="true">·</span><a href="https://deterrajaras.es/politica-privacidad">Privacidad</a></div>
+            <div class="ft-legal"><a href="https://deterrajaras.es/aviso-legal">Aviso Legal</a><span aria-hidden="true">·</span><a href="https://deterrajaras.es/politica-privacidad">Privacidad</a><span aria-hidden="true">·</span><a href="https://deterrajaras.es/politica-privacidad#cookies" data-cookies>Cookies</a></div>
         </div>
         <div class="ft-word" aria-hidden="true">
             <span class="ft-word-in"><span>D</span><span>e</span><span>t</span><span>e</span><span>r</span><span>r</span><span>a</span><span>j</span><span>a</span><span>r</span><span>a</span><span>s</span><span>.</span></span>
@@ -1116,28 +1128,7 @@ ul { list-style: none; }
 <a href="https://wa.me/34670225384" class="wa-float" title="Escríbenos por WhatsApp" aria-label="Escríbenos por WhatsApp"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
 <!-- /sitio:pie -->
 
-<script>
-
-document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        const targetId = btn.getAttribute('aria-controls');
-        const answer = document.getElementById(targetId);
-
-        document.querySelectorAll('.faq-q').forEach(b => {
-            b.setAttribute('aria-expanded', 'false');
-        });
-        document.querySelectorAll('.faq-a').forEach(a => {
-            a.classList.remove('open');
-        });
-
-        if (!expanded) {
-            btn.setAttribute('aria-expanded', 'true');
-            answer.classList.add('open');
-        }
-    });
-});
-</script>
 <script src="/assets/sitio.js" defer></script>
+<script src="/assets/cookies.js" defer></script>
 </body>
 </html>

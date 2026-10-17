@@ -89,6 +89,8 @@
         btn.textContent = 'Enviando…';
         var data = {
             access_key: '304f42cd-dcac-46b0-87f5-2fe8b77c3582',
+            /* Casilla trampa: los robots la rellenan y Web3Forms descarta el envío */
+            botcheck: form.querySelector('[name="botcheck"]').checked,
             name: d.getElementById('cf-nombre').value,
             email: d.getElementById('cf-email').value,
             phone: d.getElementById('cf-tel').value,

@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /scripts/
+Disallow: /assets/sitio/
+Disallow: /camada-detalle
+
 Sitemap: https://deterrajaras.es/sitemap.xml

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pone la misma cabecera y el mismo pie en todas las páginas de la web.
 
-Las piezas vivas están en assets/sitio/ (cabecera.html, pie.html, sitio.css) y
+Las piezas vivas están en assets/sitio/ (cabecera.part, pie.part, sitio.css) y
 en assets/sitio.js. Este script las incrusta en cada .html entre marcas HTML,
 de modo que volver a ejecutarlo actualiza el marcado sin duplicar nada.
 
@@ -222,6 +222,35 @@ ANCLAS = [
 ]
 
 
+PROPIOS = {
+    'test-raza.html': ('/assets/test-raza.js',),
+    'camadas.html': ('/assets/camadas-lista.js',),
+}
+
+# Bloques <script> que ya no tienen que ir dentro del HTML: el acordeón de
+# preguntas lo lleva assets/sitio.js, el test y los vídeos de camadas tienen
+# su propio archivo, y /index.html lo redirige vercel.json.
+MUDADOS = (
+    re.compile(r"document\.querySelectorAll\('\.faq-(?:q|btn)'\)"),
+    re.compile(r'URL CLEANER'),
+    re.compile(r'const cards = document\.querySelectorAll\(\x27\.video-card\x27\)'),
+    re.compile(r'SCORING TABLE'),
+)
+
+
+def quitar_js_mudado(texto):
+    """Quita el JavaScript que ahora vive en assets/ (y los <script> vacíos)."""
+    def limpia(m):
+        js = m.group(1)
+        if any(p.search(js) for p in MUDADOS) or not js.strip():
+            return ''
+        return m.group(0)
+    texto = re.sub(r'<script(?![^>]*\bsrc=)(?![^>]*ld\+json)[^>]*>(.*?)</script>\s*',
+                   limpia, texto, flags=re.S)
+    # <noscript> que se quedó sin contenido al quitar la hoja de iconos
+    return re.sub(r'[ \t]*<noscript>\s*</noscript>\n?', '', texto)
+
+
 def quitar_js_viejo(texto):
     """Borra el JavaScript que manejaba el menú antiguo."""
     def limpia(m):
@@ -338,8 +367,8 @@ def ajustar_arranque(texto):
 
 
 def main():
-    cabecera = (RAIZ / 'assets/sitio/cabecera.html').read_text(encoding='utf-8')
-    pie = (RAIZ / 'assets/sitio/pie.html').read_text(encoding='utf-8')
+    cabecera = (RAIZ / 'assets/sitio/cabecera.part').read_text(encoding='utf-8')
+    pie = (RAIZ / 'assets/sitio/pie.part').read_text(encoding='utf-8')
     hoja = (RAIZ / 'assets/sitio/sitio.css').read_text(encoding='utf-8')
 
     for ruta in paginas():
@@ -372,8 +401,9 @@ def main():
         texto = re.sub(r'\s*<!--\s*(?:FLOATING\s+)?WHATSAPP\s+FLOTANTE\s*-->', '', texto, flags=re.I)
         texto = re.sub(r'\s*<a [^>]*class="float-wa"[^>]*>.*?</a>', '', texto, flags=re.S)
 
-        # ── 4. JavaScript del menú antiguo ──
+        # ── 4. JavaScript: el del menú antiguo y el que ya vive en assets/ ──
         texto = quitar_js_viejo(texto)
+        texto = quitar_js_mudado(texto)
 
         # ── 5. El contenido ya no esquiva una cabecera fija ──
         if not portada:
@@ -400,8 +430,10 @@ def main():
         texto, bloque = entre_marcas(texto, 'sitio:css', f'<style>\n{hoja.strip()}\n</style>')
         if bloque not in texto:
             texto = texto.replace('</head>', bloque + '\n</head>', 1)
-        if '/assets/sitio.js' not in texto:
-            texto = texto.replace('</body>', '<script src="/assets/sitio.js" defer></script>\n</body>', 1)
+        for guion in ('/assets/sitio.js', '/assets/cookies.js') + PROPIOS.get(rel, ()):
+            if guion not in texto:
+                texto = texto.replace(
+                    '</body>', f'<script src="{guion}" defer></script>\n</body>', 1)
 
         if texto != original:
             print(f'  {rel}: {len(original):>7} → {len(texto):>7} bytes')
