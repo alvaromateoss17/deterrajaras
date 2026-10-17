@@ -1,0 +1,82 @@
+/* Cabecera y pie comunes a todas las páginas de deterrajaras.es.
+   Fuente única: assets/sitio/sitio.css. Se incrusta en cada página con
+   scripts/aplicar-sitio.py entre las marcas <!-- sitio:css -->.
+   Solo toca el marcado de la cabecera, el menú móvil, el pie y el botón
+   flotante de WhatsApp: ninguna regla global pisa el estilo de las páginas. */
+:root{--crema:#F9EDE8;--melocoton:#F5C4B3;--burdeos:#AD3E64;--burdeos-h:#8F2F51;--salvia:#4E6B47;--texto:#5A3E36;--fondo:#FDF9F7;--r-s:10px;--r-m:18px;--pill:999px;--ease:cubic-bezier(.16,1,.3,1);--serif:'Playfair Display',Georgia,serif;--sans:'Lato',system-ui,-apple-system,'Segoe UI',sans-serif}
+[hidden]{display:none !important}
+.on-dark :focus-visible{outline-color:var(--crema)}
+.ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
+.skip{position:absolute;left:12px;top:-60px;z-index:60;background:var(--burdeos);color:#fff;padding:10px 18px;border-radius:var(--pill);font-weight:700;text-decoration:none}
+.skip:focus{top:12px;color:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:var(--pill);font-weight:700;font-size:.9375rem;line-height:1.25;text-decoration:none;white-space:nowrap;transition:background .2s ease,color .2s ease;cursor:pointer}
+.btn-burdeos{background:var(--burdeos);color:#fff;border:0}
+.btn-burdeos:hover{background:var(--burdeos-h);color:#fff}
+
+/* ── Cabecera ── */
+.hd{position:sticky;top:0;z-index:30;background:var(--fondo);box-shadow:0 1px 0 rgba(90,62,54,0);transition:box-shadow .3s ease}
+.hd.is-scrolled{box-shadow:0 1px 0 rgba(90,62,54,.12),0 6px 8px -6px rgba(90,62,54,.16)}
+.hd-in{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:inline-flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.4375rem;color:var(--texto);text-decoration:none}
+.logo:hover{color:var(--texto)}
+.logo img{width:54px;height:34px;display:block;object-fit:contain}
+.hd-nav{display:flex;align-items:center;gap:2px}
+.hd-nav a.nl{display:flex;align-items:center;gap:4px;color:var(--texto);text-decoration:none;font-weight:700;font-size:.9375rem;padding:10px 14px;border-radius:var(--pill)}
+.hd-nav a.nl:hover{background:rgba(173,62,100,.08);color:var(--burdeos)}
+.hd-nav a.nl.es-aqui{color:var(--burdeos)}
+.dd{position:relative}
+.dd-panel{position:absolute;top:100%;left:0;padding-top:6px;z-index:35;display:none}
+.dd:hover .dd-panel,.dd:focus-within .dd-panel{display:block}
+.dd-box{background:#fff;border-radius:var(--r-s);padding:6px;min-width:200px;box-shadow:0 6px 8px -4px rgba(90,62,54,.2),0 0 0 1px rgba(90,62,54,.08);display:flex;flex-direction:column}
+.dd-box a{color:var(--texto);text-decoration:none;font-size:.9375rem;padding:11px 14px;border-radius:8px}
+.dd-box a:hover{background:var(--crema);color:var(--burdeos)}
+.hd-wa{margin-left:12px;padding:12px 20px;gap:8px}
+.hd-movil{display:none;align-items:center;gap:8px}
+.hd-movil .btn{padding:11px 16px;font-size:.875rem;gap:8px}
+.circ{width:44px;height:44px;border-radius:var(--pill);border:1.5px solid rgba(90,62,54,.25);background:transparent;color:var(--texto);display:grid;place-items:center;cursor:pointer;padding:0}
+@media (max-width:899px){.hd-nav{display:none}.hd-movil{display:flex}}
+@media (max-width:419px){.hd-in{gap:12px}.logo{font-size:1.25rem;gap:10px}.logo img{width:44px;height:28px}.hd-wa-m{width:44px;height:44px;padding:0 !important}.wa-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+.menu{position:fixed;inset:0;z-index:40;background:var(--fondo);display:flex;flex-direction:column;padding:0 clamp(20px,5vw,48px) 28px;overflow:auto}
+.menu-top{height:72px;display:flex;align-items:center;justify-content:space-between}
+.menu nav{display:flex;flex-direction:column;margin-top:12px}
+.menu .mg{font-family:var(--serif);font-size:1.875rem;font-weight:600;color:var(--texto);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(90,62,54,.14)}
+.menu .mg.sin-borde{border-bottom:0;padding-bottom:4px}
+.menu .sub{display:flex;flex-direction:column;padding:0 0 10px 16px;border-bottom:1px solid rgba(90,62,54,.14)}
+.menu .sub a{font-size:1.0625rem;color:var(--texto);text-decoration:none;padding:10px 0}
+.menu .menu-wa{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-radius:var(--pill);background:var(--burdeos);color:#fff;text-decoration:none;font-weight:700}
+
+/* ── Pie ── */
+.ft{background:var(--texto);color:var(--crema);overflow:hidden}
+.ft .wrap{padding-top:clamp(56px,7vw,88px)}
+.ft-cols{display:flex;flex-wrap:wrap;gap:44px clamp(28px,3.4vw,48px)}
+.ft-marca{flex:1.6 1 260px}
+.ft-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
+.ft-logo img{width:76px;height:48px;display:block;object-fit:contain}
+.ft-logo-t{display:flex;flex-direction:column;gap:6px}
+.ft-logo-t b{font-family:var(--serif);font-weight:700;font-size:1.875rem;line-height:1;color:var(--crema)}
+.ft-logo-t small{font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--melocoton)}
+.ft-marca p{font-size:1rem;line-height:1.7;margin-top:22px;max-width:36ch;color:#EBDAD3;text-wrap:pretty}
+.ft-marca p a{color:var(--crema)}
+.ft-marca p a:hover,.ft a:hover{color:var(--melocoton)}
+.ft-col{flex:1 1 140px}
+.ft-col.ancha{flex:1.3 1 210px}
+.ft h4{margin:0 0 20px;font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--melocoton)}
+.ft-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:14px;font-size:1.0625rem}
+.ft-col a{color:var(--crema);text-decoration:none;word-break:break-word}
+.ft-col a:hover{text-decoration:underline}
+.ft-bottom{margin-top:clamp(48px,6vw,72px);padding-top:22px;border-top:1px solid rgba(249,237,232,.22);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 32px;font-size:.875rem;color:#EBDAD3}
+.ft-bottom p{display:flex;align-items:center;gap:8px}
+.ft-bottom .ico{stroke:var(--melocoton)}
+.ft-legal{display:flex;gap:6px;align-items:center}
+.ft-legal a{color:#EBDAD3}
+.ft-word{margin-top:clamp(28px,4vw,48px);overflow:hidden}
+.ft-word-in{display:inline-flex;white-space:nowrap;font-family:var(--serif);font-weight:600;font-size:clamp(3rem,15vw,12.5rem);line-height:1.28;letter-spacing:-.02em;color:var(--crema)}
+.ft-word-in span{display:inline-block}
+.ft-word-in span:last-child{color:var(--melocoton)}
+
+/* ── WhatsApp flotante ── */
+.wa-float{position:fixed;right:clamp(14px,2vw,24px);bottom:clamp(14px,2vw,24px);z-index:20;width:54px;height:54px;border-radius:var(--pill);background:var(--salvia);color:#fff;display:grid;place-items:center;box-shadow:0 4px 8px rgba(58,40,35,.25);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s ease,transform .4s var(--ease),background .2s ease}
+.wa-float.is-on{opacity:1;transform:translateY(0);pointer-events:auto}
+.wa-float:hover{background:#3F5939;color:#fff}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms !important}}

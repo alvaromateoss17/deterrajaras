@@ -1,4 +1,5 @@
 /* Home de deterrajaras.es — interacción y animaciones (solo la usa index.html).
+ * La cabecera, el menú móvil y el pie los maneja assets/sitio.js, común a toda la web.
  *
  * Regla de oro: todo el contenido se ve sin JavaScript. Las animaciones de
  * entrada solo ocultan un elemento en el instante en que entra en pantalla,
@@ -11,52 +12,6 @@
     var d = document;
     var w = window;
     var reduce = w.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* ── Cabecera con sombra y WhatsApp flotante ── */
-    var header = d.querySelector('.hd');
-    var waFloat = d.querySelector('.wa-float');
-    var menu = d.getElementById('menu-movil');
-    var menuBtn = d.querySelector('.hd-burger');
-
-    function onScroll() {
-        var y = w.scrollY;
-        header.classList.toggle('is-scrolled', y > 12);
-        if (waFloat) waFloat.classList.toggle('is-on', y > w.innerHeight * 0.6 && menu.hidden);
-    }
-    w.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    /* ── Menú móvil ── */
-    function setMenu(open) {
-        menu.hidden = !open;
-        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        d.body.style.overflow = open ? 'hidden' : '';
-        if (open) menu.querySelector('.menu-close').focus();
-        else menuBtn.focus();
-        onScroll();
-    }
-    menuBtn.addEventListener('click', function () { setMenu(true); });
-    menu.querySelector('.menu-close').addEventListener('click', function () { setMenu(false); });
-    menu.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () {
-            menu.hidden = true;
-            menuBtn.setAttribute('aria-expanded', 'false');
-            d.body.style.overflow = '';
-        });
-    });
-    d.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && !menu.hidden) setMenu(false);
-    });
-    w.addEventListener('resize', function () {
-        if (!menu.hidden && w.innerWidth >= 900) setMenu(false);
-    });
-
-    /* Las anclas internas no dejan el #fragmento en la URL (como la home anterior) */
-    d.querySelectorAll('.hd a[href^="#"], #menu-movil a[href^="#"]').forEach(function (a) {
-        a.addEventListener('click', function () {
-            setTimeout(function () { w.history.replaceState(null, d.title, '/'); }, 10);
-        });
-    });
 
     /* ── Preguntas frecuentes: 5 visibles, las otras 4 en el HTML pero ocultas ── */
     var masBtn = d.querySelector('.faq-more');
@@ -162,20 +117,10 @@
         }
     });
 
-    /* ── Wordmark del footer: ocupa exactamente el ancho disponible ── */
+    /* El wordmark del pie lo dimensiona assets/sitio.js; aquí solo se anima */
     var wordBox = d.querySelector('.ft-word');
     var wordEl = wordBox && wordBox.querySelector('.ft-word-in');
-    function ajustarWord() {
-        if (!wordEl) return;
-        var ancho = wordBox.clientWidth;
-        if (!ancho) return;
-        wordEl.style.fontSize = '100px';
-        var natural = wordEl.getBoundingClientRect().width;
-        if (natural > 0) wordEl.style.fontSize = (100 * ancho / natural * 0.995).toFixed(2) + 'px';
-    }
-    ajustarWord();
-    w.addEventListener('resize', ajustarWord);
-    if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { ajustarWord(); refrescar(); });
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { refrescar(); });
 
     /* ── Animaciones con GSAP + ScrollTrigger ── */
     var refrescoPendiente;

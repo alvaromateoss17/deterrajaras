@@ -98,10 +98,10 @@
     },
     {
       "@type": "Question",
-      "name": "¿Puedo visitar el criadero y conocer a la madre?",
+      "name": "¿Puedo ver al cachorro y a la madre antes de llevármelo?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sí. Puedes venir a Cáceres a conocernos, ver dónde crecen los cachorros y conocer a la madre. Escríbenos antes para organizar la visita. Si vives lejos, te enviamos fotos y vídeos cada semana y hacemos videollamadas para que veas a tu cachorro en directo. Un criador que se niega a enseñarte nada es mala señal. Conoce nuestro criadero en Cáceres."
+        "text": "Sí, en fotos, vídeos y videollamada siempre que quieras: te enseñamos a tu cachorro, a la madre y dónde crecen. No hacemos visitas al criadero, porque hasta que los cachorros terminan sus vacunas no conviene que pase gente de fuera y las madres necesitan tranquilidad. Conoces a tu cachorro en persona el día de la entrega, una vez hecha la reserva. Así es nuestro criadero en Cáceres."
       }
     },
     {
@@ -124,9 +124,7 @@
 }
 </script>
     <style>
-:root{--crema:#F9EDE8;--melocoton:#F5C4B3;--burdeos:#AD3E64;--burdeos-h:#8F2F51;--salvia:#4E6B47;--texto:#5A3E36;--fondo:#FDF9F7;--r-s:10px;--r-m:18px;--pill:999px;--ease:cubic-bezier(.16,1,.3,1);--serif:'Playfair Display',Georgia,serif;--sans:'Lato',system-ui,-apple-system,'Segoe UI',sans-serif}
 *,*::before,*::after{box-sizing:border-box}
-[hidden]{display:none !important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,video{max-width:100%}
@@ -135,52 +133,13 @@ a:hover{color:var(--burdeos-h)}
 h1,h2,h3,h4,p,ul,ol,figure,blockquote{margin:0}
 ::selection{background:var(--melocoton);color:var(--texto)}
 :focus-visible{outline:2px solid var(--burdeos);outline-offset:3px}
-.on-dark :focus-visible{outline-color:var(--crema)}
 input::placeholder,textarea::placeholder{color:#8A6A60;opacity:1}
-.ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
-.skip{position:absolute;left:12px;top:-60px;z-index:60;background:var(--burdeos);color:#fff;padding:10px 18px;border-radius:var(--pill);font-weight:700;text-decoration:none}
-.skip:focus{top:12px;color:#fff}
-.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
 .sec{padding:clamp(64px,8vw,104px) 0;scroll-margin-top:80px}
 .bg-crema{background:var(--crema)}
 .h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.75rem,2.8vw,2.375rem);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
 .lead{font-size:1.0625rem;line-height:1.7;margin-top:16px;text-wrap:pretty}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:var(--pill);font-weight:700;font-size:.9375rem;line-height:1.25;text-decoration:none;white-space:nowrap;transition:background .2s ease,color .2s ease;cursor:pointer}
-.btn-burdeos{background:var(--burdeos);color:#fff;border:0}
-.btn-burdeos:hover{background:var(--burdeos-h);color:#fff}
 .link-flecha{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.9375rem;color:var(--burdeos);text-decoration:none}
 .link-flecha:hover{color:var(--burdeos-h);text-decoration:underline}
-
-/* ── Cabecera ── */
-.hd{position:sticky;top:0;z-index:30;background:var(--fondo);box-shadow:0 1px 0 rgba(90,62,54,0);transition:box-shadow .3s ease}
-.hd.is-scrolled{box-shadow:0 1px 0 rgba(90,62,54,.12),0 6px 8px -6px rgba(90,62,54,.16)}
-.hd-in{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{display:inline-flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.4375rem;color:var(--texto);text-decoration:none}
-.logo:hover{color:var(--texto)}
-.logo img{width:54px;height:34px;display:block;object-fit:contain}
-.hd-nav{display:flex;align-items:center;gap:2px}
-.hd-nav a.nl{display:flex;align-items:center;gap:4px;color:var(--texto);text-decoration:none;font-weight:700;font-size:.9375rem;padding:10px 14px;border-radius:var(--pill)}
-.hd-nav a.nl:hover{background:rgba(173,62,100,.08);color:var(--burdeos)}
-.dd{position:relative}
-.dd-panel{position:absolute;top:100%;left:0;padding-top:6px;z-index:35;display:none}
-.dd:hover .dd-panel,.dd:focus-within .dd-panel{display:block}
-.dd-box{background:#fff;border-radius:var(--r-s);padding:6px;min-width:200px;box-shadow:0 6px 8px -4px rgba(90,62,54,.2),0 0 0 1px rgba(90,62,54,.08);display:flex;flex-direction:column}
-.dd-box a{color:var(--texto);text-decoration:none;font-size:.9375rem;padding:11px 14px;border-radius:8px}
-.dd-box a:hover{background:var(--crema);color:var(--burdeos)}
-.hd-wa{margin-left:12px;padding:12px 20px;gap:8px}
-.hd-movil{display:none;align-items:center;gap:8px}
-.hd-movil .btn{padding:11px 16px;font-size:.875rem;gap:8px}
-.circ{width:44px;height:44px;border-radius:var(--pill);border:1.5px solid rgba(90,62,54,.25);background:transparent;color:var(--texto);display:grid;place-items:center;cursor:pointer;padding:0}
-@media (max-width:899px){.hd-nav{display:none}.hd-movil{display:flex}}
-@media (max-width:419px){.hd-in{gap:12px}.logo{font-size:1.25rem;gap:10px}.logo img{width:44px;height:28px}.hd-wa-m{width:44px;height:44px;padding:0 !important}.wa-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
-.menu{position:fixed;inset:0;z-index:40;background:var(--fondo);display:flex;flex-direction:column;padding:0 clamp(20px,5vw,48px) 28px;overflow:auto}
-.menu-top{height:72px;display:flex;align-items:center;justify-content:space-between}
-.menu nav{display:flex;flex-direction:column;margin-top:12px}
-.menu .mg{font-family:var(--serif);font-size:1.875rem;font-weight:600;color:var(--texto);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(90,62,54,.14)}
-.menu .mg.sin-borde{border-bottom:0;padding-bottom:4px}
-.menu .sub{display:flex;flex-direction:column;padding:0 0 10px 16px;border-bottom:1px solid rgba(90,62,54,.14)}
-.menu .sub a{font-size:1.0625rem;color:var(--texto);text-decoration:none;padding:10px 0}
-.menu .menu-wa{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-radius:var(--pill);background:var(--burdeos);color:#fff;text-decoration:none;font-weight:700}
 
 /* ── Portada ── */
 .hero{position:relative;overflow:hidden;background:var(--texto);color:#fff;min-height:clamp(620px,calc(100svh - 72px),900px);display:flex;align-items:center}
@@ -362,8 +321,58 @@ input::placeholder,textarea::placeholder{color:#8A6A60;opacity:1}
 .form-btn:active{background:#7A2845}
 .form-btn:disabled{opacity:.7;cursor:progress}
 .form-ok{margin-top:22px;padding:18px 20px;border-radius:var(--r-s);background:var(--salvia);color:#fff;font-weight:700}
+    </style>
+<!-- sitio:css -->
+<style>
+/* Cabecera y pie comunes a todas las páginas de deterrajaras.es.
+   Fuente única: assets/sitio/sitio.css. Se incrusta en cada página con
+   scripts/aplicar-sitio.py entre las marcas <!-- sitio:css -->.
+   Solo toca el marcado de la cabecera, el menú móvil, el pie y el botón
+   flotante de WhatsApp: ninguna regla global pisa el estilo de las páginas. */
+:root{--crema:#F9EDE8;--melocoton:#F5C4B3;--burdeos:#AD3E64;--burdeos-h:#8F2F51;--salvia:#4E6B47;--texto:#5A3E36;--fondo:#FDF9F7;--r-s:10px;--r-m:18px;--pill:999px;--ease:cubic-bezier(.16,1,.3,1);--serif:'Playfair Display',Georgia,serif;--sans:'Lato',system-ui,-apple-system,'Segoe UI',sans-serif}
+[hidden]{display:none !important}
+.on-dark :focus-visible{outline-color:var(--crema)}
+.ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
+.skip{position:absolute;left:12px;top:-60px;z-index:60;background:var(--burdeos);color:#fff;padding:10px 18px;border-radius:var(--pill);font-weight:700;text-decoration:none}
+.skip:focus{top:12px;color:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:var(--pill);font-weight:700;font-size:.9375rem;line-height:1.25;text-decoration:none;white-space:nowrap;transition:background .2s ease,color .2s ease;cursor:pointer}
+.btn-burdeos{background:var(--burdeos);color:#fff;border:0}
+.btn-burdeos:hover{background:var(--burdeos-h);color:#fff}
 
-/* ── Footer ── */
+/* ── Cabecera ── */
+.hd{position:sticky;top:0;z-index:30;background:var(--fondo);box-shadow:0 1px 0 rgba(90,62,54,0);transition:box-shadow .3s ease}
+.hd.is-scrolled{box-shadow:0 1px 0 rgba(90,62,54,.12),0 6px 8px -6px rgba(90,62,54,.16)}
+.hd-in{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:inline-flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.4375rem;color:var(--texto);text-decoration:none}
+.logo:hover{color:var(--texto)}
+.logo img{width:54px;height:34px;display:block;object-fit:contain}
+.hd-nav{display:flex;align-items:center;gap:2px}
+.hd-nav a.nl{display:flex;align-items:center;gap:4px;color:var(--texto);text-decoration:none;font-weight:700;font-size:.9375rem;padding:10px 14px;border-radius:var(--pill)}
+.hd-nav a.nl:hover{background:rgba(173,62,100,.08);color:var(--burdeos)}
+.hd-nav a.nl.es-aqui{color:var(--burdeos)}
+.dd{position:relative}
+.dd-panel{position:absolute;top:100%;left:0;padding-top:6px;z-index:35;display:none}
+.dd:hover .dd-panel,.dd:focus-within .dd-panel{display:block}
+.dd-box{background:#fff;border-radius:var(--r-s);padding:6px;min-width:200px;box-shadow:0 6px 8px -4px rgba(90,62,54,.2),0 0 0 1px rgba(90,62,54,.08);display:flex;flex-direction:column}
+.dd-box a{color:var(--texto);text-decoration:none;font-size:.9375rem;padding:11px 14px;border-radius:8px}
+.dd-box a:hover{background:var(--crema);color:var(--burdeos)}
+.hd-wa{margin-left:12px;padding:12px 20px;gap:8px}
+.hd-movil{display:none;align-items:center;gap:8px}
+.hd-movil .btn{padding:11px 16px;font-size:.875rem;gap:8px}
+.circ{width:44px;height:44px;border-radius:var(--pill);border:1.5px solid rgba(90,62,54,.25);background:transparent;color:var(--texto);display:grid;place-items:center;cursor:pointer;padding:0}
+@media (max-width:899px){.hd-nav{display:none}.hd-movil{display:flex}}
+@media (max-width:419px){.hd-in{gap:12px}.logo{font-size:1.25rem;gap:10px}.logo img{width:44px;height:28px}.hd-wa-m{width:44px;height:44px;padding:0 !important}.wa-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+.menu{position:fixed;inset:0;z-index:40;background:var(--fondo);display:flex;flex-direction:column;padding:0 clamp(20px,5vw,48px) 28px;overflow:auto}
+.menu-top{height:72px;display:flex;align-items:center;justify-content:space-between}
+.menu nav{display:flex;flex-direction:column;margin-top:12px}
+.menu .mg{font-family:var(--serif);font-size:1.875rem;font-weight:600;color:var(--texto);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(90,62,54,.14)}
+.menu .mg.sin-borde{border-bottom:0;padding-bottom:4px}
+.menu .sub{display:flex;flex-direction:column;padding:0 0 10px 16px;border-bottom:1px solid rgba(90,62,54,.14)}
+.menu .sub a{font-size:1.0625rem;color:var(--texto);text-decoration:none;padding:10px 0}
+.menu .menu-wa{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-radius:var(--pill);background:var(--burdeos);color:#fff;text-decoration:none;font-weight:700}
+
+/* ── Pie ── */
 .ft{background:var(--texto);color:var(--crema);overflow:hidden}
 .ft .wrap{padding-top:clamp(56px,7vw,88px)}
 .ft-cols{display:flex;flex-wrap:wrap;gap:44px clamp(28px,3.4vw,48px)}
@@ -397,9 +406,11 @@ input::placeholder,textarea::placeholder{color:#8A6A60;opacity:1}
 .wa-float.is-on{opacity:1;transform:translateY(0);pointer-events:auto}
 .wa-float:hover{background:#3F5939;color:#fff}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms !important}}
-    </style>
+</style>
+<!-- /sitio:css -->
 </head>
 <body>
+<!-- sitio:cabecera -->
 <a class="skip" href="#contenido">Saltar al contenido</a>
 
 <header class="hd">
@@ -450,6 +461,7 @@ input::placeholder,textarea::placeholder{color:#8A6A60;opacity:1}
     </nav>
     <a href="https://wa.me/34670225384" class="menu-wa">Escríbenos por WhatsApp<svg class="ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
 </div>
+<!-- /sitio:cabecera -->
 
 <main id="contenido">
 
@@ -680,8 +692,8 @@ input::placeholder,textarea::placeholder{color:#8A6A60;opacity:1}
                     <p>Cuando eliges tu cachorro, se reserva a tu nombre con una señal que se descuenta del precio final: no es un coste extra. El importe depende de la camada y te lo explicamos antes de que pagues nada. Si todavía no hay cachorros disponibles, puedes apuntarte a la lista de espera: es gratis y sin compromiso. Consulta las <a href="https://deterrajaras.es/camadas">camadas disponibles y la lista de espera</a>.</p>
                 </details>
                 <details data-reveal data-delay="200">
-                    <summary>¿Puedo visitar el criadero y conocer a la madre?<svg class="ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="v" d="M12 5v14"/></svg></summary>
-                    <p>Sí. Puedes venir a Cáceres a conocernos, ver dónde crecen los cachorros y conocer a la madre. Escríbenos antes para organizar la visita. Si vives lejos, te enviamos fotos y vídeos cada semana y hacemos videollamadas para que veas a tu cachorro en directo. Un criador que se niega a enseñarte nada es mala señal. Conoce <a href="https://deterrajaras.es/criadero-caceres">nuestro criadero en Cáceres</a>.</p>
+                    <summary>¿Puedo ver al cachorro y a la madre antes de llevármelo?<svg class="ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="v" d="M12 5v14"/></svg></summary>
+                    <p>Sí, en fotos, vídeos y videollamada siempre que quieras: te enseñamos a tu cachorro, a la madre y dónde crecen. No hacemos visitas al criadero, porque hasta que los cachorros terminan sus vacunas no conviene que pase gente de fuera y las madres necesitan tranquilidad. Conoces a tu cachorro en persona el día de la entrega, una vez hecha la reserva. Así es <a href="https://deterrajaras.es/criadero-caceres">nuestro criadero en Cáceres</a>.</p>
                 </details>
                 <div id="faq-mas" hidden>
                     <details>
@@ -746,6 +758,7 @@ input::placeholder,textarea::placeholder{color:#8A6A60;opacity:1}
 
 </main>
 
+<!-- sitio:pie -->
 <footer class="ft on-dark">
     <div class="wrap">
         <div class="ft-cols">
@@ -806,7 +819,11 @@ input::placeholder,textarea::placeholder{color:#8A6A60;opacity:1}
 </footer>
 
 <a href="https://wa.me/34670225384" class="wa-float" title="Escríbenos por WhatsApp" aria-label="Escríbenos por WhatsApp"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
+<!-- /sitio:pie -->
 
+<a href="https://wa.me/34670225384" class="wa-float" title="Escríbenos por WhatsApp" aria-label="Escríbenos por WhatsApp"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
+
+<script src="/assets/sitio.js" defer></script>
 <script src="/assets/home/home.js" defer></script>
 <script type="application/ld+json">
 {
