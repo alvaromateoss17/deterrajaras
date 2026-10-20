@@ -215,7 +215,7 @@ function aviso(datos) {
 }
 
 /** Última frase de la description de la home, según lo que haya en el panel.
- *  El texto del repo ("Lista de espera abierta") vale siempre, así que si el
+ *  El texto del repo ("Lista de espera completa") vale siempre, así que si el
  *  panel falla la home no promete camadas que no existen. */
 const BASE_HOME = 'Criadero familiar con Núcleo Zoológico en Cáceres. Caniche Toy y Schnauzer Mini criados en casa, con chip, vacunas y contrato.';
 
@@ -225,7 +225,7 @@ function descripcionHome(camadas) {
     ? 'Camadas disponibles ahora.'
     : hay('proxima')
       ? 'Próxima camada con reservas abiertas.'
-      : 'Lista de espera abierta.';
+      : 'Lista de espera completa por ahora.';
   return `${BASE_HOME} ${frase}`;
 }
 
@@ -351,8 +351,8 @@ function cuerpoCamada(c) {
     : `            <div class="reservas-cta" style="margin-top:32px;">
                 <p class="reservas-cta-pre">¿Buscas un cachorro de Caniche Toy o Schnauzer Mini?</p>
                 <a href="/camadas#lista-espera" class="reservas-btn">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                    Apuntarme a la lista de espera
+                    <i class="fas fa-hourglass-half" aria-hidden="true"></i>
+                    Ver estado de la lista de espera
                 </a>
             </div>`;
 
