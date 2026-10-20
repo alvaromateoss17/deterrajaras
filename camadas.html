@@ -162,11 +162,21 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     font-weight: 700; font-size: 1rem; transition: transform var(--tr), box-shadow var(--tr);
 }
 .btn-light:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+.reserva-cerrada {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    max-width: 620px; margin: 0 auto;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(245,196,179,.28);
+    color: #fff; padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: .97rem; line-height: 1.5;
+}
+.reserva-cerrada i { color: var(--color-fondo-alternativo); }
 @media (max-width: 767px) {
     .reserva-bloque { padding: 34px 22px; border-radius: 18px; margin-bottom: 36px; }
     .reserva-porque { padding: 20px 20px; margin: 24px 0 26px; }
     .reserva-grid { grid-template-columns: 1fr; gap: 12px; }
     .btn-light { width: 100%; justify-content: center; }
+    .reserva-cerrada { width: 100%; text-align: center; padding: 14px 20px; }
 }
 
 /* ── VÍDEOS DE CAMADAS ── */
@@ -679,14 +689,14 @@ body:has(.ck) .wa-float{opacity:0;pointer-events:none}
                 </div>
                 <div class="reserva-card">
                     <i class="fas fa-comment-dots" aria-hidden="true"></i>
-                    <h4>El importe te lo decimos al hablar</h4>
-                    <p>Varía según la camada. Te lo explicamos todo por WhatsApp, con sus condiciones y sin compromiso.</p>
+                    <h4>El importe depende de la camada</h4>
+                    <p>Varía según la camada. Cuando volvamos a abrir reservas lo explicaremos aquí, con todas sus condiciones.</p>
                 </div>
             </div>
 
             <p class="reserva-aclara"><strong>Ojo, no confundas las dos cosas:</strong> la lista de espera es gratis y sin compromiso, aunque ahora mismo esté completa. La señal solo entra en juego más adelante, el día que elijas un cachorro concreto y quieras reservarlo a tu nombre.</p>
 
-            <a href="https://wa.me/34670225384?text=Hola%2C%20quer%C3%ADa%20preguntar%20por%20la%20reserva%20de%20un%20cachorro" target="_blank" rel="noopener" class="btn-light"><i class="fab fa-whatsapp" aria-hidden="true"></i> Preguntar por la reserva</a>
+            <p class="reserva-cerrada"><i class="fas fa-lock" aria-hidden="true"></i> Reservas cerradas: no estamos aceptando nuevas consultas</p>
         </div>
 
         <div class="espera-form-box espera-cerrada" id="lista-espera">
