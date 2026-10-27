@@ -125,6 +125,30 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "tienda.deterrajaras.es" }],
+      "destination": "https://deterrajaras.es/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/camadas",
+      "has": [{ "type": "host", "value": "tienda.deterrajaras.es" }],
+      "destination": "https://deterrajaras.es/camadas",
+      "permanent": true
+    },
+    {
+      "source": "/robots.txt",
+      "has": [{ "type": "host", "value": "tienda.deterrajaras.es" }],
+      "destination": "/api/gone",
+      "permanent": false
+    },
+    {
+      "source": "/sitemap.xml",
+      "has": [{ "type": "host", "value": "tienda.deterrajaras.es" }],
+      "destination": "/api/gone",
+      "permanent": false
+    },
+    {
       "source": "/blog/perros-hipoalergenicos-peque%C3%B1os",
       "destination": "/blog/perros-hipoalergenicos-pequenos",
       "permanent": true
@@ -259,6 +283,13 @@
       "source": "/blog/caniche-toy-schnauzer-mini",
       "destination": "/blog/caniche-toy-o-schnauzer-mini",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "tienda.deterrajaras.es" }],
+      "destination": "/api/gone"
     }
   ]
 }
