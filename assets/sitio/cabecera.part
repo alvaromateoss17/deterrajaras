@@ -15,7 +15,6 @@
             </div>
             <a href="https://deterrajaras.es/camadas" class="nl" title="Camadas y lista de espera de Caniche Toy y Schnauzer Mini">Camadas</a>
             <a href="https://deterrajaras.es/blog" class="nl">Blog</a>
-            <a href="https://tienda.deterrajaras.es/" class="nl">Tienda</a>
             <a href="{{R}}#contacto" class="nl">Contacto</a>
             <a href="https://wa.me/34670225384" class="btn btn-burdeos hd-wa" title="Escríbenos por WhatsApp"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>WhatsApp</a>
         </nav>
@@ -43,7 +42,6 @@
         </div>
         <a href="https://deterrajaras.es/camadas" class="mg" title="Camadas y lista de espera de Caniche Toy y Schnauzer Mini">Camadas</a>
         <a href="https://deterrajaras.es/blog" class="mg">Blog</a>
-        <a href="https://tienda.deterrajaras.es/" class="mg">Tienda</a>
         <a href="{{R}}#contacto" class="mg" style="border-bottom:0">Contacto</a>
     </nav>
     <a href="https://wa.me/34670225384" class="menu-wa">Escríbenos por WhatsApp<svg class="ico" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>

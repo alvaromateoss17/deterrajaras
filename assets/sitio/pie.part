@@ -28,14 +28,6 @@
                     <li><a href="{{R}}#galeria">Galería</a></li>
                 </ul>
             </nav>
-            <nav class="ft-col" aria-label="Tienda">
-                <h3>Tienda</h3>
-                <ul>
-                    <li><a href="https://tienda.deterrajaras.es/collections/arneses-y-collares-para-mascotas">Arneses y collares</a></li>
-                    <li><a href="https://tienda.deterrajaras.es/collections/camas-y-mantas-para-mascotas">Camas y mantas</a></li>
-                    <li><a href="https://tienda.deterrajaras.es/collections/all">Ver toda la tienda</a></li>
-                </ul>
-            </nav>
             <div class="ft-col ancha">
                 <h3>Contacto</h3>
                 <ul>
