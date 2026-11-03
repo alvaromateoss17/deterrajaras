@@ -22,7 +22,7 @@
         masBtn.setAttribute('aria-expanded', abrir ? 'true' : 'false');
         masBtn.querySelector('span').textContent = abrir ? 'Ver menos preguntas' : 'Ver las 9 preguntas';
         if (abrir && w.gsap && !reduce) {
-            w.gsap.fromTo(masBox.children, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'expo.out', stagger: 0.06, clearProps: 'opacity,visibility,transform' });
+            w.gsap.fromTo(masBox.children, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power2.out', stagger: 0.14, clearProps: 'opacity,visibility,transform' });
         }
         refrescar();
     });
@@ -168,8 +168,8 @@
         var ST = w.ScrollTrigger;
         gsap.registerPlugin(ST);
 
-        var ease = 'expo.out';
-        var dist = 28;
+        var ease = 'power2.out';
+        var dist = 18;
         var limpiar = 'opacity,visibility,transform,clipPath';
         var vh = w.innerHeight;
         var retraso = function (el) { return (+el.dataset.delay || 0) / 1000; };
@@ -182,26 +182,26 @@
         /* Franja de garantías: movimiento continuo, acelera con el scroll, se para con el ratón */
         var franja = d.querySelector('.marq');
         var pista = d.querySelector('.marq-track');
-        var marquee = gsap.to(pista, { xPercent: -50, ease: 'none', duration: 36, repeat: -1 });
+        var marquee = gsap.to(pista, { xPercent: -50, ease: 'none', duration: 72, repeat: -1 });
         var calma;
         ST.create({
             start: 0,
             end: 'max',
             onUpdate: function (self) {
                 if (franja.matches(':hover')) return;
-                var impulso = 1 + Math.min(Math.abs(self.getVelocity()) / 500, 3);
-                gsap.to(marquee, { timeScale: impulso * (self.direction < 0 ? -1 : 1), duration: 0.25, overwrite: true });
+                var impulso = 1 + Math.min(Math.abs(self.getVelocity()) / 1800, 0.35);
+                gsap.to(marquee, { timeScale: impulso * (self.direction < 0 ? -1 : 1), duration: 1.1, overwrite: true });
                 clearTimeout(calma);
-                calma = setTimeout(function () { gsap.to(marquee, { timeScale: 1, duration: 1, overwrite: true }); }, 140);
+                calma = setTimeout(function () { gsap.to(marquee, { timeScale: 1, duration: 2.2, overwrite: true }); }, 420);
             }
         });
-        franja.addEventListener('mouseenter', function () { gsap.to(marquee, { timeScale: 0, duration: 0.6, overwrite: true }); });
-        franja.addEventListener('mouseleave', function () { gsap.to(marquee, { timeScale: 1, duration: 0.8, overwrite: true }); });
+        franja.addEventListener('mouseenter', function () { gsap.to(marquee, { timeScale: 0, duration: 1.2, overwrite: true }); });
+        franja.addEventListener('mouseleave', function () { gsap.to(marquee, { timeScale: 1, duration: 1.6, overwrite: true }); });
 
         /* Textos y bloques que suben al aparecer */
         gsap.utils.toArray('[data-reveal]:not([data-reveal="img"])').filter(porDebajo).forEach(function (el) {
             alEntrar(el, function () {
-                gsap.fromTo(el, { autoAlpha: 0, y: dist }, { autoAlpha: 1, y: 0, duration: 1, ease: ease, delay: retraso(el), clearProps: limpiar });
+                gsap.fromTo(el, { autoAlpha: 0, y: dist }, { autoAlpha: 1, y: 0, duration: 1.8, ease: ease, delay: retraso(el), clearProps: limpiar });
             });
         });
 
@@ -210,32 +210,32 @@
             alEntrar(el, function () {
                 gsap.fromTo(el,
                     { clipPath: 'inset(16% 5% 0% 5% round 18px)', autoAlpha: 0.3 },
-                    { clipPath: 'inset(0% 0% 0% 0% round 18px)', autoAlpha: 1, duration: 1.3, ease: ease, delay: retraso(el), clearProps: limpiar });
+                    { clipPath: 'inset(0% 0% 0% 0% round 18px)', autoAlpha: 1, duration: 2.2, ease: ease, delay: retraso(el), clearProps: limpiar });
             });
         });
 
         /* Iconos con un pequeño giro */
         gsap.utils.toArray('[data-pop]').filter(porDebajo).forEach(function (el) {
             alEntrar(el, function () {
-                gsap.fromTo(el, { scale: 0.6, autoAlpha: 0, rotate: -12 }, { scale: 1, autoAlpha: 1, rotate: 0, duration: 0.9, ease: ease, delay: 0.25, clearProps: limpiar });
+                gsap.fromTo(el, { scale: 0.86, autoAlpha: 0, rotate: -6 }, { scale: 1, autoAlpha: 1, rotate: 0, duration: 1.6, ease: ease, delay: 0.4, clearProps: limpiar });
             });
         });
 
         /* Profundidad suave en la portada y en la foto de la familia */
-        gsap.to('.hero-par', { yPercent: 4, ease: 'none', scrollTrigger: { trigger: '#inicio', start: 'top top', end: 'bottom top', scrub: true } });
+        gsap.to('.hero-par', { yPercent: 4, ease: 'none', scrollTrigger: { trigger: '#inicio', start: 'top top', end: 'bottom top', scrub: 1.8 } });
         var familia = d.querySelector('.fam-img');
         if (familia) {
-            gsap.fromTo(familia, { yPercent: -5 }, { yPercent: 5, ease: 'none', immediateRender: false, scrollTrigger: { trigger: familia.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+            gsap.fromTo(familia, { yPercent: -5 }, { yPercent: 5, ease: 'none', immediateRender: false, scrollTrigger: { trigger: familia.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1.8 } });
         }
 
         /* Proceso: la línea de cada paso se dibuja con el scroll */
         d.querySelectorAll('.paso').forEach(function (paso) {
             if (!porDebajo(paso)) return;
             var linea = paso.querySelector('.paso-linea');
-            gsap.fromTo(linea, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: paso, start: 'top bottom', end: 'top 55%', scrub: 0.5 } });
+            gsap.fromTo(linea, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: paso, start: 'top bottom', end: 'top 40%', scrub: 1.6 } });
             var partes = paso.querySelectorAll('.paso-n, h3, p');
             alEntrar(paso, function () {
-                gsap.fromTo(partes, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: ease, stagger: 0.07, clearProps: limpiar });
+                gsap.fromTo(partes, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1.6, ease: ease, stagger: 0.16, clearProps: limpiar });
             });
         });
 
@@ -243,7 +243,7 @@
         if (wordEl) {
             var letras = wordEl.querySelectorAll('span');
             alEntrar(wordBox, function () {
-                gsap.fromTo(letras, { yPercent: 105 }, { yPercent: 0, duration: 1.2, ease: ease, stagger: 0.04, clearProps: 'transform' });
+                gsap.fromTo(letras, { yPercent: 105 }, { yPercent: 0, duration: 2.2, ease: ease, stagger: 0.09, clearProps: 'transform' });
             });
         }
 

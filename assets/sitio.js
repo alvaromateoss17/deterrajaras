@@ -14,12 +14,14 @@
     var waFloat = d.querySelector('.wa-float');
     var menu = d.getElementById('menu-movil');
     var menuBtn = d.querySelector('.hd-burger');
+    var footer = d.querySelector('.ft');
 
     /* ── Cabecera con sombra y WhatsApp flotante ── */
     function onScroll() {
         var y = w.scrollY;
         if (header) header.classList.toggle('is-scrolled', y > 12);
-        if (waFloat) waFloat.classList.toggle('is-on', y > w.innerHeight * 0.6 && (!menu || menu.hidden));
+        var pieALaVista = footer && footer.getBoundingClientRect().top < w.innerHeight - 72;
+        if (waFloat) waFloat.classList.toggle('is-on', y > w.innerHeight * 0.6 && (!menu || menu.hidden) && !pieALaVista);
     }
     w.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -92,10 +94,29 @@
         var ancho = wordBox.clientWidth;
         if (!ancho) return;
         wordEl.style.fontSize = '100px';
+        void wordEl.offsetWidth;
         var natural = wordEl.getBoundingClientRect().width;
-        if (natural > 0) wordEl.style.fontSize = (100 * ancho / natural * 0.995).toFixed(2) + 'px';
+        if (natural > 0) wordEl.style.fontSize = (100 * ancho / natural * 0.96).toFixed(2) + 'px';
     }
-    ajustarWord();
+    function cuandoPlayfair(fn) {
+        function run() { requestAnimationFrame(fn); }
+        if (d.fonts && d.fonts.load) {
+            d.fonts.load('600 100px "Playfair Display"').then(run).catch(run);
+        } else if (d.fonts && d.fonts.ready) {
+            d.fonts.ready.then(run);
+        } else {
+            run();
+        }
+    }
+    cuandoPlayfair(ajustarWord);
     w.addEventListener('resize', ajustarWord);
-    if (d.fonts && d.fonts.ready) d.fonts.ready.then(ajustarWord);
+    setTimeout(ajustarWord, 500);
+    if (typeof IntersectionObserver === 'function' && wordBox) {
+        var io = new IntersectionObserver(function (entries) {
+            if (!entries[0] || !entries[0].isIntersecting) return;
+            cuandoPlayfair(ajustarWord);
+            io.disconnect();
+        });
+        io.observe(wordBox);
+    }
 })();
