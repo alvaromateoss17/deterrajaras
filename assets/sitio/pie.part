@@ -46,6 +46,9 @@
         <div class="ft-word" aria-hidden="true">
             <span class="ft-word-in"><span>D</span><span>e</span><span>t</span><span>e</span><span>r</span><span>r</span><span>a</span><span>j</span><span>a</span><span>r</span><span>a</span><span>s</span><span>.</span></span>
         </div>
+        <p class="ft-by">
+            <a href="https://dumor.es" target="_blank" rel="noopener noreferrer">Hecha por <span>Dumor</span></a>
+        </p>
     </div>
 </footer>
 

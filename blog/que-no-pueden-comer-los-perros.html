@@ -572,6 +572,11 @@ ul { list-style: none; }
     </style>
 <!-- sitio:css -->
 <style>
+/* Cabecera y pie comunes a todas las páginas de deterrajaras.es.
+   Fuente única: assets/sitio/sitio.css. Se incrusta en cada página con
+   scripts/aplicar-sitio.py entre las marcas <!-- sitio:css -->.
+   Solo toca el marcado de la cabecera, el menú móvil, el pie y el botón
+   flotante de WhatsApp: ninguna regla global pisa el estilo de las páginas. */
 :root{--crema:#F9EDE8;--melocoton:#F5C4B3;--burdeos:#AD3E64;--burdeos-h:#8F2F51;--salvia:#4E6B47;--texto:#5A3E36;--fondo:#FDF9F7;--r-s:10px;--r-m:18px;--pill:999px;--ease:cubic-bezier(.16,1,.3,1);--serif:'Playfair Display',Georgia,serif;--sans:'Lato',system-ui,-apple-system,'Segoe UI',sans-serif}
 [hidden]{display:none !important}
 .on-dark :focus-visible{outline-color:var(--crema)}
@@ -582,6 +587,8 @@ ul { list-style: none; }
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:var(--pill);font-weight:700;font-size:.9375rem;line-height:1.25;text-decoration:none;white-space:nowrap;transition:background .2s ease,color .2s ease;cursor:pointer}
 .btn-burdeos{background:var(--burdeos);color:#fff;border:0}
 .btn-burdeos:hover{background:var(--burdeos-h);color:#fff}
+
+/* ── Cabecera ── */
 .hd{position:sticky;top:0;z-index:30;background:var(--fondo);box-shadow:0 1px 0 rgba(90,62,54,0);transition:box-shadow .3s ease}
 .hd.is-scrolled{box-shadow:0 1px 0 rgba(90,62,54,.12),0 6px 8px -6px rgba(90,62,54,.16)}
 .hd-in{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -612,8 +619,10 @@ ul { list-style: none; }
 .menu .sub{display:flex;flex-direction:column;padding:0 0 10px 16px;border-bottom:1px solid rgba(90,62,54,.14)}
 .menu .sub a{font-size:1.0625rem;color:var(--texto);text-decoration:none;padding:10px 0}
 .menu .menu-wa{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-radius:var(--pill);background:var(--burdeos);color:#fff;text-decoration:none;font-weight:700}
+
+/* ── Pie ── */
 .ft{background:var(--texto);color:var(--crema);overflow:hidden}
-.ft .wrap{padding-top:clamp(56px,7vw,88px)}
+.ft .wrap{padding-top:clamp(56px,7vw,88px);padding-bottom:clamp(28px,4vw,44px)}
 .ft-cols{display:flex;flex-wrap:wrap;gap:44px clamp(28px,3.4vw,48px)}
 .ft-marca{flex:1.6 1 260px}
 .ft-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
@@ -639,6 +648,13 @@ ul { list-style: none; }
 .ft-word-in{display:inline-flex;white-space:nowrap;font-family:var(--serif);font-weight:600;font-size:clamp(3rem,15vw,12.5rem);line-height:1.28;letter-spacing:-.02em;color:var(--crema)}
 .ft-word-in span{display:inline-block}
 .ft-word-in span:last-child{color:var(--melocoton)}
+.ft-by{margin:.1em 0 0}
+.ft-by a{display:inline-flex;align-items:baseline;gap:.4em;color:#EBDAD3;text-decoration:none;font-size:.875rem;line-height:1.4;padding:10px 0 0}
+.ft-by a:hover{color:var(--melocoton)}
+.ft-by span{font-family:var(--serif);font-weight:600;font-size:1.125rem;letter-spacing:-.02em;color:var(--crema)}
+.ft-by a:hover span{color:var(--melocoton)}
+
+/* ── Aviso de cookies ── */
 .ck{position:fixed;left:clamp(14px,2vw,24px);right:clamp(14px,2vw,24px);bottom:clamp(14px,2vw,24px);z-index:50;max-width:640px;background:#fff;color:var(--texto);border-radius:var(--r-m);padding:20px 22px;box-shadow:0 10px 30px -10px rgba(58,40,35,.35),0 0 0 1px rgba(90,62,54,.1);display:flex;flex-direction:column;gap:16px;font-family:var(--sans)}
 .ck:focus{outline:none}
 .ck-txt{margin:0;font-size:.9375rem;line-height:1.6}
@@ -651,6 +667,8 @@ ul { list-style: none; }
 .ck-si:hover{background:var(--burdeos-h)}
 @media (min-width:600px){.ck{flex-direction:row;align-items:center;gap:22px}.ck-btns{flex:none}.ck-btn{flex:none}}
 body:has(.ck) .wa-float{opacity:0;pointer-events:none}
+
+/* ── WhatsApp flotante ── */
 .wa-float{position:fixed;right:clamp(14px,2vw,24px);bottom:clamp(14px,2vw,24px);z-index:20;width:54px;height:54px;border-radius:var(--pill);background:var(--salvia);color:#fff;display:grid;place-items:center;box-shadow:0 4px 8px rgba(58,40,35,.25);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s ease,transform .4s var(--ease),background .2s ease}
 .wa-float.is-on{opacity:1;transform:translateY(0);pointer-events:auto}
 .wa-float:hover{background:#3F5939;color:#fff}
@@ -1115,6 +1133,9 @@ body:has(.ck) .wa-float{opacity:0;pointer-events:none}
         <div class="ft-word" aria-hidden="true">
             <span class="ft-word-in"><span>D</span><span>e</span><span>t</span><span>e</span><span>r</span><span>r</span><span>a</span><span>j</span><span>a</span><span>r</span><span>a</span><span>s</span><span>.</span></span>
         </div>
+        <p class="ft-by">
+            <a href="https://dumor.es" target="_blank" rel="noopener noreferrer">Hecha por <span>Dumor</span></a>
+        </p>
     </div>
 </footer>
 

@@ -48,7 +48,7 @@
 
 /* ── Pie ── */
 .ft{background:var(--texto);color:var(--crema);overflow:hidden}
-.ft .wrap{padding-top:clamp(56px,7vw,88px)}
+.ft .wrap{padding-top:clamp(56px,7vw,88px);padding-bottom:clamp(28px,4vw,44px)}
 .ft-cols{display:flex;flex-wrap:wrap;gap:44px clamp(28px,3.4vw,48px)}
 .ft-marca{flex:1.6 1 260px}
 .ft-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
@@ -74,6 +74,11 @@
 .ft-word-in{display:inline-flex;white-space:nowrap;font-family:var(--serif);font-weight:600;font-size:clamp(3rem,15vw,12.5rem);line-height:1.28;letter-spacing:-.02em;color:var(--crema)}
 .ft-word-in span{display:inline-block}
 .ft-word-in span:last-child{color:var(--melocoton)}
+.ft-by{margin:.1em 0 0}
+.ft-by a{display:inline-flex;align-items:baseline;gap:.4em;color:#EBDAD3;text-decoration:none;font-size:.875rem;line-height:1.4;padding:10px 0 0}
+.ft-by a:hover{color:var(--melocoton)}
+.ft-by span{font-family:var(--serif);font-weight:600;font-size:1.125rem;letter-spacing:-.02em;color:var(--crema)}
+.ft-by a:hover span{color:var(--melocoton)}
 
 /* ── Aviso de cookies ── */
 .ck{position:fixed;left:clamp(14px,2vw,24px);right:clamp(14px,2vw,24px);bottom:clamp(14px,2vw,24px);z-index:50;max-width:640px;background:#fff;color:var(--texto);border-radius:var(--r-m);padding:20px 22px;box-shadow:0 10px 30px -10px rgba(58,40,35,.35),0 0 0 1px rgba(90,62,54,.1);display:flex;flex-direction:column;gap:16px;font-family:var(--sans)}
