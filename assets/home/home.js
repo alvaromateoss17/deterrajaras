@@ -150,8 +150,8 @@
             .then(animar)
             .catch(function () { /* sin GSAP la página se ve igual, solo sin animaciones */ });
     }
-    /* Se pide con la primera interacción (o a los 4 s): las animaciones son
-       para lo que está por debajo, y así no compiten con la portada */
+    /* Se carga al terminar la página, y también si el usuario ya está scrolleando.
+       Antes esperaba al primer gesto y el móvil se quedaba con el script en caché. */
     var arrancado = false;
     var eventos = ['scroll', 'pointerdown', 'touchstart', 'keydown', 'wheel'];
     function unaVez() {
@@ -161,7 +161,9 @@
         arrancar();
     }
     eventos.forEach(function (ev) { w.addEventListener(ev, unaVez, { passive: true }); });
-    setTimeout(unaVez, 4000);
+    function pronto() { setTimeout(unaVez, 280); }
+    if (d.readyState === 'complete') pronto();
+    else w.addEventListener('load', pronto);
 
     function animar() {
         var gsap = w.gsap;
@@ -169,77 +171,81 @@
         gsap.registerPlugin(ST);
 
         var movil = w.matchMedia('(max-width: 699px), (pointer: coarse)').matches;
-        var ease = 'expo.out';
-        var dist = movil ? 12 : 22;
-        var dur = movil ? 0.55 : 0.9;
-        var limpiar = 'opacity,visibility,transform';
+        var scrub = true;
         var vh = w.innerHeight;
-        var retraso = function (el) { return Math.min((+el.dataset.delay || 0) / 1000, movil ? 0.06 : 0.16); };
-        /* Solo se anima lo que todavía no está en pantalla: nada visible se oculta */
-        var porDebajo = function (el) { return el.getBoundingClientRect().top > vh * 0.92; };
-        var alEntrar = function (trigger, fn) {
-            ST.create({ trigger: trigger, start: movil ? 'top bottom' : 'top 88%', once: true, onEnter: function () { if (!d.hidden) fn(); } });
-        };
-        /* En el móvil no se baja la opacidad: si no, el bloque se ve lavado a mitad del scroll. */
-        var entrar = function (el, extra) {
-            var desde = movil ? { y: dist } : { autoAlpha: 0, y: dist };
-            var hasta = movil
-                ? { y: 0, duration: dur, ease: ease, delay: retraso(el), clearProps: 'transform' }
-                : { autoAlpha: 1, y: 0, duration: dur, ease: ease, delay: retraso(el), clearProps: limpiar };
-            if (extra) Object.assign(hasta, extra);
-            gsap.fromTo(el, desde, hasta);
+        /* Lo que ya está en pantalla no se toca. Lo de abajo llega pegado al dedo,
+           y está entero antes de poder leerlo: no se queda lavado en el centro. */
+        var porDebajo = function (el) { return el.getBoundingClientRect().top > vh * 0.9; };
+        var ligado = function (el, desde, hasta, start, end) {
+            var vars = {
+                ease: 'none',
+                immediateRender: true,
+                scrollTrigger: {
+                    trigger: el,
+                    start: start || 'top 100%',
+                    end: end || (movil ? 'top 80%' : 'top 72%'),
+                    scrub: scrub
+                }
+            };
+            Object.keys(hasta).forEach(function (k) { vars[k] = hasta[k]; });
+            gsap.fromTo(el, desde, vars);
         };
 
-        /* Franja de garantías: un paseo constante. En el móvil no se engancha al dedo. */
+        /* Franja de garantías: ritmo fijo. No se invierte con el dedo. */
         var franja = d.querySelector('.marq');
         var pista = d.querySelector('.marq-track');
-        var marquee = gsap.to(pista, { xPercent: -50, ease: 'none', duration: movil ? 48 : 42, repeat: -1 });
-        if (!movil) {
-            franja.addEventListener('mouseenter', function () { gsap.to(marquee, { timeScale: 0, duration: 0.6, overwrite: true }); });
-            franja.addEventListener('mouseleave', function () { gsap.to(marquee, { timeScale: 1, duration: 0.8, overwrite: true }); });
+        var marquee = gsap.to(pista, { xPercent: -50, ease: 'none', duration: movil ? 46 : 40, repeat: -1 });
+        if (!movil && franja) {
+            franja.addEventListener('mouseenter', function () { gsap.to(marquee, { timeScale: 0, duration: 0.45, overwrite: true }); });
+            franja.addEventListener('mouseleave', function () { gsap.to(marquee, { timeScale: 1, duration: 0.6, overwrite: true }); });
         }
 
-        /* Textos y bloques: una subida corta, la misma en toda la página */
+        /* Títulos un poco más de recorrido que el párrafo, para que no sea el mismo gesto. */
         gsap.utils.toArray('[data-reveal]:not([data-reveal="img"])').filter(porDebajo).forEach(function (el) {
-            alEntrar(el, function () { entrar(el); });
+            var titulo = /^H[1-6]$/.test(el.tagName);
+            ligado(el, { y: titulo ? 28 : 16, opacity: 0 }, { y: 0, opacity: 1 }, titulo ? 'top 100%' : 'top 97%', movil ? 'top 92%' : 'top 78%');
         });
 
-        /* Fotos: entran enteras. El recorte animado se veía a tirones en el móvil. */
+        /* Fotos: se asientan dentro del marco. Siempre se ven; no se desvanecen. */
         gsap.utils.toArray('[data-reveal="img"]').filter(porDebajo).forEach(function (el) {
-            alEntrar(el, function () { entrar(el, movil ? null : { duration: 1.05 }); });
+            var foto = el.querySelector('img, video') || el;
+            ligado(foto, { scale: 1.06 }, { scale: 1 }, 'top 100%', movil ? 'top 68%' : 'top 58%');
+            gsap.fromTo(el, { y: 18 }, {
+                y: 0, ease: 'none', immediateRender: true,
+                scrollTrigger: { trigger: el, start: 'top 100%', end: movil ? 'top 78%' : 'top 70%', scrub: scrub }
+            });
         });
 
-        /* Iconos */
         gsap.utils.toArray('[data-pop]').filter(porDebajo).forEach(function (el) {
-            alEntrar(el, function () { entrar(el, { duration: 0.45, delay: 0.04 }); });
+            ligado(el, { y: 10, opacity: 0 }, { y: 0, opacity: 1 }, 'top 98%', 'top 86%');
         });
 
-        /* En escritorio la foto de la familia acompaña un poco el scroll. En el móvil, quieta. */
-        if (!movil) {
-            var familia = d.querySelector('.fam-img');
-            if (familia) {
-                gsap.fromTo(familia, { yPercent: -4 }, { yPercent: 4, ease: 'none', immediateRender: false, scrollTrigger: { trigger: familia.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.4 } });
-            }
+        /* La foto de la familia se mueve un poco menos que el texto, en las dos versiones. */
+        var familia = d.querySelector('.fam-img');
+        if (familia) {
+            gsap.fromTo(familia, { yPercent: movil ? -3 : -5 }, {
+                yPercent: movil ? 3 : 5, ease: 'none', immediateRender: false,
+                scrollTrigger: { trigger: familia.parentElement, start: 'top bottom', end: 'bottom top', scrub: scrub }
+            });
         }
 
-        /* Proceso: la línea acompaña al texto, sin arrastrarse con el dedo */
         d.querySelectorAll('.paso').forEach(function (paso) {
             if (!porDebajo(paso)) return;
             var linea = paso.querySelector('.paso-linea');
-            var partes = paso.querySelectorAll('.paso-n, h3, p');
-            alEntrar(paso, function () {
-                if (linea) gsap.fromTo(linea, { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: ease, clearProps: 'transform' });
-                if (movil) gsap.fromTo(partes, { y: dist }, { y: 0, duration: dur, ease: ease, stagger: 0.06, clearProps: 'transform' });
-                else gsap.fromTo(partes, { autoAlpha: 0, y: dist }, { autoAlpha: 1, y: 0, duration: dur, ease: ease, stagger: 0.08, clearProps: limpiar });
+            if (linea) {
+                gsap.fromTo(linea, { scaleX: 0 }, {
+                    scaleX: 1, ease: 'none', immediateRender: true, transformOrigin: '0 50%',
+                    scrollTrigger: { trigger: paso, start: 'top 96%', end: 'top 72%', scrub: scrub }
+                });
+            }
+            paso.querySelectorAll('.paso-n, h3, p').forEach(function (parte, i) {
+                ligado(parte, { y: 16, opacity: 0 }, { y: 0, opacity: 1 }, 'top ' + (98 - i * 2) + '%', 'top 80%');
             });
         });
 
-        /* Wordmark: entra entero. Letra a letra se cortaba en pantallas estrechas. */
-        if (wordEl) {
-            alEntrar(wordBox, function () {
-                if (movil) gsap.fromTo(wordEl, { y: 14 }, { y: 0, duration: 0.6, ease: ease, clearProps: 'transform' });
-                else gsap.fromTo(wordEl, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1, ease: ease, clearProps: limpiar });
-            });
+        /* El nombre del pie entra entero. Letra a letra se quedaba en la D. */
+        if (wordEl && porDebajo(wordBox)) {
+            ligado(wordEl, { y: 22 }, { y: 0 }, 'top 100%', 'top 78%');
         }
 
         ST.refresh();
