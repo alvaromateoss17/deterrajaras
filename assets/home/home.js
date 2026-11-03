@@ -22,7 +22,7 @@
         masBtn.setAttribute('aria-expanded', abrir ? 'true' : 'false');
         masBtn.querySelector('span').textContent = abrir ? 'Ver menos preguntas' : 'Ver las 9 preguntas';
         if (abrir && w.gsap && !reduce) {
-            w.gsap.fromTo(masBox.children, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power2.out', stagger: 0.14, clearProps: 'opacity,visibility,transform' });
+            w.gsap.fromTo(masBox.children, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: 'expo.out', stagger: 0.06, clearProps: 'opacity,visibility,transform' });
         }
         refrescar();
     });
@@ -168,82 +168,77 @@
         var ST = w.ScrollTrigger;
         gsap.registerPlugin(ST);
 
-        var ease = 'power2.out';
-        var dist = 18;
-        var limpiar = 'opacity,visibility,transform,clipPath';
+        var movil = w.matchMedia('(max-width: 699px), (pointer: coarse)').matches;
+        var ease = 'expo.out';
+        var dist = movil ? 12 : 22;
+        var dur = movil ? 0.55 : 0.9;
+        var limpiar = 'opacity,visibility,transform';
         var vh = w.innerHeight;
-        var retraso = function (el) { return (+el.dataset.delay || 0) / 1000; };
+        var retraso = function (el) { return Math.min((+el.dataset.delay || 0) / 1000, movil ? 0.06 : 0.16); };
         /* Solo se anima lo que todavía no está en pantalla: nada visible se oculta */
-        var porDebajo = function (el) { return el.getBoundingClientRect().top > vh * 0.95; };
+        var porDebajo = function (el) { return el.getBoundingClientRect().top > vh * 0.92; };
         var alEntrar = function (trigger, fn) {
-            ST.create({ trigger: trigger, start: 'top bottom', once: true, onEnter: function () { if (!d.hidden) fn(); } });
+            ST.create({ trigger: trigger, start: movil ? 'top bottom' : 'top 88%', once: true, onEnter: function () { if (!d.hidden) fn(); } });
+        };
+        /* En el móvil no se baja la opacidad: si no, el bloque se ve lavado a mitad del scroll. */
+        var entrar = function (el, extra) {
+            var desde = movil ? { y: dist } : { autoAlpha: 0, y: dist };
+            var hasta = movil
+                ? { y: 0, duration: dur, ease: ease, delay: retraso(el), clearProps: 'transform' }
+                : { autoAlpha: 1, y: 0, duration: dur, ease: ease, delay: retraso(el), clearProps: limpiar };
+            if (extra) Object.assign(hasta, extra);
+            gsap.fromTo(el, desde, hasta);
         };
 
-        /* Franja de garantías: movimiento continuo, acelera con el scroll, se para con el ratón */
+        /* Franja de garantías: un paseo constante. En el móvil no se engancha al dedo. */
         var franja = d.querySelector('.marq');
         var pista = d.querySelector('.marq-track');
-        var marquee = gsap.to(pista, { xPercent: -50, ease: 'none', duration: 72, repeat: -1 });
-        var calma;
-        ST.create({
-            start: 0,
-            end: 'max',
-            onUpdate: function (self) {
-                if (franja.matches(':hover')) return;
-                var impulso = 1 + Math.min(Math.abs(self.getVelocity()) / 1800, 0.35);
-                gsap.to(marquee, { timeScale: impulso * (self.direction < 0 ? -1 : 1), duration: 1.1, overwrite: true });
-                clearTimeout(calma);
-                calma = setTimeout(function () { gsap.to(marquee, { timeScale: 1, duration: 2.2, overwrite: true }); }, 420);
-            }
-        });
-        franja.addEventListener('mouseenter', function () { gsap.to(marquee, { timeScale: 0, duration: 1.2, overwrite: true }); });
-        franja.addEventListener('mouseleave', function () { gsap.to(marquee, { timeScale: 1, duration: 1.6, overwrite: true }); });
-
-        /* Textos y bloques que suben al aparecer */
-        gsap.utils.toArray('[data-reveal]:not([data-reveal="img"])').filter(porDebajo).forEach(function (el) {
-            alEntrar(el, function () {
-                gsap.fromTo(el, { autoAlpha: 0, y: dist }, { autoAlpha: 1, y: 0, duration: 1.8, ease: ease, delay: retraso(el), clearProps: limpiar });
-            });
-        });
-
-        /* Fotos que se descubren */
-        gsap.utils.toArray('[data-reveal="img"]').filter(porDebajo).forEach(function (el) {
-            alEntrar(el, function () {
-                gsap.fromTo(el,
-                    { clipPath: 'inset(16% 5% 0% 5% round 18px)', autoAlpha: 0.3 },
-                    { clipPath: 'inset(0% 0% 0% 0% round 18px)', autoAlpha: 1, duration: 2.2, ease: ease, delay: retraso(el), clearProps: limpiar });
-            });
-        });
-
-        /* Iconos con un pequeño giro */
-        gsap.utils.toArray('[data-pop]').filter(porDebajo).forEach(function (el) {
-            alEntrar(el, function () {
-                gsap.fromTo(el, { scale: 0.86, autoAlpha: 0, rotate: -6 }, { scale: 1, autoAlpha: 1, rotate: 0, duration: 1.6, ease: ease, delay: 0.4, clearProps: limpiar });
-            });
-        });
-
-        /* Profundidad suave en la portada y en la foto de la familia */
-        gsap.to('.hero-par', { yPercent: 4, ease: 'none', scrollTrigger: { trigger: '#inicio', start: 'top top', end: 'bottom top', scrub: 1.8 } });
-        var familia = d.querySelector('.fam-img');
-        if (familia) {
-            gsap.fromTo(familia, { yPercent: -5 }, { yPercent: 5, ease: 'none', immediateRender: false, scrollTrigger: { trigger: familia.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1.8 } });
+        var marquee = gsap.to(pista, { xPercent: -50, ease: 'none', duration: movil ? 48 : 42, repeat: -1 });
+        if (!movil) {
+            franja.addEventListener('mouseenter', function () { gsap.to(marquee, { timeScale: 0, duration: 0.6, overwrite: true }); });
+            franja.addEventListener('mouseleave', function () { gsap.to(marquee, { timeScale: 1, duration: 0.8, overwrite: true }); });
         }
 
-        /* Proceso: la línea de cada paso se dibuja con el scroll */
+        /* Textos y bloques: una subida corta, la misma en toda la página */
+        gsap.utils.toArray('[data-reveal]:not([data-reveal="img"])').filter(porDebajo).forEach(function (el) {
+            alEntrar(el, function () { entrar(el); });
+        });
+
+        /* Fotos: entran enteras. El recorte animado se veía a tirones en el móvil. */
+        gsap.utils.toArray('[data-reveal="img"]').filter(porDebajo).forEach(function (el) {
+            alEntrar(el, function () { entrar(el, movil ? null : { duration: 1.05 }); });
+        });
+
+        /* Iconos */
+        gsap.utils.toArray('[data-pop]').filter(porDebajo).forEach(function (el) {
+            alEntrar(el, function () { entrar(el, { duration: 0.45, delay: 0.04 }); });
+        });
+
+        /* En escritorio la foto de la familia acompaña un poco el scroll. En el móvil, quieta. */
+        if (!movil) {
+            var familia = d.querySelector('.fam-img');
+            if (familia) {
+                gsap.fromTo(familia, { yPercent: -4 }, { yPercent: 4, ease: 'none', immediateRender: false, scrollTrigger: { trigger: familia.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.4 } });
+            }
+        }
+
+        /* Proceso: la línea acompaña al texto, sin arrastrarse con el dedo */
         d.querySelectorAll('.paso').forEach(function (paso) {
             if (!porDebajo(paso)) return;
             var linea = paso.querySelector('.paso-linea');
-            gsap.fromTo(linea, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: paso, start: 'top bottom', end: 'top 40%', scrub: 1.6 } });
             var partes = paso.querySelectorAll('.paso-n, h3, p');
             alEntrar(paso, function () {
-                gsap.fromTo(partes, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1.6, ease: ease, stagger: 0.16, clearProps: limpiar });
+                if (linea) gsap.fromTo(linea, { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: ease, clearProps: 'transform' });
+                if (movil) gsap.fromTo(partes, { y: dist }, { y: 0, duration: dur, ease: ease, stagger: 0.06, clearProps: 'transform' });
+                else gsap.fromTo(partes, { autoAlpha: 0, y: dist }, { autoAlpha: 1, y: 0, duration: dur, ease: ease, stagger: 0.08, clearProps: limpiar });
             });
         });
 
-        /* Wordmark: las letras suben una a una */
+        /* Wordmark: entra entero. Letra a letra se cortaba en pantallas estrechas. */
         if (wordEl) {
-            var letras = wordEl.querySelectorAll('span');
             alEntrar(wordBox, function () {
-                gsap.fromTo(letras, { yPercent: 105 }, { yPercent: 0, duration: 2.2, ease: ease, stagger: 0.09, clearProps: 'transform' });
+                if (movil) gsap.fromTo(wordEl, { y: 14 }, { y: 0, duration: 0.6, ease: ease, clearProps: 'transform' });
+                else gsap.fromTo(wordEl, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1, ease: ease, clearProps: limpiar });
             });
         }
 
