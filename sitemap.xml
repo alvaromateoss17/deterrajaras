@@ -28,9 +28,15 @@
   <!-- /panel:camadas -->
   <url>
     <loc>https://deterrajaras.es/blog</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/alimentar-cachorro-schnauzer-miniatura</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://deterrajaras.es/caniche-toy-extremadura</loc>
