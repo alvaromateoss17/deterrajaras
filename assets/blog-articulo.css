@@ -1,0 +1,57 @@
+/* El cuerpo del artículo cabe en la pantalla.
+   Las tablas anchas se desplazan dentro de .table-scroll
+   y no ensanchan el resto de la página. */
+
+.article-layout {
+    grid-template-columns: minmax(0, 1fr) 300px;
+}
+.article-layout > * {
+    min-width: 0;
+}
+@media (max-width: 1024px) {
+    .article-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.breadcrumb-inner,
+.article-header,
+.article-lead,
+.article-meta,
+.article-body,
+.toc,
+.article-sidebar,
+.related-section,
+.faq-q,
+.callout,
+.callout li,
+.content-list li,
+.checklist li {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.article-meta {
+    flex-wrap: wrap;
+}
+.faq-q {
+    white-space: normal;
+}
+
+.article-body img,
+.article-body video,
+.article-body iframe,
+.article-header img {
+    max-width: 100%;
+    height: auto;
+}
+
+.table-scroll {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
