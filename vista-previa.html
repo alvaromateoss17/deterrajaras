@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Vista previa — Deterrajaras</title>
+<style>
+  :root { color-scheme: light }
+  html, body { margin: 0 }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #fbf8f3; color: #3d2a17 }
+  #vp-estado { min-height: 100vh; display: grid; place-items: center; padding: 24px; text-align: center }
+  #vp-estado .caja { max-width: 32rem }
+  #vp-estado h1 { font-size: 1.3rem; margin: 0 0 .5rem }
+  #vp-estado p { margin: 0 0 1.25rem; color: #6b6157; line-height: 1.5 }
+  #vp-estado a.volver { display: inline-block; background: #3d2a17; color: #fff; text-decoration: none; padding: .7rem 1.2rem; border-radius: 999px; font-weight: 600 }
+</style>
+</head>
+<body>
+  <div id="vp-estado"><div class="caja"><p>Cargando la vista previa…</p></div></div>
+
+<script>
+/*
+ * Vista previa del contenido SIN PUBLICAR, sobre el diseño real de la web.
+ *
+ * Pide al panel (enlace firmado que caduca) las camadas y el aviso en borrador,
+ * coge la página /camadas de verdad y sustituye lo que hay entre las marcas
+ * <!-- panel:camadas --> y <!-- panel:aviso --> por el borrador. Así el criador
+ * ve cómo quedará su web ANTES de publicar.
+ *
+ * La transformación (datos del panel -> tarjetas HTML) es una copia fiel de
+ * scripts/sync-panel.mjs. Si cambias el aspecto de las tarjetas o el aviso en
+ * sync-panel.mjs, cámbialo también aquí para que la vista previa no mienta.
+ */
+(function () {
+  'use strict';
+
+  // El panel que firma el enlace y guarda el borrador.
+  var PANEL = 'https://panel.dumor.es';
+  // Solo para probar en local: ?panel=http://localhost:3000 (nunca en producción).
+  var esLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var panelParam = new URLSearchParams(location.search).get('panel');
+  if (esLocal && panelParam) PANEL = panelParam.replace(/\/+$/, '');
+
+  var token = new URLSearchParams(location.search).get('t') || '';
+
+  function fallar(titulo, texto) {
+    document.getElementById('vp-estado').innerHTML =
+      '<div class="caja"><h1>' + titulo + '</h1><p>' + texto + '</p>' +
+      '<a class="volver" href="' + PANEL + '/panel">Volver al panel</a></div>';
+  }
+
+  if (!token) {
+    fallar('Vista previa', 'Abre esta vista desde el panel, con el botón «Ver cómo queda».');
+    return;
+  }
+
+  // ── Transformación (copia fiel de scripts/sync-panel.mjs) ────────────────
+  var esc = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+  var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  var slugify = function (s) {
+    return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  };
+  var absRuta = function (f) { return (/^https?:/.test(f) || f.startsWith('/')) ? f : '/' + f; };
+  var ESTADOS = {
+    proxima: { estado: 'abierta', entregada: false, texto: 'Reservas abiertas', clase: 'st-reservas' },
+    disponible: { estado: 'abierta', entregada: false, texto: 'Cachorros disponibles', clase: 'st-available' },
+    completa: { estado: 'cerrada', entregada: false, texto: 'Plazas completas', clase: 'st-reserved' },
+    entregada: { estado: 'cerrada', entregada: true, texto: 'Entregada', clase: 'st-reserved' },
+  };
+  var RAZA_URL = { 'schnauzer miniatura': 'schnauzer-mini', 'schnauzer mini': 'schnauzer-mini', 'caniche toy': 'caniche-toy' };
+
+  function aWeb(filas) {
+    var usados = {};
+    return filas.map(function (fila, i) {
+      var d = fila.datos || {};
+      var clave = ESTADOS[d.estado] ? d.estado : 'proxima';
+      var est = ESTADOS[clave];
+      var raza = (d.raza || '').trim() || (d.nombre || '').split('·')[0].trim();
+      var partes = (d.nacimiento || '').split('-').map(Number);
+      var a = partes[0], m = partes[1], dia = partes[2];
+      var mesTexto = (a && m) ? (MESES[m - 1] + ' de ' + a) : '';
+      var slug = mesTexto
+        ? ((RAZA_URL[raza.toLowerCase()] || slugify(raza)) + '-' + MESES[m - 1] + '-' + a)
+        : slugify(d.nombre || ('camada-' + (i + 1)));
+      if (usados[slug] && dia) slug = slug + '-' + dia;
+      while (usados[slug]) slug += '-b';
+      usados[slug] = true;
+
+      var fotos = (d.fotos && d.fotos.length) ? d.fotos : ['imagenes_caniches/schnauzer_mini_patio.jpg'];
+      var cuando = mesTexto ? ('nacida en ' + mesTexto) : 'próximamente';
+      return {
+        slug: slug,
+        nombre: d.nombre,
+        raza: raza,
+        fecha: a ? ('Nacida el ' + dia + ' de ' + MESES[m - 1] + ' de ' + a) : 'Próximamente',
+        estado: est.estado,
+        estadoText: est.texto,
+        fotoThumb: fotos[0],
+        alts: fotos.map(function (_, n) {
+          return n === 0
+            ? ('Camada de ' + raza + ' ' + cuando + ' en Cáceres')
+            : ('Cachorros de ' + raza + ' criados en casa en Cáceres - ' + (mesTexto || 'próxima camada') + ' - foto ' + (n + 1));
+        }),
+        resumen: d.resumen || (d.nombre + ': camada de ' + raza + ' criada en casa en Cáceres.'),
+        _clase: est.clase,
+      };
+    });
+  }
+
+  function tarjetas(camadas) {
+    var hayActivas = camadas.some(function (c) { return c.estado === 'abierta'; });
+    var cards = camadas.map(function (c) {
+      return '                <a href="/camadas/' + c.slug + '" class="camada-card">\n' +
+        '                    <div class="camada-thumb">\n' +
+        '                        <span class="camada-status ' + c._clase + '">' + esc(c.estadoText) + '</span>\n' +
+        '                        <img src="' + esc(absRuta(c.fotoThumb)) + '" alt="' + esc(c.alts[0]) + '" loading="lazy">\n' +
+        '                    </div>\n' +
+        '                    <div class="camada-body">\n' +
+        '                        <h3>' + esc(c.nombre) + '</h3>\n' +
+        '                        <div class="camada-meta"><span><i class="fas fa-calendar" aria-hidden="true"></i> ' + esc(c.fecha) + '</span></div>\n' +
+        '                        <p class="camada-resumen">' + esc(c.resumen) + '</p>\n' +
+        '                        <span class="camada-btn camada-btn-reservas">Ver esta camada →</span>\n' +
+        '                    </div>\n' +
+        '                </a>';
+    }).join('\n');
+    return '            <!-- vista previa del borrador -->\n' +
+      '            <h2>' + (hayActivas ? 'Nuestras camadas' : 'Camadas anteriores') + '</h2>\n' +
+      '            <p>Así son nuestras camadas reales: criadas en casa, con seguimiento veterinario desde el primer día.</p>\n' +
+      '            <div class="camadas-grid">\n' + cards + '\n            </div>';
+  }
+
+  function aviso(datos) {
+    if (!datos || datos.activo !== true || !String(datos.texto || '').trim()) return '';
+    return '        <div class="status-aviso"><i class="fas fa-circle-info" aria-hidden="true"></i> ' + esc(datos.texto.trim()) + '</div>';
+  }
+
+  function reemplazar(texto, nombre, contenido) {
+    var re = new RegExp('(<!-- panel:' + nombre + ' -->\\n)[\\s\\S]*?(\\n?[ \\t]*<!-- /panel:' + nombre + ' -->)');
+    if (!re.test(texto)) return texto;
+    return texto.replace(re, function (_, abre, cierra) { return abre + contenido + cierra; });
+  }
+
+  function banda() {
+    return '<div style="position:sticky;top:0;z-index:99999;background:#3d2a17;color:#fff;' +
+      'font:600 14px/1.4 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif;' +
+      'padding:10px 16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.18)">' +
+      'Vista previa · tu web con los cambios <u>sin publicar</u>. Las fichas de cada camada se crean al publicar. ' +
+      '<a href="' + PANEL + '/panel" style="color:#fff;font-weight:700">Volver al panel</a></div>';
+  }
+
+  // ── Montaje ──────────────────────────────────────────────────────────────
+  Promise.all([
+    fetch(PANEL + '/api/vista-previa?t=' + encodeURIComponent(token)).then(function (r) {
+      if (!r.ok) throw new Error('token');
+      return r.json();
+    }),
+    fetch('/camadas', { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('camadas');
+      return r.text();
+    }),
+  ]).then(function (res) {
+    var datos = res[0], html = res[1];
+    if (datos.camadas) html = reemplazar(html, 'camadas', tarjetas(aWeb(datos.camadas)));
+    html = reemplazar(html, 'aviso', aviso(datos.aviso));
+    // Fuera de índice y con la barra de aviso arriba.
+    html = html.replace(/<meta\s+name=["']robots["'][^>]*>/i, '<meta name="robots" content="noindex, nofollow">');
+    html = html.replace(/(<body[^>]*>)/i, function (m) { return m + banda(); });
+    document.open();
+    document.write(html);
+    document.close();
+    document.title = 'Vista previa — Deterrajaras';
+  }).catch(function (e) {
+    if (e && e.message === 'token') {
+      fallar('El enlace ha caducado', 'Vuelve al panel y pulsa «Ver cómo queda» otra vez para abrir una vista previa nueva.');
+    } else {
+      fallar('No se pudo cargar la vista previa', 'Inténtalo de nuevo en un momento. Si sigue fallando, avísanos.');
+    }
+  });
+})();
+</script>
+</body>
+</html>
