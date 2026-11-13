@@ -142,7 +142,7 @@ function aWeb(filas) {
     while (usados.has(slug)) slug += '-b';
     usados.add(slug);
 
-    const fotos = (d.fotos || []).length ? d.fotos : ['imagenes_caniches/schnauzer_mini_patio.jpg'];
+    const fotos = (d.fotos || []).length ? d.fotos : ['imagenes_caniches/schnauzer_mini_patio.webp'];
     const cuando = mesTexto ? `nacida en ${mesTexto}` : 'próximamente';
     return {
       id: i + 1,
@@ -217,7 +217,7 @@ function aviso(datos) {
 /** Última frase de la description de la home, según lo que haya en el panel.
  *  El texto del repo ("Lista de espera completa") vale siempre, así que si el
  *  panel falla la home no promete camadas que no existen. */
-const BASE_HOME = 'Criadero familiar con Núcleo Zoológico en Cáceres. Caniche Toy y Schnauzer Mini criados en casa, con chip, vacunas y contrato.';
+const BASE_HOME = 'Criadero familiar con Núcleo Zoológico en Cáceres. Caniche Toy y Schnauzer Mini criados en casa, con chip y contrato.';
 
 function descripcionHome(camadas) {
   const hay = (clave) => camadas.some((c) => c.estadoClave === clave);
@@ -345,7 +345,7 @@ function cuerpoCamada(c) {
   const parrafos = [...(intro ? [intro] : []), ...(c.desc || [])].map((pa) => `                <p>${esc(pa)}</p>`).join('\n');
 
   const cta = c.estado === 'abierta'
-    ? `            <a href="https://wa.me/34670225384?text=${encodeURIComponent(`Hola! Me interesa la ${c.nombre}. ¿Podéis darme más información?`)}" target="_blank" class="cta-wa">
+    ? `            <a href="https://wa.me/34670225384?text=${encodeURIComponent(`Hola! Me interesa la ${c.nombre}. ¿Podéis darme más información?`)}" target="_blank" rel="noopener noreferrer" class="cta-wa">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i> Contactar por WhatsApp
             </a>`
     : `            <div class="reservas-cta" style="margin-top:32px;">
@@ -385,9 +385,11 @@ function paginaCamada(plantilla, c) {
   t = una(t, /<title>[\s\S]*?<\/title>/, `<title>${esc(titulo)}</title>`, 'el <title>');
   // Indexación según el estado real de la camada: se indexa lo que aporta algo
   // a quien busca (se puede reservar o comprar) y no lo que ya pasó. Las camadas
-  // cerradas siguen publicadas y enlazadas desde /camadas, pero en noindex y
-  // fuera del sitemap. La plantilla /camada-detalle va siempre noindex.
-  const robots = c.estado === 'abierta' ? 'index, follow' : 'noindex, follow';
+  // Abiertas: index + sitemap. Entregadas: se quedan indexables (contenido
+  // perenne que demuestra cómo criamos) pero fuera del sitemap. Las cerradas
+  // sin entregar (plazas completas) siguen en noindex. La plantilla
+  // /camada-detalle va siempre noindex.
+  const robots = c.estado === 'abierta' || c.entregada ? 'index, follow' : 'noindex, follow';
   t = una(t, /[ \t]*<!-- Plantilla: noindex[\s\S]*?-->\n[ \t]*<meta name="robots" content="noindex, follow">/,
     `    <meta name="robots" content="${robots}">`, 'la meta robots');
   t = una(t, /<meta name="description" content="[^"]*">/,

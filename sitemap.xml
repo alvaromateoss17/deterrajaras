@@ -33,6 +33,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://deterrajaras.es/blog/categoria/compra-de-cachorros</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/categoria/cuidados-y-salud</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/categoria/ley-y-documentacion</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/categoria/razas</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/categoria/consejos-para-nuevos-duenos</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/test-raza</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://deterrajaras.es/blog/alimentar-cachorro-schnauzer-miniatura</loc>
     <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -137,6 +173,12 @@
   <url>
     <loc>https://deterrajaras.es/blog/alimentacion-cachorro-pienso</loc>
     <lastmod>2026-05-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/que-no-pueden-comer-los-perros</loc>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
