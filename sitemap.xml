@@ -28,7 +28,7 @@
   <!-- /panel:camadas -->
   <url>
     <loc>https://deterrajaras.es/blog</loc>
-    <lastmod>2026-11-14</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -71,6 +71,12 @@
   <url>
     <loc>https://deterrajaras.es/blog/checklist-preparar-casa-antes-del-cachorro</loc>
     <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://deterrajaras.es/blog/schnauzer-miniatura-familias-con-ninos</loc>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
