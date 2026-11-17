@@ -13,6 +13,11 @@
  *   - "Aceptar" y "Rechazar" se ven igual de claros y con el mismo tamaño.
  *   - La decisión se guarda un año en este navegador y se puede cambiar
  *     cuando se quiera desde el enlace "Cookies" del pie.
+ *   - Al rechazar (o si ya había una negativa guardada al cargar) se retira el
+ *     consentimiento de Google (Consent Mode v2 de vuelta a "denied") y se
+ *     borran las cookies de medición que hubieran quedado (_ga, _ga_<ID>, _gid,
+ *     _gat*, y las de Clarity _clck/_clsk), probando el dominio del host y el
+ *     dominio raíz con punto, para que retirar el permiso revoque de verdad.
  */
 (function () {
     'use strict';
@@ -76,6 +81,68 @@
         }
     }
 
+    /* ── Retirar el consentimiento ──
+     * GTM ya cargado no se puede "descargar" sin recargar, pero sí dejamos de
+     * medir: ponemos el consentimiento de vuelta en "denied" y borramos las
+     * cookies que Google (o Clarity) hubiera escrito. */
+    var PATRONES = [/^_ga($|_)/, /^_gid$/, /^_gat/, /^_clck$/, /^_clsk$/];
+
+    /* Dominios donde pueden vivir las cookies: el host actual (sin atributo
+     * domain), el host, el host sin "www" y el dominio raíz con punto, porque
+     * Google Analytics las escribe en el dominio raíz (p. ej. .deterrajaras.es). */
+    function dominiosCookie() {
+        var host = (window.location && window.location.hostname) || '';
+        var lista = [''];   /* '' = sin domain, borra las cookies del host exacto */
+        if (host) {
+            lista.push(host);
+            lista.push('.' + host);
+            var sinWww = host.replace(/^www\./, '');
+            if (sinWww !== host) {
+                lista.push(sinWww);
+                lista.push('.' + sinWww);
+            }
+            var partes = sinWww.split('.');
+            if (partes.length >= 2) {
+                var raiz = partes.slice(-2).join('.');
+                lista.push(raiz);
+                lista.push('.' + raiz);
+            }
+        }
+        return lista;
+    }
+
+    function borrarCookies() {
+        var dominios = dominiosCookie();
+        var trozos = (d.cookie || '').split(';');
+        for (var i = 0; i < trozos.length; i++) {
+            var nombre = trozos[i].split('=')[0].replace(/^\s+|\s+$/g, '');
+            if (!nombre) continue;
+            var coincide = false;
+            for (var p = 0; p < PATRONES.length; p++) {
+                if (PATRONES[p].test(nombre)) { coincide = true; break; }
+            }
+            if (!coincide) continue;
+            var base = nombre + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+            for (var j = 0; j < dominios.length; j++) {
+                try {
+                    d.cookie = dominios[j] ? base + '; domain=' + dominios[j] : base;
+                } catch (e) { /* dominio no válido en este contexto: seguimos */ }
+            }
+        }
+    }
+
+    function revocarMedicion() {
+        if (MEDICION) {
+            gtag('consent', 'update', {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied'
+            });
+        }
+        borrarCookies();
+    }
+
     /* ── El cartel ── */
     var caja = null;
 
@@ -89,6 +156,7 @@
         guardarDecision(valor);
         cerrar();
         if (valor === 'si') arrancarMedicion();
+        else revocarMedicion();
     }
 
     function mostrar() {
@@ -115,6 +183,7 @@
 
     var decision = leerDecision();
     if (decision === 'si') arrancarMedicion();
+    else if (decision === 'no') borrarCookies();   /* limpia restos de antes de este arreglo */
     else if (decision === null && MEDICION) mostrar();
 
     /* El enlace "Cookies" del pie siempre vuelve a abrir el aviso */
