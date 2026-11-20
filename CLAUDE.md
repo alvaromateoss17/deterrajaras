@@ -17,9 +17,10 @@ contenido de apoyo.
 ## Reglas de contenido (innegociables)
 1. **No inventar datos** (premios, nº de camadas, testimonios, fechas, métricas). Donde falte
    un dato real que no esté en el repo, usar el marcador literal `[PENDIENTE: dato real de Álvaro]`.
-2. **Schnauzer blanco: DATO DESCONOCIDO.** No sabemos con certeza si criamos blanco. No añadir
-   afirmaciones nuevas de que lo criamos. (Aviso: a fecha 2026-11-20 el repo ya afirma el color
-   blanco en varias páginas; está pendiente de confirmación por Álvaro — ver `INFORME_SEO_2026-11-20.md`.)
+2. **Schnauzer blanco: variedad OCASIONAL (confirmado por Álvaro, 2026-11-20).** Criamos sobre todo
+   negro y sal y pimienta; blanco solo en camadas puntuales. Mencionarlo SIEMPRE con ese marco
+   ("de vez en cuando", "camadas puntuales"), nunca como variedad habitual. No hay foto propia de
+   blanco en el repo todavía.
 3. **Ley de Bienestar Animal 7/2023:** respetar los textos legales existentes (entrega a 8 semanas,
    etc.). No cambiar afirmaciones legales.
 4. **Sin formularios nuevos ni CTAs de venta agresivos.** Mantener los enlaces a WhatsApp existentes.

@@ -21,12 +21,14 @@ he corregido. Lo demás ha sido verificación técnica y ajustes de coherencia.
 
 ## 2. Lo que he cambiado en esta sesión
 
-### 2.1. Corrección crítica: "Schnauzer blanco" (contenido inventado)
-El trabajo parcial del primer agente afirmaba que **criáis Schnauzer blanco** en el hero
-de `/schnauzer-mini`, en su FAQ (schema + visible), en una tarjeta de color y en `llms.txt`.
-**Tú no lo has confirmado y no hay ni una foto de blanco en el repo** → es justo la regla
-que no se toca (no inventar hechos del criadero). **Lo he eliminado de todas partes.**
-`/schnauzer-mini` queda coherente con dos variedades: **negro** y **sal y pimienta**.
+### 2.1. "Schnauzer blanco": corregido y luego reinstaurado con el marco correcto
+El trabajo parcial del primer agente afirmaba que criáis Schnauzer blanco **como variedad
+habitual**, sin que estuviera confirmado y sin ninguna foto en el repo. Lo eliminé primero por
+precaución (regla: no inventar). Tras confirmarlo tú, lo he **reintroducido con el marco honesto**:
+criáis **sobre todo negro y sal y pimienta**, y **blanco solo en camadas puntuales** ("de vez en
+cuando"). Reflejado en hero, FAQ (schema + visible), sección de colores y bloque CTA de
+`/schnauzer-mini`, y en `llms.txt`. Así captura la keyword "schnauzer miniatura blanco" (140/mes)
+**sin exagerar**. Falta una **foto propia de un blanco** para la tarjeta e `ImageObject`.
 
 ### 2.2. Precio del Schnauzer
 Me diste tu precio real: **800–900 €**. Decisiones tomadas:
@@ -61,14 +63,11 @@ Me diste tu precio real: **800–900 €**. Decisiones tomadas:
 
 ---
 
-## 4. Pendiente de un dato o decisión TUYA
-1. **¿Criáis Schnauzer blanco?** Hoy el sitio NO lo afirma. Si SÍ lo criáis, se puede
-   reañadir (color + foto propia) y capturar "schnauzer miniatura blanco" (~140/mes). Si no,
-   déjalo como está. **Avísame.**
-2. **Tu precio (800–900 €):** ¿quieres mostrarlo en alguna página o prefieres mantener solo
-   el rango general? Hoy no aparece tu precio propio.
-3. **"caniche toy" seco (KD 87, 90.500/mes):** la SERP la dominan enciclopedias y marketplaces.
-   Recomendación: **no invertir esfuerzo** en el término seco; seguir capturando variantes
+## 4. Decisiones (ya cerradas con Álvaro)
+1. **Schnauzer blanco: SÍ**, variedad ocasional → reflejado con ese marco (ver 2.1).
+   Único fleco: subir una **foto propia de un Schnauzer blanco** cuando la tengas.
+2. **Precio (800–900 €): NO se muestra** en la web (se da por WhatsApp en privado). Hecho.
+3. **"caniche toy" seco (KD 87):** **no se invierte esfuerzo**; se siguen capturando variantes
    ("caniche toy precio", "caniche enano", colores, local), que es donde ya ganáis.
 
 ---
