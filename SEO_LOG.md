@@ -21,7 +21,7 @@ Posiciones de partida: SE Ranking, 20-11-2026 (datos del brief de Álvaro).
 - Enlazado interno pilar↔blogs: **ya existía** (commit `672bc61`). No se duplicó para no sobreoptimizar.
 
 ## Decisiones de Álvaro (2026-11-20, confirmadas)
-- **Schnauzer blanco: SÍ**, como variedad ocasional (sobre todo negros; blanco en camadas puntuales). Reflejado con ese marco. Falta solo una **foto propia de un Schnauzer blanco** para añadir a la tarjeta de color e `ImageObject` (hoy la tarjeta es solo texto).
+- **Schnauzer blanco: SÍ**, como variedad ocasional (sobre todo negros; blanco en camadas puntuales). Reflejado con ese marco. **Fotos propias añadidas** (2026-11-20): bloque dedicado en `/schnauzer-mini` con dos fotos reales en WebP (patio 800/1200 + exposición 760), alt descriptivo e `ImageObject`.
 - **Precio propio (800-900 €): NO mostrar** en la web. Los precios se dan por WhatsApp en privado. El artículo mantiene solo el rango general de mercado.
 - **"caniche toy" seco (KD 87):** no se invierte esfuerzo (SERP dominada por enciclopedias/marketplaces).
 
